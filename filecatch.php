@@ -4,6 +4,12 @@ include('connect.php');
 $userid=$_SESSION['userid'];
 $nid=$_POST['nid'];
 $target_dir='media/';
+if(file_exists($target_dir)==0)
+{
+	$oldmask = umask(0);
+	mkdir($target_dir,0777);
+	umask($oldmask);
+}
 $rand=md5(rand(1, 50000));
 $name = $_FILES["file"]["name"];
 $ext = end((explode(".", $_FILES["file"]["name"]))); # extra () to prevent notice

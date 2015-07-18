@@ -1,5 +1,24 @@
-<?php 
-$string="sethu lakshmi 2015-07-18 14:24:10sethu
-";
-echo strpos($string, "sethu");
-?>
+<?php
+
+// File and new size
+$filename = 'images/intro_image.jpg';
+$percent = 0.5;
+
+// Content type
+header('Content-Type: image/jpeg');
+
+// Get new sizes
+list($width, $height) = getimagesize($filename);
+$newwidth = $width * $percent;
+$newheight = $height * $percent;
+
+// Load
+$thumb = imagecreatetruecolor($newwidth, $newheight);
+$source = imagecreatefromjpeg($filename);
+
+// Resize
+imagecopyresized($thumb, $source, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
+
+// Output
+imagejpeg($thumb);
+?>?>

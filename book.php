@@ -304,7 +304,7 @@ function showResult(url)
 		var imgexist=false;
 		while(typeof(json[init].ilist[0][imlistindex])!='undefined')
 		{
-			imlist+='<div class="imgspace"><a href="image.php?id='+json[init].ilist[0][imlistindex]+'" target="_blank"><img src="image.php?id='+json[init].ilist[0][imlistindex]+'"/></div>';
+			imlist+='<div class="imgspace"><a href="image.php?id='+json[init].ilist[0][imlistindex]+'" target="_blank"><img src="image.php?id='+json[init].ilist[0][imlistindex]+'&thumb&size=50x50"/></div>';
 			imlistindex++;
 		}
 		$id(ir).innerHTML='<div class="timeslot">'+frmtime+'</div><div class="contentslot">'+ele+'</div>'+imlist;
