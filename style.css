@@ -1,0 +1,152 @@
+@CHARSET "UTF-8";
+body
+{
+	            font-family:arial,serif;
+}
+.paper
+{
+	position:absolute;
+	background:linear-gradient(white,skyblue);
+}
+.paper textarea
+{
+	resize:none;
+	            box-sizing: border-box;
+	            font-family:arial,serif;
+	            font-size:14px;
+	
+}
+.imgplace
+{
+	height:80px;
+	border:1px dotted #7192A8;
+	border-bottom:none;
+}
+.imgplace .pholder
+{
+	text-align:center;
+	color:#B9BDC0;
+font-family:arial,serif;
+font-size:50px;
+opacity:.2;
+	
+}
+.imgplace .pholder:hover
+{
+
+opacity:.5;
+	
+}
+button
+{
+	width:100px;
+	background:linear-gradient(#A6EDE6,#B5DEDA);
+	outline:none;
+	border:1px solid #F9F1F2;
+}
+button:hover
+{
+		border:1px solid #ECD5D7;
+		cursor:pointer;
+	
+}
+.buttonsubtext
+{
+	font-size:12px;
+	color:#000;
+}
+.timedate
+{
+	color:#5B6FB3;
+	font-family:arial,serif;
+	opacity:.6;
+}
+.timedate:hover
+{
+	cursor:pointer;
+	opacity:1;
+}
+#imlist
+{
+z-index:9999;
+
+}
+#imlist td img
+{
+	
+	width:50px;
+	height:50px;
+	border:1px white solid;
+}
+progress
+{
+	width:100%;
+	background:#0f0;
+	display:none;
+}
+#geoimage img
+{
+	cursor:pointer;
+	box-shadow:1px 1px 10px #F7F8F7;
+}
+#geoimage
+{
+	margin:10px;
+	width:150px;
+	height:150px;
+}
+.results
+{
+	width:80%;
+	margin-left:10%;
+	
+}
+
+.results tr
+{
+
+}
+
+.resulttext
+{
+	height:80px;
+	width:100%;
+	background:linear-gradient(skyblue,white);
+	border:1px dotted #fff;
+	font-size:14px;
+	border-bottom:1px dotted #777E72;
+}
+.resulttext:hover
+{
+	border:1px dotted #777E72;
+}
+
+.resulttext p
+{
+	text-align:center;
+	color:#516FD2;
+}
+.resulttext .time
+{
+	position:relative;
+		text-align:right;
+		top:0px;
+		font-size:12px;
+	
+}
+.thumbspace img
+{
+width:50px;
+height:50px;
+margin:5px;
+box-shadow:1px 1px 10px #9F40BF;
+}
+.topribbon
+{
+	position:fixed;
+	left:0px;
+	top:0px;
+	width:100%;
+	min-height:60px;
+	background:#ff0;
+}
