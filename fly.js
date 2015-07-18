@@ -79,6 +79,7 @@ function msg(data)
 	}
 function uploadfile(file)
 {
+	$id('loading').style.display='block';
 	var fd = new FormData();    
 	fd.append( 'file', file );
 	fd.append( 'nid', timer );
@@ -92,6 +93,7 @@ function uploadfile(file)
 	  type: 'POST',
 	  mimeType: 'multipart/form-data',
 	  success: function(data){
+			$id('loading').style.display='none';
 	    $name(file.name).style.opacity='.5';
 	    $name(file.name).style.border='1px solid #0f0';
 	  }

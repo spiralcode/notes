@@ -71,6 +71,8 @@ function goTopage(ob)
 </script>
 </head>
 <body>
+<div id="loading" class="spinner"></div>
+
 <div class="topribbon"><span class="logo">Notes <sup>v3</sup></span>
 <table align="right" cellspacing="4"><tr><td onclick="goTopage(this)" data-link="book.php">Read Notes</td><td onclick="goTopage(this)" data-link="paper.php">Settings</td></tr></table>
 </div> 
@@ -86,6 +88,7 @@ function goTopage(ob)
 </td>
 </tr>
 </table>
+
 <script>
 getloc();
 /*
@@ -132,8 +135,8 @@ return formatted;
 $id("timedat").innerHTML=timeup();
 function savenote()
 {
-	console.log($id('geo').value);
-	var contents=$id("tarea").value;
+	$id('loading').style.display='block';
+		var contents=$id("tarea").value;
 	if(contents=='')
 	{
 	alert('Nothing to save !!!');
@@ -156,6 +159,7 @@ function savenote()
 }
 function newnote()
 {
+	$id('loading').style.display='none';
 	alert('Saved');
 	$id('tarea').value='';
 	timer++;
@@ -178,7 +182,6 @@ function newnote()
 
 </tr></table>
 
-<progress width="100%" id="progress" max="100" value="5"></progress>
 <div align="center" id="geoimage"></div>
 </div>
 <form method="post" enctype="multipart/form-data" action="filecatch.php">
@@ -195,6 +198,12 @@ tarea.style.width=opdimen.width+'px';
 tarea.style.height=opdimen.height-300+'px';
 obpaper.style.top=(height/2)-(opdimen.height/2)+'px';
 obpaper.style.left=(width/2)-(opdimen.width/2)+'px';
+//Loading placements
+//loading obj. dimensions
+var loading=$id('loading').getBoundingClientRect();
+$id('loading').style.left=(window.innerWidth/2)-(loading.width/2)-10+'px';
+$id('loading').style.bottom=(window.innerHeight/2)-(loading.height/2)+'px';
+
 //Event listening for keyboard shortcuts
 tarea.addEventListener('keydown',function(e){
 	if(e.ctrlKey&&e.keyCode==83)
