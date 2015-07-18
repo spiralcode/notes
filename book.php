@@ -109,7 +109,37 @@ height:60px;
   border-radius: 5px 20px 5px;
 
 }
+.spinner {
+position:absolute;
+z-index:101;
+  width: 40px;
+  height: 40px;
+  margin: 100px auto;
+  background-color: #f00;
 
+  border-radius: 100%;  
+  -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
+  animation: sk-scaleout 1.0s infinite ease-in-out;
+}
+
+@-webkit-keyframes sk-scaleout {
+  0% { -webkit-transform: scale(0) }
+  100% {
+    -webkit-transform: scale(3.0);
+    opacity: 0;
+  }
+}
+
+@keyframes sk-scaleout {
+  0% { 
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  } 100% {
+    -webkit-transform: scale(3.0);
+    transform: scale(1.0);
+    opacity: 0;
+  }
+}
 input
 {
 border:none;
@@ -198,6 +228,7 @@ return frmt;
 
 </head>
 <body>
+
 <div id="optionbar" class="optionbar">
 <div align="center" id="searchoptions">
 <table  border="0"><tr>
@@ -209,8 +240,11 @@ return frmt;
 
 </tr></table></div>
 </div>
-<div id="frameplace" class="frameplace"><script>
+<div id="loading" class="spinner"></div>
 
+<div id="frameplace" class="frameplace">
+
+<script>
 $id('datepicker').value=moment().format('DD-MM-YYYY');
 $id('keyinput').addEventListener('keyup',function(e)
 		{
@@ -221,11 +255,15 @@ $id('keyinput').addEventListener('keyup',function(e)
 		},false);
 function showResult(url)
 {
+	
 	$id('frameplace').innerHTML='';
+	$id('loading').style.display='block';
+	
 	var init=0;
 	$.get(url,function(data,success)
 			{
-		console.log(data);
+		$id('loading').style.display='none';
+		
 		var json=JSON.parse(data);
 		if(json[0].status==0)
 		{
@@ -292,6 +330,10 @@ datesearch($id('datepicker').value,true);
 
 $id('optionbar').style.width=window.innerWidth+'px';
 $id('searchoptions').style.width=window.innerWidth+'px';
+var loading = $id('loading').getBoundingClientRect();
+$id('loading').style.left=(window.innerWidth/2)-(loading.width)+'px';
+$id('loading').style.bottom=(window.innerHeight/2)-(loading.height)+'px';
+
 
 
 </script>
