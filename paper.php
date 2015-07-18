@@ -53,7 +53,6 @@ function savecheck(ob)
 	else
 	{
 		unsaved=false;
-		Lorem
 	}
 }
 function getPlaceImage(coords,address)
@@ -64,10 +63,16 @@ function getPlaceImage(coords,address)
 	
 	
 }
+function goTopage(ob)
+{
+	console.log(ob.dataset.link);
+	window.location.href=ob.dataset.link;
+}
 </script>
 </head>
 <body>
-<div class="topribbon">Notes 3<div><a href="book.php">Read</a></div>
+<div class="topribbon"><span class="logo">Notes <sup>v3</sup></span>
+<table align="right" cellspacing="4"><tr><td onclick="goTopage(this)" data-link="book.php">Read Notes</td><td onclick="goTopage(this)" data-link="paper.php">Settings</td></tr></table>
 </div> 
 <div class="paper" id="paper">
 <div id="filedrag" class="imgplace" title="Drag and Drop files to here"><center><span align="center" id="timedat" class="pholder">10 July 2015, 11:52 </span></center>
@@ -83,7 +88,13 @@ function getPlaceImage(coords,address)
 </table>
 <script>
 getloc();
-function getloc()
+/*
+ * Global Variables
+
+ */
+var detected_lat=0;
+var detected_lng=0;
+ function getloc()
 {
 if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
@@ -94,7 +105,9 @@ if (navigator.geolocation) {
 function showPosition(position)
 {
     console.log("Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude);
-
+    detected_lat=position.coords.latitude;
+    detected_lng=position.coords.longitude;
+    $id('geo').value=detected_lat+','+detected_lng;
 }
 function timeup()
 {
@@ -129,7 +142,7 @@ function savenote()
 	$.post('feed.php',{
 		contents:contents,
 		timeid:timer,
-		geolocation:'41,90',
+		geolocation:detected_lat+','+detected_lng,
 		setglocation:$id("geo").value
 		},function(data,success){
 		if(data==1)

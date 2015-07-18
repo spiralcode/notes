@@ -147,6 +147,29 @@ box-shadow:1px 1px 10px #9F40BF;
 	left:0px;
 	top:0px;
 	width:100%;
-	min-height:60px;
-	background:#ff0;
+	background:linear-gradient(#131400,#020014);
 }
+.topribbon .logo
+{
+	font-size:30px;
+	font-family:arial,serif;
+	color:white;
+}
+.topribbon tr td
+{
+	min-width:50px;
+	height:50px;
+	background:#69677E;
+	text-align:center;
+	color:white;
+	border-radius:2px;
+}
+.topribbon tr td:hover
+{
+	background:#4940A5;
+	cursor:pointer;
+}
+a
+{
+}
+.
