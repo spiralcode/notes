@@ -1,7 +1,6 @@
 <?php
 session_start();
 include 'connect.php';
-$userid=1;
 $_SESSION['userid']=1;
 
 ?>
@@ -43,16 +42,15 @@ function imglist(data,name)
 	$id("slot"+start).setAttribute("name", name);
 	$id("slot"+start++).innerHTML=data;
 }
-function savecheck(ob)
+function savecheck()
 {
-	if((ob.value).length>0)
+	if(($id('tarea').value).length>0)
 	{
 	unsaved=true;
-	console.log(unsaved);
 	}
 	else
 	{
-		unsaved=false;
+	unsaved=false;
 	}
 }
 function getPlaceImage(coords,address)
@@ -80,7 +78,7 @@ function goTopage(ob)
 <div id="filedrag" class="imgplace" title="Drag and Drop files to here"><center><span align="center" id="timedat" class="pholder">10 July 2015, 11:52 </span></center>
 <span class="timedate">Drag Images here</span>
 </div>
-<textarea onkeyup="savecheck(this)" placeholder="Type things here..." id = "tarea"></textarea>
+<textarea onkeyup="savecheck()" placeholder="Type things here..." id = "tarea"></textarea>
 <table align="center"><tr><td>
 <button title="Save the note. (ctrl+s)" onclick="savenote()">Save Note<br><span class="buttonsubtext">ctrl+s</span></button></td>
 <td>
@@ -129,19 +127,23 @@ if(hour<10)
 	hour="0"+hour;
 
 }
+if(mnth<10)
+{
+	mnth="0"+mnth;
+}
 var formatted = date+" - "+mnth+" - "+year+" ,"+hour+":"+min;
 return formatted;
 }
 $id("timedat").innerHTML=timeup();
 function savenote()
 {
-	$id('loading').style.display='block';
 		var contents=$id("tarea").value;
 	if(contents=='')
 	{
 	alert('Nothing to save !!!');
 	return;
 	}
+	$id('loading').style.display='block';
 	$.post('feed.php',{
 		contents:contents,
 		timeid:timer,
@@ -162,6 +164,8 @@ function newnote()
 	$id('loading').style.display='none';
 	alert('Saved');
 	$id('tarea').value='';
+	savecheck();
+	
 	timer++;
 	
 	for(var ii=1;ii<=5;ii++)

@@ -7,7 +7,6 @@ function FileDragHover(e)
 {
 	e.stopPropagation();
 	e.preventDefault();
-	//e.target.style.border="1px solid #f00";
 	$id("filedrag").style.border="2px dotted #f00";
 	$id("filedrag").style.borderBottom="none";
 
@@ -16,7 +15,6 @@ function FileDragOut(e)
 {
 	e.stopPropagation();
 	e.preventDefault();
-	//e.target.style.border="1px solid #f00";
 	$id("filedrag").style.border="1px dotted #7192A8";
 	$id("filedrag").style.borderBottom="none";
 	}
@@ -35,19 +33,14 @@ function ParseFile(file)
 {
 	if(file.type=='image/jpeg'||file.type=='image/png')
 		{
-	
-		console.log(file.name);
-		console.log(file.type);
-		console.log(file.size);
 		if (file.type.indexOf("image") == 0) {
 			var reader = new FileReader();
 			reader.onload = function(e) {
-				imglist(e.target.result,file.name);
-				uploadfile(file);
+			imglist(e.target.result,file.name);
+			uploadfile(file);
 			}
 			reader.readAsDataURL(file);
 		}
-		
 		}
 	else
 		{
@@ -83,8 +76,6 @@ function uploadfile(file)
 	var fd = new FormData();    
 	fd.append( 'file', file );
 	fd.append( 'nid', timer );
-
-
 	$.ajax({
 	  url: 'filecatch.php',
 	  data: fd,
@@ -93,7 +84,7 @@ function uploadfile(file)
 	  type: 'POST',
 	  mimeType: 'multipart/form-data',
 	  success: function(data){
-			$id('loading').style.display='none';
+		$id('loading').style.display='none';
 	    $name(file.name).style.opacity='.5';
 	    $name(file.name).style.border='1px solid #0f0';
 	  }

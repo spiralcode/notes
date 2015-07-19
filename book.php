@@ -20,9 +20,12 @@ background-size:cover;
 position:fixed;
 top:0px;
 left:0px;
-width:10px;
-height:80px;
-background-image:url(images/tile6.png);
+width:100%;
+/*background-image:url(images/tile6.png);*/
+	background:linear-gradient(#131400,#020014);
+		box-shadow:1px 1px 3px white;
+	
+
 z-index:100;
 }
 .frameplace
@@ -147,7 +150,59 @@ border-radius:2px;
 outline:none;
 }
 
+.optionbar .logo
+{
+	font-size:30px;
+	font-family:arial,serif;
+	color:white;
+}
+.optionbar .option tr td
+{
+	min-width:100px;
+	height:50px;
+	background:#69677E;
+	text-align:center;
+	color:white;
+	border-radius:2px;
+	font-family:arial,serif;
+}
+.optionbar tr td:hover
+{
+	background:#4940A5;
+	cursor:pointer;
+}
+::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
 
+::-webkit-scrollbar
+{
+	width: 6px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+	background-color: #000000;
+}
+::-moz-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+
+::-moz-scrollbar
+{
+	width: 6px;
+	background-color: #F5F5F5;
+}
+
+::-moz-scrollbar-thumb
+{
+	background-color: #000000;
+}
 </style>
 <script>
 var ir=0;
@@ -223,13 +278,19 @@ else
 var frmt=nd.getUTCFullYear()+'-'+mnth+'-'+nd.getDate();
 return frmt;
 }
-
+function goTopage(ob)
+{
+	console.log(ob.dataset.link);
+	window.location.href=ob.dataset.link;
+}
 </script>
 
 </head>
 <body>
 
 <div id="optionbar" class="optionbar">
+<span class="logo">Notes <sup>v3</sup></span>
+<table class="option" align="right" cellspacing="4"><tr><td onclick="goTopage(this)" data-link="paper.php">Add a note</td><td onclick="goTopage(this)" data-link="paper.php">Settings</td></tr></table>
 <div align="center" id="searchoptions">
 <table  border="0"><tr>
 <td><input type="text" len="50" placeholder="Search " id="keyinput"/></td>
@@ -328,7 +389,6 @@ $(function() {
   });
 datesearch($id('datepicker').value,true);
 
-$id('optionbar').style.width=window.innerWidth+'px';
 $id('searchoptions').style.width=window.innerWidth+'px';
 var loading = $id('loading').getBoundingClientRect();
 $id('loading').style.left=(window.innerWidth/2)-(loading.width)+'px';
