@@ -3,6 +3,7 @@
 <head>
   <link rel="stylesheet" href="style/jquery-ui.css">
 <script src="lib/moment.js"></script>
+<script src="ajax_1_10_2.js"></script>
 <script src="lib/jquery-1.10.2.js"></script>
   <script src="lib/jquery-ui.js"></script>
 <title>Read your Notes</title>
@@ -203,6 +204,57 @@ outline:none;
 {
 	background-color: #000000;
 }
+#flowOptions
+{
+display:none;
+position:absolute;
+background:white;
+box-shadow:1px 1px 5px #000;
+color:#000;
+border-radius:2px;
+width:300px;
+
+}
+#flowOptions tr
+{
+border:none;
+}
+#flowOptions td
+{
+margin:1%;
+font-family:arial,serif;
+background:#69677E;
+height:50px;
+color:white;
+}
+#flowOptions td:hover
+{
+	background:#9C9DA5;
+	cursor:pointer;
+}
+#infoPaper
+{
+position:absolute;
+width:600px;
+height:600px;
+box-shadow:1px 1px 2px #A0A59C;
+display:none;
+background:#fff;
+border:1px solid #00f;
+}
+#infoPaperClose
+{
+position:absolute;
+right:0px;
+top:0px;
+border:#f00;
+}
+#infoPaperClose:hover
+{
+background:#000;
+cursor:pointer;
+color:red;
+}
 </style>
 <script>
 var ir=0;
@@ -283,6 +335,41 @@ function goTopage(ob)
 	console.log(ob.dataset.link);
 	window.location.href=ob.dataset.link;
 }
+function showMenu(ob)
+{
+	console.log($id('flowOptions').style.display);
+	if($id('flowOptions').style.display=='none'||$id('flowOptions').style.display=='')
+	{
+	$id('flowOptions').style.display='block';
+	}
+	else
+	{
+		$id('flowOptions').style.display='none';
+	}
+	var refer_dim=ob.getBoundingClientRect();
+	{
+		$id('flowOptions').style.top=refer_dim.bottom+'px';
+		$id('flowOptions').style.right=(window.innerWidth-refer_dim.right)+'px';
+		
+		
+	}
+}
+function infoPaper(resource)
+{
+	console.log(resource);
+	$.get(resource,function(data,success)
+			{
+		$id('infoPaperContent').innerHTML=data;
+			});
+	$id('infoPaper').style.display='block';
+	var infoPaper = $id('infoPaper').getBoundingClientRect();
+	$id('infoPaper').style.left=(window.innerWidth/2)-(infoPaper.width/2)+'px';
+	$id('infoPaper').style.bottom=(window.innerHeight/2)-(infoPaper.height/2)+'px';
+}
+function infoPaperHide()
+{
+	$id('infoPaper').style.display='none';
+}
 </script>
 
 </head>
@@ -290,12 +377,12 @@ function goTopage(ob)
 
 <div id="optionbar" class="optionbar">
 <span class="logo">Notes <sup>v3</sup></span>
-<table class="option" align="right" cellspacing="4"><tr><td onclick="goTopage(this)" data-link="paper.php">Add a note</td><td onclick="goTopage(this)" data-link="paper.php">Settings</td></tr></table>
+<table class="option" align="right" cellspacing="4"><tr><td onclick="goTopage(this)" data-link="paper.php">Add a note</td><td onclick="showMenu(this)" data-link="paper.php">Menu</td></tr></table>
 <div align="center" id="searchoptions">
 <table  border="0"><tr>
 <td><input type="text" len="50" placeholder="Search " id="keyinput"/></td>
 <td><input type="text" id="datepicker" onChange="datesearch(this)"></td>
-<!--  <td id="yest" onclick="nav(this)" dThankata-value=""><img src="images/arrow-left.png"></td>
+<!--  <td id="yest" onclick="nav(this)" data-value=""><img src="images/arrow-left.png"></td>
 <td id="tomm" onclick="nav(this)" data-value=""><img src="images/arrow-right.png"></td>
 -->
 
@@ -377,7 +464,14 @@ function showResult(url)
 }
 </script>
 </div>
+<div id="flowOptions">
+<table width="100%">
+<tr><td onclick="infoPaper('info.php')">Informations</td></tr>
+<tr><td onclick="infoPaper('settings.php')">Settings</td></tr>
 
+</table>
+</div>
+<div id="infoPaper"><div id="infoPaperClose" onclick="infoPaperHide()">Close</div><div id=infoPaperContent></div></div>
 <script>
 $(function() {
     $( "#datepicker" ).datepicker(
@@ -389,11 +483,12 @@ $(function() {
   });
 datesearch($id('datepicker').value,true);
 
-$id('searchoptions').style.width=window.innerWidth+'px';
-var loading = $id('loading').getBoundingClientRect();
-$id('loading').style.left=(window.innerWidth/2)-(loading.width)+'px';
-$id('loading').style.bottom=(window.innerHeight/2)-(loading.height)+'px';
+var searchoptions_dim = $id('searchoptions').getBoundingClientRect();
+$id('searchoptions').style.left=(window.innerWidth/2)-(searchoptions_dim.width/2)+'px';
 
+var loading = $id('loading').getBoundingClientRect();
+$id('loading').style.left=(window.innerWidth/2)-(loading.width/2)+'px';
+$id('loading').style.bottom=(window.innerHeight/2)-(loading.height/2)+'px';
 
 
 </script>
