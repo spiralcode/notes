@@ -205,4 +205,300 @@ z-index:101;
     opacity: 0;
   }
 }
+#flowOptions
+{
+display:none;
+position:absolute;
+background:white;
+box-shadow:1px 1px 5px #000;
+color:#000;
+border-radius:2px;
+width:300px;
+
+}
+#flowOptions tr
+{
+border:none;
+}
+#flowOptions td
+{
+margin:1%;
+font-family:arial,serif;
+background:#69677E;
+height:50px;
+color:white;
+}
+#flowOptions td:hover
+{
+	background:#9C9DA5;
+	cursor:pointer;
+}
+#infoPaper
+{
+position:absolute;
+width:600px;
+height:600px;
+box-shadow:1px 1px 2px #A0A59C;
+display:none;
+background:#fff;
+border:1px solid #00f;
+}
+#infoPaperClose
+{
+position:absolute;
+right:0px;
+top:0px;
+border:#f00;
+}
+#infoPaperClose:hover
+{
+background:#000;
+cursor:pointer;
+color:red;
+}
+body
+{
+background:black;
+background-image:url(images/intro_image.jpg);
+background-attachment:fixed;
+background-repeat:no-repeat;
+background-size:cover;
+}
+.optionbar
+{
+position:fixed;
+top:0px;
+left:0px;
+width:100%;
+/*background-image:url(images/tile6.png);*/
+	background:linear-gradient(#131400,#020014);
+		box-shadow:1px 1px 3px white;
+	
+
+z-index:100;
+}
+.frameplace
+{
+position:absolute;
+top:80px;
+width:70%;
+margin-left:15%;
+}
+#searchoptions
+{
+position:absolute;
+bottom:0px;
+}
+input
+{
+font-size:20px;
+}
+#optionbar img
+{
+font-family:arial,serif;
+width:50px;
+height:50px;
+}
+#optionbar td:hover
+{
+background:#9C9DA5;
+cursor:pointer;
+}
+.nonote
+{
+position:relative;
+	width:98%;
+	//background:#4F6034;
+	color:#fff;
+	font-family:Arial,serif;
+	border-radius:2px;
+	background:#A8BBFF;
+	text-align:center;
+}
+.note
+{
+position:relative;
+	width:98%;
+	min-height:150px;
+	color:#fff;
+	font-family:Arial,serif;
+	border-radius:2px;
+	background-image:url(images/tile.png);
+	box-shadow:1px 1px 5px #6D7463;
+	overflow:auto;
+	margin-top:1%;
+	
+}
+.note .timeslot
+{
+position:relative;
+top:0px;
+right:1px;
+text-align:right;
+color:#7190D0;
+font-size:13px;
+
+}
+.note .contentslot
+{
+position:relative;
+margin:1%;
+width:98%;
+
+}
+.note .imgspace
+{
+position:relative;
+float:left;
+bottom:1px;
+margin:5px;
+}
+
+.note .imgspace img
+{
+width:60px;
+height:60px;
+  border-radius: 5px 20px 5px;
+
+}
+.spinner {
+position:absolute;
+z-index:101;
+  width: 40px;
+  height: 40px;
+  margin: 100px auto;
+  background-color: #f00;
+
+  border-radius: 100%;  
+  -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
+  animation: sk-scaleout 1.0s infinite ease-in-out;
+}
+
+@-webkit-keyframes sk-scaleout {
+  0% { -webkit-transform: scale(0) }
+  100% {
+    -webkit-transform: scale(3.0);
+    opacity: 0;
+  }
+}
+
+@keyframes sk-scaleout {
+  0% { 
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  } 100% {
+    -webkit-transform: scale(3.0);
+    transform: scale(1.0);
+    opacity: 0;
+  }
+}
+input
+{
+border:none;
+border-radius:2px;
+outline:none;
+}
+
+.optionbar .logo
+{
+	font-size:30px;
+	font-family:arial,serif;
+	color:white;
+}
+.optionbar .option tr td
+{
+	min-width:100px;
+	height:50px;
+	background:#69677E;
+	text-align:center;
+	color:white;
+	border-radius:2px;
+	font-family:arial,serif;
+}
+.optionbar tr td:hover
+{
+	background:#4940A5;
+	cursor:pointer;
+}
+::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+	width: 6px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+	background-color: #000000;
+}
+::-moz-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+
+::-moz-scrollbar
+{
+	width: 6px;
+	background-color: #F5F5F5;
+}
+
+::-moz-scrollbar-thumb
+{
+	background-color: #000000;
+}
+#flowOptions
+{
+display:none;
+position:absolute;
+background:white;
+box-shadow:1px 1px 5px #000;
+color:#000;
+border-radius:2px;
+width:300px;
+
+}
+#flowOptions tr
+{
+border:none;
+}
+#flowOptions td
+{
+margin:1%;
+font-family:arial,serif;
+background:#69677E;
+height:50px;
+color:white;
+}
+#flowOptions td:hover
+{
+	background:#9C9DA5;
+	cursor:pointer;
+}
+#infoPaper
+{
+position:absolute;
+width:600px;
+height:600px;
+display:none;
+background:#fff;
+}
+#infoPaperClose
+{
+position:absolute;
+right:0px;
+top:0px;
+border:#f00;
+}
+#infoPaperClose:hover
+{
+background:#000;
+cursor:pointer;
+color:red;
+}
 .

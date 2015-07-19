@@ -85,8 +85,14 @@ function uploadfile(file)
 	  mimeType: 'multipart/form-data',
 	  success: function(data){
 		$id('loading').style.display='none';
-	    $name(file.name).style.opacity='.5';
+	    $name(file.name).style.backgroundImage="url('images/s_okay.png')";
 	    $name(file.name).style.border='1px solid #0f0';
+	    $name(file.name).style.backgroundPosition='top right';
+
+	    $name(file.name).style.backgroundRepeat='no-repeat';
+
+
+
 	  }
 
 	});

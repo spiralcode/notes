@@ -183,7 +183,11 @@ function newnote()
 <td id = "slot3"></td>
 <td id = "slot4"></td>
 <td id = "slot5"></td>
-
+<td id = "slot6"></td>
+<td id = "slot7"></td>
+<td id = "slot8"></td>
+<td id = "slot9"></td>
+<td id = "slot10"></td>
 </tr></table>
 
 <div align="center" id="geoimage"></div>
