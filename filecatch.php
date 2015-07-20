@@ -1,7 +1,6 @@
 <?php
-session_start();
+include 'session_check.php';
 include('connect.php');
-$userid=$_SESSION['userid'];
 $nid=$_POST['nid'];
 $target_dir='media/';
 if(file_exists($target_dir)==0)

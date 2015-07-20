@@ -1,3 +1,6 @@
+<?php 
+include 'session_check.php';
+?>
 <!doctype html>
 <html>
 <head>

@@ -1,6 +1,5 @@
 <?php
-session_start();
-$userid=1;
+include 'session_check.php';
 include("connect.php");
 include("fun.php");
 

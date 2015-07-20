@@ -1,8 +1,7 @@
 <?php
-session_start();
+include 'session_check.php';
 include 'connect.php';
 date_default_timezone_set('Asia/Calcutta');
-$userid=$_SESSION['userid'];
 if(isset($_GET['date']))
 {
 	$in_date=$_GET['date'];

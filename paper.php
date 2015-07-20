@@ -1,7 +1,6 @@
 <?php
-session_start();
 include 'connect.php';
-$_SESSION['userid']=1;
+include 'session_check.php';
 
 ?>
 <!doctype html>

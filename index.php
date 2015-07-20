@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
 <head>
+
 <title>Notes </title>
 <style>
 .aboutspace
@@ -93,9 +94,45 @@ button:hover
 border:1px solid black;
 cursor:pointer;
 }
+#errorshow
+{
+font-family:arial,serif;
+color:red;
+font-size:12px;
+}
 </style>
+<script src="ajax_1_10_2.js"></script>
+<script>
+function $id(ob)
+{
+	return document.getElementById(ob);
+}
+function datagateway(type)
+{
+	var email=$id('email').value;
+	var pass=$id('password').value;
+	if(type.dataset.kind=='login')
+	{
+		$.post('login.php',{
+			email: email ,
+			pass: pass
+			},function(data,status){
+				if(data==1)
+				{
+					window.location.href='paper.php';
+				}
+				if(data==0)
+				{
+				$id('errorshow').innerHTML='E-mail and Password doesn\'t seems to exist, try again or make an account.';	
+				}
+				
+				});
+		}
+}
+</script>
 </head>
 <body>
+
 <div id="spinner" class="spinner"></div>
 <div class="aboutspace">
 Notes<sup>v3</sup>
@@ -104,11 +141,13 @@ Notes<sup>v3</sup>
 <div id="smartslide">
 <table border="0" width=100% height="100%">
 <tr><td align="center" class="virtual">Login</td><td class="virtual" align="center">Sign Up</td></tr>
+<tr><td align="center" colspan="2"><span id="errorshow">&nbsp;</span></td></tr>
 <tr><td align="center">
 <div class="loginarea"><table><tr><td>
 <input type="text" id="email" placeholder="E-mail"/></td></tr>
-<tr><td><input type="text" id="password" placeholder="Password"/></td></tr>
-<tr><td align="center"><button onclick="subform">Login</button></td></tr></table></div>
+<tr><td><input type="password" id="password" placeholder="Password"/></td></tr>
+<tr><td align="center">
+<button data-kind="login" onclick="datagateway(this)">Login</button></td></tr></table></div>
 </td><td align="center"><div class="loginarea"><table>
 <tr><td><input type="text" id="name" placeholder="Name"/></td></tr>
 <tr><td><input type="text" id="email" placeholder="E-mail"/></td></tr>
@@ -126,7 +165,6 @@ var smartslide=document.getElementById('smartslide').getBoundingClientRect();
 
 document.getElementById('spinner').style.left=(window.innerWidth/2)-(loading.width/2)+'px';
 document.getElementById('smartslide').style.left=(window.innerWidth/2)-(smartslide.width/2)+'px';
-
 </script>
 </body>
 </html>

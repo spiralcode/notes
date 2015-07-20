@@ -1,8 +1,7 @@
 <?php
+include 'session_check.php';
 include 'connect.php';
-session_start();
 date_default_timezone_set('Asia/Calcutta');
-$userid=$_SESSION['userid'];
 $content=$_POST['contents'];
 $content=mysqli_real_escape_string($conn, $content);
 $geo=$_POST['geolocation'];
