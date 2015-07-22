@@ -83,6 +83,9 @@ function goTopage(ob)
 <td>
 <button value="0" title="Click to embed a location" onclick="" id="geo">Embed a location<br><span class="buttonsubtext"></span></button>
 </td>
+<td>
+<button title="Click to alter date" onclick="" id="alterDate">Change Date<br><span class="buttonsubtext"></span></button>
+</td>
 </tr>
 </table>
 

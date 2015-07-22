@@ -32,7 +32,7 @@ $q=trim($q);
 $q=mysql_escape_string($q);
 $rarr=stripwords($q);
 
-$query=mysqli_query($link,"select * from events")or die(mysql_error());
+$query=mysqli_query($link,"select * from events where userid = $userid")or die(mysql_error());
 while($row=mysqli_fetch_array($query))
 {
 	$imindex=0;
@@ -130,7 +130,7 @@ while($data=mysqli_fetch_array($query))
 	$geo=$data['setglocation'];
 	$ftime=$data['ftime'];
 	$ilist=$loadimage;
-	$noteitem[$index++]=array("status"=>"$status","content"=>"$content","time"=>"$time","geo"=>"$geo","ilist"=>array($imgs),"ftime"=>"$ftime");
+	$noteitem[$index++]=array("status"=>"$status","noteid"=>"$nid","content"=>"$content","time"=>"$time","geo"=>"$geo","ilist"=>array($imgs),"ftime"=>"$ftime");
 	$imindex=0;
 	$imgs='';
 }

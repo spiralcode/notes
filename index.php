@@ -111,6 +111,9 @@ function datagateway(type)
 {
 	var email=$id('email').value;
 	var pass=$id('password').value;
+	var semail=$id('semail').value;
+	var spass=$id('spassword').value;
+	var sname=$id('sname').value;
 	if(type.dataset.kind=='login')
 	{
 		$.post('login.php',{
@@ -125,6 +128,17 @@ function datagateway(type)
 				{
 				$id('errorshow').innerHTML='E-mail and Password doesn\'t seems to exist, try again or make an account.';	
 				}
+				
+				});
+		}
+	if(type.dataset.kind=='signup')
+	{
+		$.post('create_acc.php',{
+			email: semail ,
+			password: spass ,
+			name: sname
+			},function(data,status){
+				alert(data);
 				
 				});
 		}
@@ -149,12 +163,12 @@ Notes<sup>v3</sup>
 <tr><td align="center">
 <button data-kind="login" onclick="datagateway(this)">Login</button></td></tr></table></div>
 </td><td align="center"><div class="loginarea"><table>
-<tr><td><input type="text" id="name" placeholder="Name"/></td></tr>
-<tr><td><input type="text" id="email" placeholder="E-mail"/></td></tr>
-<tr><td><input type="password" id="password" placeholder="Password"/></td></tr>
+<tr><td><input type="text" id="sname" placeholder="Name"/></td></tr>
+<tr><td><input type="text" id="semail" placeholder="E-mail"/></td></tr>
+<tr><td><input type="password" id="spassword" placeholder="Password"/></td></tr>
 <tr><td><input type="password" id="cpassword" placeholder="Confirm password"/></td></tr>
 
-<tr><td align="center"><button onclick="subform">Sign Up</button></td></tr></table></div></td></tr></table>
+<tr><td align="center"><button data-kind="signup" onclick="datagateway(this)">Sign Up</button></td></tr></table></div></td></tr></table>
 </div>
 
 </div>

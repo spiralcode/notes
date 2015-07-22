@@ -12,6 +12,11 @@ include 'session_check.php';
   <script src="lib/jquery-ui.js"></script>
 <title>Read your Notes</title>
 <style type="text/css">
+input
+{
+font-size:18px;
+text-decoration:
+}
 </style>
 <script>
 var ir=0;
@@ -127,11 +132,8 @@ function infoPaperHide()
 {
 	$id('infoPaper').style.display='none';
 }
-</script>
-
-</head>
+</script></head>
 <body>
-
 <div id="optionbar" class="optionbar">
 <span class="logo">Notes <sup>v3</sup></span>
 <table class="option" align="right" cellspacing="4"><tr><td onclick="goTopage(this)" data-link="paper.php">Add a note</td><td onclick="showMenu(this)" data-link="paper.php">Menu</td></tr></table>
@@ -183,24 +185,51 @@ function showResult(url)
 			while(typeof(json[init].content)!='undefined')
 			{
 		/*Moment code starts*/
-				var hr = moment(json[init].ftime).format('h');
-				var min = moment(json[init].ftime).format('m');
+				var hr = moment(json[init].ftime).format('hh');
+				var min = moment(json[init].ftime).format('mm');
 				var ap = moment(json[init].ftime).format('A');
-				var date= moment(json[init].ftime).format('D');
+				var date= moment(json[init].ftime).format('DD');
 				
 				var mnth= moment(json[init].ftime).format('M');
 				var year= moment(json[init].ftime).format('YYYY');
-				if(date<10){date="0"+date;}
-				if(mnth<10){mnth="0"+mnth;}	
-				if(hr<10){hr="0"+hr;}
-				if(min<10){min="0"+min;}
 				var frmtime=hr+':'+min+' '+ap+' | '+date+'/'+mnth+'/'+year;
 
+				
+				var then = moment(json[init].ftime).format('D/M/YYYY HH:mm:ss');				
+				var now=moment().format('D/M/YYYY HH:mm:ss');
+				var millisec=moment(now,"D/M/YYYY HH:mm:ss").diff(moment(then,"D/M/YYYY HH:mm:ss"));
+				var di = moment.duration(millisec);
+				var hoursago=(Math.floor(di.asHours()));
+				var days=Math.round(hoursago/24);
+				if(hoursago<24)
+				{
+				var timeago=hoursago+" hours before";
+					if(hoursago<1&&hoursago>.5)
+					{
+						timeago="Now"
+					}
+				if(hoursago<1&&hoursago<.1)
+				{
+											timeago="Just now"
+				}
+
+				}
+				else
+				{
+					if((hoursago>=24)&&(days==1))
+					{
+					var timeago=days+" day ago";			
+					}
+					else
+					{
+					var timeago=days+" days ago";				
+					}
+				}
 
 				/*Code for Moment ends*/
 				
 		var ele = json[init].content;
-		
+		var noteid=json[init].noteid;
 		var newob=document.createElement('div');
 		$id('frameplace').appendChild(newob).setAttribute("id",ir);
 		$id('frameplace').appendChild(newob).setAttribute("class","note");
@@ -209,15 +238,40 @@ function showResult(url)
 		var imgexist=false;
 		while(typeof(json[init].ilist[0][imlistindex])!='undefined')
 		{
-			imlist+='<div class="imgspace"><a href="image.php?id='+json[init].ilist[0][imlistindex]+'" target="_blank"><img src="image.php?id='+json[init].ilist[0][imlistindex]+'&thumb&size=50x50"/></div>';
+	imlist+='<div class="imgspace"><a href="image.php?id='+json[init].ilist[0][imlistindex]+'" target="_blank"><img src="image.php?id='+json[init].ilist[0][imlistindex]+'&thumb&size=50x50"/></a></div>';
 			imlistindex++;
 		}
-		$id(ir).innerHTML='<div class="timeslot">'+frmtime+'</div><div class="contentslot">'+ele+'</div>'+imlist;
+		$id(ir).innerHTML='<div title="Delete this note" data-noteid="'+noteid+'" data-divid='+ir+' class="noteoptions" onclick="deletenote(this)">X</div><div class="timeslot">'+frmtime+'</div><div class="contentslot">'+ele+'</div>'+imlist+'<div class="daysago">'+timeago+'</div>';
 		ir++;
 		init++;
 			}
 		}
 			});
+}
+function deletenote(ob)
+{
+	var noteID=ob.dataset.noteid;
+	if(confirm("Please be sure about your decision!\n * This note is note recoverable after deletion.\n* All images linked to the note will be deleted.\n"))
+	{
+		$.post('deletenote.php',
+			{
+				id: noteID
+			},function(data,success)
+			{
+				if(data=='1')
+				{
+					$id(ob.dataset.divid).style.display="none";
+				}
+				else
+				{
+					alert("We faced some errors on deletion !, please try again.");
+				}
+			});
+	}
+	else
+	{
+		return;
+	}
 }
 </script>
 </div>

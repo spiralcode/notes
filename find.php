@@ -8,11 +8,11 @@ if(isset($_GET['date']))
 	$jsDateTS = strtotime(substr($in_date, 0,15));
 	if ($jsDateTS !== false)
 $in_date=date('Y-m-d',$jsDateTS);	
-	$query=mysqli_query($link,"select * from events where DATE(ftime) = '$in_date'" )or die(mysqli_error($link));
+	$query=mysqli_query($link,"select * from events where DATE(ftime) = '$in_date' and userid=$userid" )or die(mysqli_error($link));
 }
 else
 {
-$query=mysqli_query($link,"select * from events where DATE(ftime) = CURRENT_DATE()" )or die(mysqli_error($link));
+$query=mysqli_query($link,"select * from events where DATE(ftime) = CURRENT_DATE()  and userid=$userid" )or die(mysqli_error($link));
 	}
 	?>
 <!doctype html>
