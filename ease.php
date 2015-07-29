@@ -18,5 +18,20 @@ function sess($identity)
 {
 	return $_SESSION[$identity];
 }
+function globe($identity)
+{
+	return $GLOBALS[$identity];
+}
+function riskdata($variable)
+{
+	if($variable=='')
+	{
+		echo "<i>not available</i>";
+	}
+	else
+	{
+		echo $variable;
+	}
+}
 
 ?>

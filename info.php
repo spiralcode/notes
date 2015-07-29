@@ -36,7 +36,7 @@ text-align:center;
 .justinfo .goodtable
 {
 text-align:center;
-border:1px solid #9F5B38;
+
 
 }
 .justinfo td

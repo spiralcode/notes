@@ -1,6 +1,8 @@
-
+<html>
+	<head>
 <style>
 .spinner {
+ display:none;
 z-index:101;
   width: 40px;
   height: 40px;
@@ -30,5 +32,39 @@ z-index:101;
     opacity: 0;
   }
 }
+.bigoptions
+{
+  position:absolute;
+  width:90%;
+  text-align:center;
+  top:40px;
+}
+.bigoptions span
+{
+  font-family:Arial,serif;
+  font-size:20px;
+  color: #A384BD;
+  margin:2%;
+ min-width:60px;
+ min-height:20px;
+
+}
+a
+{
+  text-decoration:none;
+    color: #A384BD;
+}
+a:hover
+{
+  text-decoration:underline;
+}
 </style>
+<script>
+
+  </script>
+		</head>
+<body>
 <div align="center" class="spinner"></div>
+<div class="bigoptions"><span><a href="search_people.php">Search for people</a></span><span><a href="peoples.php">Peoples</a></span></div>
+</body>
+</html>

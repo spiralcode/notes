@@ -13,10 +13,12 @@ function FileDragHover(e)
 	}
 function FileDragOut(e)
 {
+
 	e.stopPropagation();
 	e.preventDefault();
 	$id("filedrag").style.border="1px dotted #7192A8";
 	$id("filedrag").style.borderBottom="none";
+	
 	}
 function FileSelectHandler(e)
 {

@@ -151,7 +151,7 @@ function datagateway(type)
 <div class="aboutspace">
 Notes<sup>v3</sup>
 </div>
-<div class="attract">It just went to Gymm</div>
+<div class="attract">It just went to Gymm learning to freeze Time</div>
 <div id="smartslide">
 <table border="0" width=100% height="100%">
 <tr><td align="center" class="virtual">Login</td><td class="virtual" align="center">Sign Up</td></tr>

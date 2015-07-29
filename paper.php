@@ -8,8 +8,10 @@ include 'session_check.php';
 <head><title>Paper : 1</title>
 <script src="ajax_1_10_2.js"></script>
 <script src="aftersave.js"></script>
-
+<script src="lib/jquery-1.10.2.js"></script>
+  <script src="lib/jquery-ui.js"></script>
 <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style/jquery-ui.css">
 <link type="text/css" rel="stylesheet" href="style/locationpicker.css" />
 <script>
 var start=1;
@@ -17,7 +19,22 @@ var time = new Date;
 var timer=time.getTime();
 var width=window.innerWidth;
 var height=window.innerHeight;
-
+function showMenu(ob)
+{
+	if($id('flowOptions').style.display=='none'||$id('flowOptions').style.display=='')
+	{
+	$id('flowOptions').style.display='block';
+	}
+	else
+	{
+		$id('flowOptions').style.display='none';
+	}
+	var refer_dim=ob.getBoundingClientRect();
+	{
+		$id('flowOptions').style.top=refer_dim.bottom+'px';
+		$id('flowOptions').style.right=(window.innerWidth-refer_dim.right)+'px';	
+	}
+}
 function $id(id)
 {
 	return document.getElementById(id);
@@ -65,13 +82,49 @@ function goTopage(ob)
 	console.log(ob.dataset.link);
 	window.location.href=ob.dataset.link;
 }
+function infoPaper(resource,title,frame)
+{
+if(frame!=1)
+{
+	$.get(resource,function(data,success)
+			{
+		$id('infoPaperContent').innerHTML=data;
+		$id('topstriptitle').innerHTML=title;
+			});
+}
+else
+{
+
+	
+			$id('infoPaperContent').innerHTML='<iframe id="infoPaperFrame"></iframe>';
+			$id('infoPaperFrame').src=resource;
+			$id('topstriptitle').innerHTML=title;
+
+}
+	$id('infoPaper').style.display='block';
+	var infoPaper = $id('infoPaper').getBoundingClientRect();
+	$id('infoPaper').style.left=(window.innerWidth/2)-(infoPaper.width/2)+'px';
+	$id('infoPaper').style.bottom=(window.innerHeight/2)-(infoPaper.height/2)+'px';
+	$id('infoPaperFrame').style.height=infoPaper.height-40+'px';
+	$id('infoPaperFrame').style.width=infoPaper.width-10+'px';
+}
 </script>
 </head>
 <body>
+	<script>
+		$(function() {
+    $( "#datepicker" ).datepicker(
+    		{
+    	dateFormat: "dd-mm-yy"		
+    		}
+    	    );
+    
+  });
+		</script>
 <div id="loading" class="spinner"></div>
 
 <div class="topribbon"><span class="logo">Notes <sup>v3</sup></span>
-<table align="right" cellspacing="4"><tr><td onclick="goTopage(this)" data-link="book.php">Read Notes</td><td onclick="goTopage(this)" data-link="paper.php">Settings</td></tr></table>
+<table align="right" cellspacing="4"><tr><td onclick="goTopage(this)" data-link="book.php">Read Notes</td><td onclick="showMenu(this)" data-link="paper.php">Menu</td>	<td onclick="goTopage(this)" data-link="logout.php">Logout</td></tr></table>
 </div> 
 <div class="paper" id="paper">
 <div id="filedrag" class="imgplace" title="Drag and Drop files to here"><center><span align="center" id="timedat" class="pholder">10 July 2015, 11:52 </span></center>
@@ -84,7 +137,7 @@ function goTopage(ob)
 <button value="0" title="Click to embed a location" onclick="" id="geo">Embed a location<br><span class="buttonsubtext"></span></button>
 </td>
 <td>
-<button title="Click to alter date" onclick="" id="alterDate">Change Date<br><span class="buttonsubtext"></span></button>
+<button title="Click to alter date" onclick="" id="datepicker" value="0">Change Date<br><span class="buttonsubtext"></span></button>
 </td>
 </tr>
 </table>
@@ -127,7 +180,6 @@ if(min<10)
 if(hour<10)
 {
 	hour="0"+hour;
-
 }
 if(mnth<10)
 {
@@ -160,6 +212,10 @@ function savenote()
 		{alert(data);
 		}
 			});
+}
+function infoPaperHide()
+{
+	$id('infoPaper').style.display='none';
 }
 function newnote()
 {
@@ -231,5 +287,14 @@ tarea.addEventListener('keydown',function(e){
 	<script>
 		$('#geo').locationPicker();
 	</script>
+	<div id="flowOptions">
+<table width="100%">
+<tr><td onclick="infoPaper('info.php','Informations')">Informations</td></tr>
+<tr><td onclick="infoPaper('settings.php','Settings')">Settings</td></tr>
+<tr><td onclick="infoPaper('getpeople.php','People and Places',1)">Fetch People or Places</td></tr>
+
+</table>
+</div>
+<div id="infoPaper"><div class="topstrip"><span id="topstriptitle"></span><div id="infoPaperClose" onclick="infoPaperHide()"><img style="width:20px; height:20px;" title="Close ! this thing" src="images/b_close.png"/></div></div><div id=infoPaperContent></div></div>
 </body>
 </html>

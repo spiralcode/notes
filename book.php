@@ -4,12 +4,12 @@ include 'session_check.php';
 <!doctype html>
 <html>
 <head>
-<link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="style/jquery-ui.css">
 <script src="lib/moment.js"></script>
 <script src="ajax_1_10_2.js"></script>
 <script src="lib/jquery-1.10.2.js"></script>
   <script src="lib/jquery-ui.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style/jquery-ui.css">
 <title>Read your Notes</title>
 <style type="text/css">
 input
@@ -46,7 +46,6 @@ function nav(nav)
 	showResult('search.php?date='+nav.dataset.value);
 	$id("yest").dataset.value=passby(nav.dataset.value,(-1));
 	$id("tomm").dataset.value=passby(nav.dataset.value,(1));
-
 	
 }
 function unix2local(unix)
@@ -92,14 +91,12 @@ else
 var frmt=nd.getUTCFullYear()+'-'+mnth+'-'+nd.getDate();
 return frmt;
 }
-function goTopage(ob)
+function goTopage(ob,target)
 {
-	console.log(ob.dataset.link);
 	window.location.href=ob.dataset.link;
 }
 function showMenu(ob)
 {
-	console.log($id('flowOptions').style.display);
 	if($id('flowOptions').style.display=='none'||$id('flowOptions').style.display=='')
 	{
 	$id('flowOptions').style.display='block';
@@ -111,40 +108,57 @@ function showMenu(ob)
 	var refer_dim=ob.getBoundingClientRect();
 	{
 		$id('flowOptions').style.top=refer_dim.bottom+'px';
-		$id('flowOptions').style.right=(window.innerWidth-refer_dim.right)+'px';
-		
-		
+		$id('flowOptions').style.right=(window.innerWidth-refer_dim.right)+'px';	
 	}
 }
-function infoPaper(resource)
+function infoPaper(resource,title,frame)
 {
-	console.log(resource);
+if(frame!=1)
+{
 	$.get(resource,function(data,success)
 			{
 		$id('infoPaperContent').innerHTML=data;
+		$id('topstriptitle').innerHTML=title;
 			});
+}
+else
+{
+
+	
+			$id('infoPaperContent').innerHTML='<iframe id="infoPaperFrame"></iframe>';
+			$id('infoPaperFrame').src=resource;
+			$id('topstriptitle').innerHTML=title;
+
+}
 	$id('infoPaper').style.display='block';
 	var infoPaper = $id('infoPaper').getBoundingClientRect();
 	$id('infoPaper').style.left=(window.innerWidth/2)-(infoPaper.width/2)+'px';
 	$id('infoPaper').style.bottom=(window.innerHeight/2)-(infoPaper.height/2)+'px';
+	$id('infoPaperFrame').style.height=infoPaper.height-40+'px';
+	$id('infoPaperFrame').style.width=infoPaper.width-10+'px';
 }
 function infoPaperHide()
 {
 	$id('infoPaper').style.display='none';
 }
+function repos(ob)
+{
+	console.log(document.getElementById('menuroot').scrollTop);
+	$id('flowoptions')
+}
 </script></head>
-<body>
+<body onscroll="repos(this);">
 <div id="optionbar" class="optionbar">
 <span class="logo">Notes <sup>v3</sup></span>
-<table class="option" align="right" cellspacing="4"><tr><td onclick="goTopage(this)" data-link="paper.php">Add a note</td><td onclick="showMenu(this)" data-link="paper.php">Menu</td></tr></table>
+<table class="option" align="right" cellspacing="4"><tr>
+	<td onclick="goTopage(this)" data-link="paper.php">Add a note</td>
+<td onclick="showMenu(this)" data-link="paper.php" id="menuroot">Menu</td>
+	<td onclick="goTopage(this)" data-link="logout.php">Logout</td>
+</tr></table>
 <div align="center" id="searchoptions">
 <table  border="0"><tr>
 <td><input type="text" len="50" placeholder="Search " id="keyinput"/></td>
 <td><input type="text" id="datepicker" onChange="datesearch(this)"></td>
-<!--  <td id="yest" onclick="nav(this)" data-value=""><img src="images/arrow-left.png"></td>
-<td id="tomm" onclick="nav(this)" data-value=""><img src="images/arrow-right.png"></td>
--->
-
 </tr></table></div>
 </div>
 <div id="loading" class="spinner"></div>
@@ -210,9 +224,8 @@ function showResult(url)
 					}
 				if(hoursago<1&&hoursago<.1)
 				{
-											timeago="Just now"
+				timeago="Just now"
 				}
-
 				}
 				else
 				{
@@ -251,7 +264,7 @@ function showResult(url)
 function deletenote(ob)
 {
 	var noteID=ob.dataset.noteid;
-	if(confirm("Please be sure about your decision!\n * This note is note recoverable after deletion.\n* All images linked to the note will be deleted.\n"))
+	if(confirm("Please be sure about your decision!\n * This note is not recoverable after deletion.\n* All images linked to the note will be deleted.\n"))
 	{
 		$.post('deletenote.php',
 			{
@@ -277,12 +290,13 @@ function deletenote(ob)
 </div>
 <div id="flowOptions">
 <table width="100%">
-<tr><td onclick="infoPaper('info.php')">Informations</td></tr>
-<tr><td onclick="infoPaper('settings.php')">Settings</td></tr>
+<tr><td onclick="infoPaper('info.php','Informations')">Informations</td></tr>
+<tr><td onclick="infoPaper('settings.php','Settings')">Settings</td></tr>
+<tr><td onclick="infoPaper('getpeople.php','People and Places',1)">Fetch People or Places</td></tr>
 
 </table>
 </div>
-<div id="infoPaper"><div id="infoPaperClose" onclick="infoPaperHide()">Close</div><div id=infoPaperContent></div></div>
+<div id="infoPaper"><div class="topstrip"><span id="topstriptitle"></span><div id="infoPaperClose" onclick="infoPaperHide()"><img style="width:20px; height:20px;" title="Close ! this thing" src="images/b_close.png"/></div></div><div id=infoPaperContent></div></div>
 <script>
 $(function() {
     $( "#datepicker" ).datepicker(
