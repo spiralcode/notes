@@ -110,15 +110,24 @@ function formsub()
 		geoloc:geoloc
 	},function(data,success)
 	{
-		console.log(data);
+if(data==1)
+{
+	travelto('person_info.php?pid=<?php echo $pid; ?>');
+}
+else
+{
+	alert('Unable to save, we faced some errors on the course !');
+}
 	});
 }
 function val(ob)
 {
 	return ob.value;
 }
-
-
+function travelto(target)
+{
+	window.location.href=target;
+}
   </script>
 		</head>
 <body>
