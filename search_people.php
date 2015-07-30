@@ -112,6 +112,7 @@ function $id(ob)
 }
 function addPerson(ob)
 {
+			ob.setAttribute('disabled',"disabled");
 	var name = (ob.dataset.refer);
 	$.post('addperson.php',{
 		name: name

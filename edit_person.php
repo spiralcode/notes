@@ -14,6 +14,7 @@
 		$phone=$data['phone'];
 		$geoloc=$data['homelocation'];
 	}
+
 	?>
 <html>
 	<head>
@@ -134,17 +135,17 @@ function travelto(target)
 <div id="heading"><?php echo ucfirst($name); ?></div>
 <div id = "formarea" align="center"><br><br>
 <table class="form" cellspacing="10">
-	<tr><td>How are you related to <?php echo ucfirst($name); ?></td><td><select id ="relation">
+	<tr><td>How are you related to <?php echo ucfirst($name); ?></td><td><select value="<?php echo $relation; ?>" id ="relation">
 		<option>Friend</option>
 		<option>Sibling</option>
 		<option>Spouse</option>
 		<option>Parent</option>
 		</select></td></tr>
-	<tr><td>Phone number</td><td><input type="text" id = "phone"></td></tr>
-	<tr><td>E-mail</td><td><input type="email" id = "email"></td></tr>
-	<tr><td>Date of Birth</td><td><input type="email" id = "datepicker"></td></tr>
-	<tr><td>Address of a page/link associated with <?php echo ucfirst($name); ?></td><td><input type="url" id = "url"></td></tr>
-	<tr><td>Home/ Resident location</td><td><input type="email" id = "geo"></td></tr>
+	<tr><td>Phone number</td><td><input type="text" id = "phone" value="<?php echo $phone; ?>"></td></tr>
+	<tr><td>E-mail</td><td><input type="email" id = "email" value="<?php echo $email; ?>"></td></tr>
+	<tr><td>Date of Birth</td><td><input type="email" id = "datepicker" value="<?php echo $dob; ?>"></td></tr>
+	<tr><td>Address of a page/link associated with <?php echo ucfirst($name); ?></td><td><input value="<?php echo $website; ?>" type="url" id = "url"></td></tr>
+	<tr><td>Home/ Resident location</td><td><input type="email" id = "geo" value="<?php echo $geoloc; ?>"></td></tr>
 	<tr><td colspan="2" align="center"><button onclick="formsub()">Save</button></td></tr>
 </div>
 </body>

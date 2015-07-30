@@ -2,7 +2,7 @@
 <html>
 <head>
 
-<title>Notes </title>
+<title>Notes GIT </title>
 <style>
 .aboutspace
 {
@@ -149,7 +149,7 @@ function datagateway(type)
 
 <div id="spinner" class="spinner"></div>
 <div class="aboutspace">
-Notes<sup>v3</sup>
+Notes<sup>v3</sup>GIT
 </div>
 <div class="attract">It just went to Gymm learning to freeze Time</div>
 <div id="smartslide">
