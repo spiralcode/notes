@@ -136,10 +136,18 @@ function travelto(target)
 <div id = "formarea" align="center"><br><br>
 <table class="form" cellspacing="10">
 	<tr><td>How are you related to <?php echo ucfirst($name); ?></td><td><select value="<?php echo $relation; ?>" id ="relation">
-		<option>Friend</option>
-		<option>Sibling</option>
-		<option>Spouse</option>
-		<option>Parent</option>
+		<?php
+			$q3=mysqli_query($link,"select * from relations  ")or die(mysqli_error($link));
+			while($rows=mysqli_fetch_array($q3))
+			{
+				if($relation==$rows['term'])
+				{
+						echo "<option selected=\"selected\">".$rows['term']."<option>";		
+						break;	
+				}
+				echo "<option>".$rows['term']."<option>";			
+			}
+			?>
 		</select></td></tr>
 	<tr><td>Phone number</td><td><input type="text" id = "phone" value="<?php echo $phone; ?>"></td></tr>
 	<tr><td>E-mail</td><td><input type="email" id = "email" value="<?php echo $email; ?>"></td></tr>
