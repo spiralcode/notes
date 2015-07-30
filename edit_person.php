@@ -135,7 +135,7 @@ function travelto(target)
 <div id="heading"><?php echo ucfirst($name); ?></div>
 <div id = "formarea" align="center"><br><br>
 <table class="form" cellspacing="10">
-	<tr><td>How are you related to <?php echo ucfirst($name); ?></td><td><select value="<?php echo $relation; ?>" id ="relation">
+	<tr><td>How are yous related to <?php echo ucfirst($name); ?></td><td><select value="<?php echo $relation; ?>" id ="relation">
 		<?php
 			$q3=mysqli_query($link,"select * from relations  ")or die(mysqli_error($link));
 			while($rows=mysqli_fetch_array($q3))
