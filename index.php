@@ -1,8 +1,7 @@
 <!doctype html>
 <html>
 <head>
-
-<title>Notes GIT ! </title>
+<title>Notes </title>
 <style>
 .aboutspace
 {
@@ -138,7 +137,13 @@ function datagateway(type)
 			password: spass ,
 			name: sname
 			},function(data,status){
-				alert(data);
+				if(data==1)
+				{
+					alert("Account Created !, click login below");
+					$id('email').value=semail;
+					$id("password").value=spass;
+					
+				}
 				
 				});
 		}
@@ -149,7 +154,7 @@ function datagateway(type)
 
 <div id="spinner" class="spinner"></div>
 <div class="aboutspace">
-Notes<sup>v3</sup>GIT
+Notes<sup>v3</sup>
 </div>
 <div class="attract">It just went to Gymm learning to freeze Time</div>
 <div id="smartslide">
