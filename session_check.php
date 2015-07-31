@@ -8,5 +8,4 @@ else
 {
 	$userid=$_SESSION['userid'];
 }
-		
-		?>
+?>

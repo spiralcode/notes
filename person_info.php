@@ -14,7 +14,10 @@
 		$phone=$data['phone'];
 		$geoloc=$data['homelocation'];
 	}
-
+if(strlen($website)>40)
+{
+	$short_website=substr($website,0,40)."...";
+}
 	?>
 <html>
 	<head>
@@ -104,7 +107,18 @@ function $id(ob)
 			<tr><td>Birth on </td><td><?php riskdata($dob); ?></td></tr>
 			<tr><td>Phone</td><td><?php riskdata($phone); ?></td></tr>
 			<tr><td>E-Mail</td><td><?php riskdata($email); ?></td></tr>
-			<tr><td>Website</td><td><?php riskdata($website); ?></td></tr>
+			<tr><td>Website</td><td><?php 
+				if($website!='')
+				{
+					echo '<a target="_new" href= " '.$website.'">'.$short_website.'</a>';
+				}
+				else
+				{
+					echo "<i>not available</i>";
+				}
+				 ?>
+				
+				</td></tr>
 			</table>
 		</div>
 </body>
