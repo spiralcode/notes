@@ -16,7 +16,8 @@ $query = mysqli_query($link,"update peoples set
 	 website = '$url', 
 	 homelocation = '$geoloc', 
 	 phone = '$phone' ,
-	 dob = '$dob'
+	 dob = '$dob',
+	 gender = ''
 	   where id = $pid ") or die(mysqli_error($conn));
 	  echo "1";
 	?>

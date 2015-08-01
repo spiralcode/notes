@@ -107,7 +107,7 @@ function formsub()
 		phone:phone,
 		rel:rel,
 		url:url,
-		pid:'<?php echo $pid; ?>',
+		pid:'<?php echo $pid; ?>'
 		geoloc:geoloc
 	},function(data,success)
 	{
@@ -137,15 +137,17 @@ function travelto(target)
 <table class="form" cellspacing="10">
 	<tr><td>How are you  related to <?php echo ucfirst($name); ?></td><td><select value="<?php echo $relation; ?>" id ="relation">
 		<?php
-			$q3=mysqli_query($link,"select * from relations  ")or die(mysqli_error($link));
+			$q3=mysqli_query($link,"select * from relations")or die(mysqli_error($link));
 			while($rows=mysqli_fetch_array($q3))
 			{
 				if($relation==$rows['term'])
 				{
 						echo "<option selected=\"selected\">".$rows['term']."</option>";		
-						break;	
 				}
-				echo "<option>".$rows['term']."</option>";			
+				else
+				{
+				echo "<option>".$rows['term']."</option>";
+				}			
 			}
 			?>
 		</select></td></tr>

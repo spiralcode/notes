@@ -1,7 +1,7 @@
 <?php    
 if($_SERVER['HTTP_HOST']!='localhost')
 {
-    
+   //Dont alter its remote 
 $host = "127.10.171.2:3306";
 $user = "adminz8hImgI";
 $pass = 'rUP7aW8my2r6';
@@ -9,6 +9,7 @@ $db = 'note';
 }   
 else
 {
+//For localhost
 $host = "localhost";
 $user = "root";
 $pass = 'dbase001';
