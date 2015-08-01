@@ -107,7 +107,7 @@ function formsub()
 		phone:phone,
 		rel:rel,
 		url:url,
-		pid:'<?php echo $pid; ?>'
+		pid:'<?php echo $pid; ?>',
 		geoloc:geoloc
 	},function(data,success)
 	{
