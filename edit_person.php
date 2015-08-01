@@ -13,6 +13,7 @@
 		$dob=$data['dob'];
 		$phone=$data['phone'];
 		$geoloc=$data['homelocation'];
+		$gender = $data['gender'];
 	}
 
 	?>
@@ -96,6 +97,12 @@ span
 	text-align:right;
 	font-size:13px;
 }
+.navigate_raw
+{
+	font-size:14px;
+	color:#637A00;
+	text-align:right;
+}
 </style>
 
 <script>
@@ -106,7 +113,13 @@ function $id(ob)
 function formsub()
 {
 	var phone = val($id("phone")), email = val($id("email")), dob = val($id("datepicker")), url = val($id("url")), geoloc = val($id("geo")),rel = val($id("relation")),phone = val($id("phone"));
-	var gender = document.getElementsByName("gender")[0].value;
+	var gender = ''; 
+	if(document.getElementsByName("gender")[0].selected)
+	{
+		gender=0;
+	}
+	else
+	gender=1;
 	$.post("saveperson.php",{
 		email:email,
 		dob:dob,
@@ -139,8 +152,11 @@ function travelto(target)
   </script>
 		</head>
 <body>
+		<span class="navigate_raw"><a href="peoples.php">Back to peoples</a></span>
 <div id="heading"><?php echo ucfirst($name); ?></div>
 <div id = "formarea" align="center"><br><br>
+<?php echo $gender;
+	?>
 <table class="form" cellspacing="10">
 	<tr><td>How are you  related to <?php echo ucfirst($name); ?></td><td><select value="<?php echo $relation; ?>" id ="relation">
 		<?php
@@ -158,7 +174,7 @@ function travelto(target)
 			}
 			?>
 		</select></td></tr>
-	<tr><td>Gender</td><td><span>Male </span> <input type = "radio" name ="gender" value = "0"><span>Fe-male </span> <input type = "radio" name ="gender" value = "1"></td></tr>
+	<tr><td>Gender</td><td><span>Male </span> <input <?php if($gender=='0'){echo 'checked';} ?> name ="gender" value = "0" type ="radio"><span>Fe-male </span> <input <?php if($gender=='1'){echo 'checked';} ?>  type = "radio" name ="gender" value = "1"></td></tr>
 	<tr><td>Phone number</td><td><input type="text" id = "phone" value="<?php echo $phone; ?>"></td></tr>
 	<tr><td>E-mail</td><td><input type="email" id = "email" value="<?php echo $email; ?>"></td></tr>
 	<tr><td>Date of Birth</td><td><input type="email" id = "datepicker" value="<?php echo $dob; ?>"></td></tr>

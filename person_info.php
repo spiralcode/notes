@@ -90,16 +90,24 @@ a:hover
 	font-size:14px;
 	color:#637A00;
 }
+.navigate_raw
+{
+	font-size:14px;
+	color:#637A00;
+	text-align:right;
+}
+
 </style>
 <script>
 function $id(ob)
 {
 	return document.getElementById(ob);
 }
+
   </script>
 		</head>
 <body>
-	<a href="peoples.php">Back to peoples</a> | <a href="edit_person.php?pid=<?php echo $pid; ?>"> Add or Edit <b><?php echo  ucfirst( $name); ?></b> 's data</a>
+	<span class="navigate_raw"><a href="peoples.php">Back to peoples</a> | <a href="edit_person.php?pid=<?php echo $pid; ?>"> Add or Edit <b><?php echo  ucfirst( $name); ?></b> 's data</a></span>
 		<br>
 		<div id="heading"><?php echo ucfirst($name); ?></div><br><br>		<br>
 		<div align="center" class="info">
