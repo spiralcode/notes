@@ -86,6 +86,11 @@ a:hover
 	font-family:Arial,Serif;
 	font-size:12px;
 }
+span
+{
+	font-family:Arial,Serif;
+	font-size:12px;
+}
 .form tr td:nth-child(odd)
 {
 	text-align:right;
@@ -101,6 +106,7 @@ function $id(ob)
 function formsub()
 {
 	var phone = val($id("phone")), email = val($id("email")), dob = val($id("datepicker")), url = val($id("url")), geoloc = val($id("geo")),rel = val($id("relation")),phone = val($id("phone"));
+	var gender = document.getElementsByName("gender")[0].value;
 	$.post("saveperson.php",{
 		email:email,
 		dob:dob,
@@ -108,7 +114,8 @@ function formsub()
 		rel:rel,
 		url:url,
 		pid:'<?php echo $pid; ?>',
-		geoloc:geoloc
+		geoloc:geoloc,
+		gender:gender
 	},function(data,success)
 	{
 if(data==1)
@@ -151,6 +158,7 @@ function travelto(target)
 			}
 			?>
 		</select></td></tr>
+	<tr><td>Gender</td><td><span>Male </span> <input type = "radio" name ="gender" value = "0"><span>Fe-male </span> <input type = "radio" name ="gender" value = "1"></td></tr>
 	<tr><td>Phone number</td><td><input type="text" id = "phone" value="<?php echo $phone; ?>"></td></tr>
 	<tr><td>E-mail</td><td><input type="email" id = "email" value="<?php echo $email; ?>"></td></tr>
 	<tr><td>Date of Birth</td><td><input type="email" id = "datepicker" value="<?php echo $dob; ?>"></td></tr>
