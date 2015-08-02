@@ -1,7 +1,6 @@
 <?php
 include 'session_check.php';
 include('connect.php');
-echo $OPENSHIFT_DATA_DIR;
 $id=$_GET['id'];
 $query=mysqli_query($link, "select filename from image where id=$id and userid = $userid")or die(mysqli_error($link));
 while($data=mysqli_fetch_array($query))
@@ -75,9 +74,9 @@ $target_dir="media/";
 				
 		}
 		
-		if($extension=='png'||$extension=='png'){
+		if($extension=='png'){
 			$source = imagecreatefrompng($filename);
-				
+				echo $filename;
 			header('Content-Type: image/png');
 		}
 		
