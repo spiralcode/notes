@@ -133,8 +133,6 @@ else
 	var infoPaper = $id('infoPaper').getBoundingClientRect();
 	$id('infoPaper').style.left=(window.innerWidth/2)-(infoPaper.width/2)+'px';
 	$id('infoPaper').style.bottom=(window.innerHeight/2)-(infoPaper.height/2)+'px';
-	$id('infoPaperFrame').style.height=infoPaper.height-40+'px';
-	$id('infoPaperFrame').style.width=infoPaper.width-10+'px';
 }
 function infoPaperHide()
 {
@@ -168,8 +166,9 @@ function datagateway(type)
 				
 				});
 		}
-	if(type.dataset.kind=='signup')
+	if(type.dataset.kind=='signup'&&semail!='')
 	{
+		type.disabled="disabled";
 		$.post('create_acc.php',{
 			email: semail ,
 			password: spass ,
@@ -177,11 +176,14 @@ function datagateway(type)
 			},function(data,status){
 				if(data==1)
 				{
-					infoPaper('welcome.php','Welcome !');
-
+					infoPaper('welcome.php','That\'s It');
 					$id('email').value=semail;
 					$id("password").value=spass;
 					
+				}
+				else
+				{
+							type.removeAttribute("disabled");
 				}
 				
 				});
