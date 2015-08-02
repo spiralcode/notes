@@ -2,6 +2,7 @@
 <html>
 <head>
 <title>Notes </title>
+<link rel="icon" href = "favicon.png">
 <style>
 .aboutspace
 {
