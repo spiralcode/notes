@@ -60,6 +60,41 @@ $target_dir="media/";
 	}
 	else 
 	{
-	header('location: '.$target_dir.$fname);
+	//header('location: '.$target_dir.$fname);
+	$ext=explode(".",basename($fname));
+		$extension=$ext[1];
+		
+		$filename = $target_dir.$fname;
+		$percent = 0.5;
+		
+		// Content type
+
+				
+				// Get new sizes
+		list($width, $height) = getimagesize($filename);
+		/*$newwidth = $width * $percent;
+		$newheight = $height * $percent;
+		*/
+				
+		// Load
+		$thumb = imagecreatetruecolor($newwidth, $newheight);
+		
+		if($extension=='jpeg'||$extension=='jpg'){
+			$source = imagecreatefromjpeg($filename);
+			header('Content-Type: image/jpeg');
+				
+		}
+		
+		if($extension=='png'||$extension=='png'){
+			$source = imagecreatefrompng($filename);
+				
+			header('Content-Type: image/png');
+		}
+		
+		// Resize
+		imagecopyresized($thumb, $source, 0, 0, 0, 0, $width, $height, $width, $height);
+		
+		// Output
+		imagejpeg($thumb);
 	}
 }
