@@ -160,7 +160,7 @@ Notes<sup>v3</sup>
 <div id="smartslide">
 <table border="0" width=100% height="100%">
 <tr><td align="center" class="virtual">Login</td><td class="virtual" align="center">Sign Up</td></tr>
-<tr><td align="center" colspan="2"><span id="errorshow">&nbsp;</span></td></tr>
+<tr><td align="center" colspan="2"><span id="errorshow">&nbsp;<?php if(isset($_GET['logreq'])){echo "The service you requested requires you to login.";} ?></span></td></tr>
 <tr><td align="center">
 <div class="loginarea"><table><tr><td>
 <input type="text" id="email" placeholder="E-mail"/></td></tr>
