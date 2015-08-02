@@ -4,7 +4,7 @@ include('connect.php');
 $nid=$_POST['nid'];
 if($_SERVER['HTTP_HOST']!='localhost')
 {
-$target_dir=$OPENSHIFT_DATA_DIR."/";	
+$target_dir="/var/lib/openshift/55a2abe1500446b24a00023d/app-root/data/";	
 }   
 else
 {
