@@ -3,7 +3,12 @@
 <head>
 <title>Notes </title>
 <link rel="icon" href = "favicon.png">
+  <link rel="stylesheet" href="style.css">
 <style>
+body
+{
+	background:#fff;
+}
 .aboutspace
 {
 position:absolute;
@@ -88,6 +93,7 @@ button
 background:#9DCB76;
 border:none;
 border:1px solid white;
+height:20px;
 }
 button:hover
 {
@@ -101,8 +107,39 @@ color:red;
 font-size:12px;
 }
 </style>
+
 <script src="ajax_1_10_2.js"></script>
 <script>
+	function infoPaper(resource,title,frame)
+{
+if(frame!=1)
+{
+	$.get(resource,function(data,success)
+			{
+		$id('infoPaperContent').innerHTML=data;
+		$id('topstriptitle').innerHTML=title;
+			});
+}
+else
+{
+
+	
+			$id('infoPaperContent').innerHTML='<iframe id="infoPaperFrame"></iframe>';
+			$id('infoPaperFrame').src=resource;
+			$id('topstriptitle').innerHTML=title;
+
+}
+	$id('infoPaper').style.display='block';
+	var infoPaper = $id('infoPaper').getBoundingClientRect();
+	$id('infoPaper').style.left=(window.innerWidth/2)-(infoPaper.width/2)+'px';
+	$id('infoPaper').style.bottom=(window.innerHeight/2)-(infoPaper.height/2)+'px';
+	$id('infoPaperFrame').style.height=infoPaper.height-40+'px';
+	$id('infoPaperFrame').style.width=infoPaper.width-10+'px';
+}
+function infoPaperHide()
+{
+	$id('infoPaper').style.display='none';
+}
 function $id(ob)
 {
 	return document.getElementById(ob);
@@ -140,7 +177,8 @@ function datagateway(type)
 			},function(data,status){
 				if(data==1)
 				{
-					alert("Account Created !, click login below");
+					infoPaper('welcome.php','Welcome !');
+
 					$id('email').value=semail;
 					$id("password").value=spass;
 					
@@ -186,5 +224,6 @@ var smartslide=document.getElementById('smartslide').getBoundingClientRect();
 document.getElementById('spinner').style.left=(window.innerWidth/2)-(loading.width/2)+'px';
 document.getElementById('smartslide').style.left=(window.innerWidth/2)-(smartslide.width/2)+'px';
 </script>
+<div id="infoPaper"><div class="topstrip"><span id="topstriptitle"></span><div id="infoPaperClose" onclick="infoPaperHide()"><img style="width:20px; height:20px;" title="Close ! this thing" src="images/b_close.png"/></div></div><div id=infoPaperContent></div></div>
 </body>
 </html>

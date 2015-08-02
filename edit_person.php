@@ -113,8 +113,8 @@ function $id(ob)
 function formsub()
 {
 	var phone = val($id("phone")), email = val($id("email")), dob = val($id("datepicker")), url = val($id("url")), geoloc = val($id("geo")),rel = val($id("relation")),phone = val($id("phone"));
-	var gender = ''; 
-	if(document.getElementsByName("gender")[0].selected)
+	var gender = 3; 
+	if(document.getElementsByName("gender")[0].checked)
 	{
 		gender=0;
 	}
@@ -155,8 +155,6 @@ function travelto(target)
 		<span class="navigate_raw"><a href="peoples.php">Back to peoples</a></span>
 <div id="heading"><?php echo ucfirst($name); ?></div>
 <div id = "formarea" align="center"><br><br>
-<?php echo $gender;
-	?>
 <table class="form" cellspacing="10">
 	<tr><td>How are you  related to <?php echo ucfirst($name); ?></td><td><select value="<?php echo $relation; ?>" id ="relation">
 		<?php
