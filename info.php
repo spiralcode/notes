@@ -48,7 +48,7 @@ border-right:1px solid #67389F;
 }
 </style>
 <div class="justinfo">
-<p>That's all we have, here...</p>
+<p>That's all we have, here from you.</p>
 <div class="goodtable"><center><table cellspadding="10" >
 <tr><th>Item</th><th>Count</th></tr>
 <tr><td>Notes</td><td><?php echo $note_counts; ?></td></tr>
