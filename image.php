@@ -6,12 +6,23 @@ $query=mysqli_query($link, "select filename from image where id=$id and userid =
 while($data=mysqli_fetch_array($query))
 {
 	$fname=$data['filename'];
+	if($_SERVER['HTTP_HOST']!='localhost')
+{
+$target_dir=$OPENSHIFT_DATA_DIR."/";	
+}   
+else
+{
+
+$target_dir="media/";	
+}
+
 	if(isset($_GET['thumb']))
 	{
 		$ext=explode(".",basename($fname));
 		$extension=$ext[1];
 		$size=$_GET['size'];
-		$filename = 'media/'.$fname;
+		
+		$filename = $target_dir.$fname;
 		$percent = 0.5;
 		
 		// Content type
@@ -49,6 +60,6 @@ while($data=mysqli_fetch_array($query))
 	}
 	else 
 	{
-	header('location: media/'.$fname);
+	header('location: '.$target_dir.$fname);
 	}
 }
