@@ -1,6 +1,7 @@
 <?php
 include 'session_check.php';
 include('connect.php');
+echo $OPENSHIFT_DATA_DIR;
 $id=$_GET['id'];
 $query=mysqli_query($link, "select filename from image where id=$id and userid = $userid")or die(mysqli_error($link));
 while($data=mysqli_fetch_array($query))
@@ -12,7 +13,6 @@ $target_dir=$OPENSHIFT_DATA_DIR."/";
 }   
 else
 {
-
 $target_dir="media/";	
 }
 
