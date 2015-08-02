@@ -20,6 +20,8 @@ while($row1=mysqli_fetch_array($data))
 $data1=mysqli_query($link, "select * from image where userid = $userid")or die(mysqli_error($link));
 $image_counts=mysqli_num_rows($data1);
 
+$data2=mysqli_query($link, "select * from peoples where userid = $userid")or die(mysqli_error($link));
+$totalpeoples = mysqli_num_rows($data2);
 ?>
 <style>
 .justinfo
@@ -46,11 +48,12 @@ border-right:1px solid #67389F;
 }
 </style>
 <div class="justinfo">
-<p>These are view information regarding you here...</p>
+<p>That's all we have, here...</p>
 <div class="goodtable"><center><table cellspadding="10" >
 <tr><th>Item</th><th>Count</th></tr>
 <tr><td>Notes</td><td><?php echo $note_counts; ?></td></tr>
 <tr><td>Images</td><td><?php echo $image_counts;?></td></tr>
+<tr><td>Contacts</td><td><?php echo $totalpeoples?></td></tr>
 <tr><td>Words</td><td><?php echo $wordcount;?></td></tr>
 <tr><td>Characters</td><td><?php echo $chars;?></td></tr>
 

@@ -2,12 +2,6 @@
 include 'session_check.php';
 include('connect.php');
 $id=$_GET['id'];
-if( chmod('media', 0777) ) {
-    // more code
-    chmod('media', 0755);
-}
-else
-    echo "Couldn't do it.";
 $query=mysqli_query($link, "select filename from image where id=$id and userid = $userid")or die(mysqli_error($link));
 while($data=mysqli_fetch_array($query))
 {
