@@ -69,13 +69,8 @@ $target_dir="media/";
 		
 		// Content type
 
-				
-				// Get new sizes
+		// Get new sizes
 		list($width, $height) = getimagesize($filename);
-		/*$newwidth = $width * $percent;
-		$newheight = $height * $percent;
-		*/
-				
 		// Load
 		$thumb = imagecreatetruecolor($newwidth, $newheight);
 		
@@ -92,7 +87,7 @@ $target_dir="media/";
 		}
 		
 		// Resize
-		imagecopyresized($thumb, $source, 0, 0, 0, 0, $width, $height, $width, $height);
+		imagecopyresized($thumb, $source, 0, 0, 0, 0, 100, 100, $width, $height);
 		
 		// Output
 		imagejpeg($thumb);
