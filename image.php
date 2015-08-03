@@ -76,7 +76,6 @@ $target_dir="media/";
 		
 		if($extension=='png'){
 			$source = imagecreatefrompng($filename);
-				echo $filename;
 			header('Content-Type: image/png');
 		}
 		

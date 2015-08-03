@@ -254,7 +254,7 @@ function showResult(url)
 	imlist+='<div class="imgspace"><a href="image.php?id='+json[init].ilist[0][imlistindex]+'" target="_blank"><img src="image.php?id='+json[init].ilist[0][imlistindex]+'&thumb&size=50x50"/></a></div>';
 			imlistindex++;
 		}
-		$id(ir).innerHTML='<div title="Delete this note" data-noteid="'+noteid+'" data-divid='+ir+' class="noteoptions" onclick="deletenote(this)">X</div><div class="timeslot">'+frmtime+'</div><div class="contentslot">'+ele+'</div>'+imlist+'<div class="daysago">'+timeago+'</div>';
+		$id(ir).innerHTML='<div title="Delete this note" data-noteid="'+noteid+'" data-divid='+ir+' class="noteoptions" onclick="deletenote(this)"><img style="width:20px; height:20px;" src = "images/Trash-empty-icon.png"/></div><div class="timeslot">'+frmtime+'</div><div class="contentslot">'+ele+'</div>'+imlist+'<div class="daysago">'+timeago+'</div>';
 		ir++;
 		init++;
 			}

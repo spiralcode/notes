@@ -1,8 +1,4 @@
 @CHARSET "UTF-8";
-body
-{
-	            font-family:arial,serif;
-}
 .paper
 {
 position:absolute;
@@ -234,10 +230,11 @@ border:none;
 body
 {
 background:black;
-background-image:url(images/intro_image.jpg);
+background-image:url(images/intro_image.png);
 background-attachment:fixed;
 background-repeat:no-repeat;
 background-size:cover;
+font-family: Arial,serif;
 }
 .optionbar
 {
@@ -356,6 +353,11 @@ z-index: 110;
 .note .noteoptions:hover
 {
 	cursor: pointer;
+}
+.note .noteoptions img:hover
+{
+width: 25px;
+height:25px;
 }
 .spinner {
 position:absolute;
