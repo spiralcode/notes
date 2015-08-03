@@ -230,7 +230,7 @@ border:none;
 body
 {
 background:black;
-background-image:url(images/intro_image.png);
+background-image:url(images/notes_official.jpg);
 background-attachment:fixed;
 background-repeat:no-repeat;
 background-size:cover;
@@ -348,7 +348,7 @@ height:60px;
 	position: absolute;
 	left: 0px;
 	top: 0px;
-z-index: 110;
+z-index: 102;
 }
 .note .noteoptions:hover
 {
