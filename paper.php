@@ -8,9 +8,13 @@ include 'session_check.php';
 <head><title>Paper : 1</title>
 <script src="ajax_1_10_2.js"></script>
 <script src="aftersave.js"></script>
+<script src="notify.js"></script>
 <script src="lib/jquery-1.10.2.js"></script>
   <script src="lib/jquery-ui.js"></script>
+    <script src="lib/jquery-1.11.3.min.js"></script>
+
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="notify.css">
   <link rel="stylesheet" href="style/jquery-ui.css">
 <link type="text/css" rel="stylesheet" href="style/locationpicker.css" />
 <script>
@@ -94,11 +98,9 @@ if(frame!=1)
 }
 else
 {
-
-	
-			$id('infoPaperContent').innerHTML='<iframe id="infoPaperFrame"></iframe>';
-			$id('infoPaperFrame').src=resource;
-			$id('topstriptitle').innerHTML=title;
+$id('infoPaperContent').innerHTML='<iframe id="infoPaperFrame"></iframe>';
+$id('infoPaperFrame').src=resource;
+$id('topstriptitle').innerHTML=title;
 
 }
 	$id('infoPaper').style.display='block';
@@ -194,7 +196,8 @@ function savenote()
 		var contents=$id("tarea").value;
 	if(contents=='')
 	{
-	alert('Nothing to save !!!');
+	//alert('Nothing to save !!!');
+        notify('Nothing to save !!!');
 	return;
 	}
 	$id('loading').style.display='block';
@@ -220,12 +223,11 @@ function infoPaperHide()
 function newnote()
 {
 	$id('loading').style.display='none';
-	alert('Saved');
+	//alert('Saved');
+                notify('Last note Saved :)','happy');
 	$id('tarea').value='';
 	savecheck();
-	
 	timer++;
-	
 	for(var ii=1;ii<=5;ii++)
 	{
 		$id("slot"+ii).innerHTML='';
@@ -289,12 +291,13 @@ tarea.addEventListener('keydown',function(e){
 	</script>
 	<div id="flowOptions">
 <table width="100%">
-<tr><td onclick="infoPaper('info.php','Informations')">Informations</td></tr>
-<tr><td onclick="infoPaper('settings.php','Settings')">Settings</td></tr>
-<tr><td onclick="infoPaper('getpeople.php','People and Places',1)">Fetch People or Places</td></tr>
+<tr><td onclick="infoPaper('info.php','Informations');">Informations</td></tr>
+<tr><td onclick="infoPaper('settings.php','Settings');">Settings</td></tr>
+<tr><td onclick="infoPaper('getpeople.php','People and Places',1);">Fetch People or Places</td></tr>
 
 </table>
 </div>
-<div id="infoPaper"><div class="topstrip"><span id="topstriptitle"></span><div id="infoPaperClose" onclick="infoPaperHide()"><img style="width:20px; height:20px;" title="Close ! this thing" src="images/b_close.png"/></div></div><div id=infoPaperContent></div></div>
+<div id="infoPaper"><div class="topstrip"><span id="topstriptitle"></span><div id="infoPaperClose" onclick="infoPaperHide();"><img style="width:20px; height:20px;" title="Close ! this thing" src="images/b_close.png"/></div></div><div id=infoPaperContent></div></div></div>
+<div class="sudden_notify" id = "sudden_notify">Saved</div>
 </body>
 </html>

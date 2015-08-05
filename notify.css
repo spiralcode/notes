@@ -1,0 +1,27 @@
+.sudden_notify
+{
+	position: absolute;
+	min-width:200px;
+	min-height: 50px;
+	background:  wheat;
+	z-index: 5000;
+	border-radius: 2px;
+    vertical-align:middle;
+    text-align:center;
+    box-shadow:1px 1px 1px #000000;
+      line-height: 50px;
+      font-size: 15px;
+
+
+display:none;
+}
+.sudden_notify_happy
+{
+    	background: #50A9ED;
+        border: 1px solid thistle;
+}
+.sudden_notify_desp
+{
+    	background: palevioletred;
+        border: 1px solid thistle;    
+}

@@ -1,0 +1,10 @@
+#sudden_notify
+{
+	position: absolute;
+	min-width:200px;
+	min-height: 50px;
+	background:  wheat;
+	z-index: 5000;
+	border: 1px solid tomato;
+	border-radius: 2px;
+}
