@@ -139,7 +139,9 @@ else
 }
 function infoPaperHide()
 {
-	$id('infoPaper').style.display='none';
+	//$id('infoPaper').style.display='none';
+                $('#infoPaper').delay(0).fadeOut(200);
+
 }
 function repos(ob)
 {

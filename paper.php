@@ -152,6 +152,8 @@ getloc();
  */
 var detected_lat=0;
 var detected_lng=0;
+var counter = window.setInterval(function(){},1000);
+
  function getloc()
 {
 if (navigator.geolocation) {
@@ -193,14 +195,36 @@ return formatted;
 $id("timedat").innerHTML=timeup();
 function savenote()
 {
-		var contents=$id("tarea").value;
+    var process_timer=0;
+    var warned=0;
+	var contents=$id("tarea").value;
 	if(contents=='')
 	{
-	//alert('Nothing to save !!!');
         notify('Nothing to save !!!');
 	return;
 	}
 	$id('loading').style.display='block';
+        counter = window.setInterval(function(){
+            process_timer++;
+            if(process_timer%10==0)
+                {
+                                        warned++;
+
+                    if(warned<4)
+                        {
+                    notify('This is taking more than usual, check your Internet connection.','desp','ext');
+                        }
+                }
+                if(warned==4)
+                    {
+                        window.clearInterval(counter);
+                        $id("tarea").value='';
+                        $id("tarea").placeholder='Sorry ! saving of last note was aborted due to a connection failure. ';
+                        $id('loading').style.display='none';
+                        	savecheck();
+
+                    }
+        },1000);
 	$.post('feed.php',{
 		contents:contents,
 		timeid:timer,
@@ -222,9 +246,9 @@ function infoPaperHide()
 }
 function newnote()
 {
+        window.clearInterval(counter);
 	$id('loading').style.display='none';
-	//alert('Saved');
-                notify('Last note Saved :)','happy');
+        notify('Last note Saved :)','happy');
 	$id('tarea').value='';
 	savecheck();
 	timer++;

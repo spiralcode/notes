@@ -1,4 +1,4 @@
-function notify(msg,status)
+function notify(msg,status,ext)
 {
     
     var page_h = window.innerHeight;
@@ -10,7 +10,6 @@ function notify(msg,status)
         ob.innerHTML=msg;
 	ob_dimensions= ob.getBoundingClientRect();
         w=ob_dimensions.width;
-        console.log(w);
         //Positioning the div in center of page
         ob.style.left=(page_w/2)-(w/2)+'px';
         ob.style.top=20+'px';
@@ -26,5 +25,14 @@ function notify(msg,status)
                                                    ob.style.color="#fff";
 
                 }
-        $('#sudden_notify').delay(1000).fadeOut(1000);
+                if(ext=='ext')
+                    {
+                      $('#sudden_notify').delay(8000).fadeOut(1000);
+          
+                    }
+                    else
+                        {
+                         $('#sudden_notify').delay(1000).fadeOut(1000);
+           
+                        }
 }
