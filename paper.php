@@ -127,7 +127,7 @@ $id('topstriptitle').innerHTML=title;
 </div> 
 <div class="paper" id="paper">
 <div id="filedrag" class="imgplace" title="Drag and Drop files to here"><center><span align="center" id="timedat" class="pholder">10 July 2015, 11:52 </span></center>
-<span class="timedate">Drag Images here</span>
+<span align="center" class="timedate">Drag and Drop images here to attach with this note.</span>
 </div>
 <textarea onkeyup="savecheck()" placeholder="Type things here..." id = "tarea"></textarea>
 <table align="center"><tr><td>
@@ -182,6 +182,7 @@ var mnth=cal.getMonth();
 var year=cal.getUTCFullYear();
 var hour=cal.getHours();
 var min=cal.getMinutes();
+mnth++;
 if(min<10)
 {
 	min="0"+min;

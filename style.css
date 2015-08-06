@@ -17,7 +17,8 @@ background:linear-gradient(white,skyblue);
 {
 	color: #516FD2;
 	font-family:arial,serif;
-	opacity:.9;
+	opacity:.4;
+        text-align: center;
 }
 .imgplace
 {

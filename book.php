@@ -15,7 +15,6 @@ include 'session_check.php';
 input
 {
 font-size:18px;
-text-decoration:
 }
 </style>
 <script>
