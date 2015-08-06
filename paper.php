@@ -8,7 +8,6 @@ include 'session_check.php';
 <head><title>Paper : 1</title>
 <script src="ajax_1_10_2.js"></script>
 <script src="aftersave.js"></script>
-<script src="notify.js"></script>
 <script src="lib/jquery-1.10.2.js"></script>
   <script src="lib/jquery-ui.js"></script>
     <script src="lib/jquery-1.11.3.min.js"></script>
@@ -322,6 +321,8 @@ tarea.addEventListener('keydown',function(e){
 </table>
 </div>
 <div id="infoPaper"><div class="topstrip"><span id="topstriptitle"></span><div id="infoPaperClose" onclick="infoPaperHide();"><img style="width:20px; height:20px;" title="Close ! this thing" src="images/b_close.png"/></div></div><div id=infoPaperContent></div></div></div>
+<script src="notify.js"></script>
+
 <div class="sudden_notify" id = "sudden_notify">Saved</div>
 </body>
 </html>

@@ -1,3 +1,9 @@
+<?php
+if(!isset($_SERVER['HTTPS']))
+{
+    header('location: https://note-runfree.rhcloud.com');
+}
+    ?>
 <!doctype html>
 <html>
 <head>
