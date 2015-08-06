@@ -6,15 +6,18 @@ include 'session_check.php';
 <!doctype html>
 <html>
 <head><title>Paper : 1</title>
-<script src="ajax_1_10_2.js"></script>
 <script src="aftersave.js"></script>
+<script src="notify.js"></script>
+
+<script src="lib/moment.js"></script>
+<script src="ajax_1_10_2.js"></script>
 <script src="lib/jquery-1.10.2.js"></script>
   <script src="lib/jquery-ui.js"></script>
-    <script src="lib/jquery-1.11.3.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style/jquery-ui.css">
 
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="notify.css">
-  <link rel="stylesheet" href="style/jquery-ui.css">
 <link type="text/css" rel="stylesheet" href="style/locationpicker.css" />
 <script>
 var start=1;
@@ -24,19 +27,19 @@ var width=window.innerWidth;
 var height=window.innerHeight;
 function showMenu(ob)
 {
-	if($id('flowOptions').style.display=='none'||$id('flowOptions').style.display=='')
-	{
-	$id('flowOptions').style.display='block';
-	}
-	else
-	{
-		$id('flowOptions').style.display='none';
-	}
-	var refer_dim=ob.getBoundingClientRect();
-	{
-		$id('flowOptions').style.top=refer_dim.bottom+'px';
-		$id('flowOptions').style.right=(window.innerWidth-refer_dim.right)+'px';	
-	}
+if($id('flowOptions').style.display=='none'||$id('flowOptions').style.display=='')
+{
+$id('flowOptions').style.display='block';
+}
+else
+{
+	$id('flowOptions').style.display='none';
+}
+var refer_dim=ob.getBoundingClientRect();
+{
+	$id('flowOptions').style.top=refer_dim.bottom+'px';
+	$id('flowOptions').style.right=(window.innerWidth-refer_dim.right)+'px';	
+}
 }
 function $id(id)
 {
@@ -71,6 +74,10 @@ function savecheck()
 	{
 	unsaved=false;
 	}
+}
+function alterdate(ob)
+{
+    notify(ob.value);
 }
 function getPlaceImage(coords,address)
 {
@@ -112,16 +119,7 @@ $id('topstriptitle').innerHTML=title;
 </script>
 </head>
 <body>
-	<script>
-		$(function() {
-    $( "#datepicker" ).datepicker(
-    		{
-    	dateFormat: "dd-mm-yy"		
-    		}
-    	    );
-    
-  });
-		</script>
+	
 <div id="loading" class="spinner"></div>
 
 <div class="topribbon"><span class="logo">Notes <sup>v3</sup></span>
@@ -138,7 +136,15 @@ $id('topstriptitle').innerHTML=title;
 <button value="0" title="Click to embed a location" onclick="" id="geo">Embed a location<br><span class="buttonsubtext"></span></button>
 </td>
 <td>
-<button title="Click to alter date" onclick="" id="datepicker" value="0">Change Date<br><span class="buttonsubtext"></span></button>
+    <input onchange="alterdate(this);" type="hidden" id="hiddenField" class="datepicker" />
+
+<script>  
+$( "#hiddenField" ).datepicker({
+      showOn: "button",
+        buttonText: "Alter Date",
+        Title: "Change Date"
+    });
+    </script>
 </td>
 </tr>
 </table>
@@ -312,6 +318,7 @@ tarea.addEventListener('keydown',function(e){
 	<script>
 		$('#geo').locationPicker();
 	</script>
+        
 	<div id="flowOptions">
 <table width="100%">
 <tr><td onclick="infoPaper('info.php','Informations');">Informations</td></tr>

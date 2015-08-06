@@ -1,8 +1,9 @@
 <?php
-if(!isset($_SERVER['HTTPS']))
+if(!isset($_SERVER['HTTPS'])&&$_SERVER['HTTP_HOST']!='localhost')
 {
     header('location: https://note-runfree.rhcloud.com');
 }
+$actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     ?>
 <!doctype html>
 <html>
@@ -120,20 +121,17 @@ font-size:12px;
 {
 if(frame!=1)
 {
-	$.get(resource,function(data,success)
-			{
-		$id('infoPaperContent').innerHTML=data;
-		$id('topstriptitle').innerHTML=title;
-			});
+$.get(resource,function(data,success)
+		{
+	$id('infoPaperContent').innerHTML=data;
+	$id('topstriptitle').innerHTML=title;
+		});
 }
 else
-{
-
-	
-			$id('infoPaperContent').innerHTML='<iframe id="infoPaperFrame"></iframe>';
-			$id('infoPaperFrame').src=resource;
-			$id('topstriptitle').innerHTML=title;
-
+{	
+$id('infoPaperContent').innerHTML='<iframe id="infoPaperFrame"></iframe>';
+$id('infoPaperFrame').src=resource;
+$id('topstriptitle').innerHTML=title;
 }
 	$id('infoPaper').style.display='block';
 	var infoPaper = $id('infoPaper').getBoundingClientRect();
@@ -182,14 +180,13 @@ function datagateway(type)
 			},function(data,status){
 				if(data==1)
 				{
-					infoPaper('welcome.php','That\'s It');
-					$id('email').value=semail;
-					$id("password").value=spass;
-					
+				infoPaper('welcome.php','That\'s It');
+				$id('email').value=semail;
+				$id("password").value=spass;	
 				}
 				else
 				{
-							type.removeAttribute("disabled");
+				type.removeAttribute("disabled");
 				}
 				
 				});
