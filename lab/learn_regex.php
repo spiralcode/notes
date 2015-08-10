@@ -1,4 +1,8 @@
 <?php
-$subject = "This is a string with some contents that you are meant to realize.";
-echo preg_match('/abc/',$subject);
+$subject = "9497336650 is my number";
+preg_match_all("/[^0-9]/i",$subject,$list);
+foreach($list[0] as $ele)
+{
+    echo $ele."<br>";
+}
 ?>

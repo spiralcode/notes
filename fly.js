@@ -46,8 +46,7 @@ function ParseFile(file)
 		}
 	else
 		{
-		msg('Filetype not allowed');
-		console.log(file.type);
+		notify('Filetype not allowed !',"desp");
 
 		}
 }

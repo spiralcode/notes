@@ -274,7 +274,9 @@ function deletenote(ob)
 			{
 				if(data=='1')
 				{
-					$id(ob.dataset.divid).style.display="none";
+					//$id(ob.dataset.divid).style.display="none";
+                                                        $('#'+ob.dataset.divid).delay(500).fadeOut(1000);
+
 				}
 				else
 				{
