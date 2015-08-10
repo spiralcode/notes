@@ -155,6 +155,7 @@ function datagateway(type)
 	var sname=$id('sname').value;
 	if(type.dataset.kind=='login')
 	{
+            $id('spinner').style.display="block";
 		$.post('login.php',{
 			email: email ,
 			pass: pass
@@ -166,6 +167,8 @@ function datagateway(type)
 				if(data==0)
 				{
 				$id('errorshow').innerHTML='E-mail and Password doesn\'t seems to exist, try again or make an account.';	
+                                            $id('spinner').style.display="none";
+
 				}
 				
 				});
