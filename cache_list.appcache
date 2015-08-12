@@ -1,0 +1,14 @@
+CACHE MANIFEST
+# 2015-06-28 v1.0.1
+lib/moment.js
+ajax_1_10_2.js
+lib/jquery-1.10.2.js
+lib/jquery-ui.js
+style/jquery-ui.css
+style/locationpicker.css
+
+NETWORK:
+*
+
+FALLBACK:
+off.html

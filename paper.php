@@ -5,7 +5,7 @@ include 'session_check.php';
 ?>
 <!doctype html>
 <html>
-<head><title>Paper : 1</title>
+<head><title>Notes : Add Note</title>
 <script src="aftersave.js"></script>
 <script src="notify.js"></script>
 
@@ -16,7 +16,6 @@ include 'session_check.php';
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="style/jquery-ui.css">
 
-<link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="notify.css">
 <link type="text/css" rel="stylesheet" href="style/locationpicker.css" />
 <script>
@@ -89,7 +88,6 @@ function getPlaceImage(coords,address)
 }
 function goTopage(ob)
 {
-	console.log(ob.dataset.link);
 	window.location.href=ob.dataset.link;
 }
 function infoPaper(resource,title,frame)

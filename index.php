@@ -6,7 +6,7 @@ if(!isset($_SERVER['HTTPS'])&&$_SERVER['HTTP_HOST']!='localhost')
 $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     ?>
 <!doctype html>
-<html>
+<html manifest='cache_list.appcache'>
 <head>
 <title>Notes </title>
 <link rel="icon" href = "favicon.png">
