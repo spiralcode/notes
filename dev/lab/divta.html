@@ -1,17 +1,49 @@
-		<script src="ajax_1_10_2.js"></script>
-		<script>
-	function output()
-	{
-	}
-	</script>
+<script src="../../ajax_1_10_2.js"></script>
+<script>
+function $id(ob)
+{
+    return document.getElementById(ob);
+}
+function output()
+{
+var content = $id('show').innerHTML;
+var size = content.length;
+var begin = 0;
+var end = 0;
+         var a=content;
+
+for(var a=0;a<size;a++)
+ {
+ if(content[a]=='h')
+ {
+     begin=a-1;
+     while(content[a]!='/')
+         {
+             end++;
+             a++;
+         }
+         var tag ="<b>";
+         var etag="</br>";
+          var output = [a.slice(0, begin), tag, a.slice(begin)].join('');
+          output = [output.slice(0, end), etag, output.slice(end)].join('');
+
+
+ }
+end = 0;
+begin=0;
+ }
+$id("show").innerHTML=output;
+}
+</script>
 <style>
-	div
-	{
-		width:500px;
-		height:500px;
-		border: 1px double  yellowgreen;
-	}
+#typespot
+{
+width:500px;
+height:500px;
+border: 1px double  yellowgreen;
+}
 	</style>
 <div id= 'typespot' contenteditable="true" onkeyup="output(this)"></div>
-
-	<p id="out"></p>
+<div id="count"></div>
+<div id="show" style="font-family:arial,serif;"></div>
+<p id="out"></p>

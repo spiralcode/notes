@@ -169,9 +169,7 @@ function datagateway(type)
 				$id('errorshow').innerHTML='E-mail and Password doesn\'t seems to exist, try again or make an account.';	
                                             $id('spinner').style.display="none";
 
-				}
-				
-				});
+				}});
 		}
 	if(type.dataset.kind=='signup'&&semail!='')
 	{
@@ -192,9 +190,7 @@ function datagateway(type)
 				type.removeAttribute("disabled");
 				}
 				
-				});
-		}
-}
+				});}}
 </script>
 </head>
 <body>

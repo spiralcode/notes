@@ -128,6 +128,7 @@ $id('topstriptitle').innerHTML=title;
 <span align="center" class="timedate">Drag and Drop images here to attach with this note.</span>
 </div>
 <textarea onkeyup="savecheck()" placeholder="Type things here..." id = "tarea"></textarea>
+<div id ="tarea" onkeyup ="savecheck()"></div>
 <table align="center"><tr><td>
 <button title="Save the note. (ctrl+s)" onclick="savenote()">Save Note<br><span class="buttonsubtext">ctrl+s</span></button></td>
 <td>
