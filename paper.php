@@ -65,7 +65,7 @@ function imglist(data,name)
 }
 function savecheck()
 {
-	if(($id('tarea').value).length>0)
+	if(($id('tarea').innerHTML).length>0)
 	{
 	unsaved=true;
 	}
@@ -127,8 +127,7 @@ $id('topstriptitle').innerHTML=title;
 <div id="filedrag" class="imgplace" title="Drag and Drop files to here"><center><span align="center" id="timedat" class="pholder">10 July 2015, 11:52 </span></center>
 <span align="center" class="timedate">Drag and Drop images here to attach with this note.</span>
 </div>
-<textarea onkeyup="savecheck()" placeholder="Type things here..." id = "tarea"></textarea>
-<div id ="tarea" onkeyup ="savecheck()"></div>
+ <div id ="tarea" onkeyup ="savecheck();" contenteditable="true" placeholder="Typethings here" style="background:white; overflow-y: scroll; border-top: 1px double  yellowgreen;"></div>
 <table align="center"><tr><td>
 <button title="Save the note. (ctrl+s)" onclick="savenote()">Save Note<br><span class="buttonsubtext">ctrl+s</span></button></td>
 <td>
@@ -202,7 +201,7 @@ function savenote()
 {
     var process_timer=0;
     var warned=0;
-	var contents=$id("tarea").value;
+	var contents=$id("tarea").innerHTML;
 	if(contents=='')
 	{
         notify('Nothing to save !!!');
@@ -223,7 +222,7 @@ function savenote()
                 if(warned==4)
                     {
                         window.clearInterval(counter);
-                        $id("tarea").value='';
+                        $id("tarea").innerHTML='';
                         $id("tarea").placeholder='Sorry ! saving of last note was aborted due to a connection failure. ';
                         $id('loading').style.display='none';
                         	savecheck();
@@ -254,7 +253,7 @@ function newnote()
         window.clearInterval(counter);
 	$id('loading').style.display='none';
         notify('Last note Saved :)','happy');
-	$id('tarea').value='';
+	$id('tarea').innerHTML='';
 	savecheck();
 	timer++;
 	for(var ii=1;ii<=5;ii++)
@@ -319,7 +318,15 @@ tarea.addEventListener('keydown',function(e){
 		$('#geo').locationPicker();
 	</script>
         
-	<div id="flowOptions">
+<div id="flowOptions">
+<table width="100%">
+<tr><td onclick="infoPaper('info.php','Informations');">Informations</td></tr>
+<tr><td onclick="infoPaper('settings.php','Settings');">Settings</td></tr>
+<tr><td onclick="infoPaper('getpeople.php','People and Places',1);">Fetch People or Places</td></tr>
+
+</table>
+</div>
+        <div id="noteMenu">
 <table width="100%">
 <tr><td onclick="infoPaper('info.php','Informations');">Informations</td></tr>
 <tr><td onclick="infoPaper('settings.php','Settings');">Settings</td></tr>

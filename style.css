@@ -4,15 +4,20 @@
 position:absolute;
 background:linear-gradient(white,skyblue);
 }
-.paper textarea
+.paper #tarea
 {
 	resize:none;
 	            box-sizing: border-box;
 	            font-family:arial,serif;
 	            font-size:14px;
-
-	
+                    overflow-y:scroll;
 }
+.paper textarea .placeholder
+{
+color: #7190D0;
+}
+	
+
 .paper .timedate
 {
 	color: #516FD2;
