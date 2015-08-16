@@ -326,14 +326,7 @@ tarea.addEventListener('keydown',function(e){
 
 </table>
 </div>
-        <div id="noteMenu">
-<table width="100%">
-<tr><td onclick="infoPaper('info.php','Informations');">Informations</td></tr>
-<tr><td onclick="infoPaper('settings.php','Settings');">Settings</td></tr>
-<tr><td onclick="infoPaper('getpeople.php','People and Places',1);">Fetch People or Places</td></tr>
 
-</table>
-</div>
 <div id="infoPaper"><div class="topstrip"><span id="topstriptitle"></span><div id="infoPaperClose" onclick="infoPaperHide();"><img style="width:20px; height:20px;" title="Close ! this thing" src="images/b_close.png"/></div></div><div id=infoPaperContent></div></div></div>
 <script src="notify.js"></script>
 

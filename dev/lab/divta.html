@@ -1,38 +1,46 @@
 <script src="../../ajax_1_10_2.js"></script>
 <script>
+var end=0;
+var begin=0;
 function $id(ob)
 {
     return document.getElementById(ob);
 }
-function output()
+function output(ob)
 {
-var content = $id('show').innerHTML;
-var size = content.length;
-var begin = 0;
-var end = 0;
-         var a=content;
+    var cont=ob.innerHTML;
+    var size=cont.length;
+    for(var a=0;a<size;a++)
+        {
+            if(cont[a]=='h'&&cont[a+1]=='t'&&cont[a+2]=='t'&&cont[a+3]=='p'&&cont[a+4]==':'&&cont[a+5]=='/'&&cont[a+6]=='/')
+                {
+                    begin=a;
+                    while(cont[a]!=' '&&a!=size)
+                        {
+                            a++;
+                            end++;
+                        }
+                         insertWord($id('source').value,"<b>",begin);
 
-for(var a=0;a<size;a++)
- {
- if(content[a]=='h')
- {
-     begin=a-1;
-     while(content[a]!='/')
-         {
-             end++;
-             a++;
-         }
-         var tag ="<b>";
-         var etag="</br>";
-          var output = [a.slice(0, begin), tag, a.slice(begin)].join('');
-          output = [output.slice(0, end), etag, output.slice(end)].join('');
+                }
+
+        }
 
 
- }
-end = 0;
-begin=0;
- }
-$id("show").innerHTML=output;
+
+end=0;
+    $id('source').value=cont;
+}
+function insertWord(orginal,word,position)
+{
+    var sec1=orginal.substr(0,position);
+    var out = sec1+word+orginal.substr(position);
+    // console.log(out);
+    $id('source').value=out;
+}
+function fillin()
+{
+    
 }
 </script>
 <style>
@@ -46,4 +54,5 @@ border: 1px double  yellowgreen;
 <div id= 'typespot' contenteditable="true" onkeyup="output(this)"></div>
 <div id="count"></div>
 <div id="show" style="font-family:arial,serif;"></div>
+<textarea rows="10" cols="30" id ="source"style="display:block;"></textarea>
 <p id="out"></p>

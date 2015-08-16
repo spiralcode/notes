@@ -21,9 +21,9 @@ if(strlen($website)>40)
 	?>
 <html>
 	<head>
-		<script src="ajax_1_10_2.js"></script>
-		<script>
-			function goTopage(ob,target)
+	<script src="ajax_1_10_2.js"></script>
+	<script>
+	function goTopage(ob,target)
 {
 	window.location.href=ob.dataset.link;
 }
@@ -107,7 +107,7 @@ function $id(ob)
   </script>
 		</head>
 <body>
-	<span class="navigate_raw"><a href="peoples.php">Back to peoples</a> | <a href="edit_person.php?pid=<?php echo $pid; ?>"> Add or Edit <b><?php echo  ucfirst( $name); ?></b> 's data</a></span>
+	<span class="navigate_raw"><a href="peoples.php">Back to peoples</a> | <a href="edit_person.php?pid=<?php echo $pid; ?>">Edit <b><?php echo  ucfirst( $name); ?></b> 's data</a> | <a href="delete_person_warn.php?pid=<?php echo $pid; ?>&name=<?php echo  ucfirst( $name); ?>"> Delete <b><?php echo  ucfirst( $name); ?></b></a></span>
 		<br>
 		<div id="heading"><?php echo ucfirst($name); ?></div><br><br>		<br>
 		<div align="center" class="info">

@@ -299,6 +299,7 @@ function deletenote(ob)
 
 </table>
 </div>
+
 <div id="infoPaper"><div class="topstrip"><span id="topstriptitle"></span><div id="infoPaperClose" onclick="infoPaperHide()"><img style="width:20px; height:20px;" title="Close ! this thing" src="images/b_close.png"/></div></div><div id=infoPaperContent></div></div>
 <script>
 $(function() {
