@@ -158,7 +158,7 @@ function repos(ob)
 </tr></table>
 <div align="center" id="searchoptions">
 <table  border="0"><tr>
-<td><input type="text" len="50" placeholder="Search " id="keyinput"/></td>
+<td><input type="text" len="50" onkeyup="autosearch();" placeholder="Search " id="keyinput"/></td>
 <td><input type="text" id="datepicker" onChange="datesearch(this)"></td>
 </tr></table></div>
 </div>
@@ -175,6 +175,13 @@ $id('keyinput').addEventListener('keyup',function(e)
 		showResult('gcow.php?q='+$id('keyinput').value);
 	}
 		},false);
+function autosearch()
+{
+    if(($id('keyinput').value).length%2==0)
+        {
+   showResult('gcow.php?q='+$id('keyinput').value);
+        }
+}
 function showResult(url)
 {
 	
