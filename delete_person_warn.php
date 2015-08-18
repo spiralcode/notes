@@ -56,7 +56,7 @@ $name=get('name');
     <body>
         <div align="center">
             <h1>Are you sure ?</h1>
-        <p>Do you want to remove <?php echo $name; ?> from your know people list ?</p><br>
+        <p>Do you want to remove <?php echo $name; ?> from your known people list ?</p><br>
         <button onclick="Yesdelete();">Yes I want to</button> <button onclick="goBack()">No, go back</button>
         </div>
 <div class="sudden_notify" id = "sudden_notify">Saved</div>
