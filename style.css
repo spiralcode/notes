@@ -2,7 +2,7 @@
 .paper
 {
 position:absolute;
-background:linear-gradient(white,skyblue);
+background-image: url(images/tile01.png);
 }
 .paper #tarea
 {
@@ -38,6 +38,7 @@ color:#B9BDC0;
 font-family:Arial,serif;
 font-size:50px;
 opacity:.5;
+text-shadow: 1px 1px 1px blue;
 	
 }
 .imgplace .pholder:hover
