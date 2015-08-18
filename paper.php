@@ -115,6 +115,11 @@ $id('topstriptitle').innerHTML=title;
 	$id('infoPaperFrame').style.width=infoPaper.width-10+'px';
 }
 </script>
+<style>
+    [contentEditable=true]:empty:not(:focus):before{
+        content:attr(data-text)
+    }
+    </style>
 </head>
 <body>
 	
@@ -127,7 +132,7 @@ $id('topstriptitle').innerHTML=title;
 <div id="filedrag" class="imgplace" title="Drag and Drop files to here"><center><span align="center" id="timedat" class="pholder">10 July 2015, 11:52 </span></center>
 <span align="center" class="timedate">Drag and Drop images here to attach with this note.</span>
 </div>
- <div id ="tarea" onkeyup ="savecheck();" contenteditable="true" placeholder="Typethings here" style="background:white; overflow-y: scroll; border-top: 1px double  yellowgreen;"></div>
+ <div data-text ="Type in something or drag and drop images here..."  id ="tarea" onkeyup ="savecheck();" contenteditable="true" placeholder="Typethings here" style="background:white; overflow-y: scroll; border-top: 1px double  yellowgreen;"></div>
 <table align="center"><tr><td>
 <button title="Save the note. (ctrl+s)" onclick="savenote()">Save Note<br><span class="buttonsubtext">ctrl+s</span></button></td>
 <td>

@@ -7,8 +7,8 @@ function FileDragHover(e)
 {
 	e.stopPropagation();
 	e.preventDefault();
-	$id("filedrag").style.border="2px dotted #f00";
-	$id("filedrag").style.borderBottom="none";
+	$id("tarea").style.border="2px dotted #f00";
+	$id("tarea").style.borderBottom="none";
 
 	}
 function FileDragOut(e)
@@ -16,8 +16,8 @@ function FileDragOut(e)
 
 	e.stopPropagation();
 	e.preventDefault();
-	$id("filedrag").style.border="1px dotted #7192A8";
-	$id("filedrag").style.borderBottom="none";
+	$id("tarea").style.border="1px dotted #7192A8";
+	$id("tarea").style.borderBottom="none";
 	
 	}
 function FileSelectHandler(e)
@@ -52,14 +52,14 @@ function ParseFile(file)
 }
 function init()
 {
-	var fileselect = $id("fileselect"),filedrag=$id('filedrag');
+	var fileselect = $id("fileselect"),tarea=$id('tarea');
 	fileselect.addEventListener("change",FileSelectHandler,false);
 	var xhr = new XMLHttpRequest();
 	if(xhr.upload)
 		{
-		filedrag.addEventListener("dragover",FileDragHover,false);
-		filedrag.addEventListener("dragleave",FileDragOut,false);
-		filedrag.addEventListener("drop",FileSelectHandler,false);
+		tarea.addEventListener("dragover",FileDragHover,false);
+		tarea.addEventListener("dragleave",FileDragOut,false);
+		tarea.addEventListener("drop",FileSelectHandler,false);
 
 		}
 	}
