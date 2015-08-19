@@ -7,7 +7,9 @@ function FileDragHover(e)
 {
 	e.stopPropagation();
 	e.preventDefault();
-	$id("tarea").style.border="2px dotted #f00";
+	$id("tarea").style.border="1px dotted #f00";
+        	$id("tarea").style.background="rgb(232, 230, 192)";
+
 	$id("tarea").style.borderBottom="none";
 
 	}
@@ -18,6 +20,8 @@ function FileDragOut(e)
 	e.preventDefault();
 	$id("tarea").style.border="1px dotted #7192A8";
 	$id("tarea").style.borderBottom="none";
+                	$id("tarea").style.background="#fff";
+
 	
 	}
 function FileSelectHandler(e)

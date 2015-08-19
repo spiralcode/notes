@@ -129,8 +129,7 @@ $id('topstriptitle').innerHTML=title;
 <table align="right" cellspacing="4"><tr><td onclick="goTopage(this)" data-link="book.php">Read Notes</td><td onclick="showMenu(this)" data-link="paper.php">Menu</td>	<td onclick="goTopage(this)" data-link="logout.php">Logout</td></tr></table>
 </div> 
 <div class="paper" id="paper">
-<div id="filedrag" class="imgplace" title="Drag and Drop files to here"><center><span align="center" id="timedat" class="pholder">10 July 2015, 11:52 </span></center>
-<span align="center" class="timedate">Drag and Drop images here to attach with this note.</span>
+<div id="filedrag" class="imgplace" ><center><span align="center" id="timedat" class="pholder">10 July 2015, 11:52 </span></center>
 </div>
  <div data-text ="Type in something or drag and drop images here..."  id ="tarea" onkeyup ="savecheck();" contenteditable="true" placeholder="Typethings here" style="background:white; overflow-y: scroll; border-top: 1px double  yellowgreen;"></div>
 <table align="center"><tr><td>
