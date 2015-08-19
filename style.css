@@ -311,8 +311,9 @@ position:relative;
 top:0px;
 right:1px;
 text-align:right;
-color:#7190D0;
+color: #3F2634;
 font-size:13px;
+text-shadow: 0px 1px 1px #fff;
 
 }
 .note .contentslot
