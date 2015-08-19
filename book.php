@@ -184,6 +184,11 @@ function autosearch()
 }
 function showResult(url)
 {
+    
+var myNode = $id('frameplace');
+while (myNode.firstChild) {
+    myNode.removeChild(myNode.firstChild);
+}
 	
 	$id('frameplace').innerHTML='';
 	$id('loading').style.display='block';
