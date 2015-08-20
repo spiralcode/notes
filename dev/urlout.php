@@ -1,13 +1,17 @@
+
 <?php
-$string="This is the, https://note-runfree.rhcloud.com";
-$pattern="@((https?://)?([-\\w]+\\.[-\\w\\.]+)+\\w(:\\d+)?(/([-\\w/_\\.]*(\\?\\S+)?)?)*)@";
-$urls= preg_match_all($pattern, $string);
-if(is_array($urls))
-{
-    echo "Yup";
+
+$string="This is the URL, http://www.google.com/pioneer.php";
+function getUrls($string) {
+ $regex = '/https?\:\/\/[^\" ]+/i';
+ preg_match_all($regex, $string, $matches);
+ return ($matches[0]);
 }
-foreach ($urls as $e)
+ 
+$urls = getUrls($string);
+ 
+foreach ($urls as $a)
 {
-    echo $e."<br>";
+    echo $a."<br>";
 }
 ?>
