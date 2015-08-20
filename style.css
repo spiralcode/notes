@@ -50,15 +50,24 @@ opacity:1;
 button
 {
 	width:100px;
-	background:linear-gradient(#A6EDE6,#B5DEDA);
+	/*background:linear-gradient(#A6EDE6,#B5DEDA);*/
 	outline:none;
-	border:1px solid #F9F1F2;
+	border:1px solid #637A00;
+        		border:1px solid #AD8200;
+
 	min-height: 50px;
 	min-width: 50px;
+        background: none;
+        border-radius: 5px;
+                                box-shadow: 0px 1px 2px #4C4865;
+
+       
 }
 button:hover
 {
-		border:1px solid #ECD5D7;
+                	border:1px solid #637A00;
+                        box-shadow: 0px 0px 0px #000000;
+
 		cursor:pointer;
 }
 .buttonsubtext
