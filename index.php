@@ -97,14 +97,10 @@ font-size:20px;
 }
 button
 {
-background:#9DCB76;
 border:none;
-border:1px solid white;
-height:20px;
 }
 button:hover
 {
-border:1px solid black;
 cursor:pointer;
 }
 #errorshow

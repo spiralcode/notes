@@ -327,10 +327,11 @@ text-shadow: 0px 1px 1px #fff;
 }
 .note .contentslot
 {
-position:relative;
-margin:1%;
-width:98%;
-
+position: relative;
+margin: 1%;
+color: white;
+width: 98%;
+text-shadow: 1px 1px 8px #515137;
 }
 .note .imgspace
 {
