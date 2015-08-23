@@ -141,8 +141,6 @@ function $id(ob)
 		</head>
 <body>
 	<script>
-		
-		//$id('peoplelist').style.
 		</script>
 		<div id="heading">Peoples</div>
 	<div style="height:100%">
