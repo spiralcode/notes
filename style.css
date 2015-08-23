@@ -301,16 +301,16 @@ position:relative;
 }
 .note
 {
-position:relative;
-	width:98%;
-	min-height:150px;
-	color:#fff;
-	font-family:Arial,serif;
-	border-radius:2px;
-	background-image:url(images/tile.png);
-	box-shadow:1px 1px 5px #6D7463;
-	overflow:auto;
-	margin-top:1%;
+position: relative;
+width: 98%;
+min-height: 150px;
+color: #fff;
+font-family: Arial,serif;
+border-radius: 2px;
+background-image: url(images/tile.png);
+box-shadow: 1px 1px 5px #6D7463;
+overflow: auto;
+margin-top: 1%;
 	
 }
 .note .timeslot
