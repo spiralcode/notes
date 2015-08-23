@@ -4,7 +4,6 @@ include 'session_check.php';
 include 'ease.php';
 error_reporting(0);
 
-
 $limit=  explode(",", get('limit'));
 $count=$limit[0];
 $offset=$limit[1];
