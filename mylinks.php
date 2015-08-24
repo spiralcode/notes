@@ -10,7 +10,8 @@
 position:relative;
         margin-top:  1%;
         color:#ff0;
-background-image: url(images/tile.png);
+/*background-image: url(images/tile.png);*/
+background: rgb(179, 179, 179);
         margin-top:1%;
         min-height :120px;
         overflow-x:auto;
@@ -35,17 +36,21 @@ background-image: url(images/tile.png);
     {
         position: absolute;
         font-family: arial,serif;
-        font-size: 15px;
+        font-size: 12px;
         text-align: center;
         bottom: 0px;
         margin-top: 1%;
+                text-shadow: 1px 1px 1px #485465;
+
     }
     .each p
     {
         font-family: Arial,Serif;
-        font-size: 12px;
+        font-size: 13px;
         text-align: justify;
         margin: 5%;
+        color:#fff;
+        text-shadow: 1px 1px 1px #485465;
         
     }
 

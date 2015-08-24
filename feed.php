@@ -56,6 +56,7 @@ foreach($html->find('meta') as $element)
     }
 }
 
+
     $q4=mysqli_query($link, "select url from url where url like '$url'")or die(mysqli_error($link));
    if(mysqli_num_rows($q4)==0)
    {
