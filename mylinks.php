@@ -12,9 +12,15 @@ position:relative;
         color:#ff0;
 background-image: url(images/tile.png);
         margin-top:1%;
-        min-height :50px;
+        min-height :120px;
         overflow-x:auto;
         width:100%;
+        cursor:pointer;
+        
+    }
+    .each:hover
+    {
+        box-shadow: 1px 1px 1px #485465;
     }
     .each h1
     {
@@ -22,13 +28,27 @@ background-image: url(images/tile.png);
         font-size: 20px;
         text-align: center;
         font-family: arial,serif;
+        text-shadow: 1px 1px 1px white;
+        font-size: 15px;
     }
     .each .link
     {
+        position: absolute;
         font-family: arial,serif;
         font-size: 15px;
+        text-align: center;
+        bottom: 0px;
+        margin-top: 1%;
+    }
+    .each p
+    {
+        font-family: Arial,Serif;
+        font-size: 12px;
+        text-align: justify;
+        margin: 5%;
         
     }
+
     </style>
 <script>
     
@@ -37,7 +57,8 @@ background-image: url(images/tile.png);
 <body onload="fetch();">
     <div id="container">
 <script>
-    var count=10,offset=-10;
+    var count=9,offset=-9;
+    var div_count=0;
      $(window).scroll(function() { 
    if($(window).scrollTop() + $(window).height() != $(document).height()) {
        fetch();
@@ -45,32 +66,49 @@ background-image: url(images/tile.png);
    });
     function fetch()
     {
-     offset+=10;   
+     offset+=9;   
         $.get('links.php?limit='+count+','+offset,function(data,success)
     {
         var json=JSON.parse(data);
         var count=0;
-        console.log(json[count].id);
-        while(json[count].id!==null)
-            {
-        var div = document.createElement('div');
-document.getElementById('container').appendChild(div).setAttribute('class',"each");
-document.getElementById('container').appendChild(div).setAttribute('id',count);
-if(json[count].url.length>30)
+  while(json[count].id!=null)
+  {
+      console.log(json[count].title);
+ var div = document.createElement('div');
+ div.setAttribute('onclick','goto("'+json[count].url+'")');
+  div.setAttribute('title','Click to navigate to, '+json[count].title);
+
+  if(json[count].url.length>30)
 {
     var d_url= json[count].url.substr(0,30)+'...';
-}
+    }
 else
-    {
+    { 
         var d_url=json[count].url;
     }
-            document.getElementById(count).innerHTML='<h1>This a title</h1><span class="link"><a target="_new" href="'+json[count].url+'">'+d_url+'</a><span>';
-        count++;
-}
+var ob=document.getElementById('container').appendChild(div)
+ob.setAttribute('class',"each");
+ob.setAttribute('id',div_count);
+        var title = document.createElement('h1');
+        title.setAttribute("id",div_count+"_title");
+        ob.appendChild(title);
+        var desc = document.createElement('p');
+        desc.innerHTML=json[count].description;
+                ob.appendChild(desc);
 
-            
-    });
-    }
+        title.innerHTML=json[count].title;
+        var span=document.createElement('span');
+         div.appendChild(span).innerHTML='<a target="_new" href="'+json[count].url+'">'+d_url+'</a>';
+        div.appendChild(span).setAttribute('class','link');
+        div.appendChild(span).setAttribute('id',div_count+'_title');
+
+        count++;
+        div_count++;
+} });}
+function goto(url) {
+  var win = window.open(url, '_blank');
+  win.focus();
+}
     </script>
     </div>
 </body>

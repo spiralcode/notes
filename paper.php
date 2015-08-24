@@ -239,6 +239,7 @@ function savenote()
 		geolocation:detected_lat+','+detected_lng,
 		setglocation:$id("geo").value
 		},function(data,success){
+                    console.log(data);
 		if(data==1)
 		{
 		newnote();
@@ -263,7 +264,6 @@ function newnote()
 	for(var ii=1;ii<=5;ii++)
 	{
 		$id("slot"+ii).innerHTML='';
-		console.log(ii);
 	}
 	$id("timedat").innerHTML=timeup();
 	
