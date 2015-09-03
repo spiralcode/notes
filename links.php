@@ -2,7 +2,6 @@
 include 'connect.php';
 include 'session_check.php';
 include 'ease.php';
-error_reporting(0);
 
 $limit=  explode(",", get('limit'));
 $count=$limit[0];
@@ -21,7 +20,7 @@ class oblink
         $this->description=$desc;
     }
 };
-$ob[]=new oblink();
+$ob=array();
 $counter=0;
 $query=  mysqli_query($link, "select * from url where userid = $userid ORDER BY  time DESC limit $count offset $offset ")or die(mysqli_error($link));
 while($data=  mysqli_fetch_array($query))

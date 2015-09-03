@@ -324,11 +324,12 @@ tarea.addEventListener('keydown',function(e){
         
 <div id="flowOptions">
 <table width="100%">
+    <tr><td onclick="infoPaper('photos.php','Images',1);">Images</td></tr>
+    <tr><td onclick="infoPaper('mylinks.php','Links',1)">Links</td></tr>
+<tr><td onclick="infoPaper('getpeople.php','People and Places',1);">Peoples</td></tr>
+
 <tr><td onclick="infoPaper('info.php','Informations');">Informations</td></tr>
 <tr><td onclick="infoPaper('settings.php','Settings');">Settings</td></tr>
-<tr><td onclick="infoPaper('mylinks.php','Links',1)">Links</td></tr>
-
-<tr><td onclick="infoPaper('getpeople.php','People and Places',1);">Fetch People or Places</td></tr>
 
 </table>
 </div>
