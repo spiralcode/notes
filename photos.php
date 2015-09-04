@@ -1,27 +1,43 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Photos</title>
         
         <script src="ajax_1_10_2.js"></script>
+          <link rel="stylesheet" href="style.css">
+
       <style>
             .image_title 
             {
-                
+                                position: relative;
 
+               background: #dadada;
+               width:100%;
             }
             .image_entity
             {
                 position: relative;
-                float: right;
-                border: 1px #f00 dotted;
+                float: left;
                 cursor: pointer;
+                margin: 1%;
+                box-shadow: 0px 0px 10px #485565;
             }
+                        .image_entity:hover
+                        {
+                                       box-shadow: 0px 0px 10px #48654A;
+     
+                        }
+
+            body
+            {
+                background: none;
+            }
+            
             </style>
     </head>
     <body onload ="fetchImages();">
-        <div class="image_title">
+        <a href="photos.php" target="_new">Full View</a>
+        <div id="img_container" class="image_title">
   <script>
             function fetchImages()
             {
@@ -32,9 +48,12 @@
                var counter=0;
                while(typeof(ob[counter].id)!==null)
                    {
-              var state='<a target="_new" href="image.php?id='+ob[counter].id+'"><img  class="image_entity" src = "image.php?thumb&size=110x110&id='+ob[counter].id+'"/></a>';
-              console.log(state);
-              document.write(state);  
+              var state='<a target="_new" href="image.php?id='+ob[counter].id+'"><img  class="image_entity" src = "image.php?thumb&size=100x100&id='+ob[counter].id+'"/></a>';
+              //document.write(state);  
+              var obj = document.createElement('span');
+              obj.innerHTML=state;
+              obj.setAttribute('class','image_entity');
+              document.getElementById('img_container').appendChild(obj);
               counter++;
                    }
             }
