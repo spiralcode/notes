@@ -6,7 +6,7 @@ if(!isset($_SERVER['HTTPS'])&&$_SERVER['HTTP_HOST']!='localhost')
 $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     ?>
 <!doctype html>
-<html manifest='cache_list.appcache'>
+<html >
 <head>
 <title>Notes </title>
 <link rel="icon" href = "favicon.png">
@@ -149,8 +149,10 @@ function datagateway(type)
 	var semail=$id('semail').value;
 	var spass=$id('spassword').value;
 	var sname=$id('sname').value;
+                  var logged = $id('loggedin').checked;
 	if(type.dataset.kind=='login')
 	{
+
             $id('spinner').style.display="block";
 		$.post('login.php',{
 			email: email ,
@@ -204,7 +206,7 @@ Notes<sup>v3</sup>
 <div class="loginarea"><table><tr><td>
 <input type="text" id="email" placeholder="E-mail"/></td></tr>
 <tr><td><input type="password" id="password" placeholder="Password"/></td></tr>
-<tr><td><input type="checkbox" value="yes" id="loggedin">Remember me</td></tr>
+<tr><td align="center"><input type="checkbox" value="yes" id="loggedin">Remember me</td></tr><tr><td></td></tr>
 <tr><td align="center">
 <button data-kind="login" onclick="datagateway(this)">Login</button></td></tr></table></div>
 </td><td align="center"><div class="loginarea"><table>
