@@ -171,7 +171,7 @@ if (navigator.geolocation) {
 }
 function showPosition(position)
 {
-    console.log("Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude);
+    //console.log("Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude);
     detected_lat=position.coords.latitude;
     detected_lng=position.coords.longitude;
     $id('geo').value=detected_lat+','+detected_lng;
