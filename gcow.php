@@ -8,7 +8,6 @@ $a=array();
 $eachnote=array();
 $am=0; 
 $imgs=array();
-
 $refid=0;
 //
 class grad
