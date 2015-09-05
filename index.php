@@ -204,6 +204,7 @@ Notes<sup>v3</sup>
 <div class="loginarea"><table><tr><td>
 <input type="text" id="email" placeholder="E-mail"/></td></tr>
 <tr><td><input type="password" id="password" placeholder="Password"/></td></tr>
+<tr><td><input type="checkbox" value="yes" id="loggedin">Remember me</td></tr>
 <tr><td align="center">
 <button data-kind="login" onclick="datagateway(this)">Login</button></td></tr></table></div>
 </td><td align="center"><div class="loginarea"><table>
