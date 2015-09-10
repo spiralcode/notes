@@ -303,7 +303,7 @@ function deletenote(ob)
 }
 </script>
 </div>
-<div id="flowOptions">
+<div id="flowOptions" >
 <table width="100%">
     <tr><td onclick="infoPaper('photos.php','Images',1);">Images</td></tr>
     <tr><td onclick="infoPaper('mylinks.php','Links',1)">Links</td></tr>

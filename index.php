@@ -152,11 +152,12 @@ function datagateway(type)
                   var logged = $id('loggedin').checked;
 	if(type.dataset.kind=='login')
 	{
-
+            if(logged){var cookie='true';}else{var cookie = 'false'};
             $id('spinner').style.display="block";
 		$.post('login.php',{
 			email: email ,
-			pass: pass
+			pass: pass ,
+                        cookie: cookie
 			},function(data,status){
 				if(data==1)
 				{

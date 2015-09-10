@@ -53,6 +53,15 @@ background: rgb(179, 179, 179);
         text-shadow: 1px 1px 1px #485465;
         
     }
+    p
+    {
+            font-family: Arial,Serif;
+        font-size: 13px;
+        text-align: justify;
+        margin: 5%;
+        color:#f00;
+        text-shadow: 1px 1px 1px #485465;
+    }
 
     </style>
 <script>
@@ -61,7 +70,10 @@ background: rgb(179, 179, 179);
 </head>
 <body onload="fetch();">
     <div id="container">
+            <p  style="display:none;" id="nothing">All the URL's or links to pages which you include in a Note appears here.</p>
+
 <script>
+    var results=0;
     var count=9,offset=-9;
     var div_count=0;
      $(window).scroll(function() { 
@@ -77,8 +89,7 @@ background: rgb(179, 179, 179);
         var json=JSON.parse(data);
         var count=0;
   while(json[count].id!=null)
-  {
-      console.log(json[count].title);
+  {result++;
  var div = document.createElement('div');
  div.setAttribute('onclick','goto("'+json[count].url+'")');
   div.setAttribute('title','Click to navigate to, '+json[count].title);
@@ -114,6 +125,10 @@ function goto(url) {
   var win = window.open(url, '_blank');
   win.focus();
 }
+if(results==0)
+    {
+        document.getElementById('nothing').style.display='block';
+    }
     </script>
     </div>
 </body>
