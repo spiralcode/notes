@@ -89,7 +89,7 @@ background: rgb(179, 179, 179);
         var json=JSON.parse(data);
         var count=0;
   while(json[count].id!=null)
-  {result++;
+  {results++;
  var div = document.createElement('div');
  div.setAttribute('onclick','goto("'+json[count].url+'")');
   div.setAttribute('title','Click to navigate to, '+json[count].title);
@@ -120,15 +120,17 @@ ob.setAttribute('id',div_count);
 
         count++;
         div_count++;
-} });}
-function goto(url) {
-  var win = window.open(url, '_blank');
-  win.focus();
-}
+} 
 if(results==0)
     {
         document.getElementById('nothing').style.display='block';
     }
+});}
+function goto(url) {
+  var win = window.open(url, '_blank');
+  win.focus();
+}
+
     </script>
     </div>
 </body>
