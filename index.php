@@ -6,7 +6,6 @@ if(!isset($_SERVER['HTTPS'])&&$_SERVER['HTTP_HOST']!='localhost')
 $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 if(isset($_COOKIE['email']))
 {
-    echo "S";
     header('location: login.php?cook');
 }
     ?>
