@@ -4,6 +4,11 @@ if(!isset($_SERVER['HTTPS'])&&$_SERVER['HTTP_HOST']!='localhost')
     header('location: https://note-runfree.rhcloud.com');
 }
 $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+if(isset($_COOKIE['email']))
+{
+    echo "S";
+    header('location: login.php?cook');
+}
     ?>
 <!doctype html>
 <html >
@@ -152,17 +157,19 @@ function datagateway(type)
                   var logged = $id('loggedin').checked;
 	if(type.dataset.kind=='login')
 	{
-            if(logged){var cookie='true';}else{var cookie = 'false'};
+            if(logged===true){var cookie='1';}else{var cookie = '0'};
             $id('spinner').style.display="block";
 		$.post('login.php',{
 			email: email ,
 			pass: pass ,
-                        cookie: cookie
+                                                      cook: cookie
 			},function(data,status){
+                            
 				if(data==1)
 				{
 					window.location.href='paper.php';
 				}
+                                console.log(data);
 				if(data==0)
 				{
 				$id('errorshow').innerHTML='E-mail and Password doesn\'t seems to exist, try again or make an account.';	
