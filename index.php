@@ -1,8 +1,10 @@
 <?php
-if(!isset($_SERVER['HTTPS'])&&$_SERVER['HTTP_HOST']!='localhost')
+/*if(!isset($_SERVER['HTTPS'])&&$_SERVER['HTTP_HOST']!='localhost')
 {
     header('location: https://note-runfree.rhcloud.com');
 }
+ * */
+ 
 $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 if(isset($_COOKIE['email']))
 {
