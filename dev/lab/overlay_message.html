@@ -1,0 +1,40 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+       <script src="raid.js"></script>
+<link rel="stylesheet" href="raid.css"/>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body id="body">
+        <button onclick="showMsg();">Create</button>
+        <script>
+            function showMsg()
+            {
+                var windowHeight=window.innerHeight , windowWidth = window.innerWidth;
+                var divHeight=windowHeight-200, divWidth=windowWidth-300;
+                var ele=document.createElement("div");
+                $id('body').appendChild(ele);
+                ele.setAttribute('id',"uq");
+                 ele.setAttribute('class',"raid");
+                ele.innerHTML='<h1>Content</h1>';
+                ele.style.width=divWidth+'px';
+                ele.style.height=divHeight+'px';
+                var divPos = ele.getBoundingClientRect();
+                ele.style.left=(windowWidth/2)-(divPos.width/2)+'px';
+                ele.style.top=(windowHeight/2)-(divPos.height/2)+'px';
+                var closeDiv =document.createElement('div');
+                ele.appendChild(closeDiv);
+                closeDiv.setAttribute('class','close');
+                closeDiv.setAttribute('onclick','closething(\'uq\')');
+
+            }
+            </script>
+                    <button onclick="showMsg();">Create</button>
+
+    </body>
+</html>

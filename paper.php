@@ -8,6 +8,8 @@ include 'session_check.php';
 <head><title>Notes : Add Note</title>
 <script src="aftersave.js"></script>
 <script src="notify.js"></script>
+ <script src="raid.js"></script>
+
 
 <script src="lib/moment.js"></script>
 <script src="ajax_1_10_2.js"></script>
@@ -15,6 +17,7 @@ include 'session_check.php';
   <script src="lib/jquery-ui.js"></script>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="style/jquery-ui.css">
+<link rel="stylesheet" href="raid.css"/>
 
 <link rel="stylesheet" href="notify.css">
 <link type="text/css" rel="stylesheet" href="style/locationpicker.css" />
@@ -119,10 +122,11 @@ $id('topstriptitle').innerHTML=title;
     [contentEditable=true]:empty:not(:focus):before{
         content:attr(data-text)
     }
+    
     </style>
 </head>
 <body>
-	
+
 <div id="loading" class="spinner"></div>
 
 <div class="topribbon"><span class="logo">Notes <sup>v3</sup></span>
@@ -131,6 +135,7 @@ $id('topstriptitle').innerHTML=title;
 <div class="paper" id="paper">
 <div id="filedrag" class="imgplace" ><center><span align="center" id="timedat" class="pholder">10 July 2015, 11:52 </span></center>
 </div>
+    
  <div data-text ="Type in something or drag and drop images here..."  id ="tarea" onkeyup ="savecheck();" contenteditable="true" placeholder="Typethings here" style="background:white; overflow-y: scroll; border-top: 1px double  yellowgreen;"></div>
 <table align="center"><tr><td>
 <button title="Save the note. (ctrl+s)" onclick="savenote()">Save Note<br><span class="buttonsubtext">ctrl+s</span></button></td>
@@ -140,7 +145,29 @@ $id('topstriptitle').innerHTML=title;
 <td>
     <input onchange="alterdate(this);" type="hidden" id="hiddenField" class="datepicker" />
 
-<script>  
+<script>
+     function showMsg(url)
+            {
+                var windowHeight=window.innerHeight , windowWidth = window.innerWidth;
+                var divHeight=windowHeight-200, divWidth=windowWidth-300;
+                var ele=document.createElement("div");
+                document.getElementsByTagName('body')[0].appendChild(ele);
+                ele.setAttribute('id',"uq");
+                 ele.setAttribute('class',"raid");
+                $.get(url,function(data,success){
+                    ele.innerHTML=data;
+    });
+                ele.style.width=divWidth+'px';
+                ele.style.height=divHeight+'px';
+                var divPos = ele.getBoundingClientRect();
+                ele.style.left=(windowWidth/2)-(divPos.width/2)+'px';
+                ele.style.top=(windowHeight/2)-(divPos.height/2)+'px';
+                var closeDiv =document.createElement('div');
+                ele.appendChild(closeDiv);
+                closeDiv.setAttribute('class','close');
+                closeDiv.setAttribute('onclick','closething(\'uq\')');
+
+            }
 $( "#hiddenField" ).datepicker({
       showOn: "button",
         buttonText: "Alter Date",
@@ -239,7 +266,6 @@ function savenote()
 		geolocation:detected_lat+','+detected_lng,
 		setglocation:$id("geo").value
 		},function(data,success){
-                    console.log(data);
 		if(data==1)
 		{
 		newnote();
@@ -327,7 +353,6 @@ tarea.addEventListener('keydown',function(e){
     <tr><td onclick="infoPaper('photos.php','Images',1);">Images</td></tr>
     <tr><td onclick="infoPaper('mylinks.php','Links',1)">Links</td></tr>
 <tr><td onclick="infoPaper('getpeople.php','People and Places',1);">Peoples</td></tr>
-
 <tr><td onclick="infoPaper('info.php','Informations');">Informations</td></tr>
 <tr><td onclick="infoPaper('settings.php','Settings');">Settings</td></tr>
 
@@ -338,5 +363,6 @@ tarea.addEventListener('keydown',function(e){
 <script src="notify.js"></script>
 
 <div class="sudden_notify" id = "sudden_notify">Saved</div>
+
 </body>
 </html>

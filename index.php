@@ -1,4 +1,5 @@
 <?php
+
 if(isset($_COOKIE['email']))
 {
     header('location: login.php?cook');
@@ -10,6 +11,9 @@ if(isset($_COOKIE['email']))
 <title>Notes </title>
 <link rel="icon" href = "favicon.png">
   <link rel="stylesheet" href="style.css">
+   <script src="raid.js"></script>
+<link rel="stylesheet" href="raid.css"/>
+
 <style>
 body
 {
@@ -108,6 +112,12 @@ font-family:arial,serif;
 color:red;
 font-size:12px;
 }
+.about
+{
+    color: #4B4865;
+    font-size: 13px;
+    cursor: pointer;
+}
 </style>
 
 <script src="ajax_1_10_2.js"></script>
@@ -153,6 +163,7 @@ function datagateway(type)
 	{
             if(logged===true){var cookie='1';}else{var cookie = '0'};
             $id('spinner').style.display="block";
+            $id('loginbutton').innerHTML="Logging in...";
 		$.post('login.php',{
 			email: email ,
 			pass: pass ,
@@ -167,6 +178,8 @@ function datagateway(type)
 				if(data==0)
 				{
 				$id('errorshow').innerHTML='E-mail and Password doesn\'t seems to exist, try again or make an account.';	
+                                            $id('loginbutton').innerHTML="Log In";
+
                                             $id('spinner').style.display="none";
 
 				}});
@@ -194,7 +207,30 @@ function datagateway(type)
 </script>
 </head>
 <body>
+<script>
+     function showMsg(url)
+            {
+                var windowHeight=window.innerHeight , windowWidth = window.innerWidth;
+                var divHeight=windowHeight-200, divWidth=windowWidth-300;
+                var ele=document.createElement("div");
+                document.getElementsByTagName('body')[0].appendChild(ele);
+                ele.setAttribute('id',"uq");
+                 ele.setAttribute('class',"raid");
+                $.get(url,function(data,success){
+                    ele.innerHTML=data;
+    });
+                ele.style.width=divWidth+'px';
+                ele.style.height=divHeight+'px';
+                var divPos = ele.getBoundingClientRect();
+                ele.style.left=(windowWidth/2)-(divPos.width/2)+'px';
+                ele.style.top=(windowHeight/2)-(divPos.height/2)+'px';
+                var closeDiv =document.createElement('div');
+                ele.appendChild(closeDiv);
+                closeDiv.setAttribute('class','close');
+                closeDiv.setAttribute('onclick','closething(\'uq\')');
 
+            }
+            </script>
 <div id="spinner" class="spinner"></div>
 <div class="aboutspace">
 Notes<sup>v3</sup>
@@ -208,9 +244,9 @@ Notes<sup>v3</sup>
 <div class="loginarea"><table><tr><td>
 <input type="text" id="email" placeholder="E-mail"/></td></tr>
 <tr><td><input type="password" id="password" placeholder="Password"/></td></tr>
-<tr><td align="center"><input type="checkbox" value="yes" id="loggedin">Remember me</td></tr><tr><td></td></tr>
+<tr><td align="center"><input type="checkbox" value="yes" id="loggedin" style="color:#494949; font-size: 13px" ><label style="color:#494949; font-size:14px;" for =" loggedin">Remember me</label></td></tr><tr><td></td></tr>
 <tr><td align="center">
-<button data-kind="login" onclick="datagateway(this)">Login</button></td></tr></table></div>
+<button data-kind="login" onclick="datagateway(this)" id="loginbutton">Login</button></td></tr></table></div>
 </td><td align="center"><div class="loginarea"><table>
 <tr><td><input type="text" id="sname" placeholder="Name"/></td></tr>
 <tr><td><input type="text" id="semail" placeholder="E-mail"/></td></tr>
@@ -230,5 +266,6 @@ document.getElementById('spinner').style.left=(window.innerWidth/2)-(loading.wid
 document.getElementById('smartslide').style.left=(window.innerWidth/2)-(smartslide.width/2)+'px';
 </script>
 <div id="infoPaper"><div class="topstrip"><span id="topstriptitle"></span><div id="infoPaperClose" onclick="infoPaperHide()"><img style="width:20px; height:20px;" title="Close ! this thing" src="images/b_close.png"/></div></div><div id=infoPaperContent></div></div>
+<p class="about" align="right"><span onclick="showMsg('about.html')">About</span></p>
 </body>
 </html>
