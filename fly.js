@@ -7,9 +7,7 @@ function FileDragHover(e)
 {
 	e.stopPropagation();
 	e.preventDefault();
-	$id("tarea").style.border="1px dotted #f00";
-        	$id("tarea").style.background="rgb(232, 230, 192)";
-
+	$id("tarea").style.border="1px groove #48655B";
 	$id("tarea").style.borderBottom="none";
 
 	}
@@ -20,7 +18,7 @@ function FileDragOut(e)
 	e.preventDefault();
 	$id("tarea").style.border="1px dotted #7192A8";
 	$id("tarea").style.borderBottom="none";
-                	$id("tarea").style.background="#fff";
+
 
 	
 	}
@@ -32,9 +30,9 @@ var files = e.target.files || e.dataTransfer.files;
 for(var i=0,f;f=files[i];i++)
 	{
 	ParseFile(f);
-                         $id('loading').style.display='block';
-
 	f=null;
+                                $id('loading').style.display='block';
+
 	}
 }
 function ParseFile(file)
