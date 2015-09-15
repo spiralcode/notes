@@ -55,17 +55,7 @@ function output(msg)
 {
 	console.log(msg);
 }
-function imglist(data,name)
-{
-//Recieves the data file and embed 
-//
-	data = '<img src = "'+data+'">';
-        var td = document.createElement('td');
-        $id('imgrow').appenchild('td');
-        td.setAttribute('id','slot'+start);
-	/*$id("slot"+start).setAttribute("name", name);
-	$id("slot"+start++).innerHTML=data;*/
-}
+
 function savecheck()
 {
 	if(($id('tarea').innerHTML).length>0)
@@ -289,23 +279,30 @@ function newnote()
 	timer++;
 	for(var ii=1;ii<=5;ii++)
 	{
-		$id("slot"+ii).innerHTML='';
+		$id("slot"+ii).remove();
 	}
 	$id("timedat").innerHTML=timeup();
 	
 }
 </script>
-<table align="right" id="imlist"><tr id="imgrow">
-<td id = "slot1"></td>
-<td id = "slot2"></td>
-<td id = "slot3"></td>
-<td id = "slot4"></td>
-<td id = "slot5"></td>
-<td id = "slot6"></td>
-<td id = "slot7"></td>
-<td id = "slot8"></td>
-<td id = "slot9"></td>
-<td id = "slot10"></td>
+<table align="right" id="imlist" style=""><tr style="float:bottom;" id="imgrow">
+        <script>
+            function imglist(data,name)
+{
+//Recieves the data file and embed 
+//
+	data = '<img src = "'+data+'">';
+        var td = document.createElement('td');
+        $id('imgrow').appendChild(td);
+        td.setAttribute('id','slot'+start++);
+        td.setAttribute('class',name);
+        td.setAttribute('name',name);
+
+        td.innerHTML=data;
+	/*$id("slot"+start).setAttribute("name", name);
+	$id("slot"+start++).innerHTML=data;*/
+}
+            </script>
 </tr></table>
 
 <div align="center" id="geoimage"></div>
