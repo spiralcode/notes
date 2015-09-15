@@ -247,7 +247,7 @@ function savenote()
 
                     if(warned<4)
                         {
-                    notify('IT\'s taking some time extra !, we\'ll try again and again..','desp','ext');
+                    notify('Is there some trouble with your Internet ? because it\'s taking some time extra !, we are trying all ways to get this done :D ','desp','ext');
                         }
                 }
                 if(warned==4)
