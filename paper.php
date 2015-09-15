@@ -288,7 +288,7 @@ function newnote()
 	
 }
 </script>
-<table align="right" id="imlist" style=""><tr style="float:bottom;" id="imgrow">
+<table align="right" id="imlist"><tr  style="width:100px; height: 100px" id="imgrow">
         <script>
             function imglist(data,name)
 {
