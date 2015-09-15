@@ -57,14 +57,14 @@ function output(msg)
 }
 function imglist(data,name)
 {
-
-	if(start>5){
-		msg("You can only attach 5 images per note");
-		return;
-	}
+//Recieves the data file and embed 
+//
 	data = '<img src = "'+data+'">';
-	$id("slot"+start).setAttribute("name", name);
-	$id("slot"+start++).innerHTML=data;
+        var td = document.createElement('td');
+        $id('imgrow').appenchild('td');
+        td.setAttribute('id','slot'+start);
+	/*$id("slot"+start).setAttribute("name", name);
+	$id("slot"+start++).innerHTML=data;*/
 }
 function savecheck()
 {
@@ -295,7 +295,7 @@ function newnote()
 	
 }
 </script>
-<table align="right" id="imlist"><tr>
+<table align="right" id="imlist"><tr id="imgrow">
 <td id = "slot1"></td>
 <td id = "slot2"></td>
 <td id = "slot3"></td>

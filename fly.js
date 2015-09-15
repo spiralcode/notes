@@ -32,7 +32,7 @@ var files = e.target.files || e.dataTransfer.files;
 for(var i=0,f;f=files[i];i++)
 	{
 	ParseFile(f);
-	files[i]='';
+	f=null;
 	}
 }
 function ParseFile(file)
