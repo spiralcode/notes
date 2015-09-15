@@ -60,8 +60,20 @@ function savecheck()
 {
 	if(($id('tarea').innerHTML).length>0)
 	{
-	unsaved=true;
-	}
+            var count=0,filecount=0;
+while(typeof($id('slot'+count)!='undefined'))
+{
+    if($id('slot'+count++).dataset.upload==1)
+        {
+            filecount++;
+        }
+}
+if(filecount==0){
+            unsaved=true;}
+            else{
+                      unsaved=false;
+            }
+        }
 	else
 	{
 	unsaved=false;
@@ -288,7 +300,7 @@ function newnote()
 	
 }
 </script>
-<table align="right" id="imlist"><tr  style="width:100px; height: 100px" id="imgrow">
+<table align="right" id="imlist"><tr  style="width:80px; height: 80px"  id="imgrow">
         <script>
             function imglist(data,name)
 {
@@ -300,6 +312,7 @@ function newnote()
         td.setAttribute('class','uploadslot');
         td.style.backgroundImage='url('+data+')';
         td.setAttribute('name',name);
+        td.setAttribute('data-uploaded','0');
 }
             </script>
 </tr></table>

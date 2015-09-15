@@ -513,17 +513,17 @@ color:red;
 }
 .uploadslot
 {
-   min-width:100px;
-    min-height:100px;
-       max-width:100px;
-    max-height:100px;
-    background-size: 100px 100px;
+   min-width:80px;
+    min-height:80px;
+       max-width:80px;
+    max-height:80px;
+    background-size: 80px 80px;
 }
 .uploaded
 {
-       width:100px;
-    height:100px;
-        background-size: 100px 100px;
+       width:80px;
+    height:80px;
+        background-size: 80px 80px;
 
 
     
