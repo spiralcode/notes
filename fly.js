@@ -31,7 +31,6 @@ for(var i=0,f;f=files[i];i++)
 	{
 	ParseFile(f);
 	f=null;
-                                $id('loading').style.display='block';
 
 	}
 }
@@ -39,6 +38,7 @@ function ParseFile(file)
 {
 	if(file.type=='image/jpeg'||file.type=='image/png')
 		{
+                                                    $id('loading').style.display='block';
 		if (file.type.indexOf("image") == 0) {
 			var reader = new FileReader();
 			reader.onload = function(e) {
