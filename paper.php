@@ -247,7 +247,7 @@ function savenote()
 
                     if(warned<4)
                         {
-                    notify('This is taking more than usual, check your Internet connection.','desp','ext');
+                    notify('IT\'s taking some time extra !, we\'ll try again and again..','desp','ext');
                         }
                 }
                 if(warned==4)

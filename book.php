@@ -305,7 +305,7 @@ function deletenote(ob)
 </div>
 <div id="flowOptions" >
 <table width="100%">
-    <tr><td onclick="infoPaper('photos.php','Images',1);">Images</td></tr>
+    <tr><td onclick="infoPaper('photos.php','Photos',1);">Photos</td></tr>
     <tr><td onclick="infoPaper('mylinks.php','Links',1)">Links</td></tr>
 <tr><td onclick="infoPaper('getpeople.php','Peoples',1)">Peoples</td></tr>
 
