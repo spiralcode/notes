@@ -372,6 +372,8 @@ z-index: 102;
 width: 25px;
 height:25px;
 }
+
+
 .spinner {
 position:absolute;
 z-index:101;
@@ -508,4 +510,20 @@ color:red;
 	width:100%;
 	box-sizing: border-box;
 	border: none;
+}
+.uploadslot
+{
+   min-width:100px;
+    min-height:100px;
+       max-width:100px;
+    max-height:100px;
+    background-size: 100%;
+}
+.uploaded
+{
+       width:100px;
+    height:100px;
+        background-size: 100%;
+
+    
 }

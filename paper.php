@@ -204,7 +204,7 @@ var min=cal.getMinutes();
 mnth++;
 if(min<10)
 {
-	min="0"+min;
+	minim="0"+min;
 }
 if(hour<10)
 {
@@ -277,10 +277,13 @@ function newnote()
 	$id('tarea').innerHTML='';
 	savecheck();
 	timer++;
-	for(var ii=1;ii<=5;ii++)
-	{
-		$id("slot"+ii).remove();
-	}
+
+        var i = 1;
+        while(typeof($id('slot+i'))!='undefined')
+            {
+                		$id("slot"+i++).remove();
+
+            }
 	$id("timedat").innerHTML=timeup();
 	
 }
@@ -291,16 +294,12 @@ function newnote()
 {
 //Recieves the data file and embed 
 //
-	data = '<img src = "'+data+'">';
         var td = document.createElement('td');
         $id('imgrow').appendChild(td);
         td.setAttribute('id','slot'+start++);
-        td.setAttribute('class',name);
+        td.setAttribute('class','uploadslot');
+        td.style.backgroundImage='url('+data+')';
         td.setAttribute('name',name);
-
-        td.innerHTML=data;
-	/*$id("slot"+start).setAttribute("name", name);
-	$id("slot"+start++).innerHTML=data;*/
 }
             </script>
 </tr></table>
