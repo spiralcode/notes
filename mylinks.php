@@ -2,6 +2,7 @@
 <head>
     <script src="ajax_1_10_2.js"></script>
       <script src="lib/jquery-ui.js"></script>
+<link rel="stylesheet" href="notify.css">
 
 <title>You Have to Bring It Back</title>
 <style>
@@ -69,7 +70,9 @@ background: rgb(179, 179, 179);
     </script>
 </head>
 <body onload="fetch();">
+    
     <div id="container">
+        <div class="spinner" id="spinner"></div>
             <p  style="display:none;" id="nothing">All the URL's or links to pages which you include in a Note appears here.</p>
 
 <script>
