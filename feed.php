@@ -23,7 +23,7 @@ else
 $startTime = $_POST['alterDate'];
 
 $q1 = mysqli_query($link, "insert into events values ($nid,$userid,$time,'$content','$sgeo','$geo','$startTime')")or die(mysqli_error($link));
-echo s1;
+echo 1;
   echo str_repeat(' ',1024*64);
 flush();
 $urls=  getUrls(strip_tags($content));
