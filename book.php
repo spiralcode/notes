@@ -216,7 +216,6 @@ while (myNode.firstChild) {
 				var min = moment(json[init].ftime).format('mm');
 				var ap = moment(json[init].ftime).format('A');
 				var date= moment(json[init].ftime).format('DD');
-				
 				var mnth= moment(json[init].ftime).format('M');
 				var year= moment(json[init].ftime).format('YYYY');
 				var frmtime=hr+':'+min+' '+ap+' | '+date+'/'+mnth+'/'+year;

@@ -147,7 +147,7 @@ $id('topstriptitle').innerHTML=title;
 <button value="0" title="Click to embed a location" onclick="" id="geo">Embed a location<br><span class="buttonsubtext"></span></button>
 </td>
 <td>
-    <input onchange="alterdate(this);" type="hidden" id="hiddenField" class="datepicker" />
+    <input onchange="timeup(this);" type="hidden" id="hiddenField" class="datepicker" />
 
 <script>
      function showMsg(url)
@@ -210,29 +210,15 @@ function showPosition(position)
     detected_lng=position.coords.longitude;
     $id('geo').value=detected_lat+','+detected_lng;
 }
-function timeup()
+function timeup(alt)
 {
-var cal = new Date();
-var date=cal.getDate();
-var mnth=cal.getMonth();
-var year=cal.getUTCFullYear();
-var hour=cal.getHours();
-var min=cal.getMinutes();
-mnth++;
-if(min<10)
+if(alt==null)
+return moment().format('DD  MMM. YYYY , HH:mm');
+else
 {
-	minim="0"+min;
+    var val = moment(alt.value,'MM/DD/YYYY');
+    $id("timedat").innerHTML=val.format('DD  MMM. YYYY , HH:mm');
 }
-if(hour<10)
-{
-	hour="0"+hour;
-}
-if(mnth<10)
-{
-	mnth="0"+mnth;
-}
-var formatted = date+" - "+mnth+" - "+year+" ,"+hour+":"+min;
-return formatted;
 }
 $id("timedat").innerHTML=timeup();
 function savenote()
@@ -242,7 +228,7 @@ function savenote()
 	var contents=$id("tarea").innerHTML;
 	if(contents=='')
 	{
-        notify('Nothing to save !!!');
+        notify('Nothing to save !');
 	return;
 	}
 	$id('loading').style.display='block';
@@ -254,7 +240,7 @@ function savenote()
 
                     if(warned<4)
                         {
-                    notify('Is there some trouble with your Internet ? because it\'s taking some time extra !, we are trying all ways to get this done :D ','desp','ext');
+                    notify('Is there some trouble with your Internet ? Because it\'s taking some time extra !, we are trying all ways to get this done :D ','desp','ext');
                         }
                 }
                 if(warned==4)
@@ -270,6 +256,7 @@ function savenote()
 	$.post('feed.php',{
 		contents:contents,
 		timeid:timer,
+                                    datetime:0,
 		geolocation:detected_lat+','+detected_lng,
 		setglocation:$id("geo").value
 		},function(data,success){
