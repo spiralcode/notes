@@ -18,14 +18,11 @@ display:none;
 .sudden_notify_happy
 {
     background: #50A9ED;
-     border: 1px solid thistle;
+    border: 50px solid thistle;
 }
 .sudden_notify_desp
 {
    background: palevioletred;
-   border: 1px solid thistle;    
+   border: 50px solid thistle;    
 }
-.sudden_notify .msg
-{
-    margin: 1%;
-}
+

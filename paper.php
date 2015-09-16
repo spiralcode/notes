@@ -225,7 +225,8 @@ else
             {
     $id("timedat").innerHTML=val.format('Do  MMM. YYYY , HH:mm');
     alterDate=val.format('YYYY-MM-DD H:mm:ss');
-              notify("Date is changed to <strong>"+val.format(' Do  MMMM  YYYY')+'</strong>','happy','ext');
+    var ul=val.format(' Do  MMMM  YYYY');
+              notify("Date is changed to <strong>"+ul+'</strong>','happy','ext');
             }
 }
 }
@@ -249,7 +250,7 @@ function savenote()
 
                     if(warned<4)
                         {
-                    notify('Is there some trouble with your Internet ? Because it\'s taking some time extra !, we are trying all ways to get this done :D ','desp','ext');
+                    notify('Is there some trouble with your Internet ? Because it\'s taking some time extra !, we are trying all ways to get this done.','desp','ext');
                         }
                 }
                 if(warned==4)
@@ -372,7 +373,6 @@ tarea.addEventListener('keydown',function(e){
 <div id="infoPaper"><div class="topstrip"><span id="topstriptitle"></span><div id="infoPaperClose" onclick="infoPaperHide();"><img style="width:20px; height:20px;" title="Close ! this thing" src="images/b_close.png"/></div></div><div id=infoPaperContent></div></div></div>
 <script src="notify.js"></script>
 
-<div class="sudden_notify" id = "sudden_notify">Saved</div>
 
 </body>
 </html>
