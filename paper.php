@@ -190,6 +190,7 @@ getloc();
  */
 var detected_lat=0;
 var detected_lng=0;
+var alterDate=0;
 var counter = window.setInterval(function(){},1000);
 
  function getloc()
