@@ -212,16 +212,17 @@ while (myNode.firstChild) {
 			while(typeof(json[init].content)!='undefined')
 			{
 		/*Moment code starts*/
-				var hr = moment(json[init].ftime).format('hh');
-				var min = moment(json[init].ftime).format('mm');
-				var ap = moment(json[init].ftime).format('A');
-				var date= moment(json[init].ftime).format('DD');
-				var mnth= moment(json[init].ftime).format('M');
-				var year= moment(json[init].ftime).format('YYYY');
+                var momentObject = moment(json[init].ftime);
+				var hr = momentObject.format('hh');
+				var min = momentObject.format('mm');
+				var ap = momentObject.format('A');
+				var date= momentObject.format('DD');
+				var mnth= momentObject.format('M');
+				var year= momentObject.format('YYYY');
 				var frmtime=hr+':'+min+' '+ap+' | '+date+'/'+mnth+'/'+year;
 
 				
-				var then = moment(json[init].ftime).format('D/M/YYYY HH:mm:ss');				
+				var then = momentObject.format('D/M/YYYY HH:mm:ss');				
 				var now=moment().format('D/M/YYYY HH:mm:ss');
 				var millisec=moment(now,"D/M/YYYY HH:mm:ss").diff(moment(then,"D/M/YYYY HH:mm:ss"));
 				var di = moment.duration(millisec);

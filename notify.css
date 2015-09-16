@@ -1,7 +1,7 @@
 .sudden_notify
 {
 	position: absolute;
-	min-width:200px;
+	min-width:300px;
 	min-height: 50px;
 	background:  wheat;
 	z-index: 5000;
@@ -24,4 +24,8 @@ display:none;
 {
    background: palevioletred;
    border: 1px solid thistle;    
+}
+.sudden_notify .msg
+{
+    margin: 1%;
 }

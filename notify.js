@@ -8,7 +8,7 @@ var ob=$id('sudden_notify');
         
         //Displaying the div
         ob.style.display='block';
-        ob.innerHTML=msg;
+        ob.innerHTML='<p class="msg">'+msg+'</p>';
 	ob_dimensions= ob.getBoundingClientRect();
         w=ob_dimensions.width;
         //Positioning the div in center of page
