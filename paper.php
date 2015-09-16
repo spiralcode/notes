@@ -214,8 +214,17 @@ return moment().format('DD  MMM. YYYY , HH:mm');
 else
 {
     var val = moment(alt.value,'MM/DD/YYYY');
+    if(moment().format('DD-MM-YYYY')==val.format('DD-MM-YYYY'))
+        {
+      $id("timedat").innerHTML=moment().format('DD  MMM. YYYY , HH:mm');
+          alterDate=moment().format('YYYY-MM-DD H:mm:ss');
+
+        }
+        else
+            {
     $id("timedat").innerHTML=val.format('DD  MMM. YYYY , HH:mm');
     alterDate=val.format('YYYY-MM-DD H:mm:ss');
+            }
 }
 }
 $id("timedat").innerHTML=timeup();
