@@ -23,6 +23,7 @@ include 'session_check.php';
 <link type="text/css" rel="stylesheet" href="style/locationpicker.css" />
 <script>
 var start=1;
+var alteredDate=0;
 var time = new Date;
 var timer=time.getTime();
 var width=window.innerWidth;
@@ -78,10 +79,6 @@ if(filecount==0){
 	{
 	unsaved=false;
 	}
-}
-function alterdate(ob)
-{
-    notify(ob.value);
 }
 function getPlaceImage(coords,address)
 {
@@ -218,6 +215,7 @@ else
 {
     var val = moment(alt.value,'MM/DD/YYYY');
     $id("timedat").innerHTML=val.format('DD  MMM. YYYY , HH:mm');
+    alterDate=val.format('YYYY-MM-DD H:mm:ss');
 }
 }
 $id("timedat").innerHTML=timeup();
@@ -256,7 +254,7 @@ function savenote()
 	$.post('feed.php',{
 		contents:contents,
 		timeid:timer,
-                                    datetime:0,
+                                    alterDate:alterDate,
 		geolocation:detected_lat+','+detected_lng,
 		setglocation:$id("geo").value
 		},function(data,success){

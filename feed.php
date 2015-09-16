@@ -2,7 +2,6 @@
 include 'session_check.php';
 include 'connect.php';
 include 'crawl/simple_html_dom.php';
-
 date_default_timezone_set('Asia/Calcutta');
 
 function getUrls($string) {
@@ -18,7 +17,10 @@ $sgeo=$_POST['setglocation'];
 $nid=$_POST['timeid'];
 $time=time();
 $datum = new DateTime();
+if($_POST['alterDate']==0)
 $startTime = $datum->format('Y-m-d H:i:s');
+else
+$startTime = $_POST['alterDate'];
 
 $q1 = mysqli_query($link, "insert into events values ($nid,$userid,$time,'$content','$sgeo','$geo','$startTime')")or die(mysqli_error($link));
 echo 1;
