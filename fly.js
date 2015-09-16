@@ -50,8 +50,7 @@ function ParseFile(file)
 		}
 	else
 		{
-		notify('File-type not allowed !',"desp");
-
+                 		notify('<strong>'+file.name+'</strong> doesn\'t seems to be an image (png/jpeg)',"desp",'ext');
 		}
 }
 function init()
