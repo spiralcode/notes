@@ -15,7 +15,6 @@ function image($id,$noteid)
 };
 $imgs=array();
 $counter=0;
-    $row_count=0;
     while($row=mysqli_fetch_array($query))
     {
                 $id=$row['id'];

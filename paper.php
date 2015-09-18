@@ -24,10 +24,29 @@ include 'session_check.php';
 <script>
 var start=1;
 var alteredDate=0;
+var detected_lat=0;
+var detected_lng=0;
 var time = new Date;
 var timer=time.getTime();
 var width=window.innerWidth;
 var height=window.innerHeight;
+getloc();
+ function getloc()
+{
+if (navigator.geolocation) 
+{
+    navigator.geolocation.getCurrentPosition(showPosition);
+}
+ else
+{console.log("Location no supported");
+}
+}
+function showPosition(position)
+{
+    detected_lat=position.coords.latitude;
+    detected_lng=position.coords.longitude;
+    $id('geo').value=detected_lat+','+detected_lng;
+}
 function showMenu(ob)
 {
 if($id('flowOptions').style.display=='none'||$id('flowOptions').style.display=='')
@@ -61,24 +80,13 @@ function savecheck()
 {
 	if(($id('tarea').innerHTML).length>0)
 	{
-            var count=0,filecount=0;
-while(typeof($id('slot'+count)!='undefined'))
-{
-    if($id('slot'+count++).dataset.upload==1)
-        {
-            filecount++;
-        }
+               unsaved=true;
+
 }
-if(filecount==0){
-            unsaved=true;}
             else{
                       unsaved=false;
             }
-        }
-	else
-	{
-	unsaved=false;
-	}
+
 }
 function getPlaceImage(coords,address)
 {
@@ -87,6 +95,7 @@ function getPlaceImage(coords,address)
                   $id('tarea').style.backgroundPosition='bottom right';
                   $id('tarea').style.backgroundRepeat='no-repeat';
                   $id('tarea').style.backgroundSize='contain';
+                  document.cookie="userLocation="+coords+"; expires=Thu, 18 Dec 2013 12:00:00 UTC";
 
 	
 }
@@ -147,28 +156,7 @@ $id('topstriptitle').innerHTML=title;
     <input onchange="timeup(this);" type="hidden" id="hiddenField" class="datepicker" />
 
 <script>
-     function showMsg(url)
-            {
-                var windowHeight=window.innerHeight , windowWidth = window.innerWidth;
-                var divHeight=windowHeight-200, divWidth=windowWidth-300;
-                var ele=document.createElement("div");
-                document.getElementsByTagName('body')[0].appendChild(ele);
-                ele.setAttribute('id',"uq");
-                 ele.setAttribute('class',"raid");
-                $.get(url,function(data,success){
-                    ele.innerHTML=data;
-    });
-                ele.style.width=divWidth+'px';
-                ele.style.height=divHeight+'px';
-                var divPos = ele.getBoundingClientRect();
-                ele.style.left=(windowWidth/2)-(divPos.width/2)+'px';
-                ele.style.top=(windowHeight/2)-(divPos.height/2)+'px';
-                var closeDiv =document.createElement('div');
-                ele.appendChild(closeDiv);
-                closeDiv.setAttribute('class','close');
-                closeDiv.setAttribute('onclick','closething(\'uq\')');
-
-            }
+   
 $( "#hiddenField" ).datepicker({
       showOn: "button",
         buttonText: "Alter Date",
@@ -183,31 +171,16 @@ $( "#hiddenField" ).datepicker({
 </table>
 
 <script>
-getloc();
 /*
  * Global Variables
 
  */
-var detected_lat=0;
-var detected_lng=0;
+
 var alterDate=0;
 var counter = window.setInterval(function(){},1000);
 
- function getloc()
-{
-if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-} else { 
-	console.log("Location no supported");
-}
-}
-function showPosition(position)
-{
-    //console.log("Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude);
-    detected_lat=position.coords.latitude;
-    detected_lng=position.coords.longitude;
-    $id('geo').value=detected_lat+','+detected_lng;
-}
+
+
 function timeup(alt)
 {
 if(alt==null)

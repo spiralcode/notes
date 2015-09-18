@@ -33,5 +33,30 @@ function riskdata($variable)
 		echo $variable;
 	}
 }
+function isBetween($start,$end,$value)
+{
+    if($start<$end)
+    {
+    if($value>$start&&$value<$end)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+    }
+    else
+    {
+         if($value>$end&&$value<$start)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+    }
+}
 
 ?>

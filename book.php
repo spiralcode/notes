@@ -8,8 +8,11 @@ include 'session_check.php';
 <script src="ajax_1_10_2.js"></script>
 <script src="lib/jquery-1.10.2.js"></script>
   <script src="lib/jquery-ui.js"></script>
+     <script src="raid.js"></script>
+<link rel="stylesheet" href="raid.css"/>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="style/jquery-ui.css">
+  
 <title>Read your Notes</title>
 <style type="text/css">
 input
@@ -217,42 +220,44 @@ while (myNode.firstChild) {
 				var min = momentObject.format('mm');
 				var ap = momentObject.format('A');
 				var date= momentObject.format('DD');
-				var mnth= momentObject.format('M');
+				var mnth= momentObject.format('MMMM');
 				var year= momentObject.format('YYYY');
-				var frmtime=hr+':'+min+' '+ap+' | '+date+'/'+mnth+'/'+year;
+				var frmtime=hr+':'+min+' '+ap+' | '+date+' '+mnth+' '+year;
 
 				
 				var then = momentObject.format('D/M/YYYY HH:mm:ss');				
 				var now=moment().format('D/M/YYYY HH:mm:ss');
 				var millisec=moment(now,"D/M/YYYY HH:mm:ss").diff(moment(then,"D/M/YYYY HH:mm:ss"));
 				var di = moment.duration(millisec);
+                                                                       var minutes=di.asMinutes();
 				var hoursago=(Math.floor(di.asHours()));
 				var days=Math.round(hoursago/24);
-				if(hoursago<24)
-				{
-				var timeago=hoursago+" hours before";
-					if(hoursago<1&&hoursago>.5)
-					{
-						timeago="Now"
-					}
-				if(hoursago<1&&hoursago<.1)
-				{
-				timeago="Just now"
-				}
-				}
-				else
-				{
-					if((hoursago>=24)&&(days==1))
-					{
-					var timeago=days+" day ago";			
-					}
-					else
-					{
-					var timeago=days+" days ago";				
-					}
-				}
-
-				/*Code for Moment ends*/
+                                console.log(minutes);
+                                timeago="s";
+                                if(minutes<15)
+                                    {
+                                        timeago="Now";
+                                    }
+                                    if(minutes>15&&minutes<60)
+                                        {
+                                            timeago="Some time before";
+                                        }
+                                        if(minutes>60&&minutes<120)
+                                            {
+                                                timeago= "1 hour before"
+                                            }
+                                            if(minutes>120&&minutes<(24*60))
+                                            {
+                                                timeago=Math.floor(minutes/60)+" hours before";
+                                            }
+                                            if(minutes>(24*60)&&minutes<(24*120))
+                                            {
+                                                timeago="A day before";
+                                            }
+                                            if(minutes>(24*120))
+                                                {
+                                                    timeago=Math.floor(((minutes/60)/24))+" days before";
+                                                }
 				
 		var ele = json[init].content;
 		var noteid=json[init].noteid;
@@ -305,8 +310,8 @@ function deletenote(ob)
 </div>
 <div id="flowOptions" >
 <table width="100%">
-    <tr><td onclick="infoPaper('photos.php','Photos',1);">Photos</td></tr>
-    <tr><td onclick="infoPaper('mylinks.php','Links',1)">Links</td></tr>
+    <tr><td onclick="showMsg('photos.php',{title:'Photos',iframe:true}); alert('s');">Photos</td></tr>
+    <tr><td onclick="showMsg('mylinks.php',{title:'Links',iframe:true});">Links</td></tr>
 <tr><td onclick="infoPaper('getpeople.php','Peoples',1)">Peoples</td></tr>
 
 <tr><td onclick="infoPaper('info.php','Informations')">Informations</td></tr>
