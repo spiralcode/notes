@@ -16,7 +16,8 @@ root {
     position:fixed;
     width:500px;
     height:500px;
-    background: #F6F2EF;
+        background:#fff;
+
     -moz-animation: fadein .5s; /* Firefox */
     -webkit-animation: fadein .5s; /* Safari and Chrome */
     -o-animation: fadein .5s;
@@ -84,17 +85,18 @@ root {
 {
     position: relative;
     width:100%;
-    background:#093658;
+    background:#fff;
     height: 95%;
     top: 5%;
 }
 .raid .title
 {
     color:#1B3450;
-    width: 30px;
+    height: 30px;
     position: absolute;
     font-size: 25px;
 font-family:"Segoe UI Light",arial,serif;
+background: #fff;
 }
 .raid .iframe
 {
