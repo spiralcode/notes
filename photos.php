@@ -21,6 +21,7 @@
                 cursor: pointer;
                 margin: 1%;
                 box-shadow: 0px 0px 10px #485565;
+                
             }
                         .image_entity:hover
                         {
@@ -48,10 +49,11 @@
                while(typeof(ob[counter].id)!==null)
                    {
               var state='<a target="_new" href="image.php?id='+ob[counter].id+'"><img  class="image_entity" src = "image.php?thumb&size=100x100&id='+ob[counter].id+'"/></a>';
-              //document.write(state);  
               var obj = document.createElement('span');
               obj.innerHTML=state;
               obj.setAttribute('class','image_entity');
+                            obj.setAttribute('id','image_entity');
+
               document.getElementById('img_container').appendChild(obj);
               counter++;
                    }
