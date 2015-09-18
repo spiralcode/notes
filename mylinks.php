@@ -62,6 +62,10 @@ background: rgb(179, 179, 179);
         color:#f00;
         text-shadow: 1px 1px 1px #485465;
     }
+                body
+            {
+                background: #fff;
+            }
 
     </style>
 <script>

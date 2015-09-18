@@ -12,15 +12,15 @@ root {
 
 .raid
 {
-    position:absolute;
+    z-index: 50001555;
+    position:fixed;
     width:500px;
     height:500px;
     background: #F6F2EF;
     -moz-animation: fadein .5s; /* Firefox */
     -webkit-animation: fadein .5s; /* Safari and Chrome */
     -o-animation: fadein .5s;
-    box-shadow: 1px 1px 10px #212121;
-    overflow: scroll;
+    box-shadow: 5px 5px  20px #212121;
     font-family:sans-serif,arial;
     
 }
@@ -79,4 +79,25 @@ root {
     font-family:sans-serif,arial;
     color: #4B63E7;
     text-align: center;
+}
+.raid .content
+{
+    position: relative;
+    width:100%;
+    background:#093658;
+    height: 95%;
+    top: 5%;
+}
+.raid .title
+{
+    color:#1B3450;
+    width: 30px;
+    position: absolute;
+    font-size: 25px;
+font-family:"Segoe UI Light",arial,serif;
+}
+.raid .iframe
+{
+    border:none;
+    
 }

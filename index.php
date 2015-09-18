@@ -208,28 +208,7 @@ function datagateway(type)
 </head>
 <body>
 <script>
-     function showMsg(url)
-            {
-                var windowHeight=window.innerHeight , windowWidth = window.innerWidth;
-                var divHeight=windowHeight-200, divWidth=windowWidth-300;
-                var ele=document.createElement("div");
-                document.getElementsByTagName('body')[0].appendChild(ele);
-                ele.setAttribute('id',"uq");
-                 ele.setAttribute('class',"raid");
-                $.get(url,function(data,success){
-                    ele.innerHTML=data;
-    });
-                ele.style.width=divWidth+'px';
-                ele.style.height=divHeight+'px';
-                var divPos = ele.getBoundingClientRect();
-                ele.style.left=(windowWidth/2)-(divPos.width/2)+'px';
-                ele.style.top=(windowHeight/2)-(divPos.height/2)+'px';
-                var closeDiv =document.createElement('div');
-                ele.appendChild(closeDiv);
-                closeDiv.setAttribute('class','close');
-                closeDiv.setAttribute('onclick','closething(\'uq\')');
 
-            }
             </script>
 <div id="spinner" class="spinner"></div>
 <div class="aboutspace">
@@ -244,7 +223,7 @@ Notes<sup>v3</sup>
 <div class="loginarea"><table><tr><td>
 <input type="text" id="email" placeholder="E-mail"/></td></tr>
 <tr><td><input type="password" id="password" placeholder="Password"/></td></tr>
-<tr><td align="center"><input type="checkbox" value="yes" id="loggedin" style="color:#494949; font-size: 13px" ><label style="color:#494949; font-size:14px;" for =" loggedin">Remember me</label></td></tr><tr><td></td></tr>
+<tr><td align="center"><input type="checkbox" value="yes" id="loggedin" style="color:#494949; font-size: 13px" ><label for =" loggedin"  style="color:#494949; font-size:14px;" >Remember me</label></td></tr><tr><td></td></tr>
 <tr><td align="center">
 <button data-kind="login" onclick="datagateway(this)" id="loginbutton">Login</button></td></tr></table></div>
 </td><td align="center"><div class="loginarea"><table>
@@ -255,7 +234,6 @@ Notes<sup>v3</sup>
 
 <tr><td align="center"><button data-kind="signup" onclick="datagateway(this)">Sign Up</button></td></tr></table></div></td></tr></table>
 </div>
-
 </div>
 
 <script>
@@ -266,6 +244,6 @@ document.getElementById('spinner').style.left=(window.innerWidth/2)-(loading.wid
 document.getElementById('smartslide').style.left=(window.innerWidth/2)-(smartslide.width/2)+'px';
 </script>
 <div id="infoPaper"><div class="topstrip"><span id="topstriptitle"></span><div id="infoPaperClose" onclick="infoPaperHide()"><img style="width:20px; height:20px;" title="Close ! this thing" src="images/b_close.png"/></div></div><div id=infoPaperContent></div></div>
-<p class="about" align="right"><span onclick="showMsg('about.html')">About</span></p>
+<p class="about" align="right"><span onclick="showMsg('index.php',{title:'About',iframe:true});">About</span></p>
 </body>
 </html>

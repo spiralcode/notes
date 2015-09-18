@@ -30,13 +30,12 @@
 
             body
             {
-                background: none;
+                background: #fff;
             }
             
             </style>
     </head>
     <body onload ="fetchImages();">
-        <a href="photos.php" target="_new">Full View</a>
         <div id="img_container" class="image_title">
   <script>
             function fetchImages()

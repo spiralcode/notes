@@ -156,28 +156,7 @@ $id('topstriptitle').innerHTML=title;
     <input onchange="timeup(this);" type="hidden" id="hiddenField" class="datepicker" />
 
 <script>
-     function showMsg(url)
-            {
-                var windowHeight=window.innerHeight , windowWidth = window.innerWidth;
-                var divHeight=windowHeight-200, divWidth=windowWidth-300;
-                var ele=document.createElement("div");
-                document.getElementsByTagName('body')[0].appendChild(ele);
-                ele.setAttribute('id',"uq");
-                 ele.setAttribute('class',"raid");
-                $.get(url,function(data,success){
-                    ele.innerHTML=data;
-    });
-                ele.style.width=divWidth+'px';
-                ele.style.height=divHeight+'px';
-                var divPos = ele.getBoundingClientRect();
-                ele.style.left=(windowWidth/2)-(divPos.width/2)+'px';
-                ele.style.top=(windowHeight/2)-(divPos.height/2)+'px';
-                var closeDiv =document.createElement('div');
-                ele.appendChild(closeDiv);
-                closeDiv.setAttribute('class','close');
-                closeDiv.setAttribute('onclick','closething(\'uq\')');
-
-            }
+   
 $( "#hiddenField" ).datepicker({
       showOn: "button",
         buttonText: "Alter Date",

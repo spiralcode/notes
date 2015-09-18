@@ -8,8 +8,11 @@ include 'session_check.php';
 <script src="ajax_1_10_2.js"></script>
 <script src="lib/jquery-1.10.2.js"></script>
   <script src="lib/jquery-ui.js"></script>
+     <script src="raid.js"></script>
+<link rel="stylesheet" href="raid.css"/>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="style/jquery-ui.css">
+  
 <title>Read your Notes</title>
 <style type="text/css">
 input
@@ -245,7 +248,7 @@ while (myNode.firstChild) {
                                             }
                                             if(minutes>120&&minutes<(24*60))
                                             {
-                                                timeago=minutes/60+" hours before";
+                                                timeago=Math.floor(minutes/60)+" hours before";
                                             }
                                             if(minutes>(24*60)&&minutes<(24*120))
                                             {
@@ -255,31 +258,6 @@ while (myNode.firstChild) {
                                                 {
                                                     timeago=Math.floor(((minutes/60)/24))+" days before";
                                                 }
-//				if(rawHours<24)
-//				{
-//				var timeago=rawHours+" hours before";
-//					if(rawHours<1&&rawHours>(1/2))
-//					{
-//						timeago="Now"
-//					}
-//				else if(rawHours<.1)
-//				{
-//				timeago="Just now"
-//				}
-//				}
-//				else
-//				{
-//					if((hoursago>=24)&&(days==1))
-//					{
-//					var timeago=days+" day ago";			
-//					}
-//					else
-//					{
-//					var timeago=days+" days ago";				
-//					}
-//				}
-
-				/*Code for Moment ends*/
 				
 		var ele = json[init].content;
 		var noteid=json[init].noteid;
@@ -332,8 +310,8 @@ function deletenote(ob)
 </div>
 <div id="flowOptions" >
 <table width="100%">
-    <tr><td onclick="infoPaper('photos.php','Photos',1);">Photos</td></tr>
-    <tr><td onclick="infoPaper('mylinks.php','Links',1)">Links</td></tr>
+    <tr><td onclick="showMsg('photos.php',{title:'Photos',iframe:true}); alert('s');">Photos</td></tr>
+    <tr><td onclick="showMsg('mylinks.php',{title:'Links',iframe:true});">Links</td></tr>
 <tr><td onclick="infoPaper('getpeople.php','Peoples',1)">Peoples</td></tr>
 
 <tr><td onclick="infoPaper('info.php','Informations')">Informations</td></tr>
