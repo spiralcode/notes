@@ -52,7 +52,7 @@
               var obj = document.createElement('span');
               obj.innerHTML=state;
               obj.setAttribute('class','image_entity');
-                            obj.setAttribute('id','image_entity');
+              obj.setAttribute('id','image_entity');
 
               document.getElementById('img_container').appendChild(obj);
               counter++;
