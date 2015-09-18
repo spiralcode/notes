@@ -178,7 +178,7 @@ function datagateway(type)
 				if(data==0)
 				{
 				$id('errorshow').innerHTML='E-mail and Password doesn\'t seems to exist, try again or make an account.';	
-                                            $id('loginbutton').innerHTML="Log In";
+                                            $id('loginbutton').innerHTML="Login";
 
                                             $id('spinner').style.display="none";
 

@@ -217,40 +217,67 @@ while (myNode.firstChild) {
 				var min = momentObject.format('mm');
 				var ap = momentObject.format('A');
 				var date= momentObject.format('DD');
-				var mnth= momentObject.format('M');
+				var mnth= momentObject.format('MMMM');
 				var year= momentObject.format('YYYY');
-				var frmtime=hr+':'+min+' '+ap+' | '+date+'/'+mnth+'/'+year;
+				var frmtime=hr+':'+min+' '+ap+' | '+date+' '+mnth+' '+year;
 
 				
 				var then = momentObject.format('D/M/YYYY HH:mm:ss');				
 				var now=moment().format('D/M/YYYY HH:mm:ss');
 				var millisec=moment(now,"D/M/YYYY HH:mm:ss").diff(moment(then,"D/M/YYYY HH:mm:ss"));
 				var di = moment.duration(millisec);
+                                                                       var minutes=di.asMinutes();
 				var hoursago=(Math.floor(di.asHours()));
 				var days=Math.round(hoursago/24);
-				if(hoursago<24)
-				{
-				var timeago=hoursago+" hours before";
-					if(hoursago<1&&hoursago>.5)
-					{
-						timeago="Now"
-					}
-				if(hoursago<1&&hoursago<.1)
-				{
-				timeago="Just now"
-				}
-				}
-				else
-				{
-					if((hoursago>=24)&&(days==1))
-					{
-					var timeago=days+" day ago";			
-					}
-					else
-					{
-					var timeago=days+" days ago";				
-					}
-				}
+                                console.log(minutes);
+                                timeago="s";
+                                if(minutes<15)
+                                    {
+                                        timeago="Now";
+                                    }
+                                    if(minutes>15&&minutes<60)
+                                        {
+                                            timeago="Some time before";
+                                        }
+                                        if(minutes>60&&minutes<120)
+                                            {
+                                                timeago= "1 hour before"
+                                            }
+                                            if(minutes>120&&minutes<(24*60))
+                                            {
+                                                timeago=minutes/60+" hours before";
+                                            }
+                                            if(minutes>(24*60)&&minutes<(24*120))
+                                            {
+                                                timeago="A day before";
+                                            }
+                                            if(minutes>(24*120))
+                                                {
+                                                    timeago=Math.floor(((minutes/60)/24))+" days before";
+                                                }
+//				if(rawHours<24)
+//				{
+//				var timeago=rawHours+" hours before";
+//					if(rawHours<1&&rawHours>(1/2))
+//					{
+//						timeago="Now"
+//					}
+//				else if(rawHours<.1)
+//				{
+//				timeago="Just now"
+//				}
+//				}
+//				else
+//				{
+//					if((hoursago>=24)&&(days==1))
+//					{
+//					var timeago=days+" day ago";			
+//					}
+//					else
+//					{
+//					var timeago=days+" days ago";				
+//					}
+//				}
 
 				/*Code for Moment ends*/
 				
