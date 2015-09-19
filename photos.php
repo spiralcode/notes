@@ -7,6 +7,8 @@
           <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="raid.css"/>
         <script src="raid.js"></script>
+          <script src="lib/jquery-ui.js"></script>
+
 
       <style>
             .image_title 
@@ -51,10 +53,48 @@
 
             }
             </style>
+            <script>
+                var imageID=0;
+            function deletesImage(id)
+            {
+                var ob = document.getElementById('infoSpace');              
+                ob.innerHTML='<div align="center">Are you sure about this ?<br><button onclick="goDelete('+id+')">Yes</button><button onclick="noDelete()">No</button></div>';
+    }
+            function goDelete(id)
+            {
+                $.post('delete_image.php',
+                {id:id},function(data,success){
+        if(data==1)
+            {
+                closething('uq');
+                                //$('#'+id).delay(0).fadeOut(2000);
+  $( "#"+id ).effect( "clip", "slow",function() {$id(id).style.display="none";} );
+                  overlayOptionsOut();
+
+
+               // $id(id).style.display="none";
+            }
+        else{
+            alert('We are facing some issues, prohibiting us from deleting this one !, try again later.');
+        }
+    });
+    }
+    function noDelete()
+    {
+        
+        var ob = document.getElementById('infoSpace');
+                ob.innerHTML='';
+                overlayOptionsOut();
+    }            
+            function $id(id)
+            {
+                return document.getElementById(id);
+            }
+            </script>
     </head>
     <body onload ="fetchImages();">
         <div id="img_container" class="image_title">
-            <div id="overlayOptions">Options</div>
+            <div id="overlayOptions" onmousout="overlayOptionsOut()">Options</div>
   <script>
       function $id(id)
       {
@@ -77,7 +117,7 @@
       }
       function imageOptions(imageId)
       {
-    showMsg('photo_options.php?id='+imageId,{iframe:true,title:"Photo Options (Alpha)"});  
+    showMsg('photo_options.php?id='+imageId,{iframe:false,title:"Photo Options (Alpha)"});  
     }
             function fetchImages()
             {
@@ -94,7 +134,6 @@
               obj.setAttribute('class','image_entity');
               obj.setAttribute('id',ob[counter].id);
               obj.setAttribute('onmouseover','overlayOptions(this);');
-              //obj.setAttribute('onmouseout','overlayOptionsOut();');
 
               document.getElementById('img_container').appendChild(obj);
               counter++;
@@ -102,6 +141,7 @@
             }
             );
             }
+
             </script></div>
     </body>
 </html>

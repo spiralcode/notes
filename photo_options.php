@@ -44,6 +44,6 @@ $id=get('id');
     }
             </script>
 <div align="center"><img src ="image.php?thumb&size=200x200&id=<?php echo $id; ?>">        </div>
-<div class="options" align="center"><span style="cursor:pointer;" onclick="deleteImage();">Delete </span> | Tag a person | Download</div>
+<div class="options" align="center"><span style="cursor:pointer;" onclick="deletesImage('<?php echo $id ?>');">Delete </span> | Tag a person | Download</div>
 <div id="infoSpace"></infoSpace>
     </body>
