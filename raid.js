@@ -53,7 +53,17 @@ function getCookie(cname) {
                 ele.appendChild(contentDiv);
                 contentDiv.setAttribute('class','content');
                 contentDiv.style.top='30px';
-                contentDiv.style.height=ele.getBoundingClientRect().height-30+'px';
+                contentDiv.style.height=ele.getBoundingClientRect().height-35+'px';
+                 if(typeof(config.expand)!='undefined')
+                     {
+              
+                                 ele.style.overflowY=config.expand;
+                     }
+                     else
+                         {
+                             ele.style.overflowY='scroll';
+
+                         }
                 if(typeof(config.iframe)!='undefined')
                     {
                 if(config.iframe)

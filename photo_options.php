@@ -29,7 +29,7 @@ $id=get('id');
             function deleteImage()
             {
                 var ob = document.getElementById('infoSpace');
-                ob.innerHTML='<div align="center">Are you sure about this ?<button onclick="goDelete()">Yes</button><button onclick="noDelete()">No</button></div>';
+                ob.innerHTML='<div align="center">Are you sure about this ? <button onclick="goDelete()">Yes</button><button onclick="noDelete()">No</button></div>';
             }
             function goDelete()
             {

@@ -74,7 +74,7 @@ text-decoration: none;
             function deletesImage(id)
             {
                 var ob = document.getElementById('infoSpace');              
-                ob.innerHTML='<div align="center"><p>Are you sure about this ?</p><br><button onclick="goDelete('+id+')">Yes</button><button onclick="noDelete()">No</button></div>';
+                ob.innerHTML='<div align="center"><p>Are you sure about this ?</p><button onclick="goDelete('+id+')">Yes</button><button onclick="noDelete()">No</button></div>';
     }
             function goDelete(id)
             {
@@ -136,7 +136,7 @@ text-decoration: none;
       }
       function imageOptions(imageId)
       {
-    showMsg('photo_options.php?id='+imageId,{iframe:false,title:"Photo Options (Alpha)"});  
+    showMsg('photo_options.php?id='+imageId,{iframe:false,title:"Photo Options (Alpha)",expand:"auto"});  
     }
             function fetchImages()
             {
