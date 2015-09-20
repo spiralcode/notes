@@ -58,7 +58,7 @@
             function deletesImage(id)
             {
                 var ob = document.getElementById('infoSpace');              
-                ob.innerHTML='<div align="center">Are you sure about this ?<br><button onclick="goDelete('+id+')">Yes</button><button onclick="noDelete()">No</button></div>';
+                ob.innerHTML='<div align="center"><p>Are you sure about this ?</p><br><button onclick="goDelete('+id+')">Yes</button><button onclick="noDelete()">No</button></div>';
     }
             function goDelete(id)
             {
@@ -89,6 +89,11 @@
             function $id(id)
             {
                 return document.getElementById(id);
+            }
+            function msg(msg)
+            {
+                var ob = document.getElementById('infoSpace');              
+                ob.innerHTML=msg;
             }
             </script>
     </head>

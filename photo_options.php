@@ -16,6 +16,12 @@ $id=get('id');
           body{
               background: #fff;
           }
+          #infoSpace
+          {
+              color:#2F51B6;
+              font-size: 13;
+              text-align: center;
+          }
 </style>
     </head>
     <body>
@@ -23,7 +29,7 @@ $id=get('id');
             function deleteImage()
             {
                 var ob = document.getElementById('infoSpace');
-                ob.innerHTML='<div align="center">Are you sure about this ?<br><button onclick="goDelete()">Yes</button><button onclick="noDelete()">No</button></div>';
+                ob.innerHTML='<div align="center">Are you sure about this ?<button onclick="goDelete()">Yes</button><button onclick="noDelete()">No</button></div>';
             }
             function goDelete()
             {
@@ -41,9 +47,10 @@ $id=get('id');
         
         var ob = document.getElementById('infoSpace');
                 ob.innerHTML='';
+                ob.style.texAlign="center";
     }
             </script>
 <div align="center"><img src ="image.php?thumb&size=200x200&id=<?php echo $id; ?>">        </div>
-<div class="options" align="center"><span style="cursor:pointer;" onclick="deletesImage('<?php echo $id ?>');">Delete </span> | Tag a person | Download</div>
+<div class="options" align="center"><span style="cursor:pointer;" onclick="deletesImage('<?php echo $id ?>');">Delete </span> | Tag a person | <a onclick="msg('<p>Downloading starts any moment, please wait.</p>');" href ="downloadImage.php?id=<?php echo $id; ?>" target="_blank">Download</a></div>
 <div id="infoSpace"></infoSpace>
     </body>
