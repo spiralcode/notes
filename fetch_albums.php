@@ -20,7 +20,7 @@ $albms=array();
 $counter=1;
         $query1 = mysqli_query($link, "select id from image where group_id = 0 and userid=$userid")or die(mysqli_error($link));
 
-        $albms[0]=new image(0,"Attachements",  mysqli_num_rows($query1));
+        $albms[0]=new image(0,"Attachments",  mysqli_num_rows($query1));
 
     while($row=mysqli_fetch_array($query))
     {
