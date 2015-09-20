@@ -11,7 +11,11 @@ $id=get('id');
           .options
           {
               margin: 10px;
-              font-size: 15px;
+              font-size: 20px;
+              text-align: center;
+              font-family:"Segoe UI Light",arial,serif;
+
+              
           }
           body{
               background: #fff;
@@ -22,8 +26,9 @@ $id=get('id');
               font-size: 13;
               text-align: center;
           }
+
 </style>
     </head>
     <body>
-        <div style="font-family:"Segoe UI Light",arial,serif; text-align:"center";">On Alpha</div>
+        <div class="options">Delete Album</div>
     </body>

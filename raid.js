@@ -59,11 +59,7 @@ function getCookie(cname) {
               
                                  ele.style.overflowY=config.expand;
                      }
-                     else
-                         {
-                             ele.style.overflowY='scroll';
 
-                         }
                 if(typeof(config.iframe)!='undefined')
                     {
                 if(config.iframe)

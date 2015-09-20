@@ -33,7 +33,7 @@ $group=get('group')
             }
                         .image_entity:hover
                         {
-                                       box-shadow: 0px 0px 10px #48654A;
+                                       box-shadow: 1px 0px 5px #48654A;
      
                         }
 
@@ -123,7 +123,7 @@ text-decoration: none;
       {
         var referDimension = ob.getBoundingClientRect(); 
         $id('overlayOptions').style.width=referDimension.width+"px";
-        $id('overlayOptions').style.height=(referDimension.height*30)/100+"px";
+        //$id('overlayOptions').style.height=(referDimension.height*30)/100+"px";
         $id('overlayOptions').style.left=referDimension.left+"px";
                 $id('overlayOptions').style.top=referDimension.top+"px";
                 $id('overlayOptions').style.display='block';
@@ -147,7 +147,7 @@ text-decoration: none;
                var counter=0;
                while(typeof(ob[counter].id)!==null)
                    {
-              var state='<a target="_new" href="image.php?id='+ob[counter].id+'"><img  class="image_entity" src = "image.php?thumb&size=100x100&id='+ob[counter].id+'"/></a>';
+              var state='<a target="_new" href="image.php?id='+ob[counter].id+'"><img  class="image_entity" src = "image.php?thumb&size=200x200&id='+ob[counter].id+'"/></a>';
               var obj = document.createElement('span');
               obj.innerHTML=state;
               obj.setAttribute('class','image_entity');
