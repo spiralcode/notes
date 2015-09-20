@@ -50,7 +50,7 @@ $id=get('id');
                 ob.style.texAlign="center";
     }
             </script>
-<div align="center"><img src ="image.php?thumb&size=200x200&id=<?php echo $id; ?>">        </div>
+<div align="center"><img alt="Loading...." src ="image.php?thumb&size=200x200&id=<?php echo $id; ?>">        </div>
 <div class="options" align="center"><span style="cursor:pointer;" onclick="deletesImage('<?php echo $id ?>');">Delete </span> | Tag a person | <a onclick="msg('<p>Downloading starts any moment, please wait.</p>');" href ="downloadImage.php?id=<?php echo $id; ?>" target="_blank">Download</a></div>
 <div id="infoSpace"></infoSpace>
     </body>

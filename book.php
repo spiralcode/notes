@@ -310,7 +310,7 @@ function deletenote(ob)
 </div>
 <div id="flowOptions" >
 <table width="100%">
-    <tr><td onclick="showMsg('photos.php',{title:'Photos',iframe:true}); showMenu(this);">Photos</td></tr>
+    <tr><td onclick="showMsg('albums.php',{title:'Albums',iframe:true}); showMenu(this);">Photos</td></tr>
     <tr><td onclick="showMsg('mylinks.php',{title:'Links',iframe:true}); showMenu(this);">Links</td></tr>
 <tr><td onclick="infoPaper('getpeople.php','Peoples',1)">Peoples</td></tr>
 

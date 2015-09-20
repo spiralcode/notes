@@ -1,7 +1,3 @@
-<?php
-include 'ease.php';
-$group=get('group')
-?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -24,11 +20,19 @@ $group=get('group')
             }
             .image_entity
             {
-                position: relative;
-                float: left;
+                    width: 150px;
+    height: 150px;
+    display: table-cell;
+    vertical-align:middle;
+    text-align:center;
+    color: #FFFFFF;
+    text-decoration: none;
+                background: #2F51B6;
                 cursor: pointer;
-                margin: 1%;
-                box-shadow: 0px 0px 10px #485565;
+                margin-right: 1%;
+                float:left;
+                line-height: 150px;
+
                 
             }
                         .image_entity:hover
@@ -56,18 +60,6 @@ $group=get('group')
             {
 
             }
-            .options
-            {
-font-family:"Segoe UI Light",arial,serif;
-font-size: 20px;
-color:#2F51B6;
-height: 50px;
-text-decoration: none;
-            }
-            a
-            {
-                text-decoration: none;
-            }
             </style>
             <script>
                 var imageID=0;
@@ -83,8 +75,12 @@ text-decoration: none;
         if(data==1)
             {
                 closething('uq');
+                                //$('#'+id).delay(0).fadeOut(2000);
   $( "#"+id ).effect( "clip", "slow",function() {$id(id).style.display="none";} );
                   overlayOptionsOut();
+
+
+               // $id(id).style.display="none";
             }
         else{
             alert('We are facing some issues, prohibiting us from deleting this one !, try again later.');
@@ -108,10 +104,8 @@ text-decoration: none;
                 ob.innerHTML=msg;
             }
             </script>
-       
     </head>
     <body onload ="fetchImages();">
-        <div class="options" align="center" style="font-family:"Segoe UI Light", Arial;"><a href="albums.php"><< Back to Albums</a></div>
         <div id="img_container" class="image_title">
             <div id="overlayOptions" onmousout="overlayOptionsOut()">Options</div>
   <script>
@@ -136,30 +130,37 @@ text-decoration: none;
       }
       function imageOptions(imageId)
       {
-    showMsg('photo_options.php?id='+imageId,{iframe:false,title:"Photo Options (Alpha)"});  
+    showMsg('album_options.php?id='+imageId,{iframe:false,title:"Album Options (Alpha)"});  
     }
             function fetchImages()
             {
-                $.get('images.php?group=<?php echo $group; ?>',function(data,success)
+                $.get('fetch_albums.php',function(data,success)
             {
                 
                var ob=JSON.parse(data);
                var counter=0;
                while(typeof(ob[counter].id)!==null)
                    {
-              var state='<a target="_new" href="image.php?id='+ob[counter].id+'"><img  class="image_entity" src = "image.php?thumb&size=100x100&id='+ob[counter].id+'"/></a>';
-              var obj = document.createElement('span');
+              var state=ob[counter].name;
+              var obj = document.createElement('div');
               obj.innerHTML=state;
               obj.setAttribute('class','image_entity');
               obj.setAttribute('id',ob[counter].id);
               obj.setAttribute('onmouseover','overlayOptions(this);');
+              var link= "goTopage('photos.php?group="+ob[counter].id+"')";
+                            obj.setAttribute('onclick',link);
+
               document.getElementById('img_container').appendChild(obj);
               counter++;
                    }
             }
             );
             }
-
+function goTopage(some)
+{
+    //alert("Some Message");
+    window.location=some;
+}
             </script></div>
     </body>
 </html>
