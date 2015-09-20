@@ -35,6 +35,16 @@
 
                 
             }
+            .image_entity .count
+            {
+            font-size: 15px;
+vertical-align: text-top;
+display: inline-block;
+opacity: .5;
+}
+                
+                
+            }
                         .image_entity:hover
                         {
                                        box-shadow: 0px 0px 10px #48654A;
@@ -117,8 +127,6 @@
       {
         var referDimension = ob.getBoundingClientRect(); 
         $id('overlayOptions').style.width=referDimension.width+"px";
-        //$id('overlayOptions').style.height=(referDimension.height*30)/100+"px";
-
         $id('overlayOptions').style.left=referDimension.left+"px";
                 $id('overlayOptions').style.top=referDimension.top+"px";
                 $id('overlayOptions').style.display='block';
@@ -149,9 +157,12 @@
               obj.setAttribute('id',ob[counter].id);
               obj.setAttribute('onmouseover','overlayOptions(this);');
               var link= "goTopage('photos.php?group="+ob[counter].id+"')";
-                            obj.setAttribute('onclick',link);
-
+               obj.setAttribute('onclick',link);
               document.getElementById('img_container').appendChild(obj);
+              var count = document.createElement('div');
+              obj.appendChild(count);
+              count.setAttribute('class','count');
+              count.innerHTML=ob[counter].count;
               counter++;
                    }
             }
@@ -159,7 +170,6 @@
             }
 function goTopage(some)
 {
-    //alert("Some Message");
     window.location=some;
 }
             </script></div>
