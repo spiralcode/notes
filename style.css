@@ -9,6 +9,8 @@ background-image: url(images/tile01.png);
 	resize:none;
 	            box-sizing: border-box;
 	            font-family:arial,serif;
+                    font-family:"Segoe UI",arial,serif;
+
 	            font-size:14px;
                     overflow-y:scroll;
 }
@@ -22,6 +24,8 @@ color: #7190D0;
 {
 	color: #516FD2;
 	font-family:arial,serif;
+        font-family:"Segoe UI",arial,serif;
+
 	opacity:.4;
         text-align: center;
 }
@@ -38,6 +42,8 @@ font-family:Arial,serif;
 font-size:50px;
 opacity:.5;
 text-shadow: 1px 1px 1px blue;
+font-family:"Segoe UI",arial,serif;
+
 	
 }
 .imgplace .pholder:hover
@@ -230,6 +236,8 @@ border:none;
 {
 margin:1%;
 font-family:arial,serif;
+font-family:"Segoe UI",arial,serif;
+
 background:#fff;
 height:50px;
 color:black;
@@ -249,6 +257,8 @@ background:rgb(229, 229, 229);
 background-attachment:fixed;
 background-repeat:repeat;
 font-family: Arial,serif;
+font-family:"Segoe UI",arial,serif;
+
 }
 .optionbar
 {
@@ -281,6 +291,8 @@ font-size:20px;
 #optionbar img
 {
 font-family:arial,serif;
+font-family:"Segoe UI",arial,serif;
+
 width:50px;
 height:50px;
 }
@@ -306,6 +318,8 @@ width: 98%;
 min-height: 150px;
 color: #fff;
 font-family: Arial,serif;
+font-family:"Segoe UI",arial,serif;
+
 border-radius: 2px;
 background-image: url(images/tile.png);
 box-shadow: 1px 1px 5px #6D7463;
@@ -339,6 +353,8 @@ position:relative;
 float:left;
 bottom:1px;
 margin:5px;
+font-family:"Segoe UI",arial,serif;
+
 }
 
 .note .imgspace img

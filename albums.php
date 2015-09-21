@@ -32,6 +32,7 @@
                 margin-right: 1%;
                 float:left;
                 line-height: 150px;
+                box-shadow: rgb(21, 24, 2) 1px 1px 8px;
 
                 
             }
@@ -40,7 +41,7 @@
             font-size: 15px;
 vertical-align: text-top;
 display: inline-block;
-opacity: .5;
+opacity: .7;
 }
                 
                 
@@ -143,12 +144,13 @@ opacity: .5;
     }
             function fetchImages()
             {
+                
                 $.get('fetch_albums.php',function(data,success)
             {
                 
                var ob=JSON.parse(data);
                var counter=0;
-               while(typeof(ob[counter].id)!==null)
+               while(typeof(ob[counter])!='undefined')
                    {
               var state=ob[counter].name;
               var obj = document.createElement('div');

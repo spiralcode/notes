@@ -22,6 +22,16 @@ $id=get('id');
               font-size: 13;
               text-align: center;
           }
+          .imagePlace
+          {
+              position: absolute;
+              left: 0px;
+              
+          }
+          button
+          {
+              background: #fff;
+          }
 </style>
     </head>
     <body>
@@ -50,7 +60,6 @@ $id=get('id');
                 ob.style.texAlign="center";
     }
             </script>
-<div align="center"><img alt="Loading...." src ="image.php?resize&factor=30&id=<?php echo $id; ?>">        </div>
-<div class="options" align="center"><span style="cursor:pointer;" onclick="deletesImage('<?php echo $id ?>');">Delete </span> | Tag a person | <a onclick="msg('<p>Downloading starts any moment, please wait.</p>');" href ="downloadImage.php?id=<?php echo $id; ?>" target="_blank">Download</a></div>
+<div class="options" align="center"><span style="cursor:pointer;" onclick="deletesImage('<?php echo $id ?>');">Delete </span> | <span style="cursor:pointer;" onclick="tagPerson('<?php echo $id ?>');">Tag a person | <a onclick="msg('<p>Downloading starts any moment, please wait.</p>');" href ="downloadImage.php?id=<?php echo $id; ?>" target="_blank">Download</a></div>
 <div id="infoSpace"></infoSpace>
     </body>

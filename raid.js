@@ -52,6 +52,8 @@ function getCookie(cname) {
                 var contentDiv = document.createElement('div');
                 ele.appendChild(contentDiv);
                 contentDiv.setAttribute('class','content');
+                contentDiv.setAttribute('id','uq_content');
+
                 contentDiv.style.top='30px';
                 contentDiv.style.height=ele.getBoundingClientRect().height-35+'px';
                  if(typeof(config.expand)!='undefined')

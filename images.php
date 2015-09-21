@@ -20,6 +20,7 @@ function image($id,$noteid,$group)
 
 }
 };
+
 $imgs=array();
 $counter=0;
     while($row=mysqli_fetch_array($query))
@@ -29,5 +30,6 @@ $counter=0;
         $group=$row['group_id'];
         $imgs[$counter++]=new image($id,$noteid,$group);
     }
+ 
     echo json_encode($imgs);
     ?>

@@ -95,7 +95,7 @@ background: rgb(179, 179, 179);
     {
         var json=JSON.parse(data);
         var count=0;
-  while(json[count].id!=null)
+  while(json[count]!='undefined')
   {results++;
  var div = document.createElement('div');
  div.setAttribute('onclick','goto("'+json[count].url+'")');
