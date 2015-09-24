@@ -1,0 +1,36 @@
+/* 
+    Document   : club.
+    Created on : 24 Sep, 2015, 9:18:19 AM
+    Author     : raj
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+body
+{
+    font-family: "Segoe UI Light";
+}
+#divDiv
+{
+    width:250px;
+    height: 250px;
+    background: #093658;
+    color:#fff;
+    
+}
+#textSpace
+{
+    position: relative;
+        width:250px;
+    height: 250px;
+}
+.selectStyle
+{
+    background: linear-gradient(#91B195,#91AFB1);
+    border-radius: 2px;
+    color: #fff;
+    box-shadow: 1px 1px 5px #000000;
+}

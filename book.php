@@ -212,7 +212,7 @@ while (myNode.firstChild) {
 		}
 		else
 		{
-			while(typeof(json[init].content)!='undefined')
+			while(typeof(json[init])!='undefined')
 			{
 		/*Moment code starts*/
                 var momentObject = moment(json[init].ftime);
@@ -232,8 +232,7 @@ while (myNode.firstChild) {
                                                                        var minutes=di.asMinutes();
 				var hoursago=(Math.floor(di.asHours()));
 				var days=Math.round(hoursago/24);
-                                console.log(minutes);
-                                timeago="s";
+                                timeago="";
                                 if(minutes<15)
                                     {
                                         timeago="Now";
@@ -244,7 +243,7 @@ while (myNode.firstChild) {
                                         }
                                         if(minutes>60&&minutes<120)
                                             {
-                                                timeago= "1 hour before"
+                                                timeago= "1 hour before";
                                             }
                                             if(minutes>120&&minutes<(24*60))
                                             {

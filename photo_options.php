@@ -10,8 +10,8 @@ $id=get('id');
       <style>
           .options
           {
-              margin: 10px;
               font-size: 15px;
+              background: #fff;
           }
           body{
               background: #fff;
@@ -41,11 +41,16 @@ $id=get('id');
                 var ob = document.getElementById('infoSpace');
                 ob.innerHTML='<div align="center">Are you sure about this ? <button onclick="goDelete()">Yes</button><button onclick="noDelete()">No</button></div>';
             }
+              function changeFolder()
+            {
+                var ob = document.getElementById('infoSpace');
+                ob.innerHTML='<div align="center">Are you sure about this ? <button onclick="goDelete()">Yes</button><button onclick="noDelete()">No</button></div>';
+            }
             function goDelete()
             {
                 $.post('delete_image.php',
                 {id:'<?php echo $id; ?>'},function(data,success){
-        if(data==1)                
+        if(data===1)                
         document.getElementsByTagName('body')[0].innerHTML="<center>That was clean, the Image was removed</center>";
         else{
             alert('We are facing some issues, prohibiting us from deleting this one !, try again later.');
@@ -60,6 +65,6 @@ $id=get('id');
                 ob.style.texAlign="center";
     }
             </script>
-<div class="options" align="center"><span style="cursor:pointer;" onclick="deletesImage('<?php echo $id ?>');">Delete </span> | <span style="cursor:pointer;" onclick="tagPerson('<?php echo $id ?>');">Tag a person | <a onclick="msg('<p>Downloading starts any moment, please wait.</p>');" href ="downloadImage.php?id=<?php echo $id; ?>" target="_blank">Download</a></div>
+<div class="options" align="center"><span style="cursor:pointer;" onclick="deletesImage('<?php echo $id ?>');">Delete </span> | <span style="cursor:pointer;" onclick="tagPerson('<?php echo $id ?>');">Tag a person | <a onclick="msg('<p>Downloading starts any moment, please wait.</p>');" href ="downloadImage.php?id=<?php echo $id; ?>" target="_blank">Download</a> | <span onclick="changeFolder();">Move to another folder</span></div>
 <div id="infoSpace"></infoSpace>
     </body>

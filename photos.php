@@ -149,6 +149,7 @@ background: #fff;
                 var ob = document.getElementById('infoSpace');              
                 ob.innerHTML=msg;
             }
+     
             </script>
        
     </head>
