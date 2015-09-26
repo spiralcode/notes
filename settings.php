@@ -1,11 +1,16 @@
 
 <style>
+    body{
+        font-family: "Segoe UI",Arial;
+        text-align: center;
+    }
 .spinner {
 z-index:101;
   width: 40px;
   height: 40px;
   margin: 100px auto;
   background-color: #0f0;
+  display: none;
 
   border-radius: 100%;  
   -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
@@ -32,3 +37,4 @@ z-index:101;
 }
 </style>
 <div align="center" class="spinner"></div>
+<div><a href="accountReset.php">Account Reset</div>

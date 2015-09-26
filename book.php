@@ -150,6 +150,17 @@ function repos(ob)
 	console.log(document.getElementById('menuroot').scrollTop);
 	$id('flowoptions')
 }
+function noteOptions(ob)
+{
+    //Generate Div
+var div = document.createElement('div');
+document.getElementsByTagName('body')[0].appenChild(div);
+div.setAttribute('class','noteOpt');
+div.innerHTML="Some Options";
+var referObjectDimen = ob.getBoundingClientRect();
+div.style.top=referObjectDimen.bottom;
+
+}
 </script></head>
 <body onscroll="repos(this);">
 <div id="optionbar" class="optionbar">
@@ -314,7 +325,7 @@ function deletenote(ob)
 <tr><td onclick="infoPaper('getpeople.php','Peoples',1)">Peoples</td></tr>
 
 <tr><td onclick="infoPaper('info.php','Informations')">Informations</td></tr>
-<tr><td onclick="infoPaper('settings.php','Settings')">Settings</td></tr>
+<tr><td onclick="showMsg('settings.php',{title:'Settings',iframe:true}); showMenu(this);">Settings</td></tr>
 
 </table>
 </div>

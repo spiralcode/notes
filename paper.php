@@ -132,7 +132,18 @@ $id('topstriptitle').innerHTML=title;
     [contentEditable=true]:empty:not(:focus):before{
         content:attr(data-text)
     }
-    
+    button
+    {
+        background: linear-gradient(#BBCAB4,#91B195);
+        border-radius: 1px;
+        display: table-cell;
+        color: #fff;
+        box-shadow: 1px 1px 2px #92AA88;
+        text-shadow: 1px 1px 5px #000;
+    }
+    button:hover
+    {
+    }
     </style>
 </head>
 <body>
@@ -145,12 +156,11 @@ $id('topstriptitle').innerHTML=title;
 <div class="paper" id="paper">
 <div id="filedrag" class="imgplace" ><center><span align="center" id="timedat" class="pholder">10 July 2015, 11:52 </span></center>
 </div>
-    
  <div data-text ="Type in something or drag and drop images here..."  id ="tarea" onkeyup ="savecheck();" contenteditable="true" placeholder="Typethings here" style="background:white; overflow-y: scroll; border-top: 1px double  yellowgreen;"></div>
 <table align="center"><tr><td>
 <button title="Save the note. (ctrl+s)" onclick="savenote()">Save Note<br><span class="buttonsubtext">ctrl+s</span></button></td>
 <td>
-<button value="0" title="Click to embed a location" onclick="" id="geo">Embed a location<br><span class="buttonsubtext"></span></button>
+<button value="0" title="Click to embed a location" onclick="" id="geo">Attach Location</button>
 </td>
 <td>
     <input onchange="timeup(this);" type="hidden" id="hiddenField" class="datepicker" />
@@ -339,7 +349,7 @@ tarea.addEventListener('keydown',function(e){
 <tr><td onclick="infoPaper('getpeople.php','Peoples',1)">Peoples</td></tr>
 
 <tr><td onclick="infoPaper('info.php','Informations')">Informations</td></tr>
-<tr><td onclick="infoPaper('settings.php','Settings')">Settings</td></tr>
+<tr><td onclick="showMsg('settings.php',{title:'Settings',iframe:true}); showMenu(this);">Settings</td></tr>
 
 </table>
 </div>
