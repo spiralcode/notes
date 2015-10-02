@@ -11,8 +11,8 @@ box-shadow:0px 0px 5px #000;
 {
 	resize:none;
 	            box-sizing: border-box;
-	            font-family:arial,serif;
-                    font-family:"Segoe UI",arial,serif;
+	          font-family:arial,serif;
+                    /*font-family:"Segoe UI",arial,serif;*/
 	            font-size:14px;
                     overflow-y:scroll;
 }
