@@ -18,6 +18,7 @@ if(isset($_COOKIE['email']))
 body
 {
 	background:#fff;
+
 }
 .aboutspace
 {
@@ -38,7 +39,7 @@ margin-left:5%;
 top:50%;
 color:#B6B02F;
 font-family:"Segoe UI Light",arial,serif;
-font-size:30px;
+font-size:20px;
 text-align:center;
 }
 .virtual
@@ -214,7 +215,7 @@ function datagateway(type)
 <div class="aboutspace">
 Notes<sup>v3</sup>
 </div>
-<div class="attract">It just went to Gymm learning to freeze Time</div>
+<div class="attract">Rough Edges and Cliff's makes things complete</div>
 <div id="smartslide">
 <table border="0" width=100% height="100%">
 <tr><td align="center" class="virtual">Login</td><td class="virtual" align="center">Sign Up</td></tr>
