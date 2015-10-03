@@ -202,7 +202,7 @@ function showResult(url)
 {
     
 var myNode = $id('frameplace');
-myNode.innerHTML=null;
+myNode.innerHTML='';
 	$id('frameplace').innerHTML='';
 	$id('loading').style.display='block';
 	var init=0;
