@@ -193,7 +193,7 @@ $id('keyinput').addEventListener('keyup',function(e)
 		},false);
 function autosearch()
 {
-    if(($id('keyinput').value).length%2===0)
+    if(($id('keyinput').value).length%1===0&&($id('keyinput').value).length!=1)
         {
    showResult('gcow.php?q='+$id('keyinput').value);
         }
@@ -275,7 +275,7 @@ myNode.innerHTML=null;
 		var imlist=' ';
 		var imlistindex=0;
 		var imgexist=false;
-		while(typeof(json[init].ilist[0][imlistindex])!='undefined')
+		while(typeof(json[init].ilist[0][imlistindex])!=='undefined')
 		{
 	imlist+='<div class="imgspace"><a href="image.php?id='+json[init].ilist[0][imlistindex]+'" target="_blank"><img src="image.php?id='+json[init].ilist[0][imlistindex]+'&thumb&size=50x50"/></a></div>';
 			imlistindex++;
