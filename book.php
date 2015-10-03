@@ -200,10 +200,11 @@ function autosearch()
 }
 function showResult(url)
 {
-    
-var myNode = $id('frameplace');
-myNode.innerHTML='';
-	$id('frameplace').innerHTML='';
+        var myNode = document.getElementById("frameplace");
+        while (myNode.firstChild) {
+        myNode.removeChild(myNode.firstChild);
+        }
+	//$id('frameplace').innerHTML='';
 	$id('loading').style.display='block';
 	var init=0;
 	$.get(url,function(data,success)
