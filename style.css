@@ -3,9 +3,9 @@
 {
 position:absolute;
 /*background-image: url(images/tile01.png);*/
-background: rgba(0, 0, 0, 0.34);
-border-radius:10px;
-box-shadow:0px 0px 5px #000;
+border-radius:3px;
+box-shadow:0px 0px 2px #00027E;
+background: rgba(104, 147, 16, 0.13);
 }
 .paper #tarea
 {
@@ -20,8 +20,6 @@ box-shadow:0px 0px 5px #000;
 {
 color: #7190D0;
 }
-	
-
 .paper .timedate
 {
 	color: #516FD2;
@@ -330,7 +328,6 @@ text-wrap:normal;
 }
 .note .timeslot
 {
-position:relative;
 top:0px;
 right:1px;
 text-align:right;
@@ -339,6 +336,7 @@ font-size:13px;
 height: 20px;
 background: darkseagreen;
 box-shadow: 0px 0px 2px #000;
+
 
 }
 .note .timeslot:hover

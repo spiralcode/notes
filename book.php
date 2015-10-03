@@ -200,17 +200,15 @@ function autosearch()
 }
 function showResult(url)
 {
-	$id('frameplace').innerHTML='';
 	$id('loading').style.display='block';
 	var init=0;
-	$.get(url,function(data,success)
-			{
-		$id('loading').style.display='none';
-		
-		var json=JSON.parse(data);
+	notey.get(url,function(data)
+			{$id('frameplace').innerHTML='';
+        $id('loading').style.display='none';
+		var json=JSON.parse(data.responseText);
 		if(json[0].status==0)
-		{
-		var ele='No results found !';
+		{	
+            var ele='No results found !';
 		var newob=document.createElement('div');
 		$id('frameplace').appendChild(newob).setAttribute("id","error");
 		$id('frameplace').appendChild(newob).setAttribute("class","nonote");		
