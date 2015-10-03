@@ -8,6 +8,8 @@ include 'session_check.php';
 <script src="ajax_1_10_2.js"></script>
 <script src="lib/jquery-1.10.2.js"></script>
   <script src="lib/jquery-ui.js"></script>
+  <script src="notey.js"></script>
+
      <script src="raid.js"></script>
 <link rel="stylesheet" href="raid.css"/>
   <link rel="stylesheet" href="style.css">
@@ -191,7 +193,7 @@ $id('keyinput').addEventListener('keyup',function(e)
 		},false);
 function autosearch()
 {
-    if(($id('keyinput').value).length%2==0)
+    if(($id('keyinput').value).length%2===0)
         {
    showResult('gcow.php?q='+$id('keyinput').value);
         }
@@ -200,13 +202,9 @@ function showResult(url)
 {
     
 var myNode = $id('frameplace');
-while (myNode.firstChild) {
-    myNode.removeChild(myNode.firstChild);
-}
-	
+myNode.innerHTML=null;
 	$id('frameplace').innerHTML='';
 	$id('loading').style.display='block';
-	
 	var init=0;
 	$.get(url,function(data,success)
 			{
@@ -292,29 +290,21 @@ while (myNode.firstChild) {
 function deletenote(ob)
 {
 	var noteID=ob.dataset.noteid;
-	if(confirm("Please be sure about your decision!\n * This note is not recoverable after deletion.\n* All images linked to the note will be deleted.\n"))
-	{
-		$.post('deletenote.php',
-			{
-				id: noteID
-			},function(data,success)
-			{
-				if(data=='1')
-				{
-					//$id(ob.dataset.divid).style.display="none";
-                                                        $('#'+ob.dataset.divid).delay(500).fadeOut(1000);
-
-				}
+      var image_Data='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEIAAAB/CAYAAABbsBSbAAAOz0lEQVR4Xu2dD4wcVR3Hv293j+NaCqW0V0pBQAQKRRSjxsQ/QKQ0ARNisCj+AfmTKoW2tJVG/qg1Ek00lZa2By2gRCEKGKKEmKjBYoyJiZUEbIv8R3r0D0c5jl6vt7uzO35/b97Mvpmd3dvrzcDO0oHJ7s7tn3mf+f7+vN97b6qc9Z/oA3AMdweuUnxsr025CgpO2ane2rP03689vAD5yx5BJemTVOUVGOAPTYfL/+Qn22+r8pRyLrClWMRFU9ZhIA0Yqnyz6gfUbMClItoShFyaKpTqcl336dIBd/4Ra7EnaRiquBK7aBDHtrEifI06fFJwXTxTdjH/iJ9hd5IwsgRCgHgwgP84RcyfvAa7koKhijdlRhFhZQDbnBLmJQVDjX4ncyBqynCxvTJKGOuxc6LK8EAgEz4iGs98M3m2WsSFk9ahfyIw1IHsggiUQUf/36pLGD/HjoOFoQ6syKwiQj6DMJ53K5jXsxYHlXSpkeWZB2Er4wXQgfZswP/Gq4xOAWHDeLFYxoVT1+OV8cBQI8s6QhGembjsgyjk+fhSURHGHXi5VRhq/9JMhs/GPSIfBvByqUIY6/BSKzA6D0RYGa+UaSZH9eHFzeehcP6TOjON3dTwkg5ThN/MmjJedcqYNxYMNby4Q0HYygBeY9/kgqM24oVGZqKGb8AuOpgs9D4PrlJSc6A7mHRdcOQGPB9nJp0PIuwzdlSZdB15F56LKkMNX9/hiqj3Gf1uFRdO6cOztjLUvvcLiLDP6EcZ86dsxHYfhtq36H2iiKgyXLxeUph/zAZsExgCYgffczyzsXKbFm8lY5Sycr5Vb8kKVvOtFlp3O1XMm3Y3tqqh67CXNctpbV+zNPX1hmX2Bn8IDkf/XoPRTxiXqLe/hW/ncphCEFI2b6+NSuCoRond6+OqVdzEc8yxeCsKkf+ltg15HRxr8lx/xv9s7XmVx+Q7d7bjOEZwMVZxPIN7deAKnEbVbuMJFwiFVX0CIgTCgTxGd/u4/1ygRd+vX/P7mF9UlDiK9pJB7Wx6ZyA39xGU9l6JuSqPpwkgz0YHIAIAcoUNkDo41t/0e/g6Bgj9ZhtvviLeXIg5hSq2sg15JkTjA+GbT0Q5AQwB46CcGRBdiiBEETYI/+pyJFT7Crux5nWs+UTeW6lmBMQ7VARNYyttuQYi2nDfB8Qcj5pQjGlkQxHv3IA5OYQVEWpMIygxCqlzrFkyDQGRF9OgjwiZhqhAIMSZhg/BmE8oakTA0e9kRxFdhYhpRJxgKEw2gxMXNbICorgCc+gMPWdpwmdDJ2jUMZbp2HlIZhQhINjXCIGwbV03upGTbJRj2MezpIgcTUMUEcojGphAUzWIaUR8SnYUcTOdpR81xDQ4fyYuQ9SqsBrZinmIsjKTRxQJoitnnGVcim2ZRmyKPQYcfqa9owYvcI6pb9UlCHTV8giGTN3paugX7A5Wg4wz5CyzBkKKMzpqGNNouaNld8jinWq2FGHGNUUIniKspKkuikS753HZZ82nZBOEX1I09YSGJtIwrNaH1GyD0IXpaMGlSVZpd70jfY7sg9Aw/MbHRY8mvVErwnQGCF1biulD2LlGXKnOijodBMLA0I1vVKiJ64d4KuowEKbsGPIbMWYTE2HaHMQqJlSragmVHz5bGYhqGlqjDjUrnS73e5jLxj89HhCBE43mG/HpdvsqQobtZ3AliUz3GV2J07t7sJWNK4x7RM52og0iSDv2PmWcJf+3J1GVgR25qrsW4MzCJNwy/SR8bdwQrKGKaCYacqhtZBoaAK++LFHidYN640p8VlWxvFLGxbkuFGZ8cOIDMNFuuuVU31vTkAGcc89DzgewZSG6TnLxhZyD5Ux2PiMJT7WMKosy7oxTWh8Nb4osLt94rxQhAM5cAMVFaiJ/d+BqTOnqxuWqghvZ+DNEttyrUrGuOMjnuwCCSG6rh/HuKkIcoLTGBzC8CMdy4OZaNv46yvQ4Dr25AkDbb5VlOU8RoGmg90PJcfC/KTCNd0sRLgH88BG4vgMcvQmnsrFLeCLf4FU/So9ICwCpM1SQM4rQHSr6CIgiek9NHoTfaeNvpqcIqRmADhB0gKwyiQNEaSU+xaPL+MOXsNHdsq6QjxXu0vic1BsDCPLcgCgclh4IAyN5EFEArkw7+Bzm8+ouZyPPl6suJsDXFb4W+YsKwgDMa60IThoWRcw8LR1FmA5bciCkvgg6QNABigLchZjEaaxyZDl/7GzLAVYJIi91Rz569QTxCRYMv+Aix8U0tCJOF4mltCXR6RL716fnA1jBVcWTcDXPehH3EyUJYvyWCCBSl3EJr+EGQBSCPk5APgztIwhi5pw2BaEB0AFK+NMKuA0nUxPXs/FX8Zg3Oc1kh2Zgpu7K2zBCgGwQfC6KaCsQlv2L/HUKzA7ROeIA+fRLfOwJAHjrzDmaHy99WwmNzCKIGgRx7BltoIg6ByjndBs+T02sYMPnWb1CBkIetRfb88MV3wcY2deZhe8njBICSOIsSzSNbmDWme8hCO0AmQL7IdBdjG5MxRd5RBTwSeO6RBkcbYgAMH8MOcMGfiFwjpZJaFOxwuesuamC4MqnmK0uAtzI5h+JK/nWxbzafrIrjZc5sU1nxEZtP+oXArOQuoEdOYxD1VFDFJEOCK8N3EIg6iLASk5N7sF1fN+13HttBzgWABOfa/mBpYZm4TLkO/gZrr7RIGaflWDolFm3Xuu9i8h52Urb/wKKnREgcIC34CyONS7lW77C/Yg4B9jKaYV8QZxZxOQQoeTKNw0B8eFWfrHJe/woJv7Lm9stj8/xE2u5VvS3YUXcyhwwrxOgi/i2LiN9oSfeX0eA8Wy206tTge1AowmVlWf4pjH77IP0EZ75hp24i7/Tq60hhscVJ7SKGBTN4TCcgYvZwBX8wKeNVOo/PB4CojZTIPWdXmwaHRdFYhKqwuFUxPhBRJ14iUj+wH2t+hH+4VmE1R9yv4/b+fJWHtd5gXmc8LTkIFo0ihSNsssIHK0Igjj+Iy0qwrd/UbAn/0G26QEuwlivfsL1497XSIcwiIbSaEUQd/LwYj5nxKY6EtqapdGt/k0nVDwrDeKjY4Dwlh3U7B94lZd2I1d63kcAA4EvlEbH3LVIQKzhx5eSnLecOInNjDbZnadQ99rkCHXh0hwP1SMMiBPOiQHh23/Yh20hAN6OB4+qTRiJCwZxTUwFhB52s3qWIUc5RqSw4YkiePsUdFERJ3zMAuFFAHHifhYrK3z/zCN30ND/qmfZxNRDml3jdED4iVFMktTQLBolVAKiJwBRJRxX5WjfgqCCYSJ5iPK/U/0YzxgHGMqGWxV4KiDsbrQv86iZNOxoSQ3ChFOtCDpLKqLyATGNLs8BOiPYM7oP9+Yn4e5JP0V/4ABZ/Yiz/1ZgJA7CKojWV50iV93UKGKrU0Y5FUYNRRDqRBb5Rofw0uDrWL9nF+4/50m8rZ29JIMNHGArAPz3pAMipvYYdYzRVDpQjpTxKizjyVor1jElfFIJT3VPxuoXn8Kj57+KUWk3K+K57VZBeDyNflecZV10iGSQsRmmlzt4AEwdk6YkVa0nSmWsfmgz/rLKy3OiI2ITbX/w+UQVEUzSsBUxdkIlNUxptC7kslhbJIzfuyWsPuUJ/EvOlBByUo64zIOhe4tJb8mCiPYwG0AwvkEAyHhGjn5F0UEOsbz/63IVd57yOF6Qq08AygDweospbomCiEua6kpyjpa/FF00AD7fSSAbSwew6eQ/Yre2f9PBowJSB5C4s4w1CytT5NWWgRxpuAAQn/CcU8Gad0bw4JzHsM8HsJ3SN/4gxetf/9WJKSK28uSZhlfK94fyHPyTEFYPlPCYrOn0AaRp/60QTQxE074E1UAYf6ICVk//JTYbh5daBGil4dH3JAIiVHvwu9cMfxzJzjkOtvDxqmn36ak/OgKca82JOJiTTuMzyYDwawhmjpKkxby5jUMAchPOdUffgyXbWADaRueXxo17kwAzMRAmovszWMvM+Yr7NQTZnFyeN6jI4a6pm7Bo8xj3gUqiMRP5joMD4ac0UseiGkps/IEhoHzAy3YIQHaHK/wL3Pum3oPrOwuEtFIKXVK+4fPSMLD/LQ+EbDKzRe6szftRgDNhOg+EXikiAKgACYWj7Pft30sAIzzORnOyl37Ue8eB8OUvnVwqoMqIP8KrP/wmAdAE5KrLcL3feAFAFXQQCB+AyJ+N5c11MTwA7HvDc4Jy9cUEZNVZoAKjhM4Awak8ungrDpCNLNP+h5j5CwSpOGkAYgIGgPYD9p51RVRYxWZ7lhKAFEDzRY4CDO6kD6AJSLYo85e0ExQ+VsPHBMHvIzQprm04ehNuaP+ocTtL35zqt38AlcF+5CUKiHOUgVdprBCoa7Q4yE5TxFvX4PahXVhGAG+LaXAGbADANwNt+1ZUkOd5L0QGzlKABT7CO+4Q1nR+xxrmEd9t5S6jE0mIJvpZtfkkHD7lGHQ7sgDA2uQf3Ai2aS3+jHmf/3ZVghqajOLJ9+s6Y1tvqc3Ya+tWx5ycNyCa7pZKjTHpU04bQtLnm9r3HQJh0B4CcQhE2MoOOctDiogoQhaUzRxEwZmc/FBaYT/UnqPhfHwTZzC1+aYGr8UPmAYvYbAfSmzqkDTam4o0jUsW10+9F7e1fYo9uJDT7YAlic6h8q6+/jdyuGejeEtF3MErdyNPWOSbzGQyTxEOv/cw9mQ3TLs3A93wvdewHpH0rDpLEQTRx8Gd9q9i770Ka9hlTnZ6oW0aAuIXGQDx5jcJImVFTL//EAj5Rwj7MgOCSk7eNDxnyZsXo683E4q4IoUpyLWoUeDsuL7eX2XANN4gCOYRqSmCE0j6eh/IAoivp+QsjWmIj8gGiK/SNNIInxaImQ9mQBG7CSKV8GlA0F30ZQPE5SmDoGnM/E0WFEEQaYZP9mr7ZmUCxJfTDZ/iLGc9lAFF7CSINMOn5BGzH84CiAXp+gjJLDMBop8g9LQAf41UUiU1K3zO/l0GFPH6pZwWwFJdaiCoiOOzAKL/UvycPmIZnZrcOiCxChUXmjv8vsNZqVo/+1EsbveJIv8HBJkM/8THce8AAAAASUVORK5CYII=';
+        var text='<div align="center"><img src = '+image_Data+'></div><div style="font-size:18px; color:red; text-align:center; font-family:\'Segoe UI\',arial,serif;" align="center">Are you sure ?</div><div style="font-size:14px; color:blue; font-family:\'Segoe UI\',Arial; text-align:justify;"><ul><li>Once deleted the note is not recoverable</li><li>All images linked with this note will be deleted</li><li>We don\'t put a limit on the number of notes which you can save.</li></div>';
+        notey.notify('',{iframe:false,text:text,width:600,height:0,confirm:true},function(status)
+        {
+            if(status)
+                {
+           notey.post('deletenote.php',{id: noteID},function(data)
+			{if(data.responseText==='1'){
+                       $('#'+ob.dataset.divid).delay(500).fadeOut(1000);}
 				else
-				{
-					alert("We faced some errors on deletion !, please try again.");
-				}
+				{alert("We faced some errors on deletion !, please try again.");}
 			});
-	}
-	else
-	{
-		return;
-	}
+                }
+                    
+        });
 }
 </script>
 </div>

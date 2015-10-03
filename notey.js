@@ -43,7 +43,7 @@ http.open("GET", url, true);
 http.onreadystatechange = function() {
 if(http.readyState === 4) {callback(http);}}
 http.send(null);
-    },notify:function(url,config)
+    },notify:function(url,config,callback)
     {
     var element=document.getElementById('uq');
                 if(element)
@@ -52,16 +52,26 @@ http.send(null);
                     }
                 var windowHeight=window.innerHeight , windowWidth = window.innerWidth;
                 var divHeight=windowHeight-200, divWidth=windowWidth-300;
-                if(typeof(config.width)!='undefined' && typeof(config.height)!='undefined')
-                    {
-                divHeight=config.height, divWidth=config.width;
-                    }
+             
       var ele=document.createElement("div");
                 document.getElementsByTagName('body')[0].appendChild(ele);
-                ele.setAttribute('id',"uq");
-                 ele.setAttribute('class',"raid");
+                                 ele.setAttribute('class',"raid");
+
+                   if(typeof(config.width)!=='undefined' && typeof(config.height)!=='undefined')
+                {
+                divHeight=config.height, divWidth=config.width;
+                var ddivHeight=(75*divWidth)/100;
+                ddivHeight=divWidth/1.7;
+                ele.style.width=config.width+'px';
+                //ele.style.height=ddivHeight+'px';
+                console.log(ddivHeight);
+                ele.style.minHeight=ddivHeight+'px';
+                    }else
+                        {
                 ele.style.width=divWidth+'px';
                 ele.style.height=divHeight+'px';
+                        }
+                ele.setAttribute('id',"uq");
                 var divPos = ele.getBoundingClientRect();
                 ele.style.left=(windowWidth/2)-(divPos.width/2)+'px';
                 ele.style.top=(windowHeight/2)-(divPos.height/2)+'px';
@@ -71,20 +81,36 @@ http.send(null);
                 closeDiv.setAttribute('onclick','notey.eleRemove(\'uq\')');
                 var title = document.createElement('div');
                 ele.appendChild(title); title.innerHTML="Title";
-                 if(typeof(config.title)=='undefined'){title.innerHTML=' ';}else{title.innerHTML=config.title}
+                 if(typeof(config.title)==='undefined'){title.innerHTML=' ';}else{title.innerHTML=config.title}
                 title.setAttribute('class','title');
                 var contentDiv = document.createElement('div');
                 ele.appendChild(contentDiv);
                 contentDiv.setAttribute('class','content');
                 contentDiv.setAttribute('id','uq_content');
-
                 contentDiv.style.top='30px';
                 contentDiv.style.height=ele.getBoundingClientRect().height-35+'px';
-                 if(typeof(config.expand)!='undefined')
+                if(config.confirm)
+                    {
+                        var buttonSpace = document.createElement('div');
+                        ele.appendChild(buttonSpace);
+                        buttonSpace.setAttribute('class','buttonSpace');
+                        var yesButton  =document.createElement('button');
+                        var noButton =document.createElement('button');
+                        yesButton.setAttribute('id','notify_confirm_yes');
+                        noButton.setAttribute('id','notify_confirm_no');
+                        noButton.innerHTML="Cancel";yesButton.innerHTML="Proceed";
+                        noButton.addEventListener('click',function(e)
+                    {callback(false);notey.eleRemove('uq');});
+                    yesButton.addEventListener('click',function(e)
+                    {callback(true); notey.eleRemove('uq');});
+                        buttonSpace.appendChild(yesButton);
+                        buttonSpace.appendChild(noButton);
+                    }
+                 if(typeof(config.expand)!=='undefined')
                      {
                    ele.style.overflowY=config.expand;
                      }
-                if(typeof(config.iframe)!='undefined')
+                if(typeof(config.iframe)!=='undefined')
                     {
                 if(config.iframe)
                     {
@@ -96,14 +122,14 @@ http.send(null);
                         iframe.style.height=contentDiv.getBoundingClientRect().height+"px";
                        iframe.style.width=contentDiv.getBoundingClientRect().width+"px";  
                     }
-                    else if(typeof(config.text)!='undefined')
+                    else if(typeof(config.text)!=='undefined')
                     {
                    contentDiv.innerHTML=config.text;
                     }
                     else
                         {
                            notey.get(url,function(data){
-                                contentDiv.innerHTML=data.responseText;}); 
+                           contentDiv.innerHTML=data.responseText;}); 
                         }
   
             }
