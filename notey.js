@@ -73,8 +73,18 @@ http.send(null);
                         }
                 ele.setAttribute('id',"uq");
                 var divPos = ele.getBoundingClientRect();
+                if(typeof(config.posClone)==='undefined'){
                 ele.style.left=(windowWidth/2)-(divPos.width/2)+'px';
                 ele.style.top=(windowHeight/2)-(divPos.height/2)+'px';
+                }
+                else
+                    {
+        var call = (config.posClone).getBoundingClientRect();
+        console.log(call);
+                ele.style.left=(call.right)-10+'px';
+                ele.style.top=(call.bottom)-10+'px';
+                ele.style.position="absolute";
+                    }
                 var closeDiv =document.createElement('div');
                 ele.appendChild(closeDiv);
                 closeDiv.setAttribute('class','close');

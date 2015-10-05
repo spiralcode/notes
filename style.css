@@ -44,6 +44,7 @@ opacity:.8;
 text-shadow: 1px 1px 1px blue;
 font-family:"Segoe UI",arial,serif;
 
+
 	
 }
 .imgplace .pholder:hover
@@ -354,11 +355,12 @@ font-size: 14px;
 }
 .note .imgspace
 {
-position:relative;
+position:absolute;
 float:left;
 bottom:1px;
 margin:5px;
 left: 1%;
+bottom: 0px;
 /*font-family:"Segoe UI",arial,serif;*/
 
 }
@@ -442,7 +444,14 @@ border:none;
 border-radius:2px;
 outline:none;
 }
-
+input[type=text]
+{
+    width: 200px;
+}
+input[type=password]
+{
+    width: 200px;
+}
 .optionbar .logo
 {
 	font-size:30px;
