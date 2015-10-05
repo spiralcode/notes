@@ -29,6 +29,23 @@ color: #7190D0;
 	opacity:.4;
         text-align: center;
 }
+.notifcationArea
+{
+ position:fixed;
+ top: 60px;
+ right: 0px;
+ width: 100%;
+ background: rgba(172, 190, 218, 0.59);
+ text-align: right;
+ height: 30px;
+}
+.notifcationArea .uname
+{
+    right: 10px;
+    text-align: right;
+     margin-right: 10px
+
+}
 .imgplace
 {
 	height:80px;
@@ -405,7 +422,26 @@ z-index: 102;
 width: 25px;
 height:25px;
 }
-
+.noteOptionSlider
+{
+    position: relative;
+background: rgba(187, 193, 186, 0.35);    width: 98%;
+    height: 60px;
+    border-radius: 2px;
+box-shadow: 0px 0px 2px #6D7463;
+display: none;
+text-align: center;
+line-height: 60px;
+}
+.noteOptionSlider span
+{
+    cursor: pointer;
+    margin: 1%;    
+}
+.noteOptionSlider span:hover
+{
+    color:#637A00;
+}
 
 .spinner {
 position:absolute;

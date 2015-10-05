@@ -7,5 +7,7 @@ header('location: index.php?logreq');
 else 
 {
 	$userid=$_SESSION['userid'];
+        $name=$_SESSION['uname'];
+
 }
 ?>

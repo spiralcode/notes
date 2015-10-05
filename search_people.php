@@ -1,6 +1,6 @@
 <html>
-	<head>
-		<script src="ajax_1_10_2.js"></script>
+<head>
+<script src="ajax_1_10_2.js"></script>
 <style>
 .spinner {
  display:none;
@@ -36,9 +36,9 @@ z-index:101;
 .bigoptions
 {
   position:absolute;
-  width:100%;
   text-align:center;
   top:40px;
+  
 }
 .bigoptions span
 {
@@ -66,29 +66,21 @@ a:hover
 	font-family:Arial,Serif;
 	text-align:justify;
 }
-td
-{
-		font-family:Arial,Serif;
-		color:#50A9ED;
-		font-size:20px;
-}
-td:hover
-{
-text-shadow:1px 1px 1px #093658;
-cursor:pointer;
-}
+
 .result
 {
-	width:90%;
-	font-size:18px;
-	background-image:url(images/tile6.png);
-	margin-left:5%;
-	margin-top:2px;
+	width:60%;
+	font-size:20px;
+	margin:1%;
 	font-family:arial,serif;
 	color:white;
 	border-radius:2px;
-
+background: rgba(46, 139, 87, 0.71);
 		border:1px solid #fff;
+                height: 50px;
+                float: bottom;
+                line-height: 50px;
+                
 }
 .result:hover
 {
@@ -96,12 +88,12 @@ cursor:pointer;
 }
 .result button
 {
-	position:absolute;
-	right:5px;
+	position:relative;
 	min-width:5px;
 	min-height:5px;
 	color:green;
 	cursor:pointer;
+        right: 0px;
 }
 
 </style>
@@ -112,7 +104,7 @@ function $id(ob)
 }
 function addPerson(ob)
 {
-			ob.setAttribute('disabled',"disabled");
+ob.setAttribute('disabled',"disabled");
 	var name = (ob.dataset.refer);
 	$.post('addperson.php',{
 		name: name
@@ -137,22 +129,29 @@ function addPerson(ob)
 		$id('spinner').style.display='block';
 		$id('spinnertext').style.display='block';
 		
-		$.get('isthatword.php',function(data,success)
+		$.get('isthatword.php?noteid=<?php echo $_GET['noteid']; ?>',function(data,success)
 			{
 			var index = 0;
 			var jsonobj = JSON.parse(data);
 		$id('spinner').style.display='none';
-		if(typeof(jsonobj[0])!='undefined')
+		if(typeof(jsonobj[0])!=='undefined')
 		$id('spinnertext').innerHTML='<p>We guess below listed are names. The result might also include place names or word errors. Click the \'add\' button next to the person name to add them to the \'People\'s List\'.</p>';
 else
-$id('spinnertext').innerHTML='<p>Can\'t find something like a name, you can add peoples manually too.';
-						while(typeof(jsonobj[index])!='undefined')
-						{
+$id('spinnertext').innerHTML='<p align="center">Either the name is already there or can\'t find something like a name, you can add peoples manually too.';
+while(typeof(jsonobj[index])!=='undefined')
+{
 		var ele = jsonobj[index];
 		var newob=document.createElement('div');
 		$id('list').appendChild(newob).setAttribute("id",index);
 		$id('list').appendChild(newob).setAttribute("class","result");
-		$id(index).innerHTML=ele+'<button onclick = "addPerson(this)" data-rootid="'+index+'" data-refer="'+ele+'" >Add</button>';
+                var addButton=document.createElement('button');
+                document.getElementsByTagName('body')[0].appendChild(newob);
+                newob.innerHTML='<span>'+ele+'</span>';
+                newob.appendChild(addButton);
+                addButton.setAttribute('onclick','addPerson(this);');
+                addButton.setAttribute('data-rootid',index);
+                addButton.setAttribute('data-refer',ele);
+                addButton.innerHTML="Add";
 		index++;
 						}
 			});

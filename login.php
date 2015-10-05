@@ -35,6 +35,8 @@ else
 while($row=mysqli_fetch_array($query))
 {
             $_SESSION['userid']=$row['id'];
+            $_SESSION['uname']=$row['name'];
+
             $exist=1;
 }}
 if($exist==1)

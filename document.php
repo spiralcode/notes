@@ -127,7 +127,6 @@ $id('topstriptitle').innerHTML=title;
 <body>
 
 <div id="loading" class="spinner"></div>
-
 <div class="topribbon" id="topribbon"><span class="logo">Notes <sup>loud</sup></span>
 <table align="right" cellspacing="4"><tr><td onclick="goTopage(this)" data-link="book.php">Read Notes</td><td onclick="showMenu(this)" data-link="paper.php">Menu</td>	<td onclick="goTopage(this)" data-link="logout.php">Logout</td></tr></table>
 </div> 

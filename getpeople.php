@@ -65,6 +65,6 @@ a:hover
 		</head>
 <body>
 <div align="center" class="spinner"></div>
-<div class="bigoptions"><span><a href="search_people.php">Search for people</a></span><span><a href="peoples.php">Peoples</a></span></div>
+<div class="bigoptions"><span><a href="peoples.php">Peoples</a></span></div>
 </body>
 </html>
