@@ -2,14 +2,17 @@
 .paper
 {
 position:absolute;
-background-image: url(images/tile01.png);
+/*background-image: url(images/tile01.png);*/
+border-radius:3px;
+box-shadow:0px 0px 2px #00027E;
+background: rgba(104, 147, 16, 0.13);
 }
 .paper #tarea
 {
 	resize:none;
 	            box-sizing: border-box;
-	            font-family:arial,serif;
-                    font-family:"Segoe UI",arial,serif;
+	          font-family:arial,serif;
+                    /*font-family:"Segoe UI",arial,serif;*/
 	            font-size:14px;
                     overflow-y:scroll;
 }
@@ -17,8 +20,6 @@ background-image: url(images/tile01.png);
 {
 color: #7190D0;
 }
-	
-
 .paper .timedate
 {
 	color: #516FD2;
@@ -39,9 +40,10 @@ text-align:center;
 color:#B9BDC0;
 font-family:Arial,serif;
 font-size:50px;
-opacity:.5;
+opacity:.8;
 text-shadow: 1px 1px 1px blue;
 font-family:"Segoe UI",arial,serif;
+
 
 	
 }
@@ -57,7 +59,7 @@ button
 	/*background:linear-gradient(#A6EDE6,#B5DEDA);*/
 	outline:none;
 	border:1px solid #637A00;
-        		border:1px solid #AD8200;
+        		/*border:1px solid #AD8200;*/
 
 	min-height: 50px;
 	min-width: 50px;
@@ -251,7 +253,7 @@ border:none;
 body
 {
 background:rgb(229, 229, 229);
-        background-image: url(images/swirl_pattern.png);
+    /*background-image: url(images/swirl_pattern.png);*/
 
 background-attachment:fixed;
 background-repeat:repeat;
@@ -317,55 +319,64 @@ width: 98%;
 min-height: 150px;
 color: #fff;
 font-family: Arial,serif;
-/*font-family:"Segoe UI",arial,serif;*/
-
 border-radius: 1px;
-background-image: url(images/tile.png);
-box-shadow:1px 1px 1px #6D7463;
+background: rgba(142, 155, 140, 0.48);
+box-shadow: 0px 1px 3px #6D7463;
 overflow: auto;
-margin-top: 1%;
+margin-top: 2%;
 text-wrap:normal;
 	
 }
 .note .timeslot
 {
-position:relative;
 top:0px;
 right:1px;
 text-align:right;
 color: #3F2634;
 font-size:13px;
-text-shadow: 0px 1px 1px #fff;
+height: 20px;
+background: darkseagreen;
+box-shadow: 0px 0px 2px #000;
+
 
 }
 .note .timeslot:hover
 {
-font-size:15px;
 }
 .note .contentslot
 {
 position: relative;
 margin: 1%;
-color: white;
+color: #000;
 width: 98%;
 left: 1%;
-text-shadow: 1px 1px 8px #515137;
+text-shadow: 0px 0px 1px #fff;
+font-size: 14px;
 }
 .note .imgspace
 {
-position:relative;
+position:absolute;
 float:left;
 bottom:1px;
 margin:5px;
+left: 1%;
+bottom: 0px;
 /*font-family:"Segoe UI",arial,serif;*/
 
 }
 
 .note .imgspace img
 {
-width:60px;
-height:60px;
-  border-radius: 2px 2px 2px;
+width:50px;
+height:50px;
+  border-radius: 80px 80px 80px;
+  border:2px groove darkseagreen;
+opacity: .5;
+
+}
+.note .imgspace img:hover
+{
+opacity: 1;
 
 }
 .note .daysago
@@ -373,9 +384,10 @@ height:60px;
 position: absolute;
 right: 0px;
 bottom: 0px;
-opacity: .8;
+opacity: .4;
 color: #3D4873;
 font-size: 20px;
+min-width: 50px;
 }
 .note .noteoptions
 {
@@ -432,7 +444,14 @@ border:none;
 border-radius:2px;
 outline:none;
 }
-
+input[type=text]
+{
+    width: 200px;
+}
+input[type=password]
+{
+    width: 200px;
+}
 .optionbar .logo
 {
 	font-size:30px;

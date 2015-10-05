@@ -14,9 +14,8 @@ root {
 {
     z-index: 50001555;
     position:fixed;
-    width:500px;
-    height:500px;
         background:#fff;
+        /*padding-bottom: 375px;*/
 
     -moz-animation: fadein .5s; /* Firefox */
     -webkit-animation: fadein .5s; /* Safari and Chrome */
@@ -103,4 +102,11 @@ background: #fff;
 {
     border:none;
     
+}
+.buttonSpace
+{
+    position: absolute;
+    width:100%;
+    text-align: center;
+    bottom: 5px;
 }
