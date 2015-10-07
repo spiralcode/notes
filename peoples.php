@@ -91,13 +91,11 @@ cursor:pointer;
 {
 	width:90%;
 	font-size:18px;
-	background-image:url(images/tile6.png);
 	margin-left:5%;
 	margin-top:2px;
 	font-family:arial,serif;
 	color:white;
 	border-radius:2px;
-
 		border:1px solid #fff;
 }
 .result:hover
@@ -122,10 +120,10 @@ position:relative;
 {
 width: 20px;
 height:20px;
-background:#4B63E7;
-color:white;
+background: rgba(75, 124, 231, 0.76);color:white;
 text-align:center;
 border:1px solid #fff;
+text-shadow: 0px 0px 1px #093658;
 }
 .peoplelist td:hover
 {

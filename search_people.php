@@ -137,7 +137,7 @@ ob.setAttribute('disabled',"disabled");
 		if(typeof(jsonobj[0])!=='undefined')
 		$id('spinnertext').innerHTML='<p>We guess below listed are names. The result might also include place names or word errors. Click the \'add\' button next to the person name to add them to the \'People\'s List\'.</p>';
 else
-$id('spinnertext').innerHTML='<p align="center">Either the name is already there or can\'t find something like a name, you can add peoples manually too.';
+$id('spinnertext').innerHTML='<p align="center">Can\'t find any new names, check the <a href="peoples.php">peoples list</a> they might be already there.';
 while(typeof(jsonobj[index])!=='undefined')
 {
 		var ele = jsonobj[index];

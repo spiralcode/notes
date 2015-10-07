@@ -17,10 +17,8 @@ $group=get('group')
       <style>
             .image_title 
             {
-                                position: relative;
-
-               background: #dadada;
-               width:100%;
+            position: relative;
+            width:100%;
             }
             .image_entity
             {
@@ -28,14 +26,12 @@ $group=get('group')
                 float: left;
                 cursor: pointer;
                 margin: 1%;
-                box-shadow: 0px 0px 10px #485565;
-                
+                box-shadow: 0px 0px 1px #485565;
             }
-                        .image_entity:hover
-                        {
-                                       box-shadow: 1px 0px 5px #48654A;
-     
-                        }
+          .image_entity:hover
+          {
+          box-shadow: 0px 0px 0px #48654A;
+          }
 
             body
             {
@@ -83,7 +79,7 @@ font-size: 13px;
 font-family:"Segoe UI Light",arial,serif;
 font-size: 18px;
 color:#093658;
-text-shadow: 1px 1px 5px #000;
+text-shadow: 0px 0px 1px #000;
 background: #fff;
             }
             </style>

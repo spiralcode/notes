@@ -18,6 +18,9 @@ if(strlen($website)>40)
 {
 	$short_website=substr($website,0,40)."...";
 }
+ else {
+$short_website=$website;    
+}
 	?>
 <html>
 	<head>

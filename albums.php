@@ -7,6 +7,8 @@
           <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="raid.css"/>
         <script src="raid.js"></script>
+                <script src="notey.js"></script>
+
           <script src="lib/jquery-ui.js"></script>
 
 
@@ -45,7 +47,7 @@ opacity: .7;
 }
                 
                 
-            }
+            
                         .image_entity:hover
                         {
                                        box-shadow: 0px 0px 10px #48654A;
@@ -81,9 +83,9 @@ opacity: .7;
     }
             function goDelete(id)
             {
-                $.post('delete_image.php',
-                {id:id},function(data,success){
-        if(data==1)
+                notey.post('delete_image.php',
+                {id:id},function(data){
+        if(data.responseText==1)
             {
                 closething('uq');
                                 //$('#'+id).delay(0).fadeOut(2000);
@@ -145,12 +147,12 @@ opacity: .7;
             function fetchImages()
             {
                 
-                $.get('fetch_albums.php',function(data,success)
+                notey.get('fetch_albums.php',function(data)
             {
                 
-               var ob=JSON.parse(data);
+               var ob=JSON.parse(data.responseText);
                var counter=0;
-               while(typeof(ob[counter])!='undefined')
+               while(typeof(ob[counter])!=='undefined')
                    {
               var state=ob[counter].name;
               var obj = document.createElement('div');

@@ -372,12 +372,9 @@ font-size: 14px;
 }
 .note .imgspace
 {
-position:absolute;
+position:relative;
 float:left;
-bottom:1px;
-margin:5px;
 left: 1%;
-bottom: 0px;
 /*font-family:"Segoe UI",arial,serif;*/
 
 }
@@ -428,7 +425,7 @@ height:25px;
 background: rgba(187, 193, 186, 0.35);    width: 98%;
     height: 60px;
     border-radius: 2px;
-box-shadow: 0px 0px 2px #6D7463;
+box-shadow: 0px 1px 1px #6D7463;
 display: none;
 text-align: center;
 line-height: 60px;

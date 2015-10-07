@@ -152,7 +152,7 @@ function travelto(target)
   </script>
 		</head>
 <body>
-		<span class="navigate_raw"><a href="peoples.php">Back to peoples</a></span>
+		<div align="right"><span class="navigate_raw"><a href="peoples.php">Back to peoples</a></span></div>
 <div id="heading"><?php echo ucfirst($name); ?></div>
 <div id = "formarea" align="center"><br><br>
 <table class="form" cellspacing="10">
