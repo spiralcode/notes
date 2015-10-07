@@ -18,9 +18,6 @@ function FileDragOut(e)
 	e.preventDefault();
 	$id("tarea").style.border="1px dotted #7192A8";
 	$id("tarea").style.borderBottom="none";
-
-
-	
 	}
 function FileSelectHandler(e)
 {
@@ -69,10 +66,6 @@ function init()
 if(window.File && window.FileList && window.FileReader)
 	{
 	init();
-	}
-function msg(data)
-{
-	alert(data);
 	}
 function uploadfile(file)
 {

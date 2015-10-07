@@ -11,14 +11,16 @@ if(isset($_COOKIE['email']))
 <title>Notes </title>
 <link rel="icon" href = "favicon.png">
   <link rel="stylesheet" href="style.css">
-   <script src="raid.js"></script>
+      <script src="notey.js"></script>
+        <link rel="stylesheet" href="raid.css">
+
+
 <link rel="stylesheet" href="raid.css"/>
 
 <style>
 body
 {
-	background:#fff;
-
+background:#fff;
 }
 .aboutspace
 {
@@ -120,34 +122,8 @@ font-size:12px;
     cursor: pointer;
 }
 </style>
-
 <script src="ajax_1_10_2.js"></script>
 <script>
-	function infoPaper(resource,title,frame)
-{
-if(frame!=1)
-{
-$.get(resource,function(data,success)
-		{
-	$id('infoPaperContent').innerHTML=data;
-	$id('topstriptitle').innerHTML=title;
-		});
-}
-else
-{	
-$id('infoPaperContent').innerHTML='<iframe id="infoPaperFrame"></iframe>';
-$id('infoPaperFrame').src=resource;
-$id('topstriptitle').innerHTML=title;
-}
-	$id('infoPaper').style.display='block';
-	var infoPaper = $id('infoPaper').getBoundingClientRect();
-	$id('infoPaper').style.left=(window.innerWidth/2)-(infoPaper.width/2)+'px';
-	$id('infoPaper').style.bottom=(window.innerHeight/2)-(infoPaper.height/2)+'px';
-}
-function infoPaperHide()
-{
-	$id('infoPaper').style.display='none';
-}
 function $id(ob)
 {
 	return document.getElementById(ob);
@@ -175,7 +151,6 @@ function datagateway(type)
 				{
 					window.location.href='paper.php';
 				}
-                                console.log(data);
 				if(data==0)
 				{
 				$id('errorshow').innerHTML='E-mail and Password doesn\'t seems to exist, try again or make an account.';	
@@ -195,8 +170,8 @@ function datagateway(type)
 			},function(data,status){
 				if(data==1)
 				{
-				infoPaper('welcome.php','That\'s It');
-				$id('email').value=semail;
+showMsg('welcome.php',{title:'Welcome !',iframe:false});				
+$id('email').value=semail;
 				$id("password").value=spass;	
 				}
 				else
@@ -244,7 +219,6 @@ var smartslide=document.getElementById('smartslide').getBoundingClientRect();
 document.getElementById('spinner').style.left=(window.innerWidth/2)-(loading.width/2)+'px';
 document.getElementById('smartslide').style.left=(window.innerWidth/2)-(smartslide.width/2)+'px';
 </script>
-<div id="infoPaper"><div class="topstrip"><span id="topstriptitle"></span><div id="infoPaperClose" onclick="infoPaperHide()"><img style="width:20px; height:20px;" title="Close ! this thing" src="images/b_close.png"/></div></div><div id=infoPaperContent></div></div>
 <p class="about" align="right"><span onclick="showMsg('index.php',{title:'About',iframe:true});">About</span></p>
 </body>
 </html>

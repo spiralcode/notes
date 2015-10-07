@@ -10,9 +10,7 @@ notey =
             this.click= function ()
             {
                 alert(ob);
-                //console.log(ob);
             }
-
     },
             /*
              *Notes get method returns https response object recieved for the URL para
@@ -63,8 +61,6 @@ http.send(null);
                 var ddivHeight=(75*divWidth)/100;
                 ddivHeight=divWidth/1.7;
                 ele.style.width=config.width+'px';
-                //ele.style.height=ddivHeight+'px';
-                console.log(ddivHeight);
                 ele.style.minHeight=ddivHeight+'px';
                     }else
                         {

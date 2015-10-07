@@ -29,7 +29,6 @@ function $id(id)
 {
 	return document.getElementById(id);
 }
-
 function datesearch(ob,init)
 {
 	
@@ -39,49 +38,6 @@ function datesearch(ob,init)
 	showResult('search.php?date='+ob.value);}	
 }
 
-function unix2local(unix)
-{
-	var date = new Date(unix);
-	// hours part from the timestamp
-	var date1 = date.getDate();
-	if(date1<10){date1="0"+date1;}
-	// minutes part from the timestamp
-	var month = date.getMonth();
-	if(month<10){month="0"+month;}
-	
-	// seconds part from the timestamp
-	var year = date.getFullYear();
-	
-	return month+"-"+date1+"-"+year;
-		
-}
-function passby(date,days)
-{
-var date = new Date(date);
-var newdate = new Date(date);
-newdate.setDate(newdate.getDate() + days);
-var nd = new Date(newdate);
-if(nd.getMonth()<10)
-{
-	var mnth='0'+nd.getMonth();
-}
-else
-{
-	var mnth=nd.getMonth();
-	
-}
-if(nd.getDate()<10)
-{
-	var dt='0'+nd.getMonth();
-}
-else
-{
-	var mnth=nd.getMonth();
-	
-}
-var frmt=nd.getUTCFullYear()+'-'+mnth+'-'+nd.getDate();
-return frmt;
-}
 function goTopage(ob,target)
 {
 	window.location.href=ob.dataset.link;
@@ -133,9 +89,6 @@ function infoPaperHide()
 	//$id('infoPaper').style.display='none';
                 $('#infoPaper').delay(0).fadeOut(200);
 
-}
-function repos(ob)
-{
 }
 function noteOptions(ob)
 {
@@ -333,7 +286,7 @@ notey.notify('',{text:text,iframe:false,width:500,height:0});}
 <tr><td onclick="showMsg('albums.php',{title:'Albums',iframe:true}); showMenu(this);">Photos</td></tr>
 <tr><td onclick="showMsg('mylinks.php',{title:'Links',iframe:true}); showMenu(this);">Links</td></tr>
 <tr><td onclick="showMsg('peoples.php',{title:'Peoples',iframe: true}); showMenu(this);">Peoples</td></tr>
-<tr><td onclick="infoPaper('info.php','Informations')">Informations</td></tr>
+<tr><td onclick="showMsg('info.php',{title:'Informations',iframe: false}); showMenu(this);">Informations</td></tr>
 <tr><td onclick="showMsg('settings.php',{title:'Settings',iframe:true}); showMenu(this);">Settings</td></tr>
 
 </table>
