@@ -3,7 +3,7 @@ include 'ease.php';
 include 'connect.php';
 //Fetch all variables
 $email=post('email');
-$name=post('email');
+$name=post('name');
 $pass=post('password');
 if(isset($email,$name,$pass))
 {

@@ -144,7 +144,7 @@ function datagateway(type)
 		$.post('login.php',{
 			email: email ,
 			pass: pass ,
-                                                      cook: cookie
+                        cook: cookie
 			},function(data,status){
                             
 				if(data==1)
@@ -163,14 +163,14 @@ function datagateway(type)
 	if(type.dataset.kind=='signup'&&semail!='')
 	{
 		type.disabled="disabled";
-		$.post('create_acc.php',{
+		notey.post('create_acc.php',{
 			email: semail ,
 			password: spass ,
 			name: sname
-			},function(data,status){
-				if(data==1)
+			},function(data){
+				if(data.responseText==1)
 				{
-showMsg('welcome.php',{title:'Welcome !',iframe:false});				
+notey.notify('welcome.php',{title:'Welcome !',iframe:false});				
 $id('email').value=semail;
 				$id("password").value=spass;	
 				}

@@ -112,7 +112,6 @@ else
 while($data=mysqli_fetch_array($query))
 {
 	$status=1;
-
 	$imindex=0;
 	$nid=$data['id'];
 	$loadimage='';
@@ -138,11 +137,8 @@ if($index!=0)
 $json=json_encode($noteitem);
 else 
 {
-	$noteitem[0]=array("status"=>"0");
+	$noteitem[0]=array("status"=>"0","query"=>$q);
 }	
 $json=json_encode($noteitem);
-
 echo($json);
-
-
 ?>

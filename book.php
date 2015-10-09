@@ -7,14 +7,12 @@ include 'session_check.php';
 <script src="lib/moment.js"></script>
 <script src="ajax_1_10_2.js"></script>
 <script src="lib/jquery-1.10.2.js"></script>
-  <script src="lib/jquery-ui.js"></script>
-  <script src="notey.js"></script>
-
-     <script src="raid.js"></script>
+<script src="lib/jquery-ui.js"></script>
+<script src="notey.js"></script>
+<script src="raid.js"></script>
 <link rel="stylesheet" href="raid.css"/>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="style/jquery-ui.css">
-  
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style/jquery-ui.css">
 <title>Read your Notes</title>
 <style type="text/css">
 input
@@ -31,7 +29,6 @@ function $id(id)
 }
 function datesearch(ob,init)
 {
-	
 	if(init){
 	showResult('search.php?date='+ob);}
 	else{
@@ -50,32 +47,29 @@ function showMenu(ob)
 	}
 	else
 	{
-		$id('flowOptions').style.display='none';
+	$id('flowOptions').style.display='none';
 	}
 	var refer_dim=ob.getBoundingClientRect();
 	{
-		$id('flowOptions').style.top=refer_dim.bottom+'px';
-		$id('flowOptions').style.right=(window.innerWidth-refer_dim.right)+'px';	
+$id('flowOptions').style.top=refer_dim.bottom+'px';
+$id('flowOptions').style.right=(window.innerWidth-refer_dim.right)+'px';	
 	}
 }
 function infoPaper(resource,title,frame)
 {
 if(frame!=1)
 {
-	$.get(resource,function(data,success)
-			{
-		$id('infoPaperContent').innerHTML=data;
-		$id('topstriptitle').innerHTML=title;
-			});
+$.get(resource,function(data,success)
+{
+$id('infoPaperContent').innerHTML=data;
+$id('topstriptitle').innerHTML=title;
+});
 }
 else
 {
-
-	
-			$id('infoPaperContent').innerHTML='<iframe id="infoPaperFrame"></iframe>';
-			$id('infoPaperFrame').src=resource;
-			$id('topstriptitle').innerHTML=title;
-
+$id('infoPaperContent').innerHTML='<iframe id="infoPaperFrame"></iframe>';
+$id('infoPaperFrame').src=resource;
+$id('topstriptitle').innerHTML=title;
 }
 	$id('infoPaper').style.display='block';
 	var infoPaper = $id('infoPaper').getBoundingClientRect();
@@ -92,43 +86,36 @@ function infoPaperHide()
 }
 function noteOptions(ob)
 {
-    //Generate Div
 var div = document.createElement('div');
 document.getElementsByTagName('body')[0].appenChild(div);
 div.setAttribute('class','noteOpt');
 div.innerHTML="Some Options";
 var referObjectDimen = ob.getBoundingClientRect();
 div.style.top=referObjectDimen.bottom;
-
 }
 </script></head>
-<body onscroll="repos(this);">
+<body>
 <div id="optionbar" class="optionbar">
-    
 <span class="logo">Notes <sup>v3</sup></span>
 <table class="option" align="right" cellspacing="4"><tr>
-	<td onclick="goTopage(this)" data-link="paper.php">Add a note</td>
-<td onclick="showMenu(this)" data-link="paper.php" id="menuroot">Menu</td>
-	<td onclick="goTopage(this)" data-link="logout.php">Logout</td>
+<td onclick="goTopage(this);" data-link="paper.php">Add a note</td>
+<td onclick="showMenu(this);" data-link="paper.php" id="menuroot">Menu</td>
+<td onclick="goTopage(this);" data-link="logout.php">Logout</td>
 </tr></table>
 <div align="center" id="searchoptions">
-    
 <table  border="0"><tr>
 <td><input type="text" len="50" onkeyup="autosearch();" placeholder="Search " id="keyinput"/></td>
 <td><input type="text" id="datepicker" onChange="datesearch(this)"></td>
 </tr></table></div>
 </div>
-    <div class="notifcationArea">Hi, <span class="uname"><?php echo $_SESSION['uname']; ?></span></div>
-
+<div class="notifcationArea">Hi, <span class="uname"><?php echo $_SESSION['uname']; ?></span></div>
 <div id="loading" class="spinner"></div>
-
 <div id="frameplace" class="frameplace">
-
 <script>
 $id('datepicker').value=moment().format('DD-MM-YYYY');
 $id('keyinput').addEventListener('keyup',function(e)
 		{
-	if(e.keyCode==13)
+	if(e.keyCode===13)
 	{
 		showResult('gcow.php?q='+$id('keyinput').value);
 	}
@@ -145,19 +132,26 @@ function showResult(url)
 	$id('loading').style.display='block';
 	var init=0;
 	notey.get(url,function(data)
-			{$id('frameplace').innerHTML='';
+	{
         $id('loading').style.display='none';
+        		var newob=document.createElement('div');
+		$id('frameplace').appendChild(newob).setAttribute("id","error");
+		$id('frameplace').appendChild(newob).setAttribute("class","nonote");
 		var json=JSON.parse(data.responseText);
 		if(json[0].status==0)
 		{	
-            var ele='No results found !';
-		var newob=document.createElement('div');
-		$id('frameplace').appendChild(newob).setAttribute("id","error");
-		$id('frameplace').appendChild(newob).setAttribute("class","nonote");		
-		$id('error').innerHTML=ele;
+             if(json[0].query!=''){   
+            var ele="Nothing found matching <b>"+json[0].query+"</b>";
+            $id('error').innerHTML=ele;
+
+             }
+
+
+		
 		}
 		else
-		{
+		{     
+               $id('frameplace').innerHTML='';
                 while(typeof(json[init])!=='undefined')
 		{
 		/*Moment code starts*/
@@ -169,13 +163,11 @@ function showResult(url)
 				var mnth= momentObject.format('MMMM');
 				var year= momentObject.format('YYYY');
 				var frmtime=hr+':'+min+' '+ap+' | '+date+' '+mnth+' '+year;
-
-				
 				var then = momentObject.format('D/M/YYYY HH:mm:ss');				
 				var now=moment().format('D/M/YYYY HH:mm:ss');
 				var millisec=moment(now,"D/M/YYYY HH:mm:ss").diff(moment(then,"D/M/YYYY HH:mm:ss"));
 				var di = moment.duration(millisec);
-                                                                       var minutes=di.asMinutes();
+                                var minutes=di.asMinutes();
 				var hoursago=(Math.floor(di.asHours()));
 				var days=Math.round(hoursago/24);
                                 timeago="";
@@ -229,23 +221,18 @@ var text = '<span onclick="deletenote(this);" data-noteid="'+noteid+'" data-divi
 optEle.setAttribute('class','noteOptionSlider');
 optEle.setAttribute('id',ir+'_opt');
 
-optEle.innerHTML=text;
-    ir++;
+optEle.innerHTML=text;ir++;
 init++;}}
-});
-}
+});}
 function showOptions(id)
 {
 if($id(id+'_opt').style.display==='block')
 {
 //$id(id+'_opt').style.display='none';
   $( "#"+id+'_opt' ).effect( "blind", "slow",function() {$id(id+'_opt').style.display="none";} );
-
 }
 else{
   $( "#"+id+'_opt' ).effect( "bounce", "slow",function() {$id(id+'_opt').style.display="block";} );
-
-
             }
 }
 function findPeople(noteId)
@@ -255,7 +242,6 @@ function findPeople(noteId)
 function deletenote(ob)
 {
 	var noteID=ob.dataset.noteid;
-        console.log(ob.dataset.divid);
       var image_Data='data:image/png;base64,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';
         var text='<div align="center"><img style="wdith:40px; height:40px;" src = '+image_Data+'></div><div style="font-size:18px; color:red; text-align:center; font-family:\'Segoe UI\',arial,serif;" align="center">Are you sure ?</div><div style="font-size:14px; color:blue; font-family:\'Segoe UI\',Arial; text-align:justify;"><ul><li>Once deleted the note is not recoverable</li><li>All images linked with this note will be deleted</li><li>Unlimited number of notes can be saved.</li></div>';
         notey.notify('',{iframe:false,text:text,width:600,height:0,confirm:true},function(status)
@@ -274,10 +260,7 @@ var headline="Something happened, so wrong !";
 var explain="Unable to delete that one, some un-expected error occured on course.";
 var text='<div align="center"><img style="width:100px; height:100px;" src = '+image_Data+'></div><div style="font-family:"Segoe UI",arial,serif;" align="center" style="font-family:Arial,serif; font-size:18px; color:red; text-align:justify;">'+headline+'</div><p style="font-size:12px; color:blue;" align="center" style="font-family:"Segoe UI",arial,serif;">'+explain+'</p><div style="font-size:arial,serif; font-size:12px; text-align:center;" id="retry"></div>';
 notey.notify('',{text:text,iframe:false,width:500,height:0});}
-			});
-                }
-                    
-        });
+			});}});
 }
 </script>
 </div>
@@ -288,22 +271,17 @@ notey.notify('',{text:text,iframe:false,width:500,height:0});}
 <tr><td onclick="showMsg('peoples.php',{title:'Peoples',iframe: true}); showMenu(this);">Peoples</td></tr>
 <tr><td onclick="showMsg('info.php',{title:'Informations',iframe: false}); showMenu(this);">Informations</td></tr>
 <tr><td onclick="showMsg('settings.php',{title:'Settings',iframe:true}); showMenu(this);">Settings</td></tr>
-
 </table>
 </div>
-
 <div id="infoPaper"><div class="topstrip"><span id="topstriptitle"></span><div id="infoPaperClose" onclick="infoPaperHide()"><img style="width:20px; height:20px;" title="Close ! this thing" src="images/b_close.png"/></div></div><div id=infoPaperContent></div></div>
 <script>
 $(function() {
     $( "#datepicker" ).datepicker(
     		{
     	dateFormat: "dd-mm-yy"		
-    		}
-    	    );
-    
+});
   });
 datesearch($id('datepicker').value,true);
-
 var searchoptions_dim = $id('searchoptions').getBoundingClientRect();
 $id('searchoptions').style.left=(window.innerWidth/2)-(searchoptions_dim.width/2)+'px';
 var loading = $id('loading').getBoundingClientRect();
