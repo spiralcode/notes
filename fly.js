@@ -35,7 +35,7 @@ function ParseFile(file)
 {
 	if(file.type=='image/jpeg'||file.type=='image/png')
 		{
-                                                    $id('loading').style.display='block';
+         $id('loading').style.display='block';
 		if (file.type.indexOf("image") == 0) {
 			var reader = new FileReader();
 			reader.onload = function(e) {

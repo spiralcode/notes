@@ -1,0 +1,222 @@
+
+<!doctype html>
+<head>
+	<style>
+		.track_title
+		{
+			font-family: "Segoe UI Light",Arial;
+			font-size: 20px;
+			color:#48654C;
+			text-align: center;
+                  margin: 1%;
+		}
+            .track_timer
+            {
+                  				font-family: "Segoe UI Light",Arial;
+                                          font-size: 25px;
+                                          color: brown;
+                                          text-align: center;
+                                          text-shadow: 0px 0px 1px white;
+            }
+		.notes
+		{
+				font-family: "Segoe UI Light",Arial;
+			font-size: 20px;
+			color:steelblue;
+			text-align: right;
+			background: seashell;
+			text-shadow: 0px 0px 1px black;
+		}
+		.controls
+		{
+			text-align: center;
+		}
+		.controls button
+		{
+			width: 80px;
+			height: 80px;
+			border: none;
+			background: darkolivegreen;
+			color: floralwhite;
+			cursor: pointer;
+		}
+            .footer
+            {
+                  position:absolute;
+                  bottom: 0px;
+                  font-family: Arial,serif;
+                  color: black;
+                  font-size: 11px;
+                  text-align: center;
+                  width: 90%;
+                  left: 5%;
+            }
+		</style>
+</head>
+<body>
+	<div class="notes">Notes Music Player</div>
+		<div class="track_title" id="track_title"></div>
+	<div align="center"><audio src="" controls id="player"></audio></div>
+	<input type="file" id="fileSelect" style="visibility:hidden;"/>
+		<div class="controls"><button  id="openFile_control">Open File</button>
+		<button disabled id="play_control">Play</button>
+				<button hidden id="previous_control">Previous</button>
+								<button hidden  id="next_control">Next</button>
+                                                								<button  id="stop_control">Stopped</button>
+				</div>
+				
+		<div class="track_timer" id="track_timer"></div>
+
+	
+	<script>
+		var counter=0,index=0,currentItem=0;
+					var playList=new Array(); 
+		function $id(ob)
+		{
+			return document.getElementById(ob);
+		}
+		var fileselect = $id("fileSelect");
+		var wholeBody = document.getElementsByTagName('body')[0];
+		$id('play_control').addEventListener("click",togglePlay,false);
+		$id('openFile_control').addEventListener("click",function (){$id('fileSelect').click();},false);
+            		$id('stop_control').addEventListener("click",stopPlay,false);
+		$id('previous_control').addEventListener("click",function ()
+			{
+				currentItem=index-1;
+				if(currentItem>0){
+				controls.playByReference(playList[currentItem]);
+				}
+				else
+				{
+					currentItem++;
+				}
+				
+			}
+			,false);
+				$id('next_control').addEventListener("click",function ()
+			{
+				currentItem++;
+				if(playList.length>currentItem){
+				controls.playByReference(playList[currentItem]);
+				}
+				else
+				{
+				currentItem--;
+				}
+			}
+			,false);
+		wholeBody.addEventListener("drop",FileSelectHandler,false);
+		wholeBody.addEventListener("dragover",FileDragHover,false);
+		wholeBody.addEventListener("dragleave",FileDragOut,false);
+			fileselect.addEventListener("change",FileSelectHandler,false);
+                  function stopPlay()
+                  {
+                        controls.stopPlay();
+                  }
+			function FileDragHover(e)
+			{
+			e.stopPropagation();
+	e.preventDefault();
+			}
+			function FileDragOut(e)
+			{
+		e.stopPropagation();
+	e.preventDefault();
+
+			}
+			function FileSelectHandler(e)
+			{
+				$id('track_title').innerHTML="Loading...";
+				var file =  e.target.files || e.dataTransfer.files;
+				var f = file[0];
+				var reader = new FileReader();
+			reader.onload = function(e) {
+			$id('player').src=e.target.result;
+			$id('track_title').innerHTML=f.name;
+				playList[index++]=f;
+				console.log(playList);
+			controls.playControl(true);
+			$id('play_control').removeAttribute('disabled');
+			}
+			reader.readAsDataURL(f);
+			}
+			function togglePlay()
+			{
+				if(counter%2!=0)
+				controls.playControl(false);
+				else
+				controls.playControl(true);
+			}
+			function playControl(bool)
+			{
+				if(bool)
+				{
+					counter++;
+					$id('player').play();
+					$id('play_control').innerHTML="Pause";
+				}
+				else
+				{
+					counter++;
+					$id('player').pause();
+					$id('play_control').innerHTML="Play";
+				}
+			}
+			var controls = {};
+			controls={
+				playControl: function(bool)
+				{
+					if(bool)
+				{
+					counter++;
+					$id('player').play();
+					var timer=window.setInterval(function(){
+					$id('track_timer').innerHTML=controls.showTime(Math.round($id('player').currentTime))+" / "+controls.showTime(Math.round($id('player').duration));
+					},1000);
+                              if(Math.round($id('player').currentTime)==Math.round($id('player').duration))
+                                    {
+                                          window.clearInterval(timer);
+                                    }
+					$id('play_control').innerHTML="Pause";
+                                                            $id('stop_control').innerHTML="Stop";
+				}
+				else
+				{
+					counter++;
+					$id('player').pause();
+					$id('play_control').innerHTML="Play";
+				}
+				},
+				playByReference: function(f)
+				{
+			var reader = new FileReader();
+			reader.onload = function(e) {
+			$id('player').src=e.target.result;
+			$id('track_title').innerHTML=f.name;
+			playControl(true);
+			$id('play_control').removeAttribute('disabled');
+			}
+			reader.readAsDataURL(f);
+				},
+				showTime:function(ref)
+				{
+					var min=0;
+					var sec = 0;
+                              var sec = Math.round(ref%60);
+
+					if(Math.round(ref)>60)
+					{
+						 min= Math.round(ref/60);
+					}
+                              if(min<10){min="0"+min};if(sec<10){sec="0"+sec};
+					return min+":"+sec;
+				},
+                        stopPlay:function()
+                        {
+                              $id('player').src="";
+                              $id('stop_control').innerHTML="Stopped";
+                        }
+			}
+		</script>
+            <div class="footer">All rights reserved. <br>&copy; of Notes Inc. KIC</div>
+</body>

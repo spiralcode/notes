@@ -141,17 +141,17 @@ function datagateway(type)
             if(logged===true){var cookie='1';}else{var cookie = '0'};
             $id('spinner').style.display="block";
             $id('loginbutton').innerHTML="Logging in...";
-		$.post('login.php',{
+		notey.post('login.php',{
 			email: email ,
 			pass: pass ,
                         cook: cookie
-			},function(data,status){
+			},function(data){
                             
-				if(data==1)
+				if(data.responseText==1)
 				{
 					window.location.href='paper.php';
 				}
-				if(data==0)
+				if(data.responseText==0)
 				{
 				$id('errorshow').innerHTML='E-mail and Password doesn\'t seems to exist, try again or make an account.';	
                                             $id('loginbutton').innerHTML="Login";
@@ -201,7 +201,7 @@ Notes<sup>v3</sup>
 <tr><td><input type="password" id="password" placeholder="Password"/></td></tr><form name="dummy">
 <tr><td align="center"><input type="checkbox" value="yes" id="loggedin" style="color:#494949; font-size: 13px"/><label for =" loggedin"  style="color:#494949; font-size:14px;" >Remember me</label></td></form></tr><tr><td></td></tr>
 <tr><td align="center">
-<button data-kind="login" onclick="datagateway(this)" id="loginbutton">Login</button></td></tr></table></div>
+<button data-kind="login" onclick="datagateway(this);" id="loginbutton">Login</button></td></tr></table></div>
 </td><td align="center"><div class="loginarea"><table>
 <tr><td><input type="text" id="sname" placeholder="Name"/></td></tr>
 <tr><td><input type="text" id="semail" placeholder="E-mail"/></td></tr>
