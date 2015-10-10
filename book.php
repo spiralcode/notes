@@ -140,14 +140,10 @@ function showResult(url)
 		var json=JSON.parse(data.responseText);
 		if(json[0].status==0)
 		{	
-             if(json[0].query!=''){   
-            var ele="Nothing found matching <b>"+json[0].query+"</b>";
+            var ele="Nothing found ! <b></b>";
             $id('error').innerHTML=ele;
 
-             }
-
-
-		
+             
 		}
 		else
 		{     

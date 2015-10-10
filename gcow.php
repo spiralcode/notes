@@ -14,7 +14,7 @@ class grad
 {
 	var $id=0;
 	var $matches=0;
-	var $clue=" ";
+	var $clue=0;
 	var $fulltext=" ";
 	public function setvalues($a,$b,$c,$d)
 	{
@@ -41,6 +41,7 @@ while($row=mysqli_fetch_array($query))
 	$mixedtext=trim($mixedtext);
 seekup($rarr,$mixedtext,$row['id']);
 	}
+//Function that searches for matches and feed that to the grad class
 function seekup($words,$full,$id)
 {
 	$full=strtolower($full);
@@ -48,25 +49,29 @@ function seekup($words,$full,$id)
 	$matches=0;
 	$total_words=count($words);
 	$clue=" ";
+        $posIndex=0;
 	foreach($words as $item)
 	{
 		$item=strtolower($item);		
 		if(strpos($full,$item)!==false)
 		{
 		$pos=strpos($full,$item);
-		$clue=$clue.substr($full,$pos,20)."<b>...</b>";
-		++$matches;
+		//$clue=$clue.substr($full,$pos,20);
+		$posIndex=$pos; 
+                ++$matches;
 		}
 	}
+        
 	$word_matches=$matches;
 	$matches_per=round(($matches/$total_words)*100);
 	if($matches_per>0)
 	{
 	$a[$am]=new grad();
-	$a[$am]->setvalues($id,$word_matches,$clue,$full);
+	$a[$am]->setvalues($id,$word_matches,$posIndex,$full);
 	$am++;
 	}
 }
+
 $temp=new grad();
 for($var=0;$var<$am-1;$var++)
 {
@@ -87,6 +92,7 @@ $limit++;
 $match=$a[$u]->matches;
 $id=$a[$u]->id;
 $ftext=$a[$u]->fulltext;
+$clue=$a[$u]->clue;
 $eachnote[$noteindex++]=$id;
 }
 
@@ -106,9 +112,7 @@ if(mysqli_num_rows($query)==0)
 else
 {
 }
-//Note Feeding stuffs begin here....
-
-
+//Output Generation from below
 while($data=mysqli_fetch_array($query))
 {
 	$status=1;
@@ -128,7 +132,8 @@ while($data=mysqli_fetch_array($query))
 	$geo=$data['setglocation'];
 	$ftime=$data['ftime'];
 	$ilist=$loadimage;
-	$noteitem[$index++]=array("status"=>"$status","noteid"=>"$nid","content"=>"$content","time"=>"$time","geo"=>"$geo","ilist"=>array($imgs),"ftime"=>"$ftime");
+
+	$noteitem[$index++]=array("status"=>"$status","noteid"=>"$nid","content"=>"$content","time"=>"$time","geo"=>"$geo","ilist"=>array($imgs),"ftime"=>"$ftime","pos"=>$clue);
 	$imindex=0;
 	$imgs='';
 }
