@@ -22,7 +22,6 @@ font-size:18px;
 </style>
 <script>
 var ir=0;
-
 function $id(id)
 {
 	return document.getElementById(id);
