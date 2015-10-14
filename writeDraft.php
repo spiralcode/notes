@@ -132,18 +132,23 @@ $id('topstriptitle').innerHTML=title;
     .draftWorkSpace .writeArea
     {
         position: absolute;
-        width: 49%;
+        width: 49.5%;
         height: 100%;
-        background: #000000;
         left: 0px;
+background: rgba(0, 0, 0, 0.09);
+box-shadow: 0px 0px 2px black;
     }
         .draftWorkSpace .attachArea
     {
         position: absolute;
-        width: 49%;
+        width: 49.5%;
         height: 100%;
         background: #000000;
         right: 0px;
+background: rgba(0, 0, 0, 0.09);
+box-shadow: 0px 0px 2px black;
+
+
     }
     </style>
 </head>
@@ -164,7 +169,9 @@ $id('topstriptitle').innerHTML=title;
 </table>
 </div>
 <div class="draftWorkSpace">
-<div class="writeArea">This is where things are written.</div>
+<div class="writeArea">
+    <div align="center">Write Area</div>
+</div>
 <div class="attachArea">File table, Files attached</div>
 
 </div>
