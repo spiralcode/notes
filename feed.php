@@ -3,13 +3,11 @@ include 'session_check.php';
 include 'connect.php';
 include 'crawl/simple_html_dom.php';
 date_default_timezone_set('Asia/Calcutta');
-
 function getUrls($string) {
  $regex = '/https?\:\/\/[^\" ]+/i';
  preg_match_all($regex, $string, $matches);
  return ($matches[0]);
 }
-
 $content=$_POST['contents'];
 $content=mysqli_real_escape_string($conn, $content);
 $geo=$_POST['geolocation'];

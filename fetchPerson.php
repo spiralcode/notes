@@ -26,7 +26,7 @@
 			  }
 			  else if($data['geolocation']!="0,0")
 			  {
-				  				  array_push($locationList,$data['geolocation']);
+				 array_push($locationList,$data['geolocation']);
 			  }
 			  
           }

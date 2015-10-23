@@ -78,6 +78,7 @@ text-align: left;
     font-size: 20px;
     text-align: center;
     margin: 5%;
+
 }
 
 .personInfo #counts
@@ -94,21 +95,38 @@ text-align: left;
         margin: 5%;
            border-spacing: 10px;
 
+
 }
-.personInfo #placeBox div
+.personInfo #placeBox .placeBox_image
 {
     text-align: center;
     font-size: 20px;
-    display: table-cell;
     margin: 1%;
         float: left;
-        box-shadow: 0px 0px 1px #093658;
         border-radius: 2px;
+                   display: table-cell;
+                   width: 200px;
+                   height: 200px;
+
+
        
+}
+.personInfo #placeBox .placename
+{
+  position: relative;
+  bottom: 0px;
+  width: 90%;
+  text-align: center;
+  left: 5%;
+  font-size: 12px;
+  font-family: Arial,serif;
+  color:slateblue;
 }
 </style>
 <script>
 var ir=0;
+ var count = 0;
+
 function $id(id)
 {
 	return document.getElementById(id);
@@ -198,6 +216,7 @@ div.style.top=referObjectDimen.bottom;
 <div id="loading" class="spinner"></div>
 <div id="frameplace" class="frameplace">
 <script>
+    var r = 0;
 $id('datepicker').value=moment().format('DD-MM-YYYY');
 $id('keyinput').addEventListener('keyup',function(e)
 		{
@@ -245,7 +264,8 @@ list.focus();
 }
 function personPage(ob)
 {
- $id('autoFillList').remove();
+ var PlaceList=new Array();
+        $id('autoFillList').remove();
  var pid = ob.dataset.pid;
 $id('frameplace').innerHTML='';
 var ob = document.createElement('div');
@@ -268,6 +288,7 @@ var placeBox = document.createElement('div');
 $id('personInfo').appendChild(placeBox);
 placeBox.setAttribute('id','placeBox');
 
+
 notey.get('fetchPerson.php?pid='+pid,function(data)
 {
   var decData = JSON.parse(data.responseText);
@@ -283,18 +304,16 @@ notey.get('fetchPerson.php?pid='+pid,function(data)
 $id('counts').innerHTML='You mentioned '+noteCount+' times about '+grammer+' in your Notes';
 if(decData.locationCount!=0)
 $id('relation').innerHTML=decData.locationCount+" places been together.";
-var r = 0;
 while(decData.locations[r]!=null)
  {
-var staticImage='https://maps.googleapis.com/maps/api/staticmap?center='+decData.locations[r]+'&zoom=15&size=200x200&maptype=roadmap&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284';
-$id('placeBox').innerHTML+="<div><img src = "+staticImage+"/></div>";
- r++;
-    }
-}
-
-);
-
-}
+      notey.get('https://maps.googleapis.com/maps/api/geocode/json?latlng='+decData.locations[r]+'&key=AIzaSyA_HkUvZ2ncHBbYKvONx5jASKJ3T8djuTE',function(data)
+    {
+ var location = JSON.parse(data.responseText).results[0].geometry.location.lat+','+JSON.parse(data.responseText).results[0].geometry.location.lng;
+        var staticImage='https://maps.googleapis.com/maps/api/staticmap?center='+location+'&zoom=15&size=180x180&maptype=roadmap&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284';
+$id('placeBox').innerHTML+='<div class="placeBox_image"><img src = "'+staticImage+'"/><div id="place'+r+'" class="placename">'+JSON.parse(data.responseText).results[0].address_components[0].long_name+'</div></div>';
+    });
+    r++;
+    }});}
 function showResult(url)
 {
 $id('frameplace').innerHTML='';	
@@ -436,7 +455,7 @@ notey.notify('',{text:text,iframe:false,width:500,height:0});}
 <tr><td onclick="showMsg('settings.php',{title:'Settings',iframe:true}); showMenu(this);">Settings</td></tr>
 </table>
 </div>
-<div id="infoPaper"><div class="topstrip"><span id="topstriptitle"></span><div id="infoPaperClose" onclick="infoPaperHide()"><img style="width:20px; height:20px;" title="Close ! this thing" src="images/b_close.png"/></div></div><div id=infoPaperContent></div></div>
+<div id="infoPaper"><div class="topstrip"><span id="topstriptitle"></span><div id="infoPaperClose" onclick="infoPaperHide();"><img style="width:20px; height:20px;" title="Close ! this thing" src="images/b_close.png"/></div></div><div id=infoPaperContent></div></div>
 <script>
 $(function() {
     $( "#datepicker" ).datepicker(
