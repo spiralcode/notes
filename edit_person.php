@@ -14,6 +14,7 @@
 		$phone=$data['phone'];
 		$geoloc=$data['homelocation'];
 		$gender = $data['gender'];
+                
 	}
 
 	?>
@@ -63,7 +64,7 @@ a
 {
   text-decoration:none;
     color: #A384BD;
-		font-family:Arial,Serif;
+font-family:Arial,Serif;
 }
 a:hover
 {
@@ -112,7 +113,7 @@ function $id(ob)
 }
 function formsub()
 {
-	var phone = val($id("phone")), email = val($id("email")), dob = val($id("datepicker")), url = val($id("url")), geoloc = val($id("geo")),rel = val($id("relation")),phone = val($id("phone"));
+	var phone = val($id("phone")), email = val($id("email")), dob = val($id("datepicker")), url = val($id("url")), geoloc = val($id("geo")),rel = val($id("relation")),phone = val($id("phone")), name = val($id("name"));
 	var gender = 3; 
 	if(document.getElementsByName("gender")[0].checked)
 	{
@@ -128,7 +129,8 @@ function formsub()
 		url:url,
 		pid:'<?php echo $pid; ?>',
 		geoloc:geoloc,
-		gender:gender
+		gender:gender,
+                name:name
 	},function(data,success)
 	{
 if(data==1)
@@ -156,6 +158,7 @@ function travelto(target)
 <div id="heading"><?php echo ucfirst($name); ?></div>
 <div id = "formarea" align="center"><br><br>
 <table class="form" cellspacing="10">
+    <tr><td>Name</td><td><input type="email" id = "name" value="<?php echo ucfirst($name); ?>"></td></tr>
 	<tr><td>How are you  related to <?php echo ucfirst($name); ?></td><td><select value="<?php echo $relation; ?>" id ="relation">
 		<?php
 			$q3=mysqli_query($link,"select * from relations order by term asc")or die(mysqli_error($link));
@@ -172,7 +175,7 @@ function travelto(target)
 			}
 			?>
 		</select></td></tr>
-	<tr><td>Gender</td><td><span>Male </span> <input <?php if($gender=='0'){echo 'checked';} ?> name ="gender" value = "0" type ="radio"><span>Fe-male </span> <input <?php if($gender=='1'){echo 'checked';} ?>  type = "radio" name ="gender" value = "1"></td></tr>
+        <tr><td>Gender</td><td><span>Male </span> <input <?php if($gender=='0'){echo 'checked';} ?> name ="gender" value = "0" type ="radio"><span>Fe-male </span> <input <?php if($gender=='1'){echo 'checked';} ?>  type = "radio" name ="gender" value = "1"></td></tr>
 	<tr><td>Phone number</td><td><input type="text" id = "phone" value="<?php echo $phone; ?>"></td></tr>
 	<tr><td>E-mail</td><td><input type="email" id = "email" value="<?php echo $email; ?>"></td></tr>
 	<tr><td>Date of Birth</td><td><input type="email" id = "datepicker" value="<?php echo $dob; ?>"></td></tr>

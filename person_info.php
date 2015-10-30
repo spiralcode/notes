@@ -67,8 +67,7 @@ z-index:101;
 a
 {
  text-decoration:none;
- color: #A384BD;
-font-family:Arial,Serif;
+color: #FFFFFF;font-family:Arial,Serif;
 }
 a:hover
 {
@@ -76,28 +75,43 @@ a:hover
 }
 #heading
 {
-	color:#ED9450;
-	font-size:25px;
-	font-family:Arial,Serif;
-	text-align:center;
+color: #366637;
+font-size: 25px;
+font-family: Arial,Serif;
+text-align: center;
+text-shadow: 0px 0px 1px slateblue;
+margin: 1%;
 }
 .info
 {
-	font-family:Arial,serif;
-	font-size:12px;
-	color:#637A00;
+
 }
 .info td
 {
-	font-family:Arial,serif;
-	font-size:14px;
-	color:#637A00;
+font-family: Arial,serif;
+font-size: 14px;
+color: #637A00;
+}
+.info td:nth-child(even)
+{
+    
 }
 .navigate_raw
 {
 	font-size:14px;
 	color:#637A00;
 	text-align:right;
+        margin: 1%;
+}
+.divNavigate
+{
+height: 50px;
+line-height: 50px;
+font-size: 15px;
+background: rgb(54, 66, 102);
+text-align: right;
+box-shadow: 1px 1px 1px rgb(47, 35, 35);
+border-radius: 3px;
 }
 
 </style>
@@ -110,9 +124,8 @@ function $id(ob)
   </script>
 		</head>
 <body>
-	<span class="navigate_raw"><a href="peoples.php">Back to peoples</a> | <a href="edit_person.php?pid=<?php echo $pid; ?>">Edit <b><?php echo  ucfirst( $name); ?></b> 's data</a> | <a href="delete_person_warn.php?pid=<?php echo $pid; ?>&name=<?php echo  ucfirst( $name); ?>"> Delete <b><?php echo  ucfirst( $name); ?></b></a></span>
-		<br>
-		<div id="heading"><?php echo ucfirst($name); ?></div><br><br>		<br>
+	<div class="divNavigate"><span class="navigate_raw"><a href="peoples.php">Back to peoples</a> | <a href="edit_person.php?pid=<?php echo $pid; ?>">Edit <b><?php echo  ucfirst( $name); ?></b> 's data</a> | <a href="delete_person_warn.php?pid=<?php echo $pid; ?>&name=<?php echo  ucfirst( $name); ?>"> Delete <b><?php echo  ucfirst( $name); ?></b></a></span></div>
+		<div id="heading"><?php echo ucfirst($name); ?></div>
 		<div align="center" class="info">
 		<table border="0" cellspacing="10">
 			<tr><td>Birth on </td><td><?php riskdata($dob); ?></td></tr>

@@ -6,6 +6,7 @@
 $email = post('email');
 $dob = post('dob');
 $rel = post('rel');
+$name=post('name');
 $url = post('url');
 $geoloc = post('geoloc');
 $phone = post('phone');
@@ -18,7 +19,7 @@ $query = mysqli_query($link,"update peoples set
 	 homelocation = '$geoloc', 
 	 phone = '$phone' ,
 	 dob = '$dob',
-	 gender =  '$gender '
+	 gender =  '$gender ', name = '$name' 
 	   where id = $pid ") or die(mysqli_error($conn));
 	  echo "1";
 	?>
