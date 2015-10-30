@@ -24,10 +24,10 @@
 			  {
 				  array_push($locationList,$data['setglocation']);
 			  }
-			  else if($data['geolocation']!="0,0")
+		/*	  else if($data['geolocation']!="0,0")
 			  {
 				 array_push($locationList,$data['geolocation']);
-			  }
+			  }*/
 			  
           }
 		  array_unique($locationList,SORT_STRING);

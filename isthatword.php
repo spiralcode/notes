@@ -72,7 +72,7 @@ $notWords=array();
     {
         $dic_matches[$wi++]=$word;
     }
-    else
+    elseif(strlen($word)>1)
     {
         $word = strtolower($word);
         $query = mysqli_query($conn,"select name from peoples where userid = '$userid' and name = '$word' ") or die(mysqli_error($link));

@@ -2,15 +2,19 @@
 <!doctype html>
 <html>
 <head><title>Make  a Draft</title>
- <script src="3rdparty_ck/ckeditor.js"></script>
  <script src="raid.js"></script>
 
 <script src="ajax_1_10_2.js"></script>
+<script src="notify.js"></script>
+
+<script src="notey.js"></script>
 
   <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="raid.css">
+<link rel="stylesheet" href="notify.css">
 
 <script>
+    
 var start=1;
 var alteredDate=0;
 var detected_lat=0;
@@ -18,6 +22,7 @@ var time = new Date;
 var timer=time.getTime();
 var width=window.innerWidth;
 var height=window.innerHeight;
+
 function showMenu(ob)
 {
 if($id('flowOptions').style.display=='none'||$id('flowOptions').style.display=='')
@@ -38,23 +43,6 @@ function $id(id)
 {
 	return document.getElementById(id);
 }
-function $name(name)
-{
-	return document.getElementsByName(name)[0];
-}
-
-function savecheck()
-{
-	if(($id('tarea').innerHTML).length>0)
-	{
-               unsaved=true;
-
-}
-            else{
-                      unsaved=false;
-            }
-
-}
 function getPlaceImage(coords,address)
 {
 	var staticImage='https://maps.googleapis.com/maps/api/staticmap?center='+coords+'&zoom=15&size=300x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284';
@@ -70,29 +58,35 @@ function goTopage(ob)
 {
 	window.location.href=ob.dataset.link;
 }
-function infoPaper(resource,title,frame)
+function saveDraft()
 {
-if(frame!=1)
-{
-	$.get(resource,function(data,success)
-			{
-		$id('infoPaperContent').innerHTML=data;
-		$id('topstriptitle').innerHTML=title;
-			});
+    var content =$id('writeArea').innerHTML;
+    notey.post('feedDraft.php',{contents:content},function(data)
+    {
+        console.log(data.responseText);
+        if(data.responseText==1)
+            {
+                notey.notify('',{iframe:false,text:"Saved",width:600});
+            }
+    });
 }
-else
+function clearDraft()
 {
-$id('infoPaperContent').innerHTML='<iframe id="infoPaperFrame"></iframe>';
-$id('infoPaperFrame').src=resource;
-$id('topstriptitle').innerHTML=title;
-
+    $id('writeArea').innerHTML = "";
 }
-	$id('infoPaper').style.display='block';
-	var infoPaper = $id('infoPaper').getBoundingClientRect();
-	$id('infoPaper').style.left=(window.innerWidth/2)-(infoPaper.width/2)+'px';
-	$id('infoPaper').style.bottom=(window.innerHeight/2)-(infoPaper.height/2)+'px';
-	$id('infoPaperFrame').style.height=infoPaper.height-40+'px';
-	$id('infoPaperFrame').style.width=infoPaper.width-10+'px';
+  function fileList(data,name)
+{
+//Recieves the data file and embed 
+//
+        var td = document.createElement('div');
+        $id('attachArea').appendChild(td);
+        td.setAttribute('id','slot'+start++);
+        td.setAttribute('class','uploadslot');
+        //td.style.backgroundImage='url('+data+')';
+        td.innerHTML=name;
+        td.setAttribute('name',name);
+        td.setAttribute('data-uploaded','0');
+        td.setAttribute('class','item');
 }
 </script>
 
@@ -102,12 +96,7 @@ $id('topstriptitle').innerHTML=title;
     }
     button
     {
-        background: linear-gradient(#BBCAB4,#91B195);
-        border-radius: 1px;
-        display: table-cell;
-        color: #fff;
-        box-shadow: 1px 1px 2px #92AA88;
-        text-shadow: 1px 1px 5px #000;
+
     }
     button:hover
     {
@@ -137,12 +126,14 @@ $id('topstriptitle').innerHTML=title;
         left: 0px;
 background: rgba(0, 0, 0, 0.09);
 box-shadow: 0px 0px 2px black;
+overflow-y: scroll;
+
     }
         .draftWorkSpace .attachArea
     {
         position: absolute;
         width: 49.5%;
-        height: 100%;
+        height: 50%;
         background: #000000;
         right: 0px;
 background: rgba(0, 0, 0, 0.09);
@@ -150,10 +141,42 @@ box-shadow: 0px 0px 2px black;
 
 
     }
+            .draftWorkSpace .buttonArea
+    {
+        position: absolute;
+        width: 49.5%;
+        height: 50%;
+        right: 0px;
+top: 50%;
+
+
+    }
+            .draftWorkSpace .attachArea .item
+    {
+float: left;
+min-width: 150px;
+min-height: 150px;
+font-size: 13px;
+font-family: Arial,serif;
+border: 1px solid #0782C1;
+    }
+                .draftWorkSpace .attachArea .uploaded
+    {
+position: relative;
+float: left;
+min-width: 150px;
+min-height: 150px;
+border: 1px solid #0782C1;
+font-size: 13px;
+font-family: Arial,serif;
+border: 1px solid #0782C1;
+line-height: 150px;
+overflow-wrap:break-word;
+    }
     </style>
 </head>
 <body>
-
+<input type="file" id="fileselect" name="fileselect[]" multiple="multiple"  style="display: none;"/>
 <div id="loading" class="spinner"></div>
 <div class="topribbon" id="topribbon"><span class="logo">Notes <sup>draft</sup></span>
 <table align="right" cellspacing="4"><tr><td onclick="goTopage(this)" data-link="book.php">Read Notes</td><td onclick="showMenu(this)" data-link="paper.php">Menu</td>	<td onclick="goTopage(this)" data-link="logout.php">Logout</td></tr></table>
@@ -169,11 +192,18 @@ box-shadow: 0px 0px 2px black;
 </table>
 </div>
 <div class="draftWorkSpace">
-<div class="writeArea">
-    <div align="center">Write Area</div>
+<div id="writeArea" class="writeArea" contenteditable="true">
 </div>
-<div class="attachArea">File table, Files attached</div>
+<div id="attachArea" class="attachArea"><div>File table, Files attached</div></div>
+<div class="buttonArea">
+    <button onclick="saveDraft();">Save</button>
+    <button onclick="clearDraft();">New Draft</button>
+        <button onclick="$id('fileselect').click();">Put Files</button>
 
 </div>
+
+</div>
+<script src="uploadScript.js"></script>
+
 </body>
 </html>

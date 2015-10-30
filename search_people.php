@@ -3,18 +3,16 @@
 <script src="ajax_1_10_2.js"></script>
 <style>
 .spinner {
- display:none;
+display:none;
 z-index:101;
-  width: 40px;
-  height: 40px;
-  margin: 100px auto;
-  background-color: #0f0;
-
-  border-radius: 100%;  
-  -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
-  animation: sk-scaleout 1.0s infinite ease-in-out;
+ width: 40px;
+ height: 40px;
+ margin: 100px auto;
+ background-color: #0f0;
+ border-radius: 100%;  
+ -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
+ animation: sk-scaleout 1.0s infinite ease-in-out;
 }
-
 @-webkit-keyframes sk-scaleout {
   0% { -webkit-transform: scale(0) }
   100% {
@@ -61,39 +59,59 @@ a:hover
 }
 #spinnertext
 {
-	color:#ED9450;
-	font-size:14px;
+color: #115123;	font-size:14px;
 	font-family:Arial,Serif;
 	text-align:justify;
 }
 
 .result
 {
-	width:60%;
-	font-size:20px;
-	margin:1%;
-	font-family:arial,serif;
-	color:white;
-	border-radius:2px;
-background: rgba(46, 139, 87, 0.71);
-		border:1px solid #fff;
-                height: 50px;
-                float: bottom;
-                line-height: 50px;
+width: 60%;
+font-size: 15px;
+font-family: arial,serif;
+color: white;
+border-radius: 2px;
+background: rgba(51, 61, 29, 1);
+border: 1px solid #fff;
+height: 50px;
+float: bottom;
+line-height: 50px;
+border-radius: 3px;
+text-align: c;
+display: row;
+text-align: justify;
+left: 15%;
+position: relative;
+
                 
+}
+.result span
+{
+    margin-left: 1%;
 }
 .result:hover
 {
 	border:1px solid #C98078;
 }
+.result .optionSpace
+{
+    position: absolute;
+     right: 0px;
+     top: 0px;
+            z-index: 15;
+
+}
 .result button
 {
-	position:relative;
 	min-width:5px;
 	min-height:5px;
 	color:green;
 	cursor:pointer;
-        right: 0px;
+        border:none;
+        border-radius: 2px;
+        line-height: 30px;
+        float: left;
+        margin: 1px;
 }
 
 </style>
@@ -106,6 +124,7 @@ function addPerson(ob)
 {
 ob.setAttribute('disabled',"disabled");
 	var name = (ob.dataset.refer);
+        var name = $id(ob.dataset.rootid).getElementsByTagName('span')[0].innerHTML;
 	$.post('addperson.php',{
 		name: name
 	},function(data,success)
@@ -114,14 +133,21 @@ ob.setAttribute('disabled',"disabled");
 		$id(ob.dataset.rootid).style.background='#7FC978';	
 		ob.setAttribute('disabled',"disabled");
 		ob.innerHTML="Added";
-
 	});
 
+}
+function mergeWithTop(ob)
+{
+    var rootId=ob.dataset.rootid;
+    if($id(rootId-1)){
+    $id((rootId-1)).getElementsByTagName('span')[0].innerHTML+=' '+$id((rootId)).getElementsByTagName('span')[0].innerHTML;
+    $id(rootId).remove();
+    }
 }
   </script>
 		</head>
 <body>
-		<div id="spinnertext"><p>Scrowling for people names inside your Notes...</p><p>This might take some time to complete and depends upon the quanity of notes.</div>
+		<div id="spinnertext"><p align="center">Looking for people names inside your Notes. The time could extend a bit longer, depending upon the size of note. </p></div>
 	<div id="spinner" align="center" class="spinner"></div>
 	<div id="content"></div>
 	<div id ="list">
@@ -135,31 +161,42 @@ ob.setAttribute('disabled',"disabled");
 			var jsonobj = JSON.parse(data);
 		$id('spinner').style.display='none';
 		if(typeof(jsonobj[0])!=='undefined')
-		$id('spinnertext').innerHTML='<p>We guess below listed are names. The result might also include place names or word errors. Click the \'add\' button next to the person name to add them to the \'People\'s List\'.</p>';
+		$id('spinnertext').innerHTML='<p align="center">Below results might also include, Word errors, place names or other words. </p>';
 else
 $id('spinnertext').innerHTML='<p align="center">Can\'t find any new names, check the <a href="peoples.php">peoples list</a> they might be already there.';
 while(typeof(jsonobj[index])!=='undefined')
 {
-		var ele = jsonobj[index];
-		var newob=document.createElement('div');
-		$id('list').appendChild(newob).setAttribute("id",index);
-		$id('list').appendChild(newob).setAttribute("class","result");
-                var addButton=document.createElement('button');
-                document.getElementsByTagName('body')[0].appendChild(newob);
-                newob.innerHTML='<span>'+ele+'</span>';
-                newob.appendChild(addButton);
-                addButton.setAttribute('onclick','addPerson(this);');
-                addButton.setAttribute('data-rootid',index);
-                addButton.setAttribute('data-refer',ele);
-                addButton.innerHTML="Add";
-		index++;
-						}
-			});
-		$id('spinner').style.display='block';
-		$id('spinnertext').style.display='block';
-		
-		</script>
-</ol>
+var ele = jsonobj[index];
+var newob=document.createElement('div');
+$id('list').appendChild(newob).setAttribute("id",index);
+$id('list').appendChild(newob).setAttribute("class","result");
+newob.innerHTML='<span>'+ele+'</span>';
+document.getElementsByTagName('body')[0].appendChild(newob);
+var optionSpace = document.createElement('div');
+ $id(index).appendChild(optionSpace);
+optionSpace.setAttribute('id','optionSpace_'+index);
+optionSpace.setAttribute('class','optionSpace');
 
+var addButton=document.createElement('button');
+$id('optionSpace_'+index).appendChild(addButton);
+addButton.setAttribute('onclick','addPerson(this);');
+addButton.setAttribute('data-rootid',index);
+addButton.setAttribute('data-refer',ele);
+addButton.setAttribute('id','AddButton');
+addButton.innerHTML="Add to peoples";
+if(index>0){
+var merge_Button = document.createElement('button');
+$id('optionSpace_'+index).appendChild(merge_Button);
+merge_Button.innerHTML="Merge with name on top";
+merge_Button.setAttribute('onclick','mergeWithTop(this);');
+merge_Button.setAttribute('data-rootid',index);
+merge_Button.setAttribute('data-refer',ele);
+}
+index++;
+}});
+$id('spinner').style.display='block';
+$id('spinnertext').style.display='block';
+</script>
+</ol>
 </body>
 </html>

@@ -120,10 +120,12 @@ position:relative;
 {
 width: 20px;
 height:20px;
-background: rgba(75, 124, 231, 0.76);color:white;
 text-align:center;
+color: #BBCAB4;
 border:1px solid #fff;
 text-shadow: 0px 0px 1px #093658;
+background: rgba(5, 39, 22, 0.74);
+font-size: 15px;
 }
 .peoplelist td:hover
 {
