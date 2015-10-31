@@ -24,6 +24,24 @@
 			}
                         echo json_encode($pList);
         }
+        elseif($_GET['relation'])
+        {
+                    $q=$_GET['relation'];
+                    $rootQuery = mysqli_query($link,"select term from relations where grps = '$q' ")or die(mysqli_query($link));
+                    while($data=mysqli_fetch_array($rootQuery))
+                    {
+                 $rel = $data['term']; if($rel=='unsorted')
+        	$query=mysqli_query($link,"select * from peoples where userid = $userid and (relation like '$rel' or relation like '')  order by name asc ") or die(mysqli_error($link));
+                else
+                $query=mysqli_query($link,"select * from peoples where userid = $userid and (relation like '$rel')  order by name asc ") or die(mysqli_error($link));
+        while($row=mysqli_fetch_array($query))
+			{
+            $ob = new item($row['id'],  ucfirst($row['name']));
+            array_push($pList, $ob);
+			}
+                    }
+                        echo json_encode($pList);
+        }
         else
         {
             $pList[0]=0;

@@ -5,7 +5,8 @@
 	?>
 <html>
 	<head>
-		<script src="ajax_1_10_2.js"></script>
+
+				<script src="notey.js"></script>
 		<script>
 			function goTopage(ob,target)
 {
@@ -131,6 +132,39 @@ font-size: 15px;
 {
 	border:1px solid #C98078;
 }
+ .heading
+{
+	font-size:30px; 
+		font-family:Arial,serif;
+		color:  rgba(5, 39, 22, 0.74);
+}
+.grp
+{
+
+display:table;
+margin:2%;
+
+
+}
+
+.grp .entity
+{
+display: table-cell;
+float: left;
+width: 100px;
+height: 100px;
+margin: 2px;
+vertical-align: middle;
+text-align: center;
+color: #BBCAB4;
+border: 1px solid #fff;
+text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.42);
+background: rgba(44, 55, 32, 1);
+font-size: 15px;
+font-family: arial,serif;
+cursor: pointer;
+padding: 5px;
+}
 </style>
 <script>
 function $id(ob)
@@ -143,26 +177,87 @@ function $id(ob)
 	<script>
 		</script>
 		<div id="heading">Peoples</div>
-	<div style="height:100%">
-		<table id="peoplelist" cellspacing="2px" cellpadding="10" width="100%" height="50%" class="peoplelist">
-			<?php
-			$counter=0;
-			echo "<tr>";
-			while($row=mysqli_fetch_array($query))
+	<div style="height:100%" >
+		<?php
+			$relationList=array();
+			$grpsList=array();
+			$query1 = mysqli_query($conn,"select relation from peoples where userid  = $userid")or die(mysqli_error($conn));
+			while($data=mysqli_fetch_array($query1))
 			{
-				$pid = $row['id'];
-	
-				echo "<td data-link=\"person_info.php?pid=".$pid."\" onclick = \"goTopage(this)\">".ucfirst($row['name'])."</td>";
-
-				$counter++;
-									if($counter%3==0)
-				{
-					echo "</tr><tr>";
-				}
+				array_push($relationList,$data['relation']);
 			}
-				?>
-				</tr>
-			</table>
+			foreach(array_unique($relationList) as $item)
+			{
+
+							$query2 = mysqli_query($conn,"select grps from relations where term = '$item'" )or die(mysqli_error($conn));
+							while($data=mysqli_fetch_array($query2))
+							{
+								array_push($grpsList,$data['grps']);
+							}
+			}
+
+							foreach(array_unique($grpsList) as $item)
+							{
+								if($item=='fam')
+								{
+									echo '<div class = "grp" id = "family"><div class="heading">Family</div>
+									<script>notey.get(\'fetchPeoples.php?relation='.$item.'\',function(data){
+									var decData=JSON.parse(data.responseText);
+									var counter=0;
+									while(decData[counter]!=null)
+									{
+									var item = document.createElement(\'div\');
+									document.getElementById(\'family\').appendChild(item);
+									item.setAttribute(\'class\',\'entity\');
+								item.setAttribute(\'data-link\',\'person_info.php?pid=\'+decData[counter].id);
+																										item.setAttribute(\'onclick\',\'goTopage(this)\');
+									item.innerHTML=decData[counter].name;
+									counter++;
+									}
+									});</script>
+									</div>';
+								}
+								if($item=='frnd')
+								{
+									echo '<div class = "grp" id = "friend"><div class="heading">Friends</div><script>notey.get(\'fetchPeoples.php?relation='.$item.'\',function(data){
+									var decData=JSON.parse(data.responseText);
+									var counter=0;
+									while(decData[counter]!=null)
+									{
+									var item = document.createElement(\'div\');
+									document.getElementById(\'friend\').appendChild(item);
+									item.innerHTML=decData[counter].name;
+								    item.setAttribute(\'class\',\'entity\');
+								item.setAttribute(\'data-link\',\'person_info.php?pid=\'+decData[counter].id);
+								item.setAttribute(\'onclick\',\'goTopage(this)\');
+									counter++;
+									}
+									});</script>
+									</div>';
+								}}
+
+								if($item=='unsorted')
+								{
+									echo '<div class = "grp" id = "unsorted"><div class="heading">Miscellaneous</div><script>notey.get(\'fetchPeoples.php?relation='.$item.'\',function(data){
+									var decData=JSON.parse(data.responseText);
+									var counter=0;
+									while(decData[counter]!=null)
+									{
+									var item = document.createElement(\'div\');
+									document.getElementById(\'unsorted\').appendChild(item);
+									item.innerHTML=decData[counter].name;
+								    item.setAttribute(\'class\',\'entity\');
+								item.setAttribute(\'data-link\',\'person_info.php?pid=\'+decData[counter].id);
+								item.setAttribute(\'onclick\',\'goTopage(this)\');
+									counter++;
+									}
+									});</script>
+									</div>';
+								}
+							
+
+							
+			?>
 		</div>
 </body>
 </html>
