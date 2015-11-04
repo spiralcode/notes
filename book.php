@@ -13,6 +13,7 @@ include 'session_check.php';
 <link rel="stylesheet" href="raid.css"/>
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="style/jquery-ui.css">
+
 <title>Read your Notes</title>
 <style type="text/css">
 input
@@ -56,6 +57,11 @@ background: rgba(174, 205, 179, 0.3);width: 100%;
         cursor: pointer;
         width: 100%;
         position: relative;
+}
+.autoFillList div:focus
+{
+   background: rgba(174, 205, 179, 1);width: 100%;
+ 
 }
 .personInfo
 {
@@ -108,8 +114,6 @@ text-align: left;
                    width: 200px;
                    height: 200px;
 
-
-       
 }
 .personInfo #placeBox .placename
 {
@@ -208,7 +212,28 @@ div.style.top=referObjectDimen.bottom;
 </tr></table>
 <div align="center" id="searchoptions">
 <table  border="0"><tr>
-<td><input type="text" tabindex="2" len="50" onkeyup="autosearch();" placeholder="Search " id="keyinput"/></td>
+<td><input type="text"  len="50"  placeholder="Search " id="keyinput"/></td>
+<script>
+           $id('keyinput').addEventListener('keyup',function(e){
+             
+        if($id('keyinput').value[0]==='-'&&$id('keyinput').value.length>1)
+       {
+   
+         if(e.keyCode===40)
+             {
+$id('autoFillList').getElementsByTagName('div')[0].focus();
+}
+             else
+                 {
+                       notey.get('fetchPeoples.php?q='+$id('keyinput').value.substring(1),function(data){autoFillList(data.responseText);});       
+                 }
+       }
+    if(($id('keyinput').value).length%1===0&&($id('keyinput').value).length!=1&&e.keyCode!=40)
+        {
+            showResult('gcow.php?q='+$id('keyinput').value);
+        }
+  },false);
+    </script>
 <td><input type="text" id="datepicker" onChange="datesearch(this)"></td>
 </tr></table></div>
 </div>
@@ -225,42 +250,49 @@ $id('keyinput').addEventListener('keyup',function(e)
 		showResult('gcow.php?q='+$id('keyinput').value);
 	}
 		},false);
-function autosearch()
-{
-       if($id('keyinput').value[0]==='-'&&$id('keyinput').value.length>1)
-       {
-         notey.get('fetchPeoples.php?q='+$id('keyinput').value.substring(1),function(data){autoFillList(data.responseText);});
-       }
-    if(($id('keyinput').value).length%1===0&&($id('keyinput').value).length!=1)
-        {
-            showResult('gcow.php?q='+$id('keyinput').value);
-        }
-}
+
 function autoFillList(data)
 {
-  if(document.getElementById('autoFillList'))
+ var selAt=0;
+        if(document.getElementById('autoFillList'))
       {
           document.getElementById('autoFillList').remove();
       }
         var list = document.createElement('div');
     $id('optionbar').appendChild(list);
     list.setAttribute('class','autoFillList');
-        list.setAttribute('id','autoFillList');
-
+    list.setAttribute('id','autoFillList');
+        list.setAttribute('tabindex','1');
     var refer_Dimension=document.getElementById('keyinput').getBoundingClientRect();
-list.focus();
         list.style.left=refer_Dimension.left+'px';
     list.style.top=(refer_Dimension.bottom+1)+'px';
         list.style.width=refer_Dimension.width+'px';
     var dec_data=JSON.parse(data);
     var i = 0;
-    if(dec_data[i]!=null){    
+    if(dec_data[i]!=null){
         list.innerHTML=' ';
         while(dec_data[i]!=null)
         {
-            list.innerHTML+='<div data-pid = '+dec_data[i].id+' onclick="personPage(this);">'+dec_data[i].name+'</div>';
-            i++;
-        }}
+            var div = document.createElement('div');
+            list.appendChild(div);
+            div.setAttribute('tabindex','1');
+             div.setAttribute('data-pid',dec_data[i].id);
+             div.setAttribute('onclick','personPage(this);');
+             div.innerHTML=dec_data[i].name;
+div.addEventListener('keydown',function(e){
+if(e.keyCode===40)
+    {
+            $id('autoFillList').getElementsByTagName('div')[++selAt].focus();
+    }
+    if(e.keyCode===38)
+    {
+            $id('autoFillList').getElementsByTagName('div')[--selAt].focus();
+    }
+},false);
+                i++;
+
+        }
+        }
 }
 function personPage(ob)
 {

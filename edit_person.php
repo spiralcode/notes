@@ -14,7 +14,6 @@
 		$phone=$data['phone'];
 		$geoloc=$data['homelocation'];
 		$gender = $data['gender'];
-                
 	}
 
 	?>
@@ -152,14 +151,26 @@ function travelto(target)
 	window.location.href=target;
 }
   </script>
+  <script src="lib/jquery-1.10.2.js"></script>
+<script src="lib/jquery-ui.js"></script>
+<link rel="stylesheet" href="style/jquery-ui.css">
+
 		</head>
 <body>
+    <script>
+        $(function() {
+    $( "#datepicker" ).datepicker(
+    		{
+    	dateFormat: "dd-mm-yy"		
+});
+  });
+        </script>
 		<div align="right"><span class="navigate_raw"><a href="peoples.php">Back to peoples</a></span></div>
 <div id="heading"><?php echo ucfirst($name); ?></div>
 <div id = "formarea" align="center"><br><br>
 <table class="form" cellspacing="10">
     <tr><td>Name</td><td><input type="email" id = "name" value="<?php echo ucfirst($name); ?>"></td></tr>
-	<tr><td>How are you  related to <?php echo ucfirst($name); ?></td><td><select value="<?php echo $relation; ?>" id ="relation">
+	<tr><td>Relation with <?php echo ucfirst($name); ?></td><td><select value="<?php echo $relation; ?>" id ="relation">
 		<?php
 			$q3=mysqli_query($link,"select * from relations order by term asc")or die(mysqli_error($link));
 			while($rows=mysqli_fetch_array($q3))
@@ -179,7 +190,7 @@ function travelto(target)
 	<tr><td>Phone number</td><td><input type="text" id = "phone" value="<?php echo $phone; ?>"></td></tr>
 	<tr><td>E-mail</td><td><input type="email" id = "email" value="<?php echo $email; ?>"></td></tr>
 	<tr><td>Date of Birth</td><td><input type="email" id = "datepicker" value="<?php echo $dob; ?>"></td></tr>
-	<tr><td>Address of a page/link associated with <?php echo ucfirst($name); ?></td><td><input value="<?php echo $website; ?>" type="url" id = "url"></td></tr>
+	<tr><td>URL of associated page</td><td><input value="<?php echo $website; ?>" type="url" id = "url"></td></tr>
 	<tr><td>Home/ Resident location</td><td><input type="email" id = "geo" value="<?php echo $geoloc; ?>"></td></tr>
 	<tr><td colspan="2" align="center"><button onclick="formsub()">Save</button></td></tr>
 </div>

@@ -30,7 +30,7 @@
                     $rootQuery = mysqli_query($link,"select term from relations where grps = '$q' ")or die(mysqli_query($link));
                     while($data=mysqli_fetch_array($rootQuery))
                     {
-                 $rel = $data['term']; if($rel=='unsorted')
+                 $rel = $data['term']; if($q=='unsorted')
         	$query=mysqli_query($link,"select * from peoples where userid = $userid and (relation like '$rel' or relation like '')  order by name asc ") or die(mysqli_error($link));
                 else
                 $query=mysqli_query($link,"select * from peoples where userid = $userid and (relation like '$rel')  order by name asc ") or die(mysqli_error($link));

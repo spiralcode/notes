@@ -266,6 +266,10 @@ border:none;
 	background:#9C9DA5;
 	cursor:pointer;
 }
+#flowOptions td:focus
+{
+    background: #000000;
+}
 
 body
 {

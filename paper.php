@@ -315,7 +315,7 @@ e.preventDefault();
 		$('#geo').locationPicker();
 	</script>
         
-<div id="flowOptions" >
+<div tabindex="1" id="flowOptions" >
 <table width="100%">
 <tr><td onclick="showMsg('albums.php',{title:'Albums',iframe:true}); showMenu(this);">Photos</td></tr>
 <tr><td onclick="showMsg('mylinks.php',{title:'Links',iframe:true}); showMenu(this);">Links</td></tr>

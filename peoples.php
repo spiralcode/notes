@@ -135,35 +135,35 @@ font-size: 15px;
  .heading
 {
 	font-size:30px; 
-		font-family:Arial,serif;
-		color:  rgba(5, 39, 22, 0.74);
+font-family: "Segoe UI Light",arial,serif;		color: rgba(5, 39, 22, 0.57);
 }
 .grp
 {
 
 display:table;
 margin:2%;
-
-
-}
+background: rgba(223, 223, 223, 0.75);}
 
 .grp .entity
 {
-display: table-cell;
+    display: table-cell;
 float: left;
 width: 100px;
 height: 100px;
 margin: 2px;
 vertical-align: middle;
 text-align: center;
-color: #BBCAB4;
+color: #FFFFFF;
 border: 1px solid #fff;
 text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.42);
-background: rgba(44, 55, 32, 1);
+background: rgba(71, 141, 200, 1);
 font-size: 15px;
-font-family: arial,serif;
-cursor: pointer;
+font-family: "Segoe UI Light",arial,serif;cursor: pointer;
 padding: 5px;
+}
+.grp .entity:hover
+{
+    box-shadow: 0px 0px 5px #000;
 }
 </style>
 <script>
@@ -176,7 +176,6 @@ function $id(ob)
 <body>
 	<script>
 		</script>
-		<div id="heading">Peoples</div>
 	<div style="height:100%" >
 		<?php
 			$relationList=array();
@@ -198,7 +197,8 @@ function $id(ob)
 
 							foreach(array_unique($grpsList) as $item)
 							{
-								if($item=='fam')
+                            
+                                                            if($item=='fam')
 								{
 									echo '<div class = "grp" id = "family"><div class="heading">Family</div>
 									<script>notey.get(\'fetchPeoples.php?relation='.$item.'\',function(data){
@@ -217,9 +217,9 @@ function $id(ob)
 									});</script>
 									</div>';
 								}
-								if($item=='frnd')
+								elseif($item=='frnd')
 								{
-									echo '<div class = "grp" id = "friend"><div class="heading">Friends</div><script>notey.get(\'fetchPeoples.php?relation='.$item.'\',function(data){
+                                                                    echo '<div class = "grp" id = "friend"><div class="heading">Friends</div><script>notey.get(\'fetchPeoples.php?relation='.$item.'\',function(data){
 									var decData=JSON.parse(data.responseText);
 									var counter=0;
 									while(decData[counter]!=null)
@@ -227,6 +227,7 @@ function $id(ob)
 									var item = document.createElement(\'div\');
 									document.getElementById(\'friend\').appendChild(item);
 									item.innerHTML=decData[counter].name;
+                                                                        item.addEventListener(\'mousemove\',function(e){helloWindows(e);},true);
 								    item.setAttribute(\'class\',\'entity\');
 								item.setAttribute(\'data-link\',\'person_info.php?pid=\'+decData[counter].id);
 								item.setAttribute(\'onclick\',\'goTopage(this)\');
@@ -234,9 +235,9 @@ function $id(ob)
 									}
 									});</script>
 									</div>';
-								}}
+								}
 
-								if($item=='unsorted')
+								elseif($item=='unsorted')
 								{
 									echo '<div class = "grp" id = "unsorted"><div class="heading">Miscellaneous</div><script>notey.get(\'fetchPeoples.php?relation='.$item.'\',function(data){
 									var decData=JSON.parse(data.responseText);
@@ -254,10 +255,16 @@ function $id(ob)
 									});</script>
 									</div>';
 								}
+                                                        }
 							
 
 							
 			?>
 		</div>
+                <script>
+                    function helloWindows(e)
+{
+                    }
+                    </script>
 </body>
 </html>

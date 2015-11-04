@@ -67,7 +67,8 @@ z-index:101;
 a
 {
  text-decoration:none;
-color: #FFFFFF;font-family:Arial,Serif;
+font-family:Arial,Serif;
+text-decoration: none;
 }
 a:hover
 {
@@ -76,25 +77,33 @@ a:hover
 #heading
 {
 color: #366637;
-font-size: 25px;
-font-family: Arial,Serif;
-text-align: center;
-text-shadow: 0px 0px 1px slateblue;
+font-size: 50px;
+text-shadow: 0px 0px 1px rgb(206, 198, 213);
 margin: 1%;
+color: rgba(5, 39, 22, 0.57);
+font-family: "Segoe UI Light",arial,serif;
 }
 .info
 {
-
+min-width: 300px;
+background: lightgrey;
+height: 200px;
+border-radius: 1px;
+box-shadow: 0px 0px 5px rgb(54, 66, 102);
+margin-left: 30%;
 }
 .info td
 {
 font-family: Arial,serif;
 font-size: 14px;
-color: #637A00;
+color: #716619;
+text-shadow: 0px 0px 1px snow;
 }
 .info td:nth-child(even)
 {
-    
+font-size: 14px;
+color: rgb(121, 111, 39);
+font-weight: bold;
 }
 .navigate_raw
 {
@@ -108,12 +117,30 @@ color: #637A00;
 height: 50px;
 line-height: 50px;
 font-size: 15px;
-background: rgb(54, 66, 102);
-text-align: right;
-box-shadow: 1px 1px 1px rgb(47, 35, 35);
-border-radius: 3px;
+background: rgba(94, 100, 116, 0.78);text-align: right;
+border-radius: 2px;
+color: #FFFFFF;
 }
+.personImage
+{
+    width: 200px;;
+    height:200px;
+    background: salmon;
+    box-shadow: 1px 0px 5px rgb(54, 66, 102);
 
+}
+.infoContainer
+{
+    position: relative;
+    width: 90%;
+    margin-left:10%;
+}
+.infoContainer div
+{
+    position: relative;
+    float: left;
+    margin: 10px;
+}
 </style>
 <script>
 function $id(ob)
@@ -124,10 +151,12 @@ function $id(ob)
   </script>
 		</head>
 <body>
-	<div class="divNavigate"><span class="navigate_raw"><a href="peoples.php">Back to peoples</a> | <a href="edit_person.php?pid=<?php echo $pid; ?>">Edit <b><?php echo  ucfirst( $name); ?></b> 's data</a> | <a href="delete_person_warn.php?pid=<?php echo $pid; ?>&name=<?php echo  ucfirst( $name); ?>"> Delete <b><?php echo  ucfirst( $name); ?></b></a></span></div>
+	<div class="divNavigate"><span class="navigate_raw"><a href="peoples.php">Back to peoples</a>  | <a href="delete_person_warn.php?pid=<?php echo $pid; ?>&name=<?php echo  ucfirst( $name); ?>"> Delete <b><?php echo  ucfirst( $name); ?></b></a></span></div>
 		<div id="heading"><?php echo ucfirst($name); ?></div>
+             <div class="infoContainer">   <div class="personImage"><img src="http://localhost/notes/image.php?thumb&size=200x200&id=278"></div>
 		<div align="center" class="info">
-		<table border="0" cellspacing="10">
+		<table height="100%" width="100%" border="0" cellspacing="10">
+                    <tr><td colspan="2" align="right"><a href="edit_person.php?pid=29">Edit Info.</a></td></tr>
 			<tr><td>Birth on </td><td><?php riskdata($dob); ?></td></tr>
 			<tr><td>Phone</td><td><?php riskdata($phone); ?></td></tr>
 			<tr><td>E-Mail</td><td><?php riskdata($email); ?></td></tr>
@@ -144,6 +173,6 @@ function $id(ob)
 				
 				</td></tr>
 			</table>
-		</div>
+		</div></div>
 </body>
 </html>
