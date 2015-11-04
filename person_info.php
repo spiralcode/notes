@@ -156,7 +156,7 @@ function $id(ob)
              <div class="infoContainer">   <div class="personImage"><img src="http://localhost/notes/image.php?thumb&size=200x200&id=278"></div>
 		<div align="center" class="info">
 		<table height="100%" width="100%" border="0" cellspacing="10">
-                    <tr><td colspan="2" align="right"><a href="edit_person.php?pid=29">Edit Info.</a></td></tr>
+                    <tr><td colspan="2" align="right"><a href="edit_person.php?pid=<?php echo $pid; ?>">Edit Info.</a></td></tr>
 			<tr><td>Birth on </td><td><?php riskdata($dob); ?></td></tr>
 			<tr><td>Phone</td><td><?php riskdata($phone); ?></td></tr>
 			<tr><td>E-Mail</td><td><?php riskdata($email); ?></td></tr>
