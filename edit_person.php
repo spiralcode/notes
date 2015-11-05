@@ -71,10 +71,11 @@ a:hover
 }
 #heading
 {
-	color:#ED9450;
-	font-size:25px;
-	font-family:Arial,Serif;
-	text-align:center;
+color: #1A5F52;
+font-size: 30px;
+font-family: Arial,Serif;
+text-align: center;
+font-family: "Segoe UI",arial,serif;
 }
 .info
 {
@@ -84,8 +85,10 @@ a:hover
 }
 #formarea
 {
-	font-family:Arial,Serif;
-	font-size:12px;
+font-family: Arial,Serif;
+background: aliceblue;
+font-size: larger;
+box-shadow: 0px 0px 1px slateblue;
 }
 span
 {
@@ -94,8 +97,9 @@ span
 }
 .form tr td:nth-child(odd)
 {
-	text-align:right;
-	font-size:13px;
+text-align: right;
+font-size: 13px;
+color: darkolivegreen;
 }
 .navigate_raw
 {
@@ -170,6 +174,12 @@ function travelto(target)
 <div id = "formarea" align="center"><br><br>
 <table class="form" cellspacing="10">
     <tr><td>Name</td><td><input type="email" id = "name" value="<?php echo ucfirst($name); ?>"></td></tr>
+    <script>
+        document.getElementById('name').addEventListener('keyup',function(){
+            document.getElementById('heading').innerHTML=document.getElementById('name').value;
+        }
+    ,false);
+        </script>
 	<tr><td>Relation with <?php echo ucfirst($name); ?></td><td><select value="<?php echo $relation; ?>" id ="relation">
 		<?php
 			$q3=mysqli_query($link,"select * from relations order by term asc")or die(mysqli_error($link));
@@ -177,7 +187,7 @@ function travelto(target)
 			{
 				if($relation==$rows['term'])
 				{
-						echo "<option selected=\"selected\">".$rows['term']."</option>";		
+				echo "<option selected=\"selected\">".$rows['term']."</option>";		
 				}
 				else
 				{
@@ -187,12 +197,12 @@ function travelto(target)
 			?>
 		</select></td></tr>
         <tr><td>Gender</td><td><span>Male </span> <input <?php if($gender=='0'){echo 'checked';} ?> name ="gender" value = "0" type ="radio"><span>Fe-male </span> <input <?php if($gender=='1'){echo 'checked';} ?>  type = "radio" name ="gender" value = "1"></td></tr>
-	<tr><td>Phone number</td><td><input type="text" id = "phone" value="<?php echo $phone; ?>"></td></tr>
-	<tr><td>E-mail</td><td><input type="email" id = "email" value="<?php echo $email; ?>"></td></tr>
-	<tr><td>Date of Birth</td><td><input type="email" id = "datepicker" value="<?php echo $dob; ?>"></td></tr>
-	<tr><td>URL of associated page</td><td><input value="<?php echo $website; ?>" type="url" id = "url"></td></tr>
+	<tr><td>Phone number</td><td><input placeholder="Phone number" type="text" id = "phone" value="<?php echo $phone; ?>"></td></tr>
+	<tr><td>E-mail</td><td><input type="email" placeholder="E-Mail" id = "email" value="<?php echo $email; ?>"></td></tr>
+	<tr><td>Date of Birth</td><td><input type="email" placeholder="Date of Birth" id = "datepicker" value="<?php echo $dob; ?>"></td></tr>
+	<tr><td>URL of associated page</td><td><input placeholder="http://facebook.com/user" value="<?php echo $website; ?>" type="url" id = "url"></td></tr>
 	<tr><td>Home/ Resident location</td><td><input type="email" id = "geo" value="<?php echo $geoloc; ?>"></td></tr>
-	<tr><td colspan="2" align="center"><button onclick="formsub()">Save</button></td></tr>
+	<tr><td colspan="2" align="center"><center><button onclick="formsub()">Save</button></td></center></tr>
 </div>
 </body>
 </html>

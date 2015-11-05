@@ -86,8 +86,7 @@ font-family: "Segoe UI Light",arial,serif;
 .info
 {
 min-width: 300px;
-background: lightgrey;
-height: 200px;
+background: rgb(237, 237, 237);height: 200px;
 border-radius: 1px;
 box-shadow: 0px 0px 5px rgb(54, 66, 102);
 margin-left: 30%;
@@ -95,9 +94,10 @@ margin-left: 30%;
 .info td
 {
 font-family: Arial,serif;
-font-size: 14px;
-color: #716619;
+font-size: 15px;
+color: #092002;
 text-shadow: 0px 0px 1px snow;
+font-family: "Segoe UI Light",arial,serif;
 }
 .info td:nth-child(even)
 {

@@ -162,7 +162,6 @@ background: #fff;
       {
         var referDimension = ob.getBoundingClientRect(); 
         $id('overlayOptions').style.width=referDimension.width+"px";
-        //$id('overlayOptions').style.height=(referDimension.height*30)/100+"px";
         $id('overlayOptions').style.left=referDimension.left+"px";
                 $id('overlayOptions').style.top=referDimension.top+"px";
                 $id('overlayOptions').style.display='block';
