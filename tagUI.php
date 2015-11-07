@@ -92,7 +92,6 @@ width: 100%;
                     //Already added people list fetching
                     notey.get('tagEmbed.php?retrieve&iid=<?php echo $iid;?>',function(data)
                 {
-                    console.log("Wats recieved is "+data.responseText);
         var data = JSON.parse(data.responseText);
         var count = 0;       
 while(data[count]!=null)
@@ -113,7 +112,6 @@ while(data[count]!=null)
              function saveList()
              {
                 var li = pList.toString();
-               console.log("wats Send is "+li);
                 notey.post('tagEmbed.php?iid=<?php echo $iid; ?>',{list:li},function(data){
                   // alert(data.responseText); 
                 });
