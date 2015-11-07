@@ -14,6 +14,7 @@ $id=get('id');
               font-size: 20px;
               text-align: center;
               font-family:"Segoe UI Light",arial,serif;
+              cursor: pointer;
 
               
           }
@@ -30,5 +31,5 @@ $id=get('id');
 </style>
     </head>
     <body>
-        <div class="options">Delete Album</div>
+        <div class="options"><span>Delete Album</span> | <span>Rename</span></div>
     </body>

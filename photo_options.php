@@ -12,6 +12,7 @@ $id=get('id');
           {
               font-size: 15px;
               background: #fff;
+              margin-top: 10%;
           }
           body{
               background: #fff;
@@ -71,7 +72,5 @@ $id=get('id');
                 ob.style.texAlign="center";
     }
             </script>
-<div class="options" align="center"><span style="cursor:pointer;" onclick="deletesImage('<?php echo $id ?>');">Delete </span> | <span style="cursor:pointer;" onclick="tagPerson('<?php echo $id ?>');">Tag a person | <a onclick="msg('<p>Downloading starts any moment, please wait.</p>');" href ="downloadImage.php?id=<?php echo $id; ?>" target="_blank">Download</a> | <span onclick="changeFolder();">Move to another folder</span></div>
-<div id="infoSpace"></infoSpace>
-<div id="tagList">People, Person</div>
+<div class="options" align="center"><span style="cursor:pointer;" onclick="deletesImage('<?php echo $id ?>');">Delete </span> | <span style="cursor:pointer;" onclick="tagPerson('<?php echo $id ?>');">Tag people in this image | <a onclick="msg('<p>Downloading starts any moment, please wait.</p>');" href ="downloadImage.php?id=<?php echo $id; ?>" target="_blank">Download</a> | <span onclick="changeFolder();">Move to another folder</span></div>
     </body>
