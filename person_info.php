@@ -3,7 +3,12 @@
 	include 'connect.php';
 	include 'ease.php';
 	$pid=get('pid');
-	$query=mysqli_query($link,"select * from peoples where id = $pid ") or die(mysqli_error($link));
+        $imagery = mysqli_query($link,"select id from image where people like '%$pid%' and userid= $userid ") or die(mysqli_error($link));
+        while($row=  mysqli_fetch_array($imagery))
+        {
+            $Imagelink= $row['id'];
+}
+$query=mysqli_query($link,"select * from peoples where id = $pid ") or die(mysqli_error($link));
 	while($data=mysqli_fetch_array($query))
 	{
 		$name=$data['name'];
@@ -123,9 +128,8 @@ color: #FFFFFF;
 }
 .personImage
 {
-    width: 200px;;
-    height:200px;
-    background: salmon;
+    max-width: 200px;;
+    max-height:200px;
     box-shadow: 1px 0px 5px rgb(54, 66, 102);
 
 }
@@ -153,7 +157,9 @@ function $id(ob)
 <body>
 	<div class="divNavigate"><span class="navigate_raw"><a href="peoples.php">Back to peoples</a>  | <a href="delete_person_warn.php?pid=<?php echo $pid; ?>&name=<?php echo  ucfirst( $name); ?>"> Delete <b><?php echo  ucfirst( $name); ?></b></a></span></div>
 		<div id="heading"><?php echo ucfirst($name); ?></div>
-             <div class="infoContainer">   <div class="personImage"><img src="http://localhost/notes/image.php?thumb&size=200x200&id=278"></div>
+             <div class="infoContainer">   <div class="personImage">
+                     <img src="image.php?thumb&size=200x200&id=<?php echo $Imagelink; ?>"/>
+                     </div>
 		<div align="center" class="info">
 		<table height="100%" width="100%" border="0" cellspacing="10">
                     <tr><td colspan="2" align="right"><a href="edit_person.php?pid=<?php echo $pid; ?>">Edit Info.</a></td></tr>

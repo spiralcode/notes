@@ -12,23 +12,30 @@ $group=get('group')
 <link rel="stylesheet" href="raid.css"/>
         <script src="raid.js"></script>
           <script src="lib/jquery-ui.js"></script>
+        <script src="notey.js"></script>
 
 
       <style>
             .image_title 
             {
-            position: relative;
-            width:100%;
+            background: darkred;
             }
             .image_entity
             {
                 position: relative;
                 float: left;
                 cursor: pointer;
-                margin: 1%;
-                box-shadow: 0px 0px 1px #485565;
+                min-width: 150px;
+                min-height: 150px;
+                margin: 5px;
+                display: table-cell;
+                border-radius: 2px;
             }
-          .image_entity:hover
+                   .image_entity img:focus
+            {
+       border: 2px #0f74a8 solid;
+            }
+          .image_entity :hover
           {
           box-shadow: 0px 0px 0px #48654A;
           }
@@ -44,13 +51,14 @@ $group=get('group')
                 z-index: 9999;
                 text-align:right;
                 vertical-align:baseline;
-                background-image: url(images/optionbar.png);
                 color:#fff;
                 cursor: pointer;
+                background: rgba(85, 107, 47, 0.53);
+
             }
               #overlayOptions:hover
             {
-
+opacity: 1;
             }
             .options
             {
@@ -87,27 +95,7 @@ background: #fff;
                 var imageID=0;
                 function tagPerson(id)
             {
-                $.get('personList.php',function (data,success)
-            {
-                var json = JSON.parse(data);
-                var counter = 0; var attachString='';
-                while(typeof(json[counter])!='undefined')
-                    {
-                        attachString+='<option value = '+json[counter].id+'>'+json[counter].name+'</option>';
-                        counter++;
-                    }
-                    if(counter!=0)
-                        {
-                                    var ob = document.getElementById('infoSpace');              
-                ob.innerHTML='<div align="center"><p>This picture has whom ?</p><select id = "peoples"></select><div>';
-                $id('peoples').innerHTML=attachString;
-                }
-                else
-                    {                    var ob = document.getElementById('infoSpace');              
-                                        ob.innerHTML='<div align="center"><p>Your people\'s list is empty, you need atleast one to try this facility</p><div>';
-
-            }}
-            );
+        notey.notify('tagUI.php?iid='+id,{iframe:true,text:"Some"});     
             }
             function deletesImage(id)
             {
@@ -163,9 +151,11 @@ background: #fff;
         var referDimension = ob.getBoundingClientRect(); 
         $id('overlayOptions').style.width=referDimension.width+"px";
         $id('overlayOptions').style.left=referDimension.left+"px";
+                $id('overlayOptions').style.margin=5+"px";
                 $id('overlayOptions').style.top=referDimension.top+"px";
                 $id('overlayOptions').style.display='block';
                 $id('overlayOptions').setAttribute('onclick','imageOptions('+ob.id+')');
+                
                 
       }
       function overlayOptionsOut()
@@ -175,15 +165,12 @@ background: #fff;
       }
       function imageOptions(imageId)
       {
-    showMsg('photo_options.php?id='+imageId,{iframe:false,title:"Photo Options (Alpha)",expand:"auto"});  
-    $id('uq_content').style.backgroundImage="url(image.php?resize&factor=20&id="+imageId+")";
+          $id(imageId).focus();
+        notey.notify('photo_options.php?id='+imageId,{iframe:false,title:"Photo Options (Alpha)",expand:"auto"});  
+    //$id('uq_content').style.backgroundImage="url(image.php?resize&factor=20&id="+imageId+")";
         $id('uq_content').style.backgroundSize="fit";
                 $id('uq_content').style.backgroundRepeat="no-repeat";
                                 $id('uq_content').style.backgroundPosition="center center";
-
-
-
-
       }
     
             function fetchImages()
@@ -197,12 +184,13 @@ background: #fff;
                var ob=JSON.parse(data);
                while(typeof(ob[counter])!='undefined')
                    {
-              var state='<a target="_new" href="image.php?id='+ob[counter].id+'"><img  class="image_entity" src = "image.php?thumb&size=200x200&id='+ob[counter].id+'"/></a>';
-              var obj = document.createElement('span');
+              var state='<a target="_new" href="image.php?id='+ob[counter].id+'"><img tabindex="1"  class="image_entity" src = "image.php?thumb&size=148x148&id='+ob[counter].id+'"/></a>';
+              var obj = document.createElement('div');
               obj.innerHTML=state;
               obj.setAttribute('class','image_entity');
               obj.setAttribute('id',ob[counter].id);
               obj.setAttribute('onmouseover','overlayOptions(this);');
+             obj.setAttribute('tabindex','1');
               document.getElementById('img_container').appendChild(obj);
               counter++;
               ennam++;
@@ -213,7 +201,7 @@ background: #fff;
             {
             $id('img_container').innerHTML="<div align=\"center\"><strong>This album seems to be empty !</strong><p> You can attach images  via <a href=\"paper.php\" target=\"_top\">\'Add Note\' </a>option. All images uploaded will be in \'Attachements\' album.</div>";
             $id('img_container').setAttribute('class','empty');
-                        $id('spinner').style.display="none";
+            $id('spinner').style.display="none";
 
             }
             }
