@@ -103,6 +103,8 @@ opacity: .7;
                text-align: left;
                font-size: 18px;
                font-family: "Segoe UI Light",arial,serif;
+                               border: 1px solid #629ad9
+
                
                
            }
@@ -110,6 +112,9 @@ opacity: .7;
            {
                               font-size: 18px;
                               font-family: "Segoe UI Light",arial,serif;
+                                              border: 1px solid #629ad9;
+                                                  width:200px;
+
 
            }
             </style>
