@@ -1,0 +1,25 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="../../notey.js"></script>
+    </head>
+    <body>
+       
+        <div id="info">
+            
+        </div>
+    </body>
+     <script>
+            if (!!window.EventSource) {
+var source = new EventSource('glimpse.php');
+ source.addEventListener('message',function(e){
+    document.getElementById('info').innerHTML+=e.data;
+ });
+            }            </script>
+</html>

@@ -147,7 +147,7 @@ function mergeWithTop(ob)
   </script>
 		</head>
 <body>
-		<div id="spinnertext"><p align="center">Looking for people names inside your Notes. The time could extend a bit longer, depending upon the size of note. </p></div>
+		<div id="spinnertext"><p align="center">Looking for people names inside your Notes. The time this would take is proportional to the size of Note.</p></div>
 	<div id="spinner" align="center" class="spinner"></div>
 	<div id="content"></div>
 	<div id ="list">
@@ -161,7 +161,7 @@ function mergeWithTop(ob)
 			var jsonobj = JSON.parse(data);
 		$id('spinner').style.display='none';
 		if(typeof(jsonobj[0])!=='undefined')
-		$id('spinnertext').innerHTML='<p align="center">Below results might also include, Word errors, place names or other words. </p>';
+		$id('spinnertext').innerHTML='<p align="center">Below results might also include, word errors, place names or other words. </p>';
 else
 $id('spinnertext').innerHTML='<p align="center">Can\'t find any new names, check the <a href="peoples.php">peoples list</a> they might be already there.';
 while(typeof(jsonobj[index])!=='undefined')
