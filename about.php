@@ -43,7 +43,7 @@ and open the template in the editor.
     <body>
         <div class="container">
         <div class="title" >About</div>
-        <div class="briefing">This is an independent project coded by <a href="https://facebook.com/rajkrrishnan"> me </a> for self-amusement. 
+        <div class="briefing">This is an independent project coded by <a title="new" href="https://facebook.com/rajkrrishnan"> me </a> for self-amusement. 
        The project is 
      hosted in  SSL enabled, <a target="new" href="https://openshift.com">Redhat Cloud Server</a>. </div>
         </div>
