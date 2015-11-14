@@ -479,11 +479,11 @@ notey.notify('',{text:text,iframe:false,width:500,height:0});}
 </div>
 <div id="flowOptions" >
 <table width="100%">
-<tr><td onclick="showMsg('albums.php',{title:'Albums',iframe:true}); showMenu(this);">Photos</td></tr>
-<tr><td onclick="showMsg('mylinks.php',{title:'Links',iframe:true}); showMenu(this);">Links</td></tr>
-<tr><td onclick="showMsg('peoples.php',{title:'Peoples',iframe: true}); showMenu(this);">Peoples</td></tr>
-<tr><td onclick="showMsg('info.php',{title:'Informations',iframe: false}); showMenu(this);">Informations</td></tr>
-<tr><td onclick="showMsg('settings.php',{title:'Settings',iframe:true}); showMenu(this);">Settings</td></tr>
+<tr title="View all the photos which you ever uploaded, EVER."><td onclick="showMsg('albums.php',{title:'Albums',iframe:true}); showMenu(this);">Photos</td></tr>
+<tr title="Links which you included in your Notes are kept here."><td onclick="showMsg('mylinks.php',{title:'Links',iframe:true}); showMenu(this);">Links</td></tr>
+<tr title="Peoples added via Notes are here."><td onclick="showMsg('peoples.php',{title:'Peoples',iframe: true}); showMenu(this);">Peoples</td></tr>
+<tr title="Information Information :!"><td onclick="showMsg('info.php',{title:'Informations',iframe: false}); showMenu(this);">Informations</td></tr>
+<tr title="Well, make it fit for a bond villain."><td onclick="showMsg('settings.php',{title:'Settings',iframe:true}); showMenu(this);">Settings</td></tr>
 </table>
 </div>
 <div id="infoPaper"><div class="topstrip"><span id="topstriptitle"></span><div id="infoPaperClose" onclick="infoPaperHide();"><img style="width:20px; height:20px;" title="Close ! this thing" src="images/b_close.png"/></div></div><div id=infoPaperContent></div></div>
