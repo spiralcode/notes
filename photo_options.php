@@ -48,11 +48,6 @@ $id=get('id');
                 var ob = document.getElementById('infoSpace');
                 ob.innerHTML='<div align="center">Are you sure about this ? <button onclick="goDelete()">Yes</button><button onclick="noDelete()">No</button></div>';
             }
-              function changeFolder()
-            {
-                var ob = document.getElementById('infoSpace');
-                ob.innerHTML='<div align="center">Are you sure about this ? <button onclick="goDelete()">Yes</button><button onclick="noDelete()">No</button></div>';
-            }
             function goDelete()
             {
                 $.post('delete_image.php',
@@ -66,12 +61,14 @@ $id=get('id');
     }
     function noDelete()
     {
-        
         var ob = document.getElementById('infoSpace');
                 ob.innerHTML='';
                 ob.style.texAlign="center";
     }
             </script>
-<div class="options" align="center"><span style="cursor:pointer;" onclick="deletesImage('<?php echo $id ?>');">Delete </span> | <span style="cursor:pointer;" onclick="tagPerson('<?php echo $id ?>');">Tag people in this image | <a onclick="msg('<p>Downloading starts any moment, please wait.</p>');" href ="downloadImage.php?id=<?php echo $id; ?>" target="_blank">Download</a> | <span onclick="changeFolder();">Move to another folder</span></div>
+<div class="options" align="center"><span style="cursor:pointer;" onclick="deletesImage('<?php echo $id ?>');">Delete </span> | 
+    <span style="cursor:pointer;" onclick="tagPerson('<?php echo $id; ?>');">Tag people in this image</span> | 
+        <a onclick="msg('<p>Downloading starts any moment, please wait.</p>');" href ="downloadImage.php?id=<?php echo $id; ?>" target="_blank">Download</a> | 
+        <span onclick="changeFolder('<?php echo $id; ?>');" style="cursor:pointer;">Move to another folder.</span></div>
     <div id="infoSpace"></div>
     </body>

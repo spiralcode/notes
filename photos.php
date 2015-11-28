@@ -97,6 +97,10 @@ background: #fff;
             {
         notey.notify('tagUI.php?iid='+id,{iframe:true,text:"Some"});     
             }
+                function changeFolder(id)
+            {
+        notey.notify('cfolderUI.php?iid='+id,{iframe:true,text:"Some"});     
+            }
             function deletesImage(id)
             {
                 var ob = document.getElementById('infoSpace');              

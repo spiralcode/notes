@@ -15,4 +15,23 @@ if(isset($_GET['create']))
     echo 1;
     }
 }
+if(isset($_GET['list']))
+{
+    class ob
+    {
+        public $id=0;
+        public $name='';
+       function ob($id,$name){
+           $this->id=$id;
+           $this->name=$name;
+    }
+    };
+    $list= array();
+    $query=mysqli_query($link,"select name,id from image_folders where userid = $userid") or die(mysqli_error($link));
+    while($data=  mysqli_fetch_array($query))    
+    array_push($list,  new ob($data['id'],$data['name']) );
+    echo json_encode($list);
+
+    
+}
 ?>
