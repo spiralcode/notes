@@ -219,6 +219,12 @@ var smartslide=document.getElementById('smartslide').getBoundingClientRect();
 document.getElementById('spinner').style.left=(window.innerWidth/2)-(loading.width/2)+'px';
 document.getElementById('smartslide').style.left=(window.innerWidth/2)-(smartslide.width/2)+'px';
 </script>
-<p class="about" align="right"><span onclick="notey.notify('about.php',{title:'',iframe:true});">About</span></p>
+<p class="about" align="right"><span id="about" onclick="notey.notify('about.php',{title:'',iframe:true});">About</span></p>
 </body>
+<?php
+if(isset($_GET['deepdive']))
+{
+    echo "<script>document.getElementById('about').click();</script>";
+}
+?>
 </html>
