@@ -196,7 +196,7 @@ Notes<sup>v3</sup>
 <tr><td align="center" class="virtual">Login</td><td class="virtual" align="center">Sign Up</td></tr>
 <tr><td align="center" colspan="2"><span id="errorshow">&nbsp;<?php if(isset($_GET['logreq'])){echo "The service you requested requires you to login.";} ?></span></td></tr>
 <tr><td align="center">
-<div class="loginarea"><table><tr><td>
+<div id="loginarea"class="loginarea"><table><tr><td>
 <input type="text" id="email" placeholder="E-mail"/></td></tr>
 <tr><td><input type="password" id="password" placeholder="Password"/></td></tr><form name="dummy">
 <tr><td align="center"><input type="checkbox" value="yes" id="loggedin" style="color:#494949; font-size: 13px"/><label for =" loggedin"  style="color:#494949; font-size:14px;" >Remember me</label></td></form></tr><tr><td></td></tr>
@@ -221,6 +221,13 @@ document.getElementById('smartslide').style.left=(window.innerWidth/2)-(smartsli
 </script>
 <p class="about" align="right"><span id="about" onclick="notey.notify('about.php',{title:'',iframe:true});">About</span></p>
 </body>
+<script>
+    document.getElementById('loginarea').addEventListener('keyup',function(e){
+        if (e.keyCode===13){
+            datagateway(document.getElementById('loginbutton'));
+        }
+    });
+    </script>
 <?php
 if(isset($_GET['deepdive']))
 {
