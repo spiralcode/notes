@@ -2,11 +2,10 @@
 require_once 'Mobile_Detect.php';
 $detect = new Mobile_Detect;
 if ( $detect->isMobile() ) {
- header('location: /way');
+ header('location: way');
 }
 else
 {
-     header('location: way');
 
 }
 if(isset($_COOKIE['email']))

@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Caching It</title>
+        <title>Notes Go</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -11,7 +11,7 @@
         <!-- Place favicon.ico in the root directory -->
 
         <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/skeleton.css">
                 <link rel="stylesheet" href="mobstyle.css">
 
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
@@ -42,12 +42,12 @@
         <!-- Add your site or application content here -->
         <h1>Notes <sup>v3</sup></h1>
         <div class="login" align="center"><h3>Login</h3>
-        <form><table cellpadding="2"><tr>
+        <form><table><tr>
                     <td><span id="report">&nbsp;</span></td></tr><tr>
                     <td align="center">
             <input placeholder="E-mail" type="text" id="email"/></td></tr><tr>
                     <td align="center"> <input placeholder="Password" type="password" id="pass"/></td></tr>
-            <tr><td align="center"><button type="button" onclick="login();" align="center">Log In</button></td></tr>
+            <tr><td align="center"><button class="button-primary" type="button" onclick="login();" align="center">Log In</button></td></tr>
             </table>
         </form></div>
 

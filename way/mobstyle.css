@@ -1,9 +1,9 @@
 .login
 {
     background: lightsteelblue;
-    max-width: 50%;
-    margin-left: 25%;
     border-radius: 2px;
+    width: 90%;
+    margin-left: 5%;
     box-shadow: 1px 1px 2px #4d5a91;
 }
 h1
