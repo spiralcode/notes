@@ -40,16 +40,15 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
-        <h1>Notes <sup>v3</sup></h1>
-        <div class="login" align="center"><h3>Login</h3>
-        <form><table><tr>
-                    <td><span id="report">&nbsp;</span></td></tr><tr>
-                    <td align="center">
-            <input placeholder="E-mail" type="text" id="email"/></td></tr><tr>
-                    <td align="center"> <input placeholder="Password" type="password" id="pass"/></td></tr>
-            <tr><td align="center"><button class="button-primary" type="button" onclick="login();" align="center">Log In</button></td></tr>
-            </table>
-        </form></div>
+        <div class="topribbon"><h2>Notes <sup>v3</sup></h2></div>
+        <div class="login" align="center" ><h5 style="opacity: .5; text-align: right;">Login</h5>
+        <form>
+            <ul style="list-style: none;">
+           <li><span id="report">&nbsp;</span></li>
+            <li><input placeholder="E-mail" type="text" id="email"/></li>
+            <li><input placeholder="Password" type="password" id="pass"/></li>
+            <li><button class="button-primary" type="button" onclick="login();" >Log In</button></li>
+        </ul></form></div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>

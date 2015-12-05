@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Caching It</title>
+        <title>Notes Go</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -11,7 +11,7 @@
         <!-- Place favicon.ico in the root directory -->
 
         <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/skeleton.css">
                 <link rel="stylesheet" href="mobstyle.css">
 
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
@@ -40,8 +40,16 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
-        <h1>Notes <sup>v3</sup></h1>
-<p>Yes We are working on it.</p>
+        <div class="topribbon"><h2>Notes <sup>v3</sup></h2></div>
+        <div class="login" align="center" ><h5 style="opacity: .5; text-align: right;">Login</h5>
+        <form>
+            <ul style="list-style: none;">
+           <li><span id="report">&nbsp;</span></li>
+            <li><input placeholder="E-mail" type="text" id="email"/></li>
+            <li><input placeholder="Password" type="password" id="pass"/></li>
+            <li><button class="button-primary" type="button" onclick="login();" >Log In</button></li>
+        </ul></form></div>
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>

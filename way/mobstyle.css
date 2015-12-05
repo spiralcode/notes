@@ -6,7 +6,7 @@
     margin-left: 5%;
     box-shadow: 1px 1px 2px #4d5a91;
 }
-h1
+h2
 {
     color: #4d5a91;
     text-align: center;
@@ -21,4 +21,9 @@ h3{
 input
 {
     border: none;
+}
+.topribbon
+{
+background: rgba(172, 190, 218, 0.59);
+box-shadow: 1px 1px 1px slategray;
 }
