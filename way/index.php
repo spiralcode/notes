@@ -28,10 +28,13 @@
             }
             function login()
             {
+                $id('loginbutton').innerHTML="Logging in...";
                 var email=$id('email').value, pass = $id('pass').value;
                 notey.post('login.php',{email:email,pass:pass,cook:0},function(data){
                     var info = data.responseText;
-                    if(info==0){$id('report').innerHTML="Password or email is wrong, try again. ";}
+                    if(info==0){$id('report').innerHTML="Password or email is wrong, try again. ";
+        $id('loginbutton').innerHTML="Log In";            
+        }
                     else
                       window.location.href="home.php";
                 });
@@ -49,7 +52,7 @@
            <li><span id="report">&nbsp;</span></li>
             <li><input placeholder="E-mail" type="text" id="email"/></li>
             <li><input placeholder="Password" type="password" id="pass"/></li>
-            <li><button class="button-primary" type="button" onclick="login();" >Log In</button></li>
+            <li><button id="loginbutton" class="button-primary" type="button" onclick="login();" >Log In</button></li>
         </ul></form></div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
