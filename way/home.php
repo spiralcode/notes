@@ -41,16 +41,7 @@
 
         <!-- Add your site or application content here -->
         <h1>Notes <sup>v3</sup></h1>
-        <div class="login" align="center"><h3>Login</h3>
-        <form><table cellpadding="2"><tr>
-                    <td><span id="report">&nbsp;</span></td></tr><tr>
-                    <td align="center">
-            <input placeholder="E-mail" type="text" id="email"/></td></tr><tr>
-                    <td align="center"> <input placeholder="Password" type="password" id="pass"/></td></tr>
-            <tr><td align="center"><button type="button" onclick="login();" align="center">Log In</button></td></tr>
-            </table>
-        </form></div>
-
+<p>Yes We are working on it.</p>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
