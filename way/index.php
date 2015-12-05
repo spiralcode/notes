@@ -20,6 +20,8 @@
     </head>
     <body>
         <script>
+            //Notes Mobile
+
             function $id(id)
             {
                 return document.getElementById(id);
