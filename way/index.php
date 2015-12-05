@@ -56,5 +56,6 @@
         <script src="js/main.js"></script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <div class="footer"><p><a href="../index.php?web">Deskop</a></p></div>
     </body>
 </html>

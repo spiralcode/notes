@@ -20,19 +20,28 @@
     </head>
     <body>
         <script>
+
             function $id(id)
             {
                 return document.getElementById(id);
             }
-            function login()
+            function savenote()
             {
-                var email=$id('email').value, pass = $id('pass').value;
-                notey.post('login.php',{email:email,pass:pass,cook:0},function(data){
-                    var info = data.responseText;
-                    if(info==0){$id('report').innerHTML="Password or email is wrong, try again. ";}
-                    else
-                      window.location.href="home.php";
-                });
+                $id('savebutton').value="Saving...";
+var time = new Date;
+var timer=time.getTime();
+console.log(timer);
+ var contents=$id('note').value,detected_lat=0,detected_lng=0;
+notey.post('../feed.php',{contents:contents,timeid:timer,alterDate:0,geolocation:detected_lat+','+detected_lng,setglocation:000},function(data){
+ if(data.responseText==1)
+     {
+               $id('note').value='';
+            $id('note').placeholder='Last note saved';
+                            $id('savebutton').value="Save Note";
+
+     }
+});
+
             }
             </script>
         <!--[if lt IE 8]>
@@ -41,19 +50,17 @@
 
         <!-- Add your site or application content here -->
         <div class="topribbon"><h2>Notes <sup>v3</sup></h2></div>
-        <div class="login" align="center" ><h5 style="opacity: .5; text-align: right;">Login</h5>
-        <form>
-            <ul style="list-style: none;">
-           <li><span id="report">&nbsp;</span></li>
-            <li><input placeholder="E-mail" type="text" id="email"/></li>
-            <li><input placeholder="Password" type="password" id="pass"/></li>
-            <li><button class="button-primary" type="button" onclick="login();" >Log In</button></li>
-        </ul></form></div>
+        <div class="login" align="center" ><h5 style="opacity: .5; text-align: right;">Write Note</h5>
+    <form><textarea placeholder="Type in Notes here..." class="u-full-width" id="note" row="50" cols="100"></textarea>
+    <input id="savebutton" class="button-primary" onclick="savenote();"  type="button" value="Save Note">
+    </form>
 
+</div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
+        <div class="footer"><p><a href="../paper.php">Deskop</a> | <a href="logout.php">Logout</a></p></div>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     </body>
