@@ -154,7 +154,8 @@ init++;}}
 <!--<input onchange="datesearch(this);" id="datepicker" type="text" placeholder="01/01/2015">-->
         </div>
 <script>
-    $id('keyinput').addEventListener('blur',function(e){showResult('../gcow.php?q='+$id('keyinput').value);});
+        $id('keyinput').addEventListener('keyup',function(e){if(e.keyCode==13){showResult('../gcow.php?q='+$id('keyinput').value);}});
+
     </script>
     <div class="spinner" id="spinner"></div>
         <div id="frameplace" class="login" align="center" ><h5 style="opacity: .5; text-align: right;">No Notes this day</h5>
