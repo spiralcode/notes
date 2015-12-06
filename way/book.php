@@ -16,10 +16,19 @@ include 'session_check.php';
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/skeleton.css">
                 <link rel="stylesheet" href="mobstyle.css">
-
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
                 <script src="notey.js"></script>
-                <script src="../lib/moment.js"></script>
+                <link rel="stylesheet" href="../raid.css"/>
+<link rel="stylesheet" href="../style/jquery-ui.css">
+<script src="../lib/jquery-1.10.2.js"></script>
+
+<script src="../lib/jquery-ui.js"></script>
+<!--Rewrite-->
+<script src="../notey.js"></script>
+<script src="../raid.js"></script>
+<link rel="stylesheet" href="../raid.css"/>
+<link rel="stylesheet" href="../style/jquery-ui.css">
+<script src="../lib/moment.js"></script>
 
 <style>
     input[type="text"]
@@ -129,7 +138,15 @@ optEle.setAttribute('id',ir+'_opt');
 optEle.innerHTML=text;ir++;
 init++;}}
 });}
-            
+            function datesearch(ob,init)
+{
+    
+	if(init){console.log(ob);
+	showResult('../search.php?date='+ob);}
+	else{
+	showResult('../search.php?date='+ob.value);}	
+}
+
             </script>
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -137,18 +154,26 @@ init++;}}
 
         <!-- Add your site or application content here -->
         <div class="topribbon"><h5>Notes <sup>v3</sup></h5></div>
-        <div class="toolsBar" ><input type="text" id="keyinput" placeholder="Search for..."><input type="text" placeholder="01/01/2015"></div>
+        <div class="toolsBar" ><input type="text" id="keyinput" placeholder="Search for..."><input style="height:auto; margin: 0%;" value="Search" type="button" class="button-primary"  onclick="showResult();"><!--<input onchange="datesearch(this);" id="datepicker" type="text" placeholder="01/01/2015">--></div>
 <script>
     $id('keyinput').addEventListener('blur',function(e){showResult('../gcow.php?q='+$id('keyinput').value);});
     </script>
-        <div id="frameplace" class="login" align="center" ><h5 style="opacity: .5; text-align: right;">Write Note</h5>
+        <div id="frameplace" class="login" align="center" ><h5 style="opacity: .5; text-align: right;">No Notes this day</h5>
 </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
         <div class="footer"><p><a href="../paper.php">Deskop</a> | <a href="logout.php">Logout</a></p></div>
-
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+ <script>
+          /*  $(function() {
+    $( "#datepicker" ).datepicker(
+    		{
+    	dateFormat: "dd-mm-yy"		
+});
+  });*/
+    var thing = moment();
+datesearch(thing.format('DD-M-YYYY'),true);
+            </script>
     </body>
 </html>

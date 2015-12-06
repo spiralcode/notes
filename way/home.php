@@ -18,6 +18,7 @@ include 'session_check.php';
                 <link rel="stylesheet" href="mobstyle.css">
 
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+        
                 <script src="notey.js"></script>
 
     </head>
@@ -64,7 +65,7 @@ notey.post('../feed.php',{contents:contents,timeid:timer,alterDate:0,geolocation
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
         <div class="footer"><p><a href="../paper.php">Deskop</a> | <a href="logout.php">Logout</a></p></div>
-
+       
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     </body>
 </html>
