@@ -50,7 +50,7 @@
         <form>
             <ul style="list-style: none;">
            <li><span id="report">&nbsp;</span></li>
-            <li><input placeholder="E-mail" type="text" id="email"/></li>
+            <li><input placeholder="E-mail" autocomplete="off" type="text" id="email"/></li>
             <li><input placeholder="Password" type="password" id="pass"/></li>
             <li><button id="loginbutton" class="button-primary" type="button" onclick="login();" >Log In</button></li>
         </ul></form></div>
