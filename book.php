@@ -6,7 +6,6 @@ include 'session_check.php';
 <head>
 <script src="lib/moment.js"></script>
 <script src="ajax_1_10_2.js"></script>
-<script src="lib/jquery-1.10.2.js"></script>
 <script src="lib/jquery-ui.js"></script>
 <script src="notey.js"></script>
 <script src="raid.js"></script>
