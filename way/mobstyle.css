@@ -34,3 +34,23 @@ background: gainsboro;
 width: 90%;
 margin-left: 5%;
 }
+.toolsBar
+{
+background: rgba(143, 188, 143, 0.38);    text-align: center;
+    height: auto;
+}
+#frameplace
+{
+    width: 95%;
+    margin-left: 2.5%;
+    box-shadow: 0px 1px 1px slategray;
+    background: none;
+
+}
+#frameplace .note
+{
+    margin: 1%;
+    text-align: left;
+    background: gainsboro;
+    box-shadow: 0px 1px 3px #4d5a91;
+}
