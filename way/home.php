@@ -64,7 +64,7 @@ notey.post('../feed.php',{contents:contents,timeid:timer,alterDate:0,geolocation
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
-        <div class="footer"><p><a href="../paper.php">Deskop</a> | <a href="logout.php">Logout</a></p></div>
+        <div class="footer"><p><a href="../paper.php">Deskop</a> | <a href="book.php">Read Note</a> | <a href="logout.php">Logout</a></p></div>
        
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     </body>
