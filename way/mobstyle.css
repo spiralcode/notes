@@ -97,3 +97,10 @@ z-index:101;
     opacity: 0;
   }
 }
+.note .imgspace img {
+width: 4em;
+height: 4em;
+border-radius: 80px 80px 80px;
+border: 2px groove darkseagreen;
+opacity: .5;
+}

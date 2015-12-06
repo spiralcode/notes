@@ -26,7 +26,7 @@ $target_dir="media/";
 		$newwidth=$sizes[0];
 		$newheight=$sizes[1];
 		$thumb = imagecreatetruecolor($newwidth, $newheight);
-		if($extension=='jpeg'||$extension=='jpg'){
+		if($extension=='JPG'||$extension=='jpeg'||$extension=='jpg'){
                                     $source = imagecreatefromjpeg($filename);
 		header('Content-Type: image/jpeg');		
 		}
@@ -50,7 +50,7 @@ $target_dir="media/";
 		$newwidth=($width/100)*$factor;
 		$newheight=($height/100)*$factor;
 		$thumb = imagecreatetruecolor($newwidth, $newheight);
-		if($extension=='jpeg'||$extension=='jpg'){
+		if($extension=='JPG'||$extension=='jpeg'||$extension=='jpg'){
 		$source = imagecreatefromjpeg($filename);
 		header('Content-Type: image/jpeg');		
 		}
@@ -72,7 +72,7 @@ $target_dir="media/";
 		// Load
 		$thumb = imagecreatetruecolor($width, $height);
 		
-		if($extension=='jpeg'||$extension=='jpg'){
+		if($extension=='JPG'||$extension=='jpeg'||$extension=='jpg'){
 			$source = imagecreatefromjpeg($filename);
 			header('Content-Type: image/jpeg');
 				
