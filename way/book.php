@@ -48,12 +48,13 @@ var ir=0;
             }
             function showResult(url)
 {
-
-$id('frameplace').innerHTML='';	
+$id('frameplace').innerHTML=' ';	
+$id('spinner').style.display='block';
 	var init=0;
 	notey.get(url,function(data)
 	{
-        		var newob=document.createElement('div');
+        $id('spinner').style.display='none';
+        var newob=document.createElement('div');
 		$id('frameplace').appendChild(newob).setAttribute("id","error");
 		$id('frameplace').appendChild(newob).setAttribute("class","nonote");
 		var json=JSON.parse(data.responseText);
@@ -141,23 +142,21 @@ init++;}}
             function datesearch(ob,init)
 {
     
-	if(init){console.log(ob);
+	if(init){
 	showResult('../search.php?date='+ob);}
 	else{
 	showResult('../search.php?date='+ob.value);}	
 }
-
             </script>
-        <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-
-        <!-- Add your site or application content here -->
         <div class="topribbon"><h5>Notes <sup>v3</sup></h5></div>
-        <div class="toolsBar" ><input type="text" id="keyinput" placeholder="Search for..."><input style="height:auto; margin: 0%;" value="Search" type="button" class="button-primary"  onclick="showResult();"><!--<input onchange="datesearch(this);" id="datepicker" type="text" placeholder="01/01/2015">--></div>
+        <div class="toolsBar" ><input type="text" id="keyinput" placeholder="Search for...">
+      <input style="height:auto; margin: 0%;" value="Search" type="button" class="button-primary"  onclick="showResult('../gcow.php?q='+$id('keyinput').value);"/>
+<!--<input onchange="datesearch(this);" id="datepicker" type="text" placeholder="01/01/2015">-->
+        </div>
 <script>
     $id('keyinput').addEventListener('blur',function(e){showResult('../gcow.php?q='+$id('keyinput').value);});
     </script>
+    <div class="spinner" id="spinner"></div>
         <div id="frameplace" class="login" align="center" ><h5 style="opacity: .5; text-align: right;">No Notes this day</h5>
 </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
