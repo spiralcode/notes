@@ -1,3 +1,7 @@
+<?php
+if(isset($_COOKIE['e'])){
+header('location: login.php?cook');}
+?>
 <!doctype html>
 <html class="no-js" lang="">
     <head>
@@ -30,7 +34,11 @@
             {
                 $id('loginbutton').innerHTML="Logging in...";
                 var email=$id('email').value, pass = $id('pass').value;
-                notey.post('login.php',{email:email,pass:pass,cook:0},function(data){
+                if($id('cook').checked)
+                var    cook=1;
+                else 
+                 cook = 0;
+                notey.post('login.php',{email:email,pass:pass,cook:cook},function(data){
                     var info = data.responseText;
                     if(info==0){$id('report').innerHTML="Password or email is wrong, try again. ";
         $id('loginbutton').innerHTML="Log In";            
@@ -52,6 +60,7 @@
            <li><span id="report">&nbsp;</span></li>
             <li><input placeholder="E-mail" autocomplete="off" type="text" id="email"/></li>
             <li><input placeholder="Password" type="password" id="pass"/></li>
+            <li><input type="checkbox" id="cook">&nbsp;<span onclick="$id('cook').click();" for ="gender">remember me</span></li>
             <li><button id="loginbutton" class="button-primary" type="button" onclick="login();" >Log In</button></li>
         </ul></form></div>
 

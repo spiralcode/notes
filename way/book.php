@@ -159,7 +159,7 @@ init++;}}
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
-        <div class="footer"><p><a href="../book.php">Deskop</a> | <a href="home.php">Write Note</a> | <a href="logout.php">Logout</a></p></div>
+        <div class="footer"><p><a href="../book.php">Desktop</a> | <a href="home.php">Write Note</a> | <a href="logout.php">Logout</a></p></div>
  <script>
           /*  $(function() {
     $( "#datepicker" ).datepicker(
@@ -202,11 +202,11 @@ e.preventDefault();
                 if(xx>x)
                     {
        
-                 alert('Some');
-                               var new_date = moment(currentDate, "DD-MM-YYYY").add(-1,'days').format('DD-M-YYYY');
+                 var new_date = moment(currentDate, "DD-MM-YYYY").add(-1,'days').format('DD-M-YYYY');
                  currentDate= new_date;
-                 console.log(currentDate);
                     datesearch(currentDate,true);
+                    $id('keyinput').value=currentDate;
+                    
 
                  //right Swipe
                  
@@ -218,6 +218,8 @@ e.preventDefault();
                           var new_date = moment(currentDate, "DD-MM-YYYY").add(1, 'days').format('DD-M-YYYY');
                  currentDate= new_date;
                  datesearch(currentDate,true);
+                                     $id('keyinput').value=currentDate;
+
                     //left swipe
                             return 1;
                         }

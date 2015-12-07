@@ -28,12 +28,13 @@ box-shadow: 1px 1px 1px slategray;
 }
 .footer
 {
-position: absolute;
+position: fixed;
 bottom: 0px;
 text-align: center;
 width: 90%;
 margin-left: 5%;
 background: azure;
+background-attachment: fixed;
 }
 .toolsBar
 {

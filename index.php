@@ -3,11 +3,10 @@ require_once 'Mobile_Detect.php';
 $detect = new Mobile_Detect;
 if ( $detect->isMobile() &&isset($_GET['web'])!=true) {
  header('location: way');
+ break;
 }
-if(isset($_COOKIE['email']))
-{
-    header('location: login.php?cook');
-}
+if(isset($_COOKIE['e'])){
+header('location: login.php?cook');}
     ?>
 <!doctype html>
 <html >
@@ -150,7 +149,7 @@ function datagateway(type)
 			pass: pass ,
                         cook: cookie
 			},function(data){
-                            
+                            console.log(data.responseText);
 				if(data.responseText==1)
 				{
 					window.location.href='paper.php';

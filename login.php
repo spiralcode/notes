@@ -2,12 +2,14 @@
 include 'connect.php';
 session_start();
 $exist=0;
+$bis=0;
 if(isset($_GET['cook']))
 {
     //Detection of cookle existence
     //If cookie exist
-$email=$_COOKIE['email'];
-$pass=$_COOKIE['pass'];   
+$email= base64_decode($_COOKIE['p']);
+$pass= base64_decode($_COOKIE['e']);   
+
 }
 else
 {
@@ -36,21 +38,20 @@ while($row=mysqli_fetch_array($query))
 {
             $_SESSION['userid']=$row['id'];
             $_SESSION['uname']=$row['name'];
-
             $exist=1;
 }}
 if($exist==1)
 {
-            if(isset($_COOKIE['email']))
-            {         $_SESSION['cook_log']=1;
+            if(isset($_COOKIE['p']))
+            {   $_SESSION['cook_log']=1;
                 header('location: paper.php');
             }
             else
             {
-            if($bis=='1')
+            if($bis==1)
 {
-    setcookie("email",$email,time() + (86400 * 30), "/");
-    setcookie("pass",$pass,time() + (86400 * 30), "/");
+    setcookie("p",base64_encode($email),time() + (86400 * 30), "/");
+    setcookie("e",  base64_encode($pass),time() + (86400 * 30), "/");
 }
 $_SESSION['cook_log']=0;
             echo "1";
