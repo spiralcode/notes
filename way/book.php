@@ -177,7 +177,7 @@ var currentDate = thing.format('DD-M-YYYY');
             var t = 0,tt=0;
         document.getElementById('frameplace').addEventListener('touchstart',function(e)
     {
-
+e.preventDefault();
         var ob = e.changedTouches[0];
         x = ob.pageX;
         y = ob.pageY;
@@ -185,7 +185,9 @@ var currentDate = thing.format('DD-M-YYYY');
     });
      document.getElementById('frameplace').addEventListener('touchend',function(e)
     {
-   tt = new Date().getTime();
+e.preventDefault();
+
+        tt = new Date().getTime();
         var ob = e.changedTouches[0];
         xx = ob.pageX;
         yy = ob.pageY;
