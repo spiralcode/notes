@@ -202,7 +202,7 @@ e.preventDefault();
                 if(xx>x)
                     {
        
-                 
+                 alert('Some');
                                var new_date = moment(currentDate, "DD-MM-YYYY").add(-1,'days').format('DD-M-YYYY');
                  currentDate= new_date;
                  console.log(currentDate);
