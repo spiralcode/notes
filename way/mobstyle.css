@@ -28,11 +28,12 @@ box-shadow: 1px 1px 1px slategray;
 }
 .footer
 {
+position: absolute;
 bottom: 0px;
 text-align: center;
-background: gainsboro;
 width: 90%;
 margin-left: 5%;
+background: azure;
 }
 .toolsBar
 {
@@ -103,4 +104,14 @@ height: 4em;
 border-radius: 80px 80px 80px;
 border: 2px groove darkseagreen;
 opacity: .5;
+}
+.nonote
+{
+ height: 5em;
+width: 20em;
+background: gainsboro;
+line-height: 5em;
+color: currentcolor;
+box-shadow: 1px 1px 1px slategrey;
+    
 }

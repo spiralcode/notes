@@ -1,0 +1,79 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <style>
+            #touchBox
+            {
+                margin: 10px;
+                background: coral;
+                height: 200px; width: 200px;
+            }
+            </style>
+    </head>
+    <body>
+        <div id="touchBox">TODO write content</div>
+    </body>
+    <script>
+        
+            var x = 0,xx=0;
+            var y =0,yy=0;
+            var t = 0,tt=0;
+        document.getElementById('touchBox').addEventListener('touchstart',function(e)
+    {
+
+        var ob = e.changedTouches[0];
+        x = ob.pageX;
+        y = ob.pageY;
+        t = new Date().getTime();
+    });
+     document.getElementById('touchBox').addEventListener('touchend',function(e)
+    {
+   tt = new Date().getTime();
+        var ob = e.changedTouches[0];
+        xx = ob.pageX;
+        yy = ob.pageY;
+        if(Math.abs(tt-t)<200)
+            {
+                var abs_x = Math.abs(xx-x);
+                 var abs_y = Math.abs(yy-y);
+
+        if(abs_x>abs_y)
+            {
+                //x movement is greater
+                if(xx>x)
+                    {
+                 //console.log('Right Swipe');
+                    return 0;
+                    }
+                    else
+                        {
+                            //console.log('Left Swipe');
+                            return 1;
+                        }
+            }
+            else
+                {
+                    //y movement is greater
+                    if(yy>y)
+                        {
+                            //console.log("Down Swipe");
+                            return 2;
+                        }
+                        else
+                            {
+                                //console.log("Up Swipe");
+                                return 3;
+                            }
+                }
+            }
+    });
+        
+        
+        </script>
+</html>

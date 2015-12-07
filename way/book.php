@@ -10,24 +10,19 @@ include 'session_check.php';
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="apple-touch-icon" href="apple-touch-icon.png">
-        <!-- Place favicon.ico in the root directory -->
-
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/skeleton.css">
-                <link rel="stylesheet" href="mobstyle.css">
-        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-                <script src="notey.js"></script>
-                <link rel="stylesheet" href="../raid.css"/>
+         <link rel="stylesheet" href="mobstyle.css">
+        <link rel="stylesheet" href="../raid.css"/>
+ <link rel="stylesheet" href="../style/jquery-ui.css">
+     <link rel="stylesheet" href="../raid.css"/>
 <link rel="stylesheet" href="../style/jquery-ui.css">
-<script src="../lib/jquery-1.10.2.js"></script>
 
+<script src="js/vendor/modernizr-2.8.3.min.js"></script>
+<script src="../lib/jquery-1.10.2.js"></script>
 <script src="../lib/jquery-ui.js"></script>
-<!--Rewrite-->
 <script src="../notey.js"></script>
 <script src="../raid.js"></script>
-<link rel="stylesheet" href="../raid.css"/>
-<link rel="stylesheet" href="../style/jquery-ui.css">
 <script src="../lib/moment.js"></script>
 
 <style>
@@ -174,6 +169,73 @@ init++;}}
   });*/
     var thing = moment();
 datesearch(thing.format('DD-M-YYYY'),true);
+var currentDate = thing.format('DD-M-YYYY');
+
+//Code for swipe
+ var x = 0,xx=0;
+            var y =0,yy=0;
+            var t = 0,tt=0;
+        document.getElementById('frameplace').addEventListener('touchstart',function(e)
+    {
+
+        var ob = e.changedTouches[0];
+        x = ob.pageX;
+        y = ob.pageY;
+        t = new Date().getTime();
+    });
+     document.getElementById('frameplace').addEventListener('touchend',function(e)
+    {
+   tt = new Date().getTime();
+        var ob = e.changedTouches[0];
+        xx = ob.pageX;
+        yy = ob.pageY;
+        if(Math.abs(tt-t)<200)
+            {
+                var abs_x = Math.abs(xx-x);
+                 var abs_y = Math.abs(yy-y);
+
+        if(abs_x>abs_y)
+            {
+                //x movement is greater
+                if(xx>x)
+                    {
+       
+                 
+                               var new_date = moment(currentDate, "DD-MM-YYYY").add(-1,'days').format('DD-M-YYYY');
+                 currentDate= new_date;
+                 console.log(currentDate);
+                    datesearch(currentDate,true);
+
+                 //right Swipe
+                 
+
+                    return 0;
+                    }
+                    else
+                        {
+                          var new_date = moment(currentDate, "DD-MM-YYYY").add(1, 'days').format('DD-M-YYYY');
+                 currentDate= new_date;
+                 datesearch(currentDate,true);
+                    //left swipe
+                            return 1;
+                        }
+            }
+            else
+                {
+                    //y movement is greater
+                    if(yy>y)
+                        {
+                            //console.log("Down Swipe");
+                            return 2;
+                        }
+                        else
+                            {
+                                //console.log("Up Swipe");
+                                return 3;
+                            }
+                }
+            }
+    });
             </script>
     </body>
 </html>
