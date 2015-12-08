@@ -21,10 +21,15 @@ include 'session_check.php';
         
                 <script src="notey.js"></script>
 
+
     </head>
     <body>
+        
         <script>
+            
 //Notes Mobile
+var time = new Date;
+var timer=time.getTime();
             function $id(id)
             {
                 return document.getElementById(id);
@@ -47,6 +52,10 @@ notey.post('../feed.php',{contents:contents,timeid:timer,alterDate:0,geolocation
 });
 
             }
+            function $name(name)
+{
+	return document.getElementsByName(name)[0];
+}
             </script>
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -56,12 +65,14 @@ notey.post('../feed.php',{contents:contents,timeid:timer,alterDate:0,geolocation
         <div class="topribbon"><h2>Notes <sup>v3</sup></h2></div>
         <div class="login" align="center" ><h5 style="opacity: .5; text-align: right;">Write Note</h5>
     <form><textarea placeholder="Type in Notes here..." class="u-full-width" id="note" row="50" cols="100"></textarea>
-    <input id="camera" style="display:none;" type="file"  accept="image/*;capture=camera" />
-        <input onclick="$id('camera').click();" class="button-primary"  id="cameraButton" type="button" value="Camera">
+         <input multiple="multiple" id="fileselect" name="fileselect[]" style="display: none;" type="file"  accept="image/*;capture=camera" />   
+        <input onclick="$id('fileselect').click();" class="button-primary"  id="cameraButton" type="button" value="Camera">
+
         <input id="savebutton" class="button-primary" onclick="savenote();"  type="button" value="Save Note">
     
     </form>
-
+<div id="iQ"><table><tr id="iQlist"></tr></table>
+</div>
 </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
@@ -70,5 +81,7 @@ notey.post('../feed.php',{contents:contents,timeid:timer,alterDate:0,geolocation
         <div class="footer"><p><a href="../paper.php">Deskop</a> | <a href="book.php">Read Note</a> | <a href="logout.php">Logout</a></p></div>
        
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+                              <script src="fly_m.js"></script>
+
     </body>
 </html>
