@@ -56,7 +56,7 @@ notey.post('../feed.php',{contents:contents,timeid:timer,alterDate:0,geolocation
         <div class="topribbon"><h2>Notes <sup>v3</sup></h2></div>
         <div class="login" align="center" ><h5 style="opacity: .5; text-align: right;">Write Note</h5>
     <form><textarea placeholder="Type in Notes here..." class="u-full-width" id="note" row="50" cols="100"></textarea>
-    <input id="camera" style="display:none;" type="file"  accept="image/*" capture="camera"/>
+    <input id="camera" style="display:none;" type="file"  accept="image/*;capture=camera" />
         <input onclick="$id('camera').click();" class="button-primary"  id="cameraButton" type="button" value="Camera">
         <input id="savebutton" class="button-primary" onclick="savenote();"  type="button" value="Save Note">
     
