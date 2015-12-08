@@ -36,7 +36,6 @@ var height=window.innerHeight;
 if (navigator.geolocation) 
 {
     navigator.geolocation.getCurrentPosition(showPosition);
-    console.log('Fetching loc');
     
 }
  else

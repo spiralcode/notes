@@ -30,23 +30,26 @@ include 'session_check.php';
 //Notes Mobile
 var time = new Date;
 var timer=time.getTime();
+console.log("Core time"+timer);
             function $id(id)
             {
                 return document.getElementById(id);
             }
             function savenote()
             {
-                $id('savebutton').value="Saving...";
-var time = new Date;
+if($id('note').value=='')
+    {alert('Nothing to save !');
+        return;}
+        $id('savebutton').value="Saving...";
 var timer=time.getTime();
-console.log(timer);
  var contents=$id('note').value,detected_lat=0,detected_lng=0;
+ console.log("Note time"+timer);
 notey.post('../feed.php',{contents:contents,timeid:timer,alterDate:0,geolocation:detected_lat+','+detected_lng,setglocation:000},function(data){
  if(data.responseText==1)
      {
-               $id('note').value='';
+            $id('note').value='';
             $id('note').placeholder='Last note saved';
-                            $id('savebutton').value="Save Note";
+            $id('savebutton').value="Save Note";
 
      }
 });

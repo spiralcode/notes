@@ -85,23 +85,23 @@ $id('spinner').style.display='block';
                                     {
                                         timeago="Now";
                                     }
-                                    if(minutes>15&&minutes<60)
+                                    else if(minutes<60)
                                         {
                                             timeago="Some time before";
                                         }
-                                        if(minutes>60&&minutes<120)
+                                        else if(minutes<120)
                                             {
                                                 timeago= "1 hour before";
                                             }
-                                            if(minutes>120&&minutes<(24*60))
+                                            else if(minutes<(24*60))
                                             {
                                                 timeago=Math.floor(minutes/60)+" hours before";
                                             }
-                                            if(minutes>(24*60)&&minutes<(24*120))
+                                            else if(minutes<(24*120))
                                             {
                                                 timeago="A day before";
                                             }
-                                            if(minutes>(24*120))
+                                            else if(minutes>(24*120))
                                                 {
                                                     timeago=Math.floor(((minutes/60)/24))+" days before";
                                                 }
