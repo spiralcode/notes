@@ -202,7 +202,7 @@ Notes<sup>v3</sup>
 <div id="loginarea"class="loginarea"><table><tr><td>
 <input type="text" id="email" placeholder="E-mail"/></td></tr>
 <tr><td><input type="password" id="password" placeholder="Password"/></td></tr><form name="dummy">
-<tr><td align="center"><input type="checkbox" value="yes" id="loggedin" style="color:#494949; font-size: 13px"/><label for =" loggedin"  style="color:#494949; font-size:14px;" >Remember me</label></td></form></tr><tr><td></td></tr>
+<tr><td align="center"><input type="checkbox" value="yes" id="loggedin" style="color:#494949; font-size: 13px"/><label onclick="$id('loggedin').click();" for =" loggedin"  style="color:#494949; font-size:14px;" >Remember me</label></td></form></tr><tr><td></td></tr>
 <tr><td align="center">
 <button data-kind="login" onclick="datagateway(this);" id="loginbutton">Login</button></td></tr></table></div>
 </td><td align="center"><div class="loginarea"><table>
