@@ -50,6 +50,7 @@ notey.post('../feed.php',{contents:contents,timeid:timer,alterDate:0,geolocation
             $id('note').value='';
             $id('note').placeholder='Last note saved';
             $id('savebutton').value="Save Note";
+            $id('iQlist').innerHTML='';
 
      }
 });

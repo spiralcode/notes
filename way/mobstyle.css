@@ -135,12 +135,14 @@ box-shadow: 1px 1px 1px slategrey;
        height:5em;
     width:5em;
         background-size: 5em 5em;
+        background-repeat: no-repeat;
 }
 .uploadslot
 {
     width: 5em;
 height: 5em;
 background-size: 5em 5em;
+background-repeat: no-repeat;
 }
 .note .daysago {
 position: absolute;
@@ -150,4 +152,17 @@ opacity: .4;
 color: #3D4873;
 font-size: 20px;
 min-width: 50px;
+}
+    
+#uploadProgress img
+{
+    -webkit-animation:spin 4s linear infinite ;
+    -moz-animation:spin 4s linear infinite;
+    animation:spin 4s linear infinite;
+    width: 4em;
+    height: 4em;
+}
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } 
 }
