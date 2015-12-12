@@ -1,6 +1,6 @@
 <?php
 include 'session_check.php';
-include('connect.php');
+include 'connect.php';
 $id=$_GET['id'];
 $query=mysqli_query($link, "select filename from image where id=$id and userid = $userid")or die(mysqli_error($link));
 while($data=mysqli_fetch_array($query))
