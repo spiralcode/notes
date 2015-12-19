@@ -14,8 +14,16 @@
 		$phone=$data['phone'];
 		$geoloc=$data['homelocation'];
 		$gender = $data['gender'];
+                                    $onames=$data['nicknames'];
+                
+                
 	}
-
+        $onames=  json_decode($onames);
+        $onamesString = '';
+        if(sizeof ($onames)>0)
+        foreach($onames as $a){
+        $onamesString=$a.','.$onamesString;
+        }
 	?>
 <html>
 	<head>
@@ -116,7 +124,7 @@ function $id(ob)
 }
 function formsub()
 {
-	var phone = val($id("phone")), email = val($id("email")), dob = val($id("datepicker")), url = val($id("url")), geoloc = val($id("geo")),rel = val($id("relation")),phone = val($id("phone")), name = val($id("name"));
+	var phone = val($id("phone")), email = val($id("email")), dob = val($id("datepicker")), url = val($id("url")), geoloc = val($id("geo")),rel = val($id("relation")),phone = val($id("phone")), name = val($id("name")), onames=val($id("onames"));
 	var gender = 3; 
 	if(document.getElementsByName("gender")[0].checked)
 	{
@@ -133,6 +141,7 @@ function formsub()
 		pid:'<?php echo $pid; ?>',
 		geoloc:geoloc,
 		gender:gender,
+                onames:onames,
                 name:name
 	},function(data,success)
 	{
@@ -202,6 +211,7 @@ function travelto(target)
 	<tr><td>Date of Birth</td><td><input type="email" placeholder="Date of Birth" id = "datepicker" value="<?php echo $dob; ?>"></td></tr>
 	<tr><td>URL of associated page</td><td><input placeholder="http://facebook.com/user" value="<?php echo $website; ?>" type="url" id = "url"></td></tr>
 	<tr><td>Home/ Resident location</td><td><input type="email" id = "geo" value="<?php echo $geoloc; ?>"></td></tr>
+        <tr><td>Other names</td><td><textarea  style="font-family:Arial;" id="onames" rows="5" placeholder="seperate each name by comma eg. Apple,Grapes"><?php echo $onamesString; ?></textarea></td></tr>
 	<tr><td colspan="2" align="center"><center><button onclick="formsub()">Save</button></td></center></tr>
 </div>
 </body>

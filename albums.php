@@ -6,10 +6,9 @@
         <script src="ajax_1_10_2.js"></script>
           <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="raid.css"/>
-        <script src="raid.js"></script>
-                <script src="notey.js"></script>
-
-          <script src="lib/jquery-ui.js"></script>
+<script src="raid.js"></script>
+<script src="notey.js"></script>
+<script src="lib/jquery-ui.js"></script>
 
 
       <style>
@@ -103,19 +102,14 @@ opacity: .7;
                text-align: left;
                font-size: 18px;
                font-family: "Segoe UI Light",arial,serif;
-                               border: 1px solid #629ad9
-
-               
-               
+               border: 1px solid #629ad9; 
            }
            .formArea button
            {
                               font-size: 18px;
                               font-family: "Segoe UI Light",arial,serif;
-                                              border: 1px solid #629ad9;
-                                                  width:200px;
-
-
+                              border: 1px solid #629ad9;
+                              width:200px;
            }
             </style>
             <script>

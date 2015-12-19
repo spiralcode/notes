@@ -12,6 +12,9 @@ $geoloc = post('geoloc');
 $phone = post('phone');
 $pid = post('pid');
 $gender = post('gender');
+$onames=post('onames');
+$onames=  explode(',',$onames);
+$onames=  json_encode($onames);
 $query = mysqli_query($link,"update peoples set 
 	relation = '$rel', 
 	email = '$email',
@@ -19,7 +22,7 @@ $query = mysqli_query($link,"update peoples set
 	 homelocation = '$geoloc', 
 	 phone = '$phone' ,
 	 dob = '$dob',
-	 gender =  '$gender ', name = '$name' 
+	 gender =  '$gender ', name = '$name' , nicknames = '$onames'
 	   where id = $pid ") or die(mysqli_error($conn));
 	  echo "1";
 	?>
