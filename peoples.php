@@ -177,83 +177,84 @@ function $id(ob)
 	<script>
 		</script>
 	<div style="height:100%" >
-		<?php
-			$relationList=array();
-			$grpsList=array();
-			$query1 = mysqli_query($conn,"select relation from peoples where userid  = $userid")or die(mysqli_error($conn));
-			while($data=mysqli_fetch_array($query1))
-			{
-				array_push($relationList,$data['relation']);
-			}
-			foreach(array_unique($relationList) as $item)
-			{
+	<?php
+	$relationList=array();
+	$grpsList=array();
+	$query1 = mysqli_query($conn,"select relation from peoples where userid  = $userid")or die(mysqli_error($conn));
+	while($data=mysqli_fetch_array($query1))
+	{
+	array_push($relationList,$data['relation']);
+	}
+        $relationList = array_unique($relationList,SORT_STRING);
+	foreach($relationList as $item)
+	{
+	$query2 = mysqli_query($conn,"select grps from relations where term = '$item'" )or die(mysqli_error($conn));
+        if($item==null)
+        array_push($grpsList,'unsorted');
+	while($data=mysqli_fetch_array($query2))
+	{
+	array_push($grpsList,$data['grps']);
+	}
+	}
+        $grpsList=  array_unique($grpsList,SORT_STRING);
+	foreach($grpsList as $item)
+	{
+            if($item=='fam')
+	{
+	echo '<div class = "grp" id = "family"><div class="heading">Family</div>
+	<script>notey.get(\'fetchPeoples.php?relation='.$item.'\',function(data){
+	var decData=JSON.parse(data.responseText);
+	var counter=0;
+	while(decData[counter]!=null)
+	{
+	var item = document.createElement(\'div\');
+	document.getElementById(\'family\').appendChild(item);
+	item.setAttribute(\'class\',\'entity\');
+	item.setAttribute(\'data-link\',\'person_info.php?pid=\'+decData[counter].id);
+	item.innerHTML=decData[counter].name;
+        	item.setAttribute(\'onclick\',\'goTopage(this)\');
 
-							$query2 = mysqli_query($conn,"select grps from relations where term = '$item'" )or die(mysqli_error($conn));
-							while($data=mysqli_fetch_array($query2))
-							{
-								array_push($grpsList,$data['grps']);
-							}
-			}
-
-							foreach(array_unique($grpsList) as $item)
-							{
-                            
-                                                            if($item=='fam')
-								{
-									echo '<div class = "grp" id = "family"><div class="heading">Family</div>
-									<script>notey.get(\'fetchPeoples.php?relation='.$item.'\',function(data){
-									var decData=JSON.parse(data.responseText);
-									var counter=0;
-									while(decData[counter]!=null)
-									{
-									var item = document.createElement(\'div\');
-									document.getElementById(\'family\').appendChild(item);
-									item.setAttribute(\'class\',\'entity\');
-								item.setAttribute(\'data-link\',\'person_info.php?pid=\'+decData[counter].id);
-																										item.setAttribute(\'onclick\',\'goTopage(this)\');
-									item.innerHTML=decData[counter].name;
-									counter++;
-									}
-									});</script>
-									</div>';
-								}
-								elseif($item=='frnd')
-								{
-                                                                    echo '<div class = "grp" id = "friend"><div class="heading">Friends</div><script>notey.get(\'fetchPeoples.php?relation='.$item.'\',function(data){
-									var decData=JSON.parse(data.responseText);
-									var counter=0;
-									while(decData[counter]!=null)
-									{
-									var item = document.createElement(\'div\');
-									document.getElementById(\'friend\').appendChild(item);
-									item.innerHTML=decData[counter].name;
-                                                                        item.addEventListener(\'mousemove\',function(e){helloWindows(e);},true);
-								    item.setAttribute(\'class\',\'entity\');
-								item.setAttribute(\'data-link\',\'person_info.php?pid=\'+decData[counter].id);
-								item.setAttribute(\'onclick\',\'goTopage(this)\');
-									counter++;
-									}
-									});</script>
-									</div>';
-								}
-
-								elseif($item=='unsorted')
-								{
-									echo '<div class = "grp" id = "unsorted"><div class="heading">Miscellaneous</div><script>notey.get(\'fetchPeoples.php?relation='.$item.'\',function(data){
-									var decData=JSON.parse(data.responseText);
-									var counter=0;
-									while(decData[counter]!=null)
-									{
-									var item = document.createElement(\'div\');
-									document.getElementById(\'unsorted\').appendChild(item);
-									item.innerHTML=decData[counter].name;
-								    item.setAttribute(\'class\',\'entity\');
-								item.setAttribute(\'data-link\',\'person_info.php?pid=\'+decData[counter].id);
-								item.setAttribute(\'onclick\',\'goTopage(this)\');
-									counter++;
-									}
-									});</script>
-									</div>';
+	counter++;
+	}
+	});</script>
+	</div>';
+	}
+	elseif($item=='frnd')
+	{
+                  echo '<div class = "grp" id = "friend"><div class="heading">Friends</div><script>notey.get(\'fetchPeoples.php?relation='.$item.'\',function(data){
+	var decData=JSON.parse(data.responseText);
+	var counter=0;
+	while(decData[counter]!=null)
+	{
+	var item = document.createElement(\'div\');
+	document.getElementById(\'friend\').appendChild(item);
+	item.innerHTML=decData[counter].name;
+                  item.addEventListener(\'mousemove\',function(e){helloWindows(e);},true);
+	item.setAttribute(\'class\',\'entity\');
+	item.setAttribute(\'data-link\',\'person_info.php?pid=\'+decData[counter].id);
+	item.setAttribute(\'onclick\',\'goTopage(this)\');
+	counter++;
+	}
+	});</script>
+	</div>';
+	}
+	elseif($item=='unsorted')
+	{
+	echo '<div class = "grp" id = "unsorted"><div class="heading">Miscellaneous</div><script>notey.get(\'fetchPeoples.php?relation='.$item.'\',function(data){
+var decData=JSON.parse(data.responseText);
+	var counter=0;
+	while(decData[counter]!=null)
+	{
+	var item = document.createElement(\'div\');
+	document.getElementById(\'unsorted\').appendChild(item);
+	item.innerHTML=decData[counter].name;
+    item.setAttribute(\'class\',\'entity\');
+	item.setAttribute(\'data-link\',\'person_info.php?pid=\'+decData[counter].id);
+	item.setAttribute(\'onclick\',\'goTopage(this)\');
+	counter++;
+	}
+	});</script>
+		</div>';
 								}
                                                         }
 							
