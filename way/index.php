@@ -16,7 +16,7 @@ header('location: login.php?cook');}
 
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/skeleton.css">
-                <link rel="stylesheet" href="mobstyle.css">
+        <link rel="stylesheet" href="mobstyle.css">
 
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
                 <script src="notey.js"></script>

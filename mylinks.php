@@ -74,11 +74,10 @@ background: rgb(179, 179, 179);
     </script>
 </head>
 <body onload="fetch();">
-    
+    <div class="opBar"><center><input placeholder="search for..." type="text" id="q"><input onclick="" type="button" value="search"></center></div>
     <div id="container">
         <div class="spinner" id="spinner"></div>
             <p  style="display:none;" id="nothing">All the URL's or links to pages which you include in a Note appears here.</p>
-
 <script>
     var results=0;
     var count=9,offset=-9;

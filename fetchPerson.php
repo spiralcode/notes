@@ -14,10 +14,12 @@
 		$dob=$data['dob'];
 		$phone=$data['phone'];
 		$geoloc=$data['homelocation'];
-        $gender = $data['gender'];
+                                    $nicks = $data['nicknames'];
+                                    $gender = $data['gender'];
 	}
-		$query=mysqli_query($link,"select * from events where content like '%$name%'  ") or die(mysqli_error($link));
-		$noteCount= mysqli_num_rows($query);
+ $nicksArray = json_decode($nicks);
+$query=mysqli_query($link,"select * from events where content like '%$name%'  ") or die(mysqli_error($link));
+$noteCount= mysqli_num_rows($query);
           while($data=  mysqli_fetch_array($query))
           {
               if($data['setglocation']!=0)
@@ -30,7 +32,18 @@
 			  }*/
 			  
           }
-		  array_unique($locationList,SORT_STRING);
+          $subCount = 0;
+          if(sizeof($nicksArray)>0)
+          foreach($nicksArray as $OneName)
+          {
+  $query=mysqli_query($link,"select * from events where content like '%$OneName%'  ") or die(mysqli_error($link));
+//$noteCount= mysqli_num_rows($query);
+          while($data=  mysqli_fetch_array($query))
+          {
+              $subCount++;
+          }
+          }
+ array_unique($locationList,SORT_STRING);
 if(strlen($website)>40)
 {
 	$short_website=substr($website,0,40)."...";
@@ -38,6 +51,6 @@ if(strlen($website)>40)
  else {
 $short_website=$website;    
 }
-$outArray = array("name"=>  ucfirst($name),"relation"=>$relation,"dob"=>$dob,"gender"=>$gender,"noteCount"=>$noteCount,"locationCount"=> sizeof($locationList), "locations"=>$locationList);
+$outArray = array("name"=>  ucfirst($name),"relation"=>$relation,"dob"=>$dob,"gender"=>$gender,"noteCount"=>$noteCount+$subCount,"locationCount"=> sizeof($locationList), "locations"=>$locationList);
 echo json_encode($outArray);
 	?>
