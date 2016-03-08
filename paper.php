@@ -126,7 +126,7 @@ function goTopage(ob)
 
 <div id="loading" class="spinner"></div>
 <div class="topribbon"><span class="logo">Notes <sup>v3</sup></span>
-<table align="right" cellspacing="4"><tr><td onclick="goTopage(this)" data-link="book.php">Read Notes</td><td onclick="showMenu(this)" data-link="paper.php">Menu</td>	<td onclick="goTopage(this)" data-link="logout.php">Logout</td></tr></table>
+<table align="right" cellspacing="4"><tr><td onclick="goTopage(this)" data-link="newPaper.php">newPaper</td><td onclick="goTopage(this)" data-link="book.php">Read Notes</td><td onclick="showMenu(this)" data-link="paper.php">Menu</td>	<td onclick="goTopage(this)" data-link="logout.php">Logout</td></tr></table>
 </div> 
 <div class="notifcationArea">Hi, <span class="uname"><?php echo $_SESSION['uname']; ?></span></div>
 <div class="paper" id="paper">
@@ -321,9 +321,9 @@ e.preventDefault();
 <tr><td onclick="showMsg('peoples.php',{title:'Peoples',iframe: true}); showMenu(this);">Peoples</td></tr>
 <tr><td onclick="showMsg('info.php',{title:'Informations',iframe: false}); showMenu(this);">Informations</td></tr>
 <tr><td onclick="showMsg('settings.php',{title:'Settings',iframe:true}); showMenu(this);">Settings</td></tr>
+<tr><td onclick="showMsg('settings.php',{title:'Settings',iframe:true}); showMenu(this);">Settings</td></tr>
 </table>
 </div>
-
 
 </body>
 </html>
