@@ -1,0 +1,272 @@
+.topribbon
+{
+	width: 100vw;
+	height: 5vh;
+	font-size: 3vh;
+background: rgba(19, 20, 23, 0.4);
+}
+.topribbon .userInfo
+{
+position: absolute;
+right: 0px;
+top: 0px;
+height: 100%;
+width:10%;
+height: 5vh;
+background: cornflowerblue;
+text-transform: capitalize;
+display: table-cell;
+vertical-align: middle;
+text-align: center;
+font-size: .8em;
+color:white;
+cursor: pointer;
+}
+.sideRack
+{
+	position: absolute;
+	top:5vh;
+	left: 0px;
+	width: 15vw;
+	height: calc(100vh - 5vh);
+background: rgb(19, 20, 23);
+	z-index: 1;
+
+}
+.sideRack .options ul
+{
+	list-style: none;
+}
+.sideRack .options ul li
+{
+	text-indent: 1em;
+	width: 15vw;
+	color: rgb(100, 149, 237);
+	background: rgb(49, 54, 69);
+	margin-top: .5em;
+font-size: 1.2em;
+cursor: pointer;
+text-transform: capitalize;
+
+}
+.sideRack .searchNotes
+{
+margin-top: 1em;
+margin-bottom: 1em;
+width: 100%;
+text-align: center;
+}
+.sideRack .louis
+{
+	margin-top: 1em;
+color: rgb(165, 165, 165);
+text-align: center;
+}
+.sideRack div:hover
+{
+color: wheat;
+}
+.contentPlace
+{
+position: absolute;
+top:10vh;
+width:calc(100vw - 15vw);
+background: rgb(241, 238, 245);
+height: calc(100vh - 10vh);
+left: 15vw;
+overflow-y: scroll;
+}
+.sideRack button
+{
+	color: white;
+	width: 13vw;
+}
+.sideRack input[type="text"]
+{
+	color: rgb(100, 149, 237);
+	border: none border-style color;
+}
+/*
+Rules for addNote.html
+*/
+.writeNoteContainer
+{
+	position: absolute;
+	width:90%;
+	height:90%;
+	top: 5%;
+	left: 5%;
+
+}
+.writeNoteContainer div
+{
+position: relative;
+float: left;
+width:45%;
+min-height: 45%;
+margin: 2.5%;
+margin-bottom: 0%;
+}
+.writeNoteContainer .typeArea 
+{
+	background: none;
+height: 45%;
+}
+.writeNoteContainer .typeArea textarea
+{
+	width: 100%;
+	height: 100%;
+	border: none;
+	border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+}
+.writeNoteContainer .typeArea .noteProperties
+{
+	margin: 0%;
+	min-height: 1em;
+	background: cornflowerblue;
+	width: 100%;
+	font-size: 1.5em;
+	color: white;
+	text-align: left;
+	
+}
+#noteDate
+{
+	font-family: "Segoe UI Light",Arial;
+}
+.writeNoteContainer .fileArea 
+{
+	border-radius: 3px;
+	background:rgba(74, 195, 195, 0.23);
+}
+.writeNoteContainer .fileArea .option
+{
+	background: cornflowerblue;
+	width: 100%;
+	margin: 0%;
+	height: 2em;
+}
+.writeNoteContainer .fileArea .option span
+{
+	background: rgb(49, 54, 69);
+	color: white;
+	cursor: pointer;
+	border-radius: 2px;
+	margin: .5em;
+}
+.writeNoteContainer .fileArea .fileList
+{
+	width: 100%;
+	margin: 0%;
+	height: calc(100% - 2em);
+	background:rgba(74, 195, 195, 0.23);
+	overflow-y: hidden;
+}
+.writeNoteContainer .fileArea .fileList .uploadOptions
+{
+	position: absolute;
+	bottom: 0em;
+	right: 0em;
+	background: none;
+}
+.writeNoteContainer .fileArea .fileList .file
+{
+width:5em;
+height: 5em;
+border: 1px solid yellowgreen;
+float: left;
+margin: .2em;
+background-repeat: no-repeat;
+}
+.writeNoteContainer .fileArea .fileList .file img
+{
+width:2em;
+height: 2em;
+
+}
+.writeNoteContainer .toolsSpace
+{
+margin-top: .5%;
+width:45%;
+height:10%;
+background: none;
+text-align: left;
+}
+.notificationSpace
+{
+	font-size: 2.5em;
+	text-align: center;
+	font-family: "segoe UI light",Arial;
+	color: green;
+}
+.titleBar
+{
+	position: relative;
+	height: 5vh;
+	left: 15vw;
+	width: calc(100vw - 15vw);
+	font-size: 2em;
+	font-family: "segoe UI light",Arial;
+}
+.contentPlace .note{
+	position: relative;
+	width: 80%;
+	margin-top: 2vh;
+
+	min-height: 10vh;
+	border-radius: 2px;
+	background: white;
+}
+.note .noteInfo
+{
+	height: 4vh;
+	position: relative;
+	top: 0;
+	width: 100%;
+	background: cornflowerblue;
+	color: white;
+	text-align: left;
+}
+.note .contentSlot
+{
+
+position: relative;
+margin-top: 1em;
+	text-align: justify;
+	background: white;
+	width: 98%;
+	text-indent: 1em;
+	min-height: calc(10vh - 4vh);
+
+
+}
+.note .fileSlot
+{
+		margin-top: 1em;
+	position: relative;
+	display: block;
+	background: aliceblue;
+	z-index: 45;
+	min-height: 6em;
+	overflow-y:  scroll;
+	padding: 1em;
+
+}
+.note .fileSlot .file
+{
+	position: relative;
+	height: 6em;
+	width: 6em;
+background: gainsboro;
+	float: left;
+	margin-left: 1em;
+	line-height: 5em;
+	font-size: 1em;
+	cursor: pointer;
+	overflow-x: hidden;
+		overflow-y: hidden;
+		border-radius: 4px;
+		box-shadow: 1px 1px 1px slategray;
+	}
+	

@@ -1,0 +1,15 @@
+<div id="notificationSpace" class="notificationSpace"></div>
+<div class="writeNoteContainer">
+<div class="typeArea">
+<div class="noteProperties" id="noteProperties">
+<span id="noteDate"></span></div>
+<textarea id="typeSpace" placeholder="Type your note here..."></textarea>
+<input id="saveButton" onclick="transferNote();" class="button-primary" type="button" style="cursor:pointer;" value="Save Note"/>
+<input id="changeDate" class="button-primary" type="button" style="cursor:pointer;" value="Change Date"/>
+<input id="dateCave" type="hidden"/></div>
+<div class="fileArea">
+<div class="option">
+Attach files with this Note<span style="cursor:pointer;" onclick="gen.id('fileSelect').click();">Choose Files </span> <!--<span style="cursor:pointer;" onclick="startUpload()">Start Upload</span>--></div>
+<div class="fileList" id="fileList"></div></div>
+<!--<div class="toolsSpace"></div>-->
+<input id="fileSelect" name="fileSelect[]" multiple type="file" style="display:none;"></div>

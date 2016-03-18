@@ -1,329 +1,262 @@
 <?php
-/*
- * Build by Raj Krishnan R
- * 2015 
- */
-include 'connect.php';
 include 'session_check.php';
 ?>
 <!doctype html>
-<html>
-<head><title>Notes : Add Note 3</title>
-<script src="aftersave.js"></script>
-<script src="notify.js"></script>
- <script src="raid.js"></script>
-<script src="notey.js"></script>
-<script src="lib/moment.js"></script>
-<script src="ajax_1_10_2.js"></script>
-<script src="lib/jquery-1.10.2.js"></script>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Notes Go</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/skeleton.css">
+                                <link rel="stylesheet" href="css/general.css">
+                                        <link rel="stylesheet" href="css/loader.css">
+                                        <link rel="stylesheet" href="css/animate.css">
+        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+                <script src="notey.js"></script>
+                <script src="jss/general.js"></script>
+                 <script src="jss/fly.js"></script>
+                                  <script src="jss/moment.js"></script>
+                                  <script src="jss/image.js"></script>
+                                  <script src="ajax_1_10_2.js"></script>
+  
+  <script src="lib/jquery-1.10.2.js"></script>
 <script src="lib/jquery-ui.js"></script>
-<link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="style/jquery-ui.css">
 <link rel="stylesheet" href="raid.css"/>
-  <script src="notey.js"></script>
-
-<link rel="stylesheet" href="notify.css">
-<link type="text/css" rel="stylesheet" href="style/locationpicker.css" />
+    </head>
+    <body>
 <script>
-var start=1;
-var alteredDate=0;
-var detected_lat=0;
-var detected_lng=0;
-var time = new Date;
-var timer=time.getTime();
-var width=window.innerWidth;
-var height=window.innerHeight;
-if (navigator.geolocation) 
-{
-    navigator.geolocation.getCurrentPosition(showPosition);
-    
-}
- else
-{console.log("Location no supported");
-}
-function showPosition(position)
-{
-   var detected_lat=position.coords.latitude;
-    var detected_lng=position.coords.longitude;
-    console.log(detected_lat);
-    $id('geo').value=detected_lat+','+detected_lng;
-}
-function showMenu(ob)
-{
-if($id('flowOptions').style.display==='none'||$id('flowOptions').style.display==='')
-{
-$id('flowOptions').style.display='block';
-}
-else
-{
-	$id('flowOptions').style.display='none';
-}
-var refer_dim=ob.getBoundingClientRect();
-{
-	$id('flowOptions').style.top=refer_dim.bottom+'px';
-	$id('flowOptions').style.right=(window.innerWidth-refer_dim.right)+'px';	
-}
-}
-function $id(id)
-{
-	return document.getElementById(id);
-}
-function $name(name)
-{
-	return document.getElementsByName(name)[0];
-}
-function output(msg)
-{
-	console.log(msg);
-}
-
-function savecheck()
-{
-	if(($id('tarea').innerHTML).length>0)
-	{
-               unsaved=true;
-
-}
-            else{
-                      unsaved=false;
-            }
-
-}
-function getPlaceImage(coords,address)
-{
-	var staticImage='https://maps.googleapis.com/maps/api/staticmap?center='+coords+'&zoom=15&size=300x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284';
-	$id('tarea').style.backgroundImage='url('+staticImage+')';
-        $id('tarea').style.backgroundPosition='bottom right';
-        $id('tarea').style.backgroundRepeat='no-repeat';
-        $id('tarea').style.backgroundSize='contain';
-        document.cookie="userLocation="+coords+"; expires=Thu, 18 Dec 2013 12:00:00 UTC";
-}
-function goTopage(ob)
-{
-	window.location.href=ob.dataset.link;
-}
 
 </script>
-<style>
-    [contentEditable=true]:empty:not(:focus):before{
-        content:attr(data-text)
-    }
-    button
-    {
-        /*background: linear-gradient(#BBCAB4,#91B195);*/
-        border-radius: 5px;
-        display: table-cell;
-        color: #fff;
-        box-shadow: 1px 1px 2px #92AA88;
-        background: rgba(27, 27, 27, 0.45);
-    }
-    button:hover
-    {
-    }
-    </style>
-</head>
-<body>
+        <div class="topribbon">Notes<div class="userInfo"><?php echo  $_SESSION['uname']; ?></div></div>
+        <div id="titleBar" class="titleBar"></div>
+      <div class="sideRack">
+          
+          <div class="searchNotes">
+           <input id="keyWord" placeholder="Search for..." style="width:100%" type="text">
+          <button onclick="keyWordSearch();">Search Notes</button>
+          <script>
+            gen.id('keyWord').addEventListener('keydown',function(e){
+            if(gen.id('keyWord').value.length>2)
+             keyWordSearch();
+             if(e.keyCode==13)
+             keyWordSearch();
+            });
+            </script>
+          </div>
+          <div class="options">
+            <ul>
+                    <li onclick="navigate(this);" data-label="addNote.html" data-title="Write Note">Add Note</li>
+                  <li onclick="navigate(this);" data-label="search.php" data-title="Read Notes">Read Notes</li>
+                     <li onclick="navigate(this);" data-label="pho.html" data-title="All your Files...">Files</li>
+                     <li onclick="navigate(this);"  data-label="ppl.html" data-title="Some of them..">People</li>
+                     <li onclick="navigate(this);"  data-label="lnk.html" data-title="Links">Links</li>
+           </div>
+            <div class="louis" id="louis">
+           <div id="louis_load" class="spinner" style="" >
+             </div>
+              <span id="louis_talk"></span>
+              </div>
+      </div>
+      
+        <div id="contentPlace" class="contentPlace" align="center" >
 
-<div id="loading" class="spinner"></div>
-<div class="topribbon"><span class="logo">Notes <sup>v3</sup></span>
-<table align="right" cellspacing="4"><tr><td onclick="goTopage(this)" data-link="newPaper.php">newPaper</td><td onclick="goTopage(this)" data-link="book.php">Read Notes</td><td onclick="showMenu(this)" data-link="paper.php">Menu</td>	<td onclick="goTopage(this)" data-link="logout.php">Logout</td></tr></table>
-</div> 
-<div class="notifcationArea">Hi, <span class="uname"><?php echo $_SESSION['uname']; ?></span></div>
-<div class="paper" id="paper">
-<div id="filedrag" class="imgplace" ><center><span align="center" id="timedat" class="pholder">10 July 2015, 11:52 </span></center>
+<div id="iQ"><table><tr id="iQlist"></tr></table>
 </div>
- <div data-text ="Type in something or drag and drop images here..."  id ="tarea" onkeyup ="savecheck();" contenteditable="true" placeholder="Typethings here" style="background:white; overflow-y: scroll; border-top: 1px double  yellowgreen;"></div>
-<table align="center"><tr><td>
-<button title="Save the note. (ctrl+s)" onclick="savenote();">Save Note<br><span class="buttonsubtext">ctrl+s</span></button></td>
-<td>
-<button value="0" title="Click to embed a location" onclick="" id="geo">Attach Location</button>
-</td>
-<td>
-    <input onchange="timeup(this);" type="hidden" id="hiddenField" class="datepicker" />
-
+</div>
 <script>
-   
-$( "#hiddenField" ).datepicker({
-      showOn: "button",
-        buttonText: "Alter Date",
-        Title: "Change Date"
-    });
-    </script>
-</td>
-<td><button onclick="$('#fileselect').click();">Attach Images</button></td>
-<input type="file" id="fileselect" name="fileselect[]" multiple="multiple"  style="visibility:hidden;"/>
+/*
+Globals
+*/
+var timer=(new Date).getTime();
+    function navigate(ob)
+    {
+notey.get('htmls/'+ob.dataset.label,function(data){
 
-</tr>
-</table>
-
-<script>
-var alterDate=0;
-var counter = window.setInterval(function(){},1000);
-function timeup(alt)
+   if(ob.dataset.label=='addNote.html')
+   {
+        gen.id('contentPlace').innerHTML=data.responseText;
+       if(window.File && window.FileList && window.FileReader)
+	{
+	init();
+	}
+       gen.id('noteDate').innerHTML=moment().format('Do  MMMM YYYY , HH:mm');
+       gen.id('typeSpace').addEventListener('keydown',function(e){
+           if(e.ctrlKey&&e.keyCode==83)
+           {
+               e.preventDefault();
+               transferNote();
+           }
+       });
+  $(function() {
+    $( "#cal" ).datepicker();
+  });
+   }
+   else if(ob.dataset.label=='search.php')
+   {
+       gen.id('contentPlace').innerHTML="";
+var decoded = JSON.parse(data.responseText);
+var start = 0;
+while(decoded[start]!=null)
 {
-if(alt==null)
-return moment().format('Do  MMM. YYYY , HH:mm');
+resultDisplay(decoded[start]);
+start++;
+}
+   }
+   else
+   {
+        gen.id('contentPlace').innerHTML="Development On-Course...";
+   }
+
+
+});
+if(ob.dataset.title!=null)
+gen.id('titleBar').innerHTML=ob.dataset.title;
 else
-{
-    var val = moment(alt.value,'MM/DD/YYYY');
-    if(moment().format('DD-MM-YYYY')==val.format('DD-MM-YYYY'))
-        {
-      $id("timedat").innerHTML=moment().format('Do  MMM. YYYY , HH:mm');
-      alterDate=moment().format('YYYY-MM-DD H:mm:ss');
+gen.id('titleBar').innerHTML=' ';
+    }
+    
+    function resultDisplay(ob)
+    {
+      if(ob.status!=0){
+    var note = document.createElement('div');
+    var noteInfo = document.createElement('div');
+    var contentSlot = document.createElement('div');
+    var fileSlot = document.createElement('div');
+  note.setAttribute('class','note');
+    noteInfo.setAttribute('class','noteInfo');
+    contentSlot.setAttribute('class','contentSlot');
+    fileSlot.setAttribute('class','fileSlot');
+  noteInfo.innerHTML=moment.unix(ob.time).format('Do  MMMM YYYY , HH:mm');  
+    contentSlot.innerHTML=ob.content;
+    var beg = 0;
+    while(ob.ilist[0][beg]!=null)
+    {
+
+      notey.get('fileInfo.php?id='+ob.ilist[0][beg],function(data){
+var decoded = JSON.parse(data.responseText);
+var div = document.createElement('div');
+div.setAttribute('class','file');
+div.innerHTML=decoded[0].realFileName;
+div.setAttribute('title',decoded[0].realFileName);
+div.setAttribute('data-id',decoded[0].id);
+console.log(decoded[0].size);
+div.addEventListener('click',function(e){
+  fileInfo(this);
+});
+fileSlot.appendChild(div);
+      });
+
+      beg++;
+    }
+      note.appendChild(noteInfo);
+      note.appendChild(contentSlot);
+     if(beg!=0)
+      note.appendChild(fileSlot);
+  gen.id('contentPlace').appendChild(note);
+      }
+      else
+      {
+            var report = document.createElement('div');
+              report.setAttribute('class','note');
+              report.innerHTML="No results to show !";
+                gen.id('contentPlace').appendChild(report);
+      }
+    }
+    
+    
+    function listFile(fileCopy,fileName)
+    {
+     /*each fnctn call adds child elemnts to the div (fileList) in html file addNote.html*/
+        var file = document.createElement('div');
+        file.setAttribute('class','file');
+        file.setAttribute('name',fileName);
+        gen.id('fileList').appendChild(file);
+        var code = gen.formatOf(fileName);
+        if(fileCopy==null){
+      file.style.background='url('+JSON.parse(icons).defaultfile+')';
+            file.style.backgroundSize='5em 5em';
         }
         else
-            {
-    $id("timedat").innerHTML=val.format('Do  MMM. YYYY , HH:mm');
-    alterDate=val.format('YYYY-MM-DD H:mm:ss');
-    var ul=val.format(' Do  MMMM  YYYY');
-              notify("Date is changed to <strong>"+ul+'</strong>','happy','ext');
-            }
-}
-}
-$id("timedat").innerHTML=timeup();
-function savenote()
-{
-    var process_timer=15;
-    var warned=0;
-	var contents=$id("tarea").innerHTML;
-	if(contents=='')
-	{
-        notify('Nothing to save !');
-	return;
-	}
-	$id('loading').style.display='block';
-
-
-notey.post('feed.php',{contents:contents,timeid:timer,alterDate:alterDate,geolocation:detected_lat+','+detected_lng,		setglocation:$id("geo").value},function(data)
-{
-//    if(data.status==404)
-//        {
-//      window.clearInterval(counter);
-//     process_timer=15;
-//      var image_Data='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIzMnB4IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjMycHgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6c2tldGNoPSJodHRwOi8vd3d3LmJvaGVtaWFuY29kaW5nLmNvbS9za2V0Y2gvbnMiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48dGl0bGUvPjxkZXNjLz48ZGVmcy8+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiBpZD0iUGFnZS0xIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSI+PGcgZmlsbD0iIzkyOTI5MiIgaWQ9Imljb24tMjAtc2FkLWZhY2UtZXllYnJvd3MiPjxwYXRoIGQ9Ik0xNi41LDI5IEMyMy40MDM1NTk3LDI5IDI5LDIzLjQwMzU1OTcgMjksMTYuNSBDMjksOS41OTY0NDAyOSAyMy40MDM1NTk3LDQgMTYuNSw0IEM5LjU5NjQ0MDI5LDQgNCw5LjU5NjQ0MDI5IDQsMTYuNSBDNCwyMy40MDM1NTk3IDkuNTk2NDQwMjksMjkgMTYuNSwyOSBMMTYuNSwyOSBaIE0xNi41LDI4IEMyMi44NTEyNzQ5LDI4IDI4LDIyLjg1MTI3NDkgMjgsMTYuNSBDMjgsMTAuMTQ4NzI1MSAyMi44NTEyNzQ5LDUgMTYuNSw1IEMxMC4xNDg3MjUxLDUgNSwxMC4xNDg3MjUxIDUsMTYuNSBDNSwyMi44NTEyNzQ5IDEwLjE0ODcyNTEsMjggMTYuNSwyOCBMMTYuNSwyOCBaIE0xNi40ODEzMjMyLDIxIEMxMywyMSAxMSwyMyAxMSwyMyBMMTEsMjIgQzExLDIyIDEzLDIwIDE2LjQ4MTMyMzIsMjAgQzE5Ljk2MjY0NjUsMjAgMjIsMjIgMjIsMjIgTDIyLDIzIEMyMiwyMyAxOS45NjI2NDY1LDIxIDE2LjQ4MTMyMzIsMjEgTDE2LjQ4MTMyMzIsMjEgWiBNMjAuNjIxNTIxMyw5Ljk2NzA5NTQxIEwyMC4wNjIzMjg0LDEwLjc5NjEzMyBMMjMuMzc4NDc4NywxMy4wMzI5MDQ2IEwyMy45Mzc2NzE2LDEyLjIwMzg2NyBMMjAuNjIxNTIxMyw5Ljk2NzA5NTQxIEwyMC42MjE1MjEzLDkuOTY3MDk1NDEgWiBNOS4wNjIzMjg0LDEyLjIwMzg2NyBMOS42MjE1MjEzMSwxMy4wMzI5MDQ2IEwxMi45Mzc2NzE2LDEwLjc5NjEzMyBMMTIuMzc4NDc4Nyw5Ljk2NzA5NTQxIEw5LjA2MjMyODQsMTIuMjAzODY3IEw5LjA2MjMyODQsMTIuMjAzODY3IFogTTEyLDE1IEMxMi41NTIyODQ4LDE1IDEzLDE0LjU1MjI4NDggMTMsMTQgQzEzLDEzLjQ0NzcxNTIgMTIuNTUyMjg0OCwxMyAxMiwxMyBDMTEuNDQ3NzE1MiwxMyAxMSwxMy40NDc3MTUyIDExLDE0IEMxMSwxNC41NTIyODQ4IDExLjQ0NzcxNTIsMTUgMTIsMTUgTDEyLDE1IFogTTIxLDE1IEMyMS41NTIyODQ4LDE1IDIyLDE0LjU1MjI4NDggMjIsMTQgQzIyLDEzLjQ0NzcxNTIgMjEuNTUyMjg0OCwxMyAyMSwxMyBDMjAuNDQ3NzE1MiwxMyAyMCwxMy40NDc3MTUyIDIwLDE0IEMyMCwxNC41NTIyODQ4IDIwLjQ0NzcxNTIsMTUgMjEsMTUgTDIxLDE1IFoiIGlkPSJzYWQtZmFjZS1leWVicm93cyIvPjwvZz48L2c+PC9zdmc+';
-//      var text='<div align="center"><img style="width:100px; height:100px;" src = '+image_Data+'></div><div style="font-family:"Segoe UI",arial,serif;" align="center" style="font-family:Arial,serif; font-size:18px; color:red;">Can\'t connect to the server !</div><p style="font-size:12px; color:blue;" align="center" style="font-family:"Segoe UI",arial,serif;">Seems as if, you are not connected to Internet.</p><div style="font-size:arial,serif; font-size:12px; text-align:center;" id="retry"></div>';
-//      notey.notify('',{iframe:false,text:text,width:500,height:250});
-//      	$id('loading').style.display='none';
-//         counter = window.setInterval(function(){
-//         if(process_timer==0)
-//         {
-//         $id('retry').innerHTML='Saving...';
-//         process_timer=15;
-//         savenote();
-//            }
-//        $id('retry').innerHTML="We'll retry saving in "+--process_timer+' seconds';
-//        },1000);
-//        }
-        if(data.status==200 && data.responseText==1)
-            {
-            window.clearInterval(counter);
-           if($id('uq'))
-           notey.eleRemove('uq');
-            newnote();
-            }
-            if(data.status==503)
-        {window.clearInterval(counter);
-      process_timer=15;
-      var image_Data='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIzMnB4IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjMycHgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6c2tldGNoPSJodHRwOi8vd3d3LmJvaGVtaWFuY29kaW5nLmNvbS9za2V0Y2gvbnMiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48dGl0bGUvPjxkZXNjLz48ZGVmcy8+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiBpZD0iUGFnZS0xIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSI+PGcgZmlsbD0iIzkyOTI5MiIgaWQ9Imljb24tMjAtc2FkLWZhY2UtZXllYnJvd3MiPjxwYXRoIGQ9Ik0xNi41LDI5IEMyMy40MDM1NTk3LDI5IDI5LDIzLjQwMzU1OTcgMjksMTYuNSBDMjksOS41OTY0NDAyOSAyMy40MDM1NTk3LDQgMTYuNSw0IEM5LjU5NjQ0MDI5LDQgNCw5LjU5NjQ0MDI5IDQsMTYuNSBDNCwyMy40MDM1NTk3IDkuNTk2NDQwMjksMjkgMTYuNSwyOSBMMTYuNSwyOSBaIE0xNi41LDI4IEMyMi44NTEyNzQ5LDI4IDI4LDIyLjg1MTI3NDkgMjgsMTYuNSBDMjgsMTAuMTQ4NzI1MSAyMi44NTEyNzQ5LDUgMTYuNSw1IEMxMC4xNDg3MjUxLDUgNSwxMC4xNDg3MjUxIDUsMTYuNSBDNSwyMi44NTEyNzQ5IDEwLjE0ODcyNTEsMjggMTYuNSwyOCBMMTYuNSwyOCBaIE0xNi40ODEzMjMyLDIxIEMxMywyMSAxMSwyMyAxMSwyMyBMMTEsMjIgQzExLDIyIDEzLDIwIDE2LjQ4MTMyMzIsMjAgQzE5Ljk2MjY0NjUsMjAgMjIsMjIgMjIsMjIgTDIyLDIzIEMyMiwyMyAxOS45NjI2NDY1LDIxIDE2LjQ4MTMyMzIsMjEgTDE2LjQ4MTMyMzIsMjEgWiBNMjAuNjIxNTIxMyw5Ljk2NzA5NTQxIEwyMC4wNjIzMjg0LDEwLjc5NjEzMyBMMjMuMzc4NDc4NywxMy4wMzI5MDQ2IEwyMy45Mzc2NzE2LDEyLjIwMzg2NyBMMjAuNjIxNTIxMyw5Ljk2NzA5NTQxIEwyMC42MjE1MjEzLDkuOTY3MDk1NDEgWiBNOS4wNjIzMjg0LDEyLjIwMzg2NyBMOS42MjE1MjEzMSwxMy4wMzI5MDQ2IEwxMi45Mzc2NzE2LDEwLjc5NjEzMyBMMTIuMzc4NDc4Nyw5Ljk2NzA5NTQxIEw5LjA2MjMyODQsMTIuMjAzODY3IEw5LjA2MjMyODQsMTIuMjAzODY3IFogTTEyLDE1IEMxMi41NTIyODQ4LDE1IDEzLDE0LjU1MjI4NDggMTMsMTQgQzEzLDEzLjQ0NzcxNTIgMTIuNTUyMjg0OCwxMyAxMiwxMyBDMTEuNDQ3NzE1MiwxMyAxMSwxMy40NDc3MTUyIDExLDE0IEMxMSwxNC41NTIyODQ4IDExLjQ0NzcxNTIsMTUgMTIsMTUgTDEyLDE1IFogTTIxLDE1IEMyMS41NTIyODQ4LDE1IDIyLDE0LjU1MjI4NDggMjIsMTQgQzIyLDEzLjQ0NzcxNTIgMjEuNTUyMjg0OCwxMyAyMSwxMyBDMjAuNDQ3NzE1MiwxMyAyMCwxMy40NDc3MTUyIDIwLDE0IEMyMCwxNC41NTIyODQ4IDIwLjQ0NzcxNTIsMTUgMjEsMTUgTDIxLDE1IFoiIGlkPSJzYWQtZmFjZS1leWVicm93cyIvPjwvZz48L2c+PC9zdmc+';
-      var text='<div align="center"><img style="width:100px; height:100px;" src = '+image_Data+'></div><div style="font-family:"Segoe UI",arial,serif;" align="center" style="font-family:Arial,serif; font-size:18px; color:red; text-align:justify;">Server went down to take a coin !</div><p style="font-size:12px; color:blue;" align="center" style="font-family:"Segoe UI",arial,serif;">We are fixing something up here. Your note will be saved in few moments.</p><div style="font-size:arial,serif; font-size:12px; text-align:center;" id="retry"></div>';
-      notey.notify('',{iframe:false,text:text,width:500,height:250});
-      	$id('loading').style.display='none';
-         counter = window.setInterval(function(){
-         if(process_timer==0)
-         {
-         $id('retry').innerHTML='Saving...';
-         window.clearInterval(counter);
-         savenote();
-            }
-        $id('retry').innerHTML="We'll retry saving in "+--process_timer+' seconds';
-        },1000);
+        {
+              file.style.background='url('+fileCopy+')';
+            file.style.backgroundSize='5em 5em';
         }
-    });
-}
-
-function newnote()
+    }
+    function startUpload()
+    {
+        for(var i = 0;i<fileBuffer.length;i++)
+        {
+            uploadfile(fileBuffer[i]);
+        }
+    }
+    var noteId = 0;
+   function transferNote()
+   {
+            gen.id('saveButton').setAttribute('disabled','disabled');
+      var alterDate=(new Date).getTime();
+      noteId=alterDate;
+       if(fileBuffer.length>0)
+       {
+       gen.id('saveButton').value="Uploading Files...";
+       startUpload();
+       }
+      gen.id('saveButton').value="Saving Note...";
+      var contents=gen.id('typeSpace').value;
+      alterDate=0;
+      var geolocation='0,0';
+      var setgLocation='0,0';
+ notey.post('feed.php',{contents:contents,timeid:noteId,alterDate:alterDate,geolocation:geolocation,	setglocation:setgLocation},function(data)
 {
-        window.clearInterval(counter);
-	$id('loading').style.display='none';
-        notify('Last note Saved :)','happy');
-	$id('tarea').innerHTML='';
-	savecheck();
-	timer++;
-        var i = 1;
-        while(typeof($id('slot+i'))!=='undefined')
-            {
-         $id("slot"+i++).remove();
-            }
-	$id("timedat").innerHTML=timeup();	
-}
-</script>
-<table align="right" id="imlist"><tr  style="width:80px; height: 80px"  id="imgrow">
-        <script>
-  function imglist(data,name)
+          gen.id('saveButton').value="Save Note";
+          gen.id("fileList").innerHTML='';
+          showNotification("Note Saved");
+                      gen.id('saveButton').removeAttribute('disabled');
+});
+   }
+   function showNotification(content)
+   {
+      gen.id('notificationSpace').innerHTML='';
+      var ob = document.createElement('div');
+      ob.setAttribute('id','notification');
+       ob.setAttribute('class','fadeInRight');
+      var space=gen.id('notificationSpace');
+      ob.innerHTML=content;
+      space.appendChild(ob);
+   }
+function keyWordSearch()
 {
-//Recieves the data file and embed 
-//
-        var td = document.createElement('td');
-        $id('imgrow').appendChild(td);
-        td.setAttribute('id','slot'+start++);
-        td.setAttribute('class','uploadslot');
-        td.style.backgroundImage='url('+data+')';
-        td.setAttribute('name',name);
-        td.setAttribute('data-uploaded','0');
+  notey.get('gcow.php?q='+gen.id('keyWord').value,function(data){
+gen.id('contentPlace').innerHTML="";
+var decoded = JSON.parse(data.responseText);
+var start = 0;
+while(decoded[start]!=null)
+{
+resultDisplay(decoded[start]);
+start++;
 }
-            </script>
-</tr></table>
+  });
+}
+function fileInfo(file)
+{
+notey.get('fileInfo.php?id='+file.dataset.id,function(data){
+var DCde = JSON.parse(data.responseText);
 
-<div align="center" id="geoimage"></div>
-</div>
-<form method="post" enctype="multipart/form-data" action="filecatch.php">
-<input style="display: none;" type="file" id="fileselect" name="fileselect[]" multiple="multiple" />
+  var content = '<div style="text-align:center;"><div>'+DCde[0].realFileName+'</div><div>'+Math.round(parseInt(DCde[0].size)/1000000)+' MB</div><div><a target="_new" href = "downloadImage.php?id='+DCde[0].id+'">Download the File</a> | <a target="_new" href = "media/'+DCde[0].root+'">Open the file</a></div></div>';
+        notey.notify('',{text:content,iframe:false,width:500,height:0});
+});
 
-<script type="text/javascript">
-var obpaper = document.getElementById('paper');
-var tarea  = document.getElementById('tarea');
-obpaper.style.width=width-300+'px';
-obpaper.style.height=height-200+'px';
-//ob dimensions
-var opdimen=obpaper.getBoundingClientRect();
-tarea.style.width=opdimen.width+'px';
-tarea.style.height=opdimen.height-300+'px';
-obpaper.style.top=(height/2)-(opdimen.height/2)+'px';
-obpaper.style.left=(width/2)-(opdimen.width/2)+'px';
-//Loading placements
-//loading obj. dimensions
-var loading=$id('loading').getBoundingClientRect();
-$id('loading').style.left=(window.innerWidth/2)-(loading.width/2)-10+'px';
-$id('loading').style.bottom=(window.innerHeight/2)-(loading.height/2)+'px';
+}
+   
+    </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
 
-//Event listening for keyboard shortcuts
-tarea.addEventListener('keydown',function(e){
-	if(e.ctrlKey&&e.keyCode===83)
-	{
-e.preventDefault();
-		savenote();
-	}
-},false);
-</script>
-<script src="fly.js"></script>
-</form>
-<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-	<script src="lib/jquery.js"></script>
-	<script src="lib/jquery.locationpicker.js"></script>
-	<script>
-		$('#geo').locationPicker();
-	</script>
-        
-<div tabindex="1" id="flowOptions" >
-<table width="100%">
-<tr><td onclick="showMsg('albums.php',{title:'Albums',iframe:true}); showMenu(this);">Photos</td></tr>
-<tr><td onclick="showMsg('mylinks.php',{title:'Links',iframe:true}); showMenu(this);">Links</td></tr>
-<tr><td onclick="showMsg('peoples.php',{title:'Peoples',iframe: true}); showMenu(this);">Peoples</td></tr>
-<tr><td onclick="showMsg('info.php',{title:'Informations',iframe: false}); showMenu(this);">Informations</td></tr>
-<tr><td onclick="showMsg('settings.php',{title:'Settings',iframe:true}); showMenu(this);">Settings</td></tr>
-<tr><td onclick="showMsg('settings.php',{title:'Settings',iframe:true}); showMenu(this);">Settings</td></tr>
-</table>
-</div>
-
-</body>
+    </body>
 </html>
