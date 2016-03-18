@@ -81,7 +81,7 @@ function uploadfile(file)
 	  type: 'POST',
 	  mimeType: 'multipart/form-data',
 	  success: function(data){
-		  
+		  console.log(data);
 var dec = JSON.parse(data);
 var index=0;
 while(fileBuffer[index]!=null)

@@ -1,5 +1,6 @@
 media/*.jpg
 media/*.png
+media/*.*
 /nbproject/private/
 connect.php
 dynamic_imageries/
