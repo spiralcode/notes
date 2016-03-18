@@ -8,7 +8,7 @@ include 'session_check.php';
 ?>
 <!doctype html>
 <html>
-<head><title>Notes : Add Note 3</title>
+<head><title>Notes : Add Note</title>
 <script src="aftersave.js"></script>
 <script src="notify.js"></script>
  <script src="raid.js"></script>
