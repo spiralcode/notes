@@ -80,6 +80,7 @@ function uploadfile(file)
 	  type: 'POST',
 	  mimeType: 'multipart/form-data',
 	  success: function(data){
+		  console.log(data);
 	$id('loading').style.display='none';
         if(data==='reject')
             {
