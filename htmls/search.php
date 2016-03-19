@@ -3,7 +3,7 @@ session_start();
 include 'connect.php';
 date_default_timezone_set('Asia/Calcutta');
 $userid=$_SESSION['userid'];
-
+echo $userid;
 $eachnote=array();
 $imgs=array();
 $index=0;
