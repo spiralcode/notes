@@ -77,7 +77,7 @@ var timer=(new Date).getTime();
     {
 notey.get(ob.dataset.label,function(data){
 
-   if(ob.dataset.label=='addNote.html')
+   if(ob.dataset.label=='htmls/addNote.html')
    {
         gen.id('contentPlace').innerHTML=data.responseText;
        if(window.File && window.FileList && window.FileReader)
@@ -96,7 +96,7 @@ notey.get(ob.dataset.label,function(data){
     $( "#cal" ).datepicker();
   });
    }
-   else if(ob.dataset.label=='search.php')
+   else if(ob.dataset.label=='htmls/search.php')
    {
        gen.id('contentPlace').innerHTML="";
 var decoded = JSON.parse(data.responseText);
