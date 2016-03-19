@@ -51,7 +51,7 @@ include 'session_check.php';
           <div class="options">
             <ul>
                     <li onclick="navigate(this);" data-label="htmls/addNote.html" data-title="Write Note">Add Note</li>
-                  <li onclick="navigate(this);" data-label="htmls/search.php" data-title="Read Notes">Read Notes</li>
+                  <li onclick="navigate(this);" data-label="search.php" data-title="Read Notes">Read Notes</li>
                      <li onclick="navigate(this);" data-label="pho.html" data-title="All your Files...">Files</li>
                      <li onclick="navigate(this);"  data-label="ppl.html" data-title="Some of them..">People</li>
                      <li onclick="navigate(this);"  data-label="lnk.html" data-title="Links">Links</li>
