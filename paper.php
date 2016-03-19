@@ -40,7 +40,7 @@ include 'session_check.php';
            <input id="keyWord" placeholder="Search for..." style="width:100%" type="text">
           <button onclick="keyWordSearch();">Search Notes</button>
           <script>
-            gen.id('keyWord').addEventListener('keydown',function(e){
+            gen.id('keyWord').addEventListener('keyup',function(e){
             if(gen.id('keyWord').value.length>2)
              keyWordSearch();
              if(e.keyCode==13)
@@ -75,6 +75,7 @@ Globals
 var timer=(new Date).getTime();
     function navigate(ob)
     {
+    highlightSelection(ob);
 notey.get(ob.dataset.label,function(data){
 
    if(ob.dataset.label=='htmls/addNote.html')
@@ -232,6 +233,7 @@ function keyWordSearch()
 {
   notey.get('gcow.php?q='+gen.id('keyWord').value,function(data){
 gen.id('contentPlace').innerHTML="";
+gen.id('titleBar').innerHTML="Showing results for <b>"+gen.id('keyWord').value+'</b>';
 var decoded = JSON.parse(data.responseText);
 var start = 0;
 while(decoded[start]!=null)
@@ -251,7 +253,24 @@ var DCde = JSON.parse(data.responseText);
 });
 
 }
-   
+var prev;
+function highlightSelection(ob)
+{
+
+
+  ob.style.background="rgb(241, 238, 245)";
+  if(prev==null)
+  {
+    prev=ob;
+  }
+  else
+  {
+    prev.style.background="rgb(49, 54, 69)";
+    prev=ob;
+  }
+}
+
+          
     </script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
