@@ -75,7 +75,7 @@ Globals
 var timer=(new Date).getTime();
     function navigate(ob)
     {
-notey.get(+ob.dataset.label,function(data){
+notey.get(ob.dataset.label,function(data){
 
    if(ob.dataset.label=='addNote.html')
    {
