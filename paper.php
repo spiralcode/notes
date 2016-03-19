@@ -96,7 +96,7 @@ notey.get(ob.dataset.label,function(data){
     $( "#cal" ).datepicker();
   });
    }
-   else if(ob.dataset.label=='htmls/search.php')
+   else if(ob.dataset.label=='search.php')
    {
        gen.id('contentPlace').innerHTML="";
 var decoded = JSON.parse(data.responseText);
