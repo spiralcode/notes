@@ -75,9 +75,10 @@ Globals
 var timer=(new Date).getTime();
     function navigate(ob)
     {
+      louis('Loading...',true);
     highlightSelection(ob);
 notey.get(ob.dataset.label,function(data){
-
+      louis(' ',false);
    if(ob.dataset.task=='addNote')
    {
         gen.id('contentPlace').innerHTML=data.responseText;
@@ -159,13 +160,13 @@ gen.id('titleBar').innerHTML=' ';
     noteInfo.setAttribute('class','noteInfo');
     contentSlot.setAttribute('class','contentSlot');
     fileSlot.setAttribute('class','fileSlot');
+    fileSlot.innerHTML="Files are being loaded...";
   noteInfo.innerHTML=moment.unix(ob.time).format('Do  MMMM YYYY , HH:mm');  
     contentSlot.innerHTML=ob.content;
     var beg = 0;
     while(ob.ilist[0][beg]!=null)
     {
-
-      notey.get('fileInfo.php?id='+ob.ilist[0][beg],function(data){
+notey.get('fileInfo.php?id='+ob.ilist[0][beg],function(data){
 var decoded = JSON.parse(data.responseText);
 var div = document.createElement('div');
 div.setAttribute('class','file');
@@ -175,7 +176,6 @@ div.style.background='url('+JSON.parse(icons).defaultfile+')';
 div.style.backgroundSize='5em 5em';
 div.style.backgroundRepeat='no-repeat';
 div.setAttribute('data-id',decoded[0].id);
-console.log(decoded[0].size);
 div.addEventListener('click',function(e){
   fileInfo(this);
 });
@@ -186,8 +186,10 @@ fileSlot.appendChild(div);
     }
       note.appendChild(noteInfo);
       note.appendChild(contentSlot);
-     if(beg!=0)
+     if(beg!=0){
+       
       note.appendChild(fileSlot);
+     }
   gen.id('contentPlace').appendChild(note);
       }
       else
@@ -305,7 +307,14 @@ function userAccOptions()
   var content='<div align="center"><a  href="logout.php">Log-Out</a></div>';
     notey.notify('',{text:content,iframe:false,width:200,height:0});
 }
-          
+ function louis(tell,toggle)
+ {
+   gen.id('louis_talk').innerHTML=tell;
+   if(toggle)
+   gen.id('louis_load').style.display='block';
+   else
+  gen.id('louis_load').style.display='none';
+ }
     </script>
     <script>
   gen.id('mainOptions').getElementsByTagName('li')[0].click();
