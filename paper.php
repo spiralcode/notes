@@ -160,7 +160,6 @@ gen.id('titleBar').innerHTML=' ';
     noteInfo.setAttribute('class','noteInfo');
     contentSlot.setAttribute('class','contentSlot');
     fileSlot.setAttribute('class','fileSlot');
-    fileSlot.innerHTML="Files are being loaded...";
   noteInfo.innerHTML=moment.unix(ob.time).format('Do  MMMM YYYY , HH:mm');  
     contentSlot.innerHTML=ob.content;
     var beg = 0;
