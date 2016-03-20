@@ -123,7 +123,6 @@ start++;
    linkOpt.setAttribute('class','linkOpt');
    titlePlace.setAttribute('class','titlePlace');
    titlePlace.innerHTML=decoded[start].title;
-   titlePlace.setAttribute('title','Delete');
    linkOpt.innerHTML="Delete";
    link.appendChild(linkOpt);
    link.appendChild(titlePlace);
@@ -280,7 +279,7 @@ function fileInfo(file)
 notey.get('fileInfo.php?id='+file.dataset.id,function(data){
 var DCde = JSON.parse(data.responseText);
 
-  var content = '<div style="text-align:center;"><div>'+DCde[0].realFileName+'</div><div>'+Math.round(parseInt(DCde[0].size)/1000000)+' MB</div><div><a target="_new" href = "downloadImage.php?id='+DCde[0].id+'">Download the File</a> | <a target="_new" href = "redirectToFile.php?id='+DCde[0].id+'">Open the file</a></div></div>';
+  var content = '<div style="text-align:center;"><div>'+DCde[0].realFileName+'</div><div>'+Math.round(parseInt(DCde[0].size)/1000000)+' MB</div><div><a target="_new" href = "downloadImage.php?id='+DCde[0].id+'">Download the File</a> | <a target="_new" href = "redirectToFile.php?id='+DCde[0].id+'"></a></div></div>';
         notey.notify('',{text:content,iframe:false,width:500,height:0});
 });
 
