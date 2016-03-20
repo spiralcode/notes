@@ -32,7 +32,7 @@ include 'session_check.php';
 <script>
 
 </script>
-        <div class="topribbon">Notes<div class="userInfo"><?php echo  $_SESSION['uname']; ?></div></div>
+        <div class="topribbon">Notes<div onclick="userAccOptions()" class="userInfo"><?php echo  $_SESSION['uname']; ?></div></div>
         <div id="titleBar" class="titleBar"></div>
       <div class="sideRack">
           
@@ -49,12 +49,12 @@ include 'session_check.php';
             </script>
           </div>
           <div class="options">
-            <ul>
-                    <li onclick="navigate(this);" data-label="htmls/addNote.html" data-title="Write Note">Add Note</li>
-                  <li onclick="navigate(this);" data-label="search.php" data-title="Read Notes">Read Notes</li>
-                     <li onclick="navigate(this);" data-label="pho.html" data-title="All your Files...">Files</li>
+            <ul id="mainOptions">
+                    <li onclick="navigate(this);" data-task="addNote" data-label="htmls/addNote.html" data-title="Write Note">Add Note</li>
+                  <li onclick="navigate(this);" data-task="searchNote" data-label="search.php" data-title="Read Notes">Read Notes</li>
+                     <li onclick="navigate(this);" data-task="photo" data-label="pho.html" data-title="All your Files...">Files</li>
                      <li onclick="navigate(this);"  data-label="ppl.html" data-title="Some of them..">People</li>
-                     <li onclick="navigate(this);"  data-label="lnk.html" data-title="Links">Links</li>
+                     <li onclick="navigate(this);" data-task="links"  data-label="links.php?limit=9,0" data-title="Links">Links</li>
            </div>
             <div class="louis" id="louis">
            <div id="louis_load" class="spinner" style="" >
@@ -78,7 +78,7 @@ var timer=(new Date).getTime();
     highlightSelection(ob);
 notey.get(ob.dataset.label,function(data){
 
-   if(ob.dataset.label=='htmls/addNote.html')
+   if(ob.dataset.task=='addNote')
    {
         gen.id('contentPlace').innerHTML=data.responseText;
        if(window.File && window.FileList && window.FileReader)
@@ -97,7 +97,7 @@ notey.get(ob.dataset.label,function(data){
     $( "#cal" ).datepicker();
   });
    }
-   else if(ob.dataset.label=='search.php')
+   else if(ob.dataset.task=='searchNote')
    {
        gen.id('contentPlace').innerHTML="";
 var decoded = JSON.parse(data.responseText);
@@ -108,9 +108,36 @@ resultDisplay(decoded[start]);
 start++;
 }
    }
+   else if(ob.dataset.task=='links')
+   {
+ gen.id('contentPlace').innerHTML="";
+ var decoded = JSON.parse(data.responseText);
+ var start=0;
+ while(decoded[start]!=null)
+ {
+   var link = document.createElement('div');
+   var linkOpt = document.createElement('div');
+   var titlePlace  = document.createElement('div');
+   link.setAttribute('class','linkBox');
+   linkOpt.setAttribute('class','linkOpt');
+   titlePlace.setAttribute('class','titlePlace');
+   titlePlace.innerHTML=decoded[start].title;
+   titlePlace.setAttribute('title','Delete');
+   linkOpt.innerHTML="Delete";
+   link.appendChild(linkOpt);
+   link.appendChild(titlePlace);
+   
+   var cast = 'window.open(\''+decoded[start].url+'\',\'_blank\')';
+      link.setAttribute('onclick',cast);
+      link.setAttribute('title',decoded[start].title);
+   //link.innerHTML=decoded[start].title;
+   gen.id('contentPlace').appendChild(link);
+   start++;
+ }
+   }
    else
    {
-        gen.id('contentPlace').innerHTML="Development On-Course...";
+        gen.id('contentPlace').innerHTML='Development On-Course...<a href="book.php" target="_new">Try the old one </a>';
    }
 
 
@@ -144,6 +171,9 @@ var div = document.createElement('div');
 div.setAttribute('class','file');
 div.innerHTML=decoded[0].realFileName;
 div.setAttribute('title',decoded[0].realFileName);
+div.style.background='url('+JSON.parse(icons).defaultfile+')';
+div.style.backgroundSize='5em 5em';
+div.style.backgroundRepeat='no-repeat';
 div.setAttribute('data-id',decoded[0].id);
 console.log(decoded[0].size);
 div.addEventListener('click',function(e){
@@ -163,8 +193,8 @@ fileSlot.appendChild(div);
       else
       {
             var report = document.createElement('div');
-              report.setAttribute('class','note');
-              report.innerHTML="No results to show !";
+              report.setAttribute('class','noNote');
+              report.innerHTML="No Notes to show !";
                 gen.id('contentPlace').appendChild(report);
       }
     }
@@ -216,12 +246,13 @@ fileSlot.appendChild(div);
           gen.id('saveButton').value="Save Note";
           gen.id("fileList").innerHTML='';
           showNotification("Note Saved");
-                      gen.id('saveButton').removeAttribute('disabled');
+          gen.id('saveButton').removeAttribute('disabled');
 });
    }
    function showNotification(content)
    {
       gen.id('notificationSpace').innerHTML='';
+            gen.id('typeSpace').value='';
       var ob = document.createElement('div');
       ob.setAttribute('id','notification');
        ob.setAttribute('class','fadeInRight');
@@ -269,9 +300,19 @@ function highlightSelection(ob)
     prev=ob;
   }
 }
-
+function userAccOptions()
+{
+  var content='<div align="center"><a  href="logout.php">Log-Out</a></div>';
+    notey.notify('',{text:content,iframe:false,width:200,height:0});
+}
           
     </script>
+    <script>
+  gen.id('mainOptions').getElementsByTagName('li')[0].click();
+  </script>
+  <!--
+    Script for unique page treatment
+    -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>

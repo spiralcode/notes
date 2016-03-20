@@ -29,3 +29,7 @@
     return 'png';
 	}
 };
+function travelTo(link,target)
+{
+    	window.location.href=link;
+}

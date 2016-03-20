@@ -214,10 +214,27 @@ text-align: left;
 	position: relative;
 	width: 80%;
 	margin-top: 2vh;
-
 	min-height: 10vh;
 	border-radius: 2px;
 	background: white;
+	box-shadow: 0px 1px .5px black;
+
+
+}
+.contentPlace .noNote
+{
+position: relative;
+width: 80%;
+margin-top: 2vh;
+min-height: 10vh;
+border-radius: 2px;
+background: white;
+box-shadow: 0px 1px .5px black;
+font-size: 1.5em;
+color: dimgrey;
+opacity: .8;
+line-height: 10vh;
+
 }
 .note .noteInfo
 {
@@ -228,6 +245,7 @@ text-align: left;
 	background: cornflowerblue;
 	color: white;
 	text-align: left;
+	text-indent: 1em;
 }
 .note .contentSlot
 {
@@ -241,6 +259,8 @@ margin-top: 1em;
 	min-height: calc(10vh - 4vh);
 
 
+
+
 }
 .note .fileSlot
 {
@@ -252,13 +272,13 @@ margin-top: 1em;
 	min-height: 6em;
 	overflow-y:  scroll;
 	padding: 1em;
-
+	border-top: 1px solid rgba(19, 20, 23, 0.4);
 }
 .note .fileSlot .file
 {
 	position: relative;
-	height: 6em;
-	width: 6em;
+	height: 5em;
+	min-width: 5em;
 background: gainsboro;
 	float: left;
 	margin-left: 1em;
@@ -267,7 +287,44 @@ background: gainsboro;
 	cursor: pointer;
 	overflow-x: hidden;
 		overflow-y: hidden;
-		border-radius: 4px;
+		border-radius: 2px;
 		box-shadow: 1px 1px 1px slategray;
+		box-shadow: 1px 1px 1px rgb(255, 255, 255);
+color: rgb(0, 155, 149);
+text-shadow: 1px 1px 1px rgb(19, 20, 23);
+border: 1px solid silver;
+background-repeat: no-repeat
 	}
 	
+.contentPlace .linkBox
+{
+	position: relative;
+	float: left;
+	width: 15vw;
+	background: wheat;
+	background:linear-gradient(cornflowerblue,white);
+	margin: 1em;
+	box-shadow: 1px 1px 1px slategray;
+	cursor: pointer;
+}
+.contentPlace .linkBox:hover
+{
+			box-shadow: 1px 1px 1px cadetblue;
+}
+.contentPlace .linkBox .linkOpt
+{
+background: rgba(241, 238, 245, 0.29);
+	width: 100%;
+	font-size: 1em;
+	text-align: right;
+	color: darkolivegreen;
+}
+.contentPlace .linkBox .linkOpt:hover
+{
+	color: white;
+}
+.contentPlace .linkBox .titlePlace
+{
+	padding: 1em;
+				text-align: justify;
+}
