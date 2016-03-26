@@ -84,7 +84,9 @@ overflow-y: scroll;
 .sideRack input[type="text"]
 {
 	color: rgb(100, 149, 237);
-	border: none border-style color;
+	border: none ;
+	border-radius: 1px;
+	width: 14.5vw;
 }
 /*
 Rules for addNote.html
@@ -327,4 +329,18 @@ background: rgba(241, 238, 245, 0.29);
 {
 	padding: 1em;
 				text-align: justify;
+}
+.dropDown
+{
+	position: absolute;
+	background: white;
+	z-index: 999;
+}
+#calender
+{
+	position: absolute;
+	background: thistle;
+	padding:2em;
+	background: white;
+	box-shadow: 0px 0px 1px blueviolet;
 }

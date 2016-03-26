@@ -32,13 +32,13 @@ include 'session_check.php';
 <script>
 
 </script>
-        <div class="topribbon">Notes<div onclick="userAccOptions()" class="userInfo"><?php echo  $_SESSION['uname']; ?></div></div>
+        <div class="topribbon">Notes<div onclick="gen.dropDown(this);" class="userInfo"><?php echo  $_SESSION['uname']; ?></div></div>
         <div id="titleBar" class="titleBar"></div>
       <div class="sideRack">
           
           <div class="searchNotes">
-           <input id="keyWord" placeholder="Search for..." style="width:100%" type="text">
-          <button onclick="keyWordSearch();">Search Notes</button>
+           <input id="keyWord" placeholder="Search for..." type="text">
+          <button id="searchButton" onclick="keyWordSearch();">Search Notes</button>
           <script>
             gen.id('keyWord').addEventListener('keyup',function(e){
             if(gen.id('keyWord').value.length>2)
@@ -61,6 +61,7 @@ include 'session_check.php';
              </div>
               <span id="louis_talk"></span>
               </div>
+     
       </div>
       
         <div id="contentPlace" class="contentPlace" align="center" >
@@ -68,6 +69,7 @@ include 'session_check.php';
 <div id="iQ"><table><tr id="iQlist"></tr></table>
 </div>
 </div>
+
 <script>
 /*
 Globals
@@ -81,6 +83,7 @@ notey.get(ob.dataset.label,function(data){
       louis(' ',false);
    if(ob.dataset.task=='addNote')
    {
+     gen.id('searchButton').innerHTML="search notes";
         gen.id('contentPlace').innerHTML=data.responseText;
        if(window.File && window.FileList && window.FileReader)
 	{
@@ -100,6 +103,7 @@ notey.get(ob.dataset.label,function(data){
    }
    else if(ob.dataset.task=='searchNote')
    {
+     gen.id('searchButton').innerHTML="Search Notes";
        gen.id('contentPlace').innerHTML="";
 var decoded = JSON.parse(data.responseText);
 var start = 0;
@@ -111,6 +115,7 @@ start++;
    }
    else if(ob.dataset.task=='links')
    {
+gen.id('searchButton').innerHTML="search links";
  gen.id('contentPlace').innerHTML="";
  var decoded = JSON.parse(data.responseText);
  var start=0;
@@ -249,6 +254,7 @@ fileSlot.appendChild(div);
           gen.id('saveButton').removeAttribute('disabled');
 });
    }
+   var toggleFlag=0;
    function showNotification(content)
    {
       gen.id('notificationSpace').innerHTML='';
@@ -301,9 +307,10 @@ function highlightSelection(ob)
   }
 }
 function userAccOptions()
-{
+{/*
   var content='<div align="center"><a  href="logout.php">Log-Out</a></div>';
-    notey.notify('',{text:content,iframe:false,width:200,height:0});
+    notey.notify('',{text:content,iframe:false,width:200,height:0});*/
+    gen.dropDown("");
 }
  function louis(tell,toggle)
  {
@@ -312,6 +319,13 @@ function userAccOptions()
    gen.id('louis_load').style.display='block';
    else
   gen.id('louis_load').style.display='none';
+ }
+ function showCalender()
+ {
+   console.log('Vall');
+   var calenderDim = gen.id('calender').getBoundingClientRect();
+  gen.id('calender').style.left=(window.innerWidth/2)-(calenderDim.width/2)+'px';
+    gen.id('calender').style.top=(window.innerHeight/2)-(calenderDim.height/2)+'px';
  }
     </script>
     <script>
@@ -324,6 +338,8 @@ function userAccOptions()
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
-
+         <div id="calender">
+              <div id="cal"></div>
+              </div>
     </body>
 </html>

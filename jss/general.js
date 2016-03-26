@@ -27,7 +27,18 @@
     return 'jpeg';
                    else if(collect[at]=='png')
     return 'png';
-	}
+	},
+    dropDown:function(ob)
+    {
+        console.log('ss');
+      var div = document.createElement('div');
+      div.setAttribute('class','dropDown');
+      var loc = ob.getBoundingClientRect();
+      div.style.left=loc.left+'px';
+            div.style.top=loc.bottom+'px';
+            div.innerHTML="THIG";
+            document.getElementsByTagName('body')[0].appendChild(div);
+    }
 };
 function travelTo(link,target)
 {
