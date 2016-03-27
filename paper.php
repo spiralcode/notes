@@ -322,7 +322,7 @@ function userAccOptions()
  }
  function showCalender()
  {
-   console.log('Vall');
+   gen.id('calender').style.display="block";
    var calenderDim = gen.id('calender').getBoundingClientRect();
   gen.id('calender').style.left=(window.innerWidth/2)-(calenderDim.width/2)+'px';
     gen.id('calender').style.top=(window.innerHeight/2)-(calenderDim.height/2)+'px';
@@ -338,8 +338,11 @@ function userAccOptions()
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
-         <div id="calender">
+         <div draggable id="calender">
               <div id="cal"></div>
               </div>
+              <script>
+                $('calender').draggable();
+                </script>
     </body>
 </html>
