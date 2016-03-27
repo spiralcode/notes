@@ -98,7 +98,7 @@ notey.get(ob.dataset.label,function(data){
            }
        });
   $(function() {
-    $( "#cal" ).datepicker();
+    $( "#cal" ).datepicker({onSelect:function(data){console.log(data);}});
   });
    }
    else if(ob.dataset.task=='searchNote')
