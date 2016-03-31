@@ -1,2 +1,3 @@
-RewriteRule ^apache-redirect-http-to-https\.html$ https://note-runfree.rhcloud.com/ [R=301,L]
+SetEnv OPENSHIFT_MYSQL_DB_HOST localhost
+
 
