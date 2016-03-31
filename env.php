@@ -1,0 +1,3 @@
+<?php
+echo $_SERVER['OPENSHIFT_MYSQL_DB_HOST'];
+	?>
