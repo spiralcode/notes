@@ -37,16 +37,17 @@ console.log("Core time"+timer);
             }
             function savenote()
             {
+                 timer++;
 if($id('note').value=='')
     {alert('Nothing to save !');
         return;}
         $id('savebutton').value="Saving...";
-var timer=time.getTime();
+
  var contents=$id('note').value,detected_lat=0,detected_lng=0;
- console.log("Note time"+timer);
 notey.post('../feed.php',{contents:contents,timeid:timer,alterDate:0,geolocation:detected_lat+','+detected_lng,setglocation:000},function(data){
  if(data.responseText==1)
      {
+         console.log(data.responseText);
             $id('note').value='';
             $id('note').placeholder='Last note saved';
             $id('savebutton').value="Save Note";
