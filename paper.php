@@ -51,7 +51,8 @@ include 'session_check.php';
           <div class="options">
             <ul id="mainOptions">
                     <li onclick="navigate(this);" data-task="addNote" data-label="htmls/addNote.html" data-title="Write Note">Add Note</li>
-                  <li onclick="navigate(this);" data-task="searchNote" data-label="search.php" data-title="Read Notes">Read Notes</li>
+                  <li onclick="navigate(this);" data-task="searchNote" data-label="search.php?date=<?php date_default_timezone_set('Asia/Calcutta');
+ echo date("d-m-Y"); ?>" data-title="Read Notes">Read Notes</li>
                      <li onclick="navigate(this);" data-task="photo" data-label="pho.html" data-title="All your Files...">Files</li>
                      <li onclick="navigate(this);"  data-label="ppl.html" data-title="Some of them..">People</li>
                      <li onclick="navigate(this);" data-task="links"  data-label="links.php?limit=9,0" data-title="Links">Links</li>
