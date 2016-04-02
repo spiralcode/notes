@@ -27,6 +27,11 @@ include 'session_check.php';
 <script src="lib/jquery-ui.js"></script>
 <link rel="stylesheet" href="style/jquery-ui.css">
 <link rel="stylesheet" href="raid.css"/>
+
+      <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
+        <script>/*window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')*/</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
     </head>
     <body>
 <script>
@@ -98,9 +103,7 @@ notey.get(ob.dataset.label,function(data){
                transferNote();
            }
        });
-  $(function() {
     $( "#cal" ).datepicker({onSelect:function(data){console.log(data);}});
-  });
    }
    else if(ob.dataset.task=='searchNote')
    {
@@ -335,10 +338,7 @@ function userAccOptions()
   <!--
     Script for unique page treatment
     -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
-        <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
+
          <div draggable id="calender">
               <div id="cal"></div>
               </div>
