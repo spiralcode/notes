@@ -67,7 +67,7 @@ include 'session_check.php';
              </div>
               <span id="louis_talk"></span>
               </div>
-     
+                  <div style="width:15vw;"> <div id="cal"></div></div>
       </div>
       
         <div id="contentPlace" class="contentPlace" align="center" >
@@ -81,6 +81,7 @@ include 'session_check.php';
 Globals
 */
 var timer=(new Date).getTime();
+var task = "";
     function navigate(ob)
     {
       louis('Loading...',true);
@@ -89,6 +90,7 @@ notey.get(ob.dataset.label,function(data){
       louis(' ',false);
    if(ob.dataset.task=='addNote')
    {
+     task=ob.dataset.task;
      gen.id('searchButton').innerHTML="search notes";
         gen.id('contentPlace').innerHTML=data.responseText;
        if(window.File && window.FileList && window.FileReader)
@@ -103,10 +105,13 @@ notey.get(ob.dataset.label,function(data){
                transferNote();
            }
        });
-    $( "#cal" ).datepicker({onSelect:function(data){console.log(data);}});
+    $( "#cal" ).datepicker({onSelect:function(data){
+      timeTasks(moment(data,"MM/DD/YYYY").unix());
+      }});
    }
    else if(ob.dataset.task=='searchNote')
    {
+          task=ob.dataset.task;
      gen.id('searchButton').innerHTML="Search Notes";
        gen.id('contentPlace').innerHTML="";
 var decoded = JSON.parse(data.responseText);
@@ -119,6 +124,7 @@ start++;
    }
    else if(ob.dataset.task=='links')
    {
+          task=ob.dataset.task;
 gen.id('searchButton').innerHTML="search links";
  gen.id('contentPlace').innerHTML="";
  var decoded = JSON.parse(data.responseText);
@@ -168,7 +174,8 @@ gen.id('titleBar').innerHTML=' ';
     noteInfo.setAttribute('class','noteInfo');
     contentSlot.setAttribute('class','contentSlot');
     fileSlot.setAttribute('class','fileSlot');
-  noteInfo.innerHTML=moment.unix(ob.time).format('Do  MMMM YYYY , HH:mm');  
+ // noteInfo.innerHTML=moment.unix(ob.time).format('Do  MMMM YYYY , HH:mm');  
+    noteInfo.innerHTML=moment(ob.ftime,'YYYY-MM-DD HH:mm:ss').format('Do  MMMM YYYY , HH:mm');  
     contentSlot.innerHTML=ob.content;
     var beg = 0;
     while(ob.ilist[0][beg]!=null)
@@ -235,11 +242,12 @@ fileSlot.appendChild(div);
         }
     }
     var noteId = 0;
+    var alterDate=0;
    function transferNote()
    {
+
             gen.id('saveButton').setAttribute('disabled','disabled');
-      var alterDate=(new Date).getTime();
-      noteId=alterDate;
+       noteId=(new Date).getTime();
        if(fileBuffer.length>0)
        {
        gen.id('saveButton').value="Uploading Files...";
@@ -247,10 +255,10 @@ fileSlot.appendChild(div);
        }
       gen.id('saveButton').value="Saving Note...";
       var contents=gen.id('typeSpace').value;
-      alterDate=0;
       var geolocation='0,0';
       var setgLocation='0,0';
- notey.post('feed.php',{contents:contents,timeid:noteId,alterDate:alterDate,geolocation:geolocation,	setglocation:setgLocation},function(data)
+           console.log(alterDate);
+ notey.post('feed.php',{contents:contents,timeid:noteId,alterDate:alterDate,geolocation:geolocation,setglocation:setgLocation},function(data)
 {
           gen.id('saveButton').value="Save Note";
           gen.id("fileList").innerHTML='';
@@ -331,6 +339,38 @@ function userAccOptions()
   gen.id('calender').style.left=(window.innerWidth/2)-(calenderDim.width/2)+'px';
     gen.id('calender').style.top=(window.innerHeight/2)-(calenderDim.height/2)+'px';
  }
+ function timeTasks(time)
+ {
+if(task=="addNote")
+{
+  if(moment.unix((new Date).getTime()/1000).format('MM-DD-YYYY')==moment.unix(time).format('MM-DD-YYYY'))
+{
+gen.id('noteDate').innerHTML=moment.unix((new Date).getTime()/1000).format('Do  MMMM YYYY , HH:mm');
+alterDate=moment.unix((new Date).getTime()/1000).format('YYYY-MM-DD HH:mm:ss');
+return;
+}
+  gen.id('noteDate').innerHTML=moment.unix(time).format('Do  MMMM YYYY , HH:mm');
+  alterDate=moment.unix(time).format('YYYY-MM-DD HH:mm:ss');
+}
+else if(task=='searchNote')
+{
+notesByDate(time);
+}
+ }
+ function notesByDate(time)
+ {
+ notey.get('search.php?date='+moment.unix(time).format("DD-MM-YYYY"),function(data){
+gen.id('searchButton').innerHTML="Search Notes";
+       gen.id('contentPlace').innerHTML="";
+var decoded = JSON.parse(data.responseText);
+var start = 0;
+while(decoded[start]!=null)
+{
+resultDisplay(decoded[start]);
+start++;
+}
+ });
+ }
     </script>
     <script>
   gen.id('mainOptions').getElementsByTagName('li')[0].click();
@@ -339,8 +379,11 @@ function userAccOptions()
     Script for unique page treatment
     -->
 
-         <div draggable id="calender">
-              <div id="cal"></div>
+         <div draggable id="calender"><div id="close_calender" align="right" class="options">Close</div>
+         <script>
+           gen.id('close_calender').addEventListener('click',function(e){gen.id('calender').style.display="none";});
+           </script>
+
               </div>
               <script>
                 $('calender').draggable();

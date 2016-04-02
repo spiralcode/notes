@@ -19,7 +19,6 @@ if($_POST['alterDate']==0)
 $startTime = $datum->format('Y-m-d H:i:s');
 else
 $startTime = $_POST['alterDate'];
-
 $q1 = mysqli_query($link, "insert into events values ($nid,$userid,$time,'$content','$sgeo','$geo','$startTime')")or die(mysqli_error($link));
 echo 1;
   echo str_repeat(' ',1024*64);
