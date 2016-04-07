@@ -38,7 +38,7 @@ include 'session_check.php';
 
 </script>
         <div class="topribbon">Notes<div onclick="gen.dropDown(this);" class="userInfo"><?php echo  $_SESSION['uname']; ?></div></div>
-        <div id="titleBar" class="titleBar"></div>
+        <div id="titleBar_full" class="titleBar"><span id="titleBar_title"></span><span id="titleBar_options"></span></div>
       <div class="sideRack">
           
           <div class="searchNotes">
@@ -89,7 +89,7 @@ var task = "";
 notey.get(ob.dataset.label,function(data){
   
       louis(' ',false);
-           gen.id('titleBar').innerHTML=ob.dataset.title;
+           gen.id('titleBar_title').innerHTML=ob.dataset.title;
    if(ob.dataset.task=='addNote')
    {
 
@@ -114,6 +114,7 @@ notey.get(ob.dataset.label,function(data){
    }
    else if(ob.dataset.task=='searchNote')
    {
+      gen.id('titleBar_options').innerHTML="<input type=\"text\" value=\""+moment.unix(new Date/1000).format('DD - MM - YYYY')+"\"/>";
           task=ob.dataset.task;
      gen.id('searchButton').innerHTML="Search Notes";
        gen.id('contentPlace').innerHTML="";
@@ -157,10 +158,8 @@ gen.id('searchButton').innerHTML="search links";
    {
         gen.id('contentPlace').innerHTML='Development On-Course...<a href="book.php" target="_new">Try the old one </a>';
    }
-
-
 });
-gen.id('titleBar').innerHTML="Loading...";
+gen.id('titleBar_title').innerHTML="Loading...";
     }
     function resultDisplay(ob)
     {
@@ -281,7 +280,7 @@ function keyWordSearch()
 {
   notey.get('gcow.php?q='+gen.id('keyWord').value,function(data){
 gen.id('contentPlace').innerHTML="";
-gen.id('titleBar').innerHTML="Showing results for <b>"+gen.id('keyWord').value+'</b>';
+gen.id('titleBar_options').innerHTML="Showing results for <b>"+gen.id('keyWord').value+'</b>';
 var decoded = JSON.parse(data.responseText);
 var start = 0;
 while(decoded[start]!=null)
@@ -304,14 +303,12 @@ var DCde = JSON.parse(data.responseText);
 var prev;
 function highlightSelection(ob)
 {
-
-
   ob.style.background="rgb(241, 238, 245)";
   if(prev==null)
   {
     prev=ob;
   }
-  else
+  else if(ob!=prev)
   {
     prev.style.background="rgb(49, 54, 69)";
     prev=ob;
@@ -358,6 +355,7 @@ notesByDate(time);
  }
  function notesByDate(time)
  {
+      gen.id('titleBar_options').innerHTML="<input onclick=\"this.datepicker();\"  type=\"text\" value=\""+moment.unix(time).format('DD - MM - YYYY')+"\"/>";
  notey.get('search.php?date='+moment.unix(time).format("DD-MM-YYYY"),function(data){
 gen.id('searchButton').innerHTML="Search Notes";
        gen.id('contentPlace').innerHTML="";
@@ -369,6 +367,10 @@ resultDisplay(decoded[start]);
 start++;
 }
  });
+ }
+ function calInit()
+ {
+   
  }
     </script>
     <script>

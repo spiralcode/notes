@@ -223,6 +223,14 @@ text-align: left;
 	font-family: "Segoe UI light",Arial;
 	text-indent: 1em;
 }
+#titleBar_title
+{
+	margin-right: 1em;
+}
+#titleBar_options
+{
+
+}
 .contentPlace .note{
 	position: relative;
 	width: 80%;
