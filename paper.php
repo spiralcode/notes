@@ -58,8 +58,8 @@ include 'session_check.php';
                     <li onclick="navigate(this);" data-task="addNote" data-label="htmls/addNote.html" data-title="Write Note">Add Note</li>
                   <li onclick="navigate(this);" data-task="searchNote" data-label="search.php?date=<?php date_default_timezone_set('Asia/Calcutta');
  echo date("d-m-Y"); ?>" data-title="Read Notes">Read Notes</li>
-                     <li onclick="navigate(this);" data-task="photo" data-label="pho.html" data-title="All your Files...">Files</li>
-                     <li onclick="navigate(this);"  data-label="ppl.html" data-title="Some of them..">People</li>
+                     <li onclick="navigate(this);" data-task="photo" data-label="pho.html" data-title="Files">Files</li>
+                     <li onclick="navigate(this);"  data-label="ppl.html" data-title="Peoples">People</li>
                      <li onclick="navigate(this);" data-task="links"  data-label="links.php?limit=9,0" data-title="Links">Links</li>
            </div>
             <div class="louis" id="louis">
@@ -67,7 +67,7 @@ include 'session_check.php';
              </div>
               <span id="louis_talk"></span>
               </div>
-                  <div style="width:15vw;"> <div id="cal"></div></div>
+
       </div>
       
         <div id="contentPlace" class="contentPlace" align="center" >
@@ -87,9 +87,12 @@ var task = "";
       louis('Loading...',true);
     highlightSelection(ob);
 notey.get(ob.dataset.label,function(data){
+  
       louis(' ',false);
+           gen.id('titleBar').innerHTML=ob.dataset.title;
    if(ob.dataset.task=='addNote')
    {
+
      task=ob.dataset.task;
      gen.id('searchButton').innerHTML="search notes";
         gen.id('contentPlace').innerHTML=data.responseText;
@@ -157,12 +160,8 @@ gen.id('searchButton').innerHTML="search links";
 
 
 });
-if(ob.dataset.title!=null)
-gen.id('titleBar').innerHTML=ob.dataset.title;
-else
-gen.id('titleBar').innerHTML=' ';
+gen.id('titleBar').innerHTML="Loading...";
     }
-    
     function resultDisplay(ob)
     {
       if(ob.status!=0){
@@ -379,14 +378,14 @@ start++;
     Script for unique page treatment
     -->
 
-         <div draggable id="calender"><div id="close_calender" align="right" class="options">Close</div>
+         <div draggable="true" id="calender"><div id="close_calender" align="right" class="options">Close</div>
          <script>
            gen.id('close_calender').addEventListener('click',function(e){gen.id('calender').style.display="none";});
            </script>
-
+                  <div id="cal"></div>
               </div>
               <script>
-                $('calender').draggable();
+                $('#calender').draggable();
                 </script>
     </body>
 </html>
