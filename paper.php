@@ -58,9 +58,9 @@ include 'session_check.php';
                     <li onclick="navigate(this);" data-task="addNote" data-label="htmls/addNote.html" data-title="Write Note">Add Note</li>
                   <li onclick="navigate(this);" data-task="searchNote" data-label="search.php?date=<?php date_default_timezone_set('Asia/Calcutta');
  echo date("d-m-Y"); ?>" data-title="Read Notes">Read Notes</li>
-                     <li onclick="navigate(this);" data-task="photo" data-label="pho.html" data-title="Files">Files</li>
-                     <li onclick="navigate(this);"  data-label="ppl.html" data-title="Peoples">People</li>
-                     <li onclick="navigate(this);" data-task="links"  data-label="links.php?limit=9,0" data-title="Links">Links</li>
+                     <li onclick="navigate(this);" data-task="files" data-label="files.php" data-title="Files">Files</li>
+                     <li onclick="navigate(this);" date-task="peoples"  data-label="ppl.html" data-title="Peoples">People</li>
+                     <li onclick="navigate(this);" data-task="links"  data-label="links.php?limit=20,0" data-title="Links">Links</li>
            </div>
             <div class="louis" id="louis">
            <div id="louis_load" class="spinner" style="" >
@@ -90,9 +90,10 @@ notey.get(ob.dataset.label,function(data){
   
       louis(' ',false);
            gen.id('titleBar_title').innerHTML=ob.dataset.title;
+
    if(ob.dataset.task=='addNote')
    {
-
+                      gen.id('titleBar_options').innerHTML="";
      task=ob.dataset.task;
      gen.id('searchButton').innerHTML="search notes";
         gen.id('contentPlace').innerHTML=data.responseText;
@@ -128,6 +129,7 @@ start++;
    }
    else if(ob.dataset.task=='links')
    {
+                           gen.id('titleBar_options').innerHTML="";
           task=ob.dataset.task;
 gen.id('searchButton').innerHTML="search links";
  gen.id('contentPlace').innerHTML="";
@@ -149,13 +151,45 @@ gen.id('searchButton').innerHTML="search links";
    var cast = 'window.open(\''+decoded[start].url+'\',\'_blank\')';
       link.setAttribute('onclick',cast);
       link.setAttribute('title',decoded[start].title);
-   //link.innerHTML=decoded[start].title;
    gen.id('contentPlace').appendChild(link);
    start++;
  }
    }
+   else if(ob.dataset.task=='files')
+   {
+         gen.id('titleBar_options').innerHTML="<input type=\"button\" value = \"Select Files\"/> ";
+          task=ob.dataset.task;
+gen.id('searchButton').innerHTML="search links";
+ gen.id('contentPlace').innerHTML="";
+ var decoded = JSON.parse(data.responseText);
+ var start=0;
+ while(decoded[start]!=null)
+ {
+   var link = document.createElement('div');
+   var linkOpt = document.createElement('div');
+   var titlePlace  = document.createElement('div');
+   link.setAttribute('class','fileBox');
+   linkOpt.setAttribute('class','fileOpt');
+   titlePlace.setAttribute('class','filePlace');
+   if(decoded[start].file_name.length<20)
+   titlePlace.innerHTML=decoded[start].file_name;
+   else
+  titlePlace.innerHTML=decoded[start].file_name.substring(0,10)+'...'+(decoded[start].file_name.substring(decoded[start].file_name.length-5));
+   linkOpt.innerHTML="Delete";
+   link.appendChild(linkOpt);
+   link.appendChild(titlePlace);
+   
+   var cast = 'window.open(\''+decoded[start].url+'\',\'_blank\')';
+      link.setAttribute('onclick',cast);
+      link.setAttribute('title',decoded[start].file_name);
+   //link.innerHTML=decoded[start].title;
+   gen.id('contentPlace').appendChild(link);
+   start++;
+   }
+   }
    else
    {
+        gen.id('titleBar_options').innerHTML="";
         gen.id('contentPlace').innerHTML='Development On-Course...<a href="book.php" target="_new">Try the old one </a>';
    }
 });
@@ -243,8 +277,9 @@ fileSlot.appendChild(div);
     var alterDate=0;
    function transferNote()
    {
-
-            gen.id('saveButton').setAttribute('disabled','disabled');
+     if(fileBuffer.length>0||gen.id('typeSpace').value.length>0)
+     {
+        gen.id('saveButton').setAttribute('disabled','disabled');
        noteId=(new Date).getTime();
        if(fileBuffer.length>0)
        {
@@ -263,6 +298,11 @@ fileSlot.appendChild(div);
           showNotification("Note Saved");
           gen.id('saveButton').removeAttribute('disabled');
 });
+     }
+     else
+     {
+          showNotification("Note seems to be empty, type in something...");
+     }
    }
    var toggleFlag=0;
    function showNotification(content)
@@ -278,9 +318,13 @@ fileSlot.appendChild(div);
    }
 function keyWordSearch()
 {
-  notey.get('gcow.php?q='+gen.id('keyWord').value,function(data){
+  
+ notey.get('gcow.php?q='+gen.id('keyWord').value,function(data){
 gen.id('contentPlace').innerHTML="";
-gen.id('titleBar_options').innerHTML="Showing results for <b>"+gen.id('keyWord').value+'</b>';
+gen.id('titleBar_title').innerHTML="Search";
+gen.id('titleBar_options').innerHTML="showing results for <b>"+gen.id('keyWord').value+'</b>';
+if(gen.id('keyWord').value=='')
+gen.id('titleBar_options').innerHTML="give me something to search...";
 var decoded = JSON.parse(data.responseText);
 var start = 0;
 while(decoded[start]!=null)
@@ -355,10 +399,10 @@ notesByDate(time);
  }
  function notesByDate(time)
  {
-      gen.id('titleBar_options').innerHTML="<input onclick=\"this.datepicker();\"  type=\"text\" value=\""+moment.unix(time).format('DD - MM - YYYY')+"\"/>";
- notey.get('search.php?date='+moment.unix(time).format("DD-MM-YYYY"),function(data){
+gen.id('titleBar_options').innerHTML="<input onclick=\"this.datepicker();\"  type=\"text\" value=\""+moment.unix(time).format('DD - MM - YYYY')+"\"/>";
+notey.get('search.php?date='+moment.unix(time).format("DD-MM-YYYY"),function(data){
 gen.id('searchButton').innerHTML="Search Notes";
-       gen.id('contentPlace').innerHTML="";
+gen.id('contentPlace').innerHTML="";
 var decoded = JSON.parse(data.responseText);
 var start = 0;
 while(decoded[start]!=null)
@@ -379,12 +423,11 @@ start++;
   <!--
     Script for unique page treatment
     -->
-
          <div draggable="true" id="calender"><div id="close_calender" align="right" class="options">Close</div>
          <script>
            gen.id('close_calender').addEventListener('click',function(e){gen.id('calender').style.display="none";});
            </script>
-                  <div id="cal"></div>
+          <div id="cal"></div>
               </div>
               <script>
                 $('#calender').draggable();
