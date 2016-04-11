@@ -354,6 +354,10 @@ background: rgba(241, 238, 245, 0.29);
 	padding: 1em;
 				text-align: justify;
 }
+.contentPlace .noFiles
+{
+	color: rgb(92, 95, 98);
+}
 .contentPlace .fileBox
 {
 	position: relative;
@@ -366,6 +370,7 @@ background: linear-gradient(rgb(225, 234, 250),white);
 	box-shadow: 0px 0px 1px slategray;
 	cursor: pointer;
 	word-wrap: break-word;
+	color: rgb(92, 95, 98);
 }
 .contentPlace .fileBox:hover
 {

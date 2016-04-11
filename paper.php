@@ -37,12 +37,12 @@ include 'session_check.php';
 <script>
 
 </script>
-        <div class="topribbon">Notes<div onclick="gen.dropDown(this);" class="userInfo"><?php echo  $_SESSION['uname']; ?></div></div>
+        <div class="topribbon">Notes<div onclick="userAccOptions()" class="userInfo"><?php echo  $_SESSION['uname']; ?></div></div>
         <div id="titleBar_full" class="titleBar"><span id="titleBar_title"></span><span id="titleBar_options"></span></div>
       <div class="sideRack">
           
           <div class="searchNotes">
-           <input id="keyWord" placeholder="Search for..." type="text">
+           <input id="keyWord" placeholder="Search for..." type="text" maxlength="100">
           <button id="searchButton" onclick="keyWordSearch();">Search Notes</button>
           <script>
             gen.id('keyWord').addEventListener('keyup',function(e){
@@ -135,6 +135,13 @@ gen.id('searchButton').innerHTML="search links";
  gen.id('contentPlace').innerHTML="";
  var decoded = JSON.parse(data.responseText);
  var start=0;
+  if(decoded[start]==null)
+ {
+      var noLink = document.createElement('div');
+      noLink.setAttribute('class','noFiles');
+      noLink.innerHTML="No links are found, this might also happen if we've failed to crawl the link detected from your note. ";
+      gen.id('contentPlace').appendChild(noLink);
+ }
  while(decoded[start]!=null)
  {
    var link = document.createElement('div');
@@ -157,12 +164,19 @@ gen.id('searchButton').innerHTML="search links";
    }
    else if(ob.dataset.task=='files')
    {
-         gen.id('titleBar_options').innerHTML="<input type=\"button\" value = \"Select Files\"/> ";
+         gen.id('titleBar_options').innerHTML="<input type=\"button\" value = \"Delete Files\"/> ";
           task=ob.dataset.task;
 gen.id('searchButton').innerHTML="search links";
  gen.id('contentPlace').innerHTML="";
  var decoded = JSON.parse(data.responseText);
  var start=0;
+ if(decoded[start]==null)
+ {
+      var noLink = document.createElement('div');
+      noLink.setAttribute('class','noFiles');
+      noLink.innerHTML="No files found !";
+      gen.id('contentPlace').appendChild(noLink);
+ }
  while(decoded[start]!=null)
  {
    var link = document.createElement('div');
@@ -175,12 +189,11 @@ gen.id('searchButton').innerHTML="search links";
    titlePlace.innerHTML=decoded[start].file_name;
    else
   titlePlace.innerHTML=decoded[start].file_name.substring(0,10)+'...'+(decoded[start].file_name.substring(decoded[start].file_name.length-5));
+  titlePlace.setAttribute('data-id',decoded[start].id);
+    titlePlace.addEventListener('click',function(e){fileInfo(this)});
    linkOpt.innerHTML="Delete";
    link.appendChild(linkOpt);
    link.appendChild(titlePlace);
-   
-   var cast = 'window.open(\''+decoded[start].url+'\',\'_blank\')';
-      link.setAttribute('onclick',cast);
       link.setAttribute('title',decoded[start].file_name);
    //link.innerHTML=decoded[start].title;
    gen.id('contentPlace').appendChild(link);
@@ -318,7 +331,7 @@ fileSlot.appendChild(div);
    }
 function keyWordSearch()
 {
-  
+
  notey.get('gcow.php?q='+gen.id('keyWord').value,function(data){
 gen.id('contentPlace').innerHTML="";
 gen.id('titleBar_title').innerHTML="Search";
@@ -333,12 +346,12 @@ resultDisplay(decoded[start]);
 start++;
 }
   });
+
 }
 function fileInfo(file)
 {
 notey.get('fileInfo.php?id='+file.dataset.id,function(data){
 var DCde = JSON.parse(data.responseText);
-
   var content = '<div style="text-align:center;"><div>'+DCde[0].realFileName+'</div><div>'+Math.round(parseInt(DCde[0].size)/1000000)+' MB</div><div><a target="_new" href = "downloadImage.php?id='+DCde[0].id+'">Download the File</a> | <a target="_new" href = "redirectToFile.php?id='+DCde[0].id+'"></a></div></div>';
         notey.notify('',{text:content,iframe:false,width:500,height:0});
 });
@@ -359,10 +372,10 @@ function highlightSelection(ob)
   }
 }
 function userAccOptions()
-{/*
+{
   var content='<div align="center"><a  href="logout.php">Log-Out</a></div>';
-    notey.notify('',{text:content,iframe:false,width:200,height:0});*/
-    gen.dropDown("");
+    notey.notify('',{text:content,iframe:false,width:200,height:0});
+ //   gen.dropDown("");
 }
  function louis(tell,toggle)
  {
@@ -411,10 +424,6 @@ resultDisplay(decoded[start]);
 start++;
 }
  });
- }
- function calInit()
- {
-   
  }
     </script>
     <script>
