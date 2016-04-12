@@ -5,6 +5,7 @@ include 'session_check.php';
 <html class="no-js" lang="">
     <head>
         <meta charset="utf-8">
+        <link id="favicon" rel="shortcut icon" href="favicon.png" type="image/png" />
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title>Notes Go</title>
         <meta name="description" content="">
