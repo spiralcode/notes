@@ -12,7 +12,8 @@ header('location: login.php?cook');}
 <html >
 <head>
 <title>Notes </title>
-<link rel="icon" href = "favicon.png">
+<link id="favicon" rel="shortcut icon" href="favicon.png" type="image/png" />
+
   <link rel="stylesheet" href="style.css">
       <script src="notey.js"></script>
         <link rel="stylesheet" href="raid.css">
