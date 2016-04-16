@@ -5,6 +5,7 @@
 	var dec = JSON.parse(data.responseText);
 document.getElementById('realFileName').value=xtractFileName(dec[0].realFileName);
 document.getElementById('realFileName').setAttribute('data-id',<?php echo $_GET['id']; ?>);
+document.getElementById('realFileName').setAttribute('data-ext','.'+formatOf(dec[0].realFileName));
 document.getElementById('icn').src='iconTransfer.php?title='+formatOf(dec[0].realFileName);
 document.getElementById('format').innerHTML=formatOf(dec[0].realFileName);
 if(dec[0].size/1000000>1)
@@ -28,12 +29,12 @@ notey.get('iconTransfer.php?title='+formatOf(dec[0].realFileName),function(datam
             if(document.getElementById('realFileName').value!=='')
             {
                 
-                                                            document.getElementById('realFileName_btton').value='Changing...';
+           document.getElementById('realFileName_btton').value='Changing...';
             notey.post('fileOps.php?id='+document.getElementById('realFileName').dataset.id+'&rename',{
-               newName:document.getElementById('realFileName').value
+               newName:document.getElementById('realFileName').value+document.getElementById('realFileName').dataset.ext
             },function(data){
-                                            document.getElementById('notification').innerHTML='Altered';
-                                                                                                        document.getElementById('realFileName_btton').value='Change';
+             document.getElementById('notification').innerHTML='Altered';
+             document.getElementById('realFileName_btton').value='Change';
             });
             }
             else
