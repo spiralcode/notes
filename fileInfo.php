@@ -1,6 +1,8 @@
 <?php
 include 'session_check.php';
 include 'connect.php';
+error_reporting(E_ERROR | E_PARSE);
+
 $id = $_GET['id'];
 $query2=mysqli_query($link, "select * from image where id = $id")or die(mysqli_error($link));
 {
@@ -20,7 +22,7 @@ else
 {
 $target_dir="media/";	
 }
-$size = filesize($target_dir.$root);
+$size=filesize($target_dir.$root);
 $img[0]=array("id"=>"$fileid","realFileName"=>"$realFileName","root"=>"$root","size" => "$size");
 echo json_encode($img);
 ?>

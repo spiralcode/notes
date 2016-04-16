@@ -273,6 +273,11 @@ line-height: 10vh;
 	text-align: left;
 	text-indent: 1em;
 }
+.note .noteInfo .dateDiff
+{
+	position: absolute;
+	right: 0px;
+}
 .note .contentSlot
 {
 

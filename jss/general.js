@@ -27,6 +27,8 @@
     return 'jpeg';
                    else if(collect[at]=='png')
     return 'png';
+    else
+    return 'file';
 	},
     dropDown:function(ob)
     {

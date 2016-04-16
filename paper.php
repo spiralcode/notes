@@ -216,11 +216,14 @@ gen.id('titleBar_title').innerHTML="Loading...";
     var noteInfo = document.createElement('div');
     var contentSlot = document.createElement('div');
     var fileSlot = document.createElement('div');
+    var dateDiff = document.createElement('div');
   note.setAttribute('class','note');
     noteInfo.setAttribute('class','noteInfo');
     contentSlot.setAttribute('class','contentSlot');
     fileSlot.setAttribute('class','fileSlot');
+    dateDiff.setAttribute('class','dateDiff');
  // noteInfo.innerHTML=moment.unix(ob.time).format('Do  MMMM YYYY , HH:mm');  
+    //dateDiff.innerHTML="Delegation";
     noteInfo.innerHTML=moment(ob.ftime,'YYYY-MM-DD HH:mm:ss').format('Do  MMMM YYYY , HH:mm');  
     contentSlot.innerHTML=ob.content;
     var beg = 0;
@@ -244,6 +247,7 @@ fileSlot.appendChild(div);
 
       beg++;
     }
+    noteInfo.appendChild(dateDiff);
       note.appendChild(noteInfo);
       note.appendChild(contentSlot);
      if(beg!=0){
