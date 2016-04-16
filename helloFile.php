@@ -3,7 +3,8 @@
 
 	notey.get('fileInfo.php?id=<?php echo $_GET['id']; ?>',function(data){
 	var dec = JSON.parse(data.responseText);
-document.getElementById('realFileName').value=dec[0].realFileName;
+document.getElementById('realFileName').value=xtractFileName(dec[0].realFileName);
+document.getElementById('realFileName').setAttribute('data-id',<?php echo $_GET['id']; ?>);
 document.getElementById('icn').src='iconTransfer.php?title='+formatOf(dec[0].realFileName);
 document.getElementById('format').innerHTML=formatOf(dec[0].realFileName);
 if(dec[0].size/1000000>1)
@@ -21,7 +22,25 @@ notey.get('iconTransfer.php?title='+formatOf(dec[0].realFileName),function(datam
 
 		});
 		
-		
+		function changeName()
+        {  
+            
+            if(document.getElementById('realFileName').value!=='')
+            {
+                
+                                                            document.getElementById('realFileName_btton').value='Changing...';
+            notey.post('fileOps.php?id='+document.getElementById('realFileName').dataset.id+'&rename',{
+               newName:document.getElementById('realFileName').value
+            },function(data){
+                                            document.getElementById('notification').innerHTML='Altered';
+                                                                                                        document.getElementById('realFileName_btton').value='Change';
+            });
+            }
+            else
+            {
+                            document.getElementById('notification').innerHTML='Enter a new name...';
+            }
+        }
 		
 		
 		function formatOf(fileName)
@@ -49,6 +68,11 @@ notey.get('iconTransfer.php?title='+formatOf(dec[0].realFileName),function(datam
 	    else
     return collect[at];
 	}
+    function xtractFileName(fileName)
+    {
+          var collect=  fileName.split(".");
+          return collect[0];
+    }
 	</script>
 	<style>
         a
@@ -100,12 +124,26 @@ color: rgb(67, 80, 85);
             color:black;
             font-family:Arial;
         }
+        #notification
+        {
+            text-align:center;
+            color:black;
+            font-family:Arial;
+            font-size:.8em;
+        }
 		</style>
 	<body id = "full">
         <table cellpadding="1" class="skelt"><tr><td rowspan="1" class="iconSide">
 		<img id = "icn">
-        <td>
-		<label for ="realFileName">File Name</label> <input type="text" id= "realFileName"> <input type="button" value="Change"><br>
+        <td style="padding:1em">
+            <div id = "notification"></div>
+		<label for ="realFileName">File Name</label> <input  type="text" id= "realFileName"> <input id="realFileName_btton" onclick = "changeName()" type="button" value="Change"><br>
+        <script>
+            document.getElementById('realFileName').addEventListener('keyup',function(e){
+                if(e.keyCode==13)
+                changeName();
+            });
+            </script>
         <table>
             <tr><td><div class="info"> Size :  <span  id="size"></span> Format : <span id="format"></span></div></td></tr>
              <tr><td><div class="options"><span  id="dwnload"><a target="_blank" id="dwnload_link">Download</a></span> </div></td></tr></table></td></tr>
