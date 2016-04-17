@@ -368,8 +368,8 @@ background: rgba(241, 238, 245, 0.29);
 	position: relative;
 	float: left;
 	width: 12vw;
+	min-height: 12vh;
 	height: 12vh;
-	background: wheat;
 background: linear-gradient(rgb(225, 234, 250),white);
 	margin: .5em;
 	box-shadow: 0px 0px 1px slategray;
@@ -399,7 +399,16 @@ background: rgba(241, 238, 245, 0.29);
 	text-align: justify;
 	font-size: .9em;
 }
-
+.contentPlace .fileBox .fileIcon
+{
+	position: absolute;
+	bottom: 0px;
+	height: 2em;
+	width:2em;
+	background-repeat: no-repeat;
+	margin: .2em;
+	opacity: .6;
+}
 
 .dropDown
 {

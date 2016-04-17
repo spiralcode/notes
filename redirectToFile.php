@@ -4,7 +4,7 @@ include 'session_check.php';
 include 'ease.php';
 if($_SERVER['HTTP_HOST']!='localhost')
 {
-$target_dir="/var/lib/openshift/55a2abe1500446b24a00023d/app-root/data/";	
+$target_dir=$_ENV['$OPENSHIFT_REPO_DIR']."/";
 }   
 else
 {

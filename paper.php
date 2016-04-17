@@ -88,10 +88,8 @@ var task = "";
       louis('Loading...',true);
     highlightSelection(ob);
 notey.get(ob.dataset.label,function(data){
-  
       louis(' ',false);
            gen.id('titleBar_title').innerHTML=ob.dataset.title;
-
    if(ob.dataset.task=='addNote')
    {
                       gen.id('titleBar_options').innerHTML="";
@@ -183,19 +181,26 @@ gen.id('searchButton').innerHTML="search links";
    var link = document.createElement('div');
    var linkOpt = document.createElement('div');
    var titlePlace  = document.createElement('div');
+   var fileIcon = document.createElement('div');
+   fileIcon.style.background='url('+decoded[start].iconDefault+')';
+   fileIcon.style.backgroundSize='2em  2em';
+   fileIcon.style.backgroundRepeat='no-repeat';
    link.setAttribute('class','fileBox');
    linkOpt.setAttribute('class','fileOpt');
+   fileIcon.setAttribute('class','fileIcon');
    titlePlace.setAttribute('class','filePlace');
+ 
    if(decoded[start].file_name.length<20)
    titlePlace.innerHTML=decoded[start].file_name;
    else
   titlePlace.innerHTML=decoded[start].file_name.substring(0,10)+'...'+(decoded[start].file_name.substring(decoded[start].file_name.length-5));
   titlePlace.setAttribute('data-id',decoded[start].id);
     titlePlace.addEventListener('click',function(e){fileInfo(this)});
-   linkOpt.innerHTML="Delete";
+   linkOpt.innerHTML="";
    link.appendChild(linkOpt);
    link.appendChild(titlePlace);
-      link.setAttribute('title',decoded[start].file_name);
+   link.appendChild(fileIcon);
+   link.setAttribute('title',decoded[start].file_name);
    //link.innerHTML=decoded[start].title;
    gen.id('contentPlace').appendChild(link);
    start++;
