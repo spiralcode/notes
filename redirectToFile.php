@@ -4,7 +4,7 @@ include 'session_check.php';
 include 'ease.php';
 if($_SERVER['HTTP_HOST']!='localhost')
 {
-$target_dir=$OPENSHIFT_REPO_DIR."/";
+$target_dir=$_ENV['OPENSHIFT_REPO_DIR']."/";
 }   
 else
 {
