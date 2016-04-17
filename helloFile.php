@@ -1,3 +1,64 @@
+<style>
+        a
+        {
+            text-decoration:none;
+        }
+		input[type="text"]
+        {
+
+                        font-family:Arial,Serif;
+        }
+        label
+        {
+            font-family:Arial,Serif;
+color: rgb(67, 80, 85);
+            opacity:.8;
+        }
+        		input[type="button"]
+        {
+background: cornflowerblue;
+border:none;
+color:white;
+cursor:pointer;
+padding: 5px;
+        }
+        .info
+        {
+            font-family:Arial;
+padding:1em;
+opacity: .8;
+color: rgb(67, 80, 85);
+        }
+        .info span
+        {
+            opacity:1;
+            font-weight: bold;
+            color: forestgreen;
+        }
+        .skelt .iconSide
+        {
+            border-right:1px solid rgb(67, 80, 85);
+            opacity:.8;
+        }
+        .options
+        {
+            padding:1em;
+            background: aliceblue;
+            border-radius:3px;
+        }
+        .options span
+        {
+            color:black;
+            font-family:Arial;
+        }
+        #notification
+        {
+            text-align:center;
+            color:black;
+            font-family:Arial;
+            font-size:.8em;
+        }
+		</style>
 <script src="notey.js"></script>
 <script>
 
@@ -73,67 +134,7 @@ document.getElementById('open_link').href='redirectToFile.php?id=<?php echo $_GE
           return collect[0];
     }
 	</script>
-	<style>
-        a
-        {
-            text-decoration:none;
-        }
-		input[type="text"]
-        {
-
-                        font-family:Arial,Serif;
-        }
-        label
-        {
-            font-family:Arial,Serif;
-color: rgb(67, 80, 85);
-            opacity:.8;
-        }
-        		input[type="button"]
-        {
-background: cornflowerblue;
-border:none;
-color:white;
-cursor:pointer;
-padding: 5px;
-        }
-        .info
-        {
-            font-family:Arial;
-padding:1em;
-opacity: .8;
-color: rgb(67, 80, 85);
-        }
-        .info span
-        {
-            opacity:1;
-            font-weight: bold;
-            color: forestgreen;
-        }
-        .skelt .iconSide
-        {
-            border-right:1px solid rgb(67, 80, 85);
-            opacity:.8;
-        }
-        .options
-        {
-            padding:1em;
-            background: aliceblue;
-            border-radius:3px;
-        }
-        .options span
-        {
-            color:black;
-            font-family:Arial;
-        }
-        #notification
-        {
-            text-align:center;
-            color:black;
-            font-family:Arial;
-            font-size:.8em;
-        }
-		</style>
+	
 	<body id = "full">
         <table  cellspacing="5" cellpadding="5" class="skelt"><tr><td rowspan="1" class="iconSide">
 		<img id = "icn">
