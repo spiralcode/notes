@@ -81,6 +81,7 @@ include 'session_check.php';
 /*
 Globals
 */
+var searchFocus="";
 var timer=(new Date).getTime();
 var task = "";
     function navigate(ob)
@@ -128,8 +129,8 @@ start++;
    }
    else if(ob.dataset.task=='links')
    {
-                           gen.id('titleBar_options').innerHTML="";
-          task=ob.dataset.task;
+gen.id('titleBar_options').innerHTML="";
+task=ob.dataset.task;
 gen.id('searchButton').innerHTML="search links";
  gen.id('contentPlace').innerHTML="";
  var decoded = JSON.parse(data.responseText);
@@ -153,7 +154,6 @@ gen.id('searchButton').innerHTML="search links";
    linkOpt.innerHTML="Delete";
    link.appendChild(linkOpt);
    link.appendChild(titlePlace);
-   
    var cast = 'window.open(\''+decoded[start].url+'\',\'_blank\')';
       link.setAttribute('onclick',cast);
       link.setAttribute('title',decoded[start].title);
@@ -165,46 +165,12 @@ gen.id('searchButton').innerHTML="search links";
    {
          gen.id('titleBar_options').innerHTML="<input type=\"button\" value = \"Delete Files\"/> ";
           task=ob.dataset.task;
-gen.id('searchButton').innerHTML="search links";
+          
+gen.id('searchButton').innerHTML="Search files";
+searchFocus="files";
  gen.id('contentPlace').innerHTML="";
  var decoded = JSON.parse(data.responseText);
- var start=0;
- if(decoded[start]==null)
- {
-      var noLink = document.createElement('div');
-      noLink.setAttribute('class','noFiles');
-      noLink.innerHTML="No files found !";
-      gen.id('contentPlace').appendChild(noLink);
- }
- while(decoded[start]!=null)
- {
-   var link = document.createElement('div');
-   var linkOpt = document.createElement('div');
-   var titlePlace  = document.createElement('div');
-   var fileIcon = document.createElement('div');
-   fileIcon.style.background='url('+decoded[start].iconDefault+')';
-   fileIcon.style.backgroundSize='2em  2em';
-   fileIcon.style.backgroundRepeat='no-repeat';
-   link.setAttribute('class','fileBox');
-   linkOpt.setAttribute('class','fileOpt');
-   fileIcon.setAttribute('class','fileIcon');
-   titlePlace.setAttribute('class','filePlace');
- 
-   if(decoded[start].file_name.length<20)
-   titlePlace.innerHTML=decoded[start].file_name;
-   else
-  titlePlace.innerHTML=decoded[start].file_name.substring(0,10)+'...'+(decoded[start].file_name.substring(decoded[start].file_name.length-5));
-  titlePlace.setAttribute('data-id',decoded[start].id);
-    titlePlace.addEventListener('click',function(e){fileInfo(this)});
-   linkOpt.innerHTML="";
-   link.appendChild(linkOpt);
-   link.appendChild(titlePlace);
-   link.appendChild(fileIcon);
-   link.setAttribute('title',decoded[start].file_name);
-   //link.innerHTML=decoded[start].title;
-   gen.id('contentPlace').appendChild(link);
-   start++;
-   }
+ fileDisplay(decoded)
    }
    else
    {
@@ -269,8 +235,43 @@ fileSlot.appendChild(div);
                 gen.id('contentPlace').appendChild(report);
       }
     }
-    
-    
+    function fileDisplay(decoded)
+    {      gen.id('contentPlace').innerHTML="";
+      var start=0;
+ if(decoded[start]==null)
+ {
+      var noLink = document.createElement('div');
+      noLink.setAttribute('class','noFiles');
+      noLink.innerHTML="No files found !";
+      gen.id('contentPlace').appendChild(noLink);
+ }
+ while(decoded[start]!=null)
+ {
+   var link = document.createElement('div');
+   var linkOpt = document.createElement('div');
+   var titlePlace  = document.createElement('div');
+   var fileIcon = document.createElement('div');
+   fileIcon.style.background='url('+decoded[start].iconDefault+')';
+   fileIcon.style.backgroundSize='2em  2em';
+   fileIcon.style.backgroundRepeat='no-repeat';
+   link.setAttribute('class','fileBox');
+   linkOpt.setAttribute('class','fileOpt');
+   fileIcon.setAttribute('class','fileIcon');
+   titlePlace.setAttribute('class','filePlace');
+   if(decoded[start].file_name.length<20)
+   titlePlace.innerHTML=decoded[start].file_name;
+   else
+  titlePlace.innerHTML=decoded[start].file_name.substring(0,10)+'...'+(decoded[start].file_name.substring(decoded[start].file_name.length-5));
+  titlePlace.setAttribute('data-id',decoded[start].id);
+    titlePlace.addEventListener('click',function(e){fileInfo(this)});
+   linkOpt.innerHTML="";
+   link.appendChild(linkOpt);
+   link.appendChild(titlePlace);
+   link.appendChild(fileIcon);
+   gen.id('contentPlace').appendChild(link);
+   start++;
+   }
+    }
     function listFile(fileCopy,fileName)
     {
      /*each fnctn call adds child elemnts to the div (fileList) in html file addNote.html*/
@@ -341,8 +342,9 @@ fileSlot.appendChild(div);
    }
 function keyWordSearch()
 {
-
- notey.get('gcow.php?q='+gen.id('keyWord').value,function(data){
+if(searchFocus=="addNote"||searchFocus=="")
+{
+notey.get('gcow.php?q='+gen.id('keyWord').value,function(data){
 gen.id('contentPlace').innerHTML="";
 gen.id('titleBar_title').innerHTML="Search";
 gen.id('titleBar_options').innerHTML="showing results for <b>"+gen.id('keyWord').value+'</b>';
@@ -356,13 +358,22 @@ resultDisplay(decoded[start]);
 start++;
 }
   });
-
+}
+else if(searchFocus=="files")
+{
+gen.id('titleBar_options').innerHTML="showing results for <b>"+gen.id('keyWord').value+'</b>';
+if(gen.id('keyWord').value=='')
+gen.id('titleBar_options').innerHTML="give me something to search...";
+   notey.get('gcow-files.php?q='+gen.id('keyWord').value,function(data){
+       console.log(data.responseText);
+   fileDisplay(JSON.parse(data.responseText));
+   });
+}
 }
 function fileInfo(file)
 {
 notey.get('fileInfo.php?id='+file.dataset.id,function(data){
 var DCde = JSON.parse(data.responseText);
- // var content = '<div style="text-align:center;"><div>'+DCde[0].realFileName+'</div><div>'+Math.round(parseInt(DCde[0].size)/1000000)+' MB</div><div><a target="_new" href = "downloadImage.php?id='+DCde[0].id+'">Download the File</a> | <a target="_new" href = "redirectToFile.php?id='+DCde[0].id+'"></a></div></div>';
         notey.notify('helloFile.php?id='+file.dataset.id,{iframe:true,width:500,height:0});
 });
 
