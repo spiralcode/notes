@@ -1,5 +1,4 @@
 SetEnv OPENSHIFT_MYSQL_DB_HOST localhost
-IndexIgnore *
 RewriteEngine on
 RewriteCond %{HTTP:X-Forwarded-Proto} !https
 RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [R,L]
