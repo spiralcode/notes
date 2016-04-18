@@ -163,7 +163,7 @@ gen.id('searchButton').innerHTML="search links";
    }
    else if(ob.dataset.task=='files')
    {
-         gen.id('titleBar_options').innerHTML="<input type=\"button\" value = \"Delete Files\"/> ";
+  gen.id('titleBar_options').innerHTML="<input type=\"button\" onclick=\"selectFiles()\" value = \"Select files\"/><input type=\"button\" value = \"Delete Files\"/> ";
           task=ob.dataset.task;
           
 gen.id('searchButton').innerHTML="Search files";
@@ -236,8 +236,9 @@ fileSlot.appendChild(div);
       }
     }
     function fileDisplay(decoded)
-    {      gen.id('contentPlace').innerHTML="";
-      var start=0;
+    { 
+  gen.id('contentPlace').innerHTML="";
+ var start=0;
  if(decoded[start]==null)
  {
       var noLink = document.createElement('div');
@@ -268,10 +269,18 @@ fileSlot.appendChild(div);
    link.appendChild(linkOpt);
    link.appendChild(titlePlace);
    link.appendChild(fileIcon);
+   link.setAttribute('tabindex','-1');
    gen.id('contentPlace').appendChild(link);
    start++;
    }
     }
+    function selectFiles()
+    {
+      var start = 0;
+      while(gen.id('contentPlace').getElementsByTagName('div')[start]!=null){
+      console.log(gen.id('contentPlace').getElementsByTagName('div')[start].dataset.id);
+      start++;
+    }}
     function listFile(fileCopy,fileName)
     {
      /*each fnctn call adds child elemnts to the div (fileList) in html file addNote.html*/
@@ -372,6 +381,7 @@ gen.id('titleBar_options').innerHTML="give me something to search...";
 }
 function fileInfo(file)
 {
+file.focus();
 notey.get('fileInfo.php?id='+file.dataset.id,function(data){
 var DCde = JSON.parse(data.responseText);
         notey.notify('helloFile.php?id='+file.dataset.id,{iframe:true,width:500,height:0});
