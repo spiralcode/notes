@@ -1,5 +1,4 @@
 .htaccess
-*.htaccess
 media/*.jpg
 media/*.png
 media/*.*
