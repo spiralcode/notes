@@ -21,6 +21,8 @@ function mimeType($filename)
     return "image/jpg";
              elseif($ext=="gif")
     return "image/gif";
+      elseif($ext=="3gp")
+    return "video/3gpp";
     else
     return "text/plain";
 }
