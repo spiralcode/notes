@@ -7,6 +7,8 @@
         {
 
                         font-family:Arial,Serif;
+                        padding:.5px;
+font-size: 1.1em;
         }
         label
         {
@@ -21,6 +23,8 @@ border:none;
 color:white;
 cursor:pointer;
 padding: 5px;
+
+
         }
         .info
         {
@@ -45,11 +49,16 @@ color: rgb(67, 80, 85);
             padding:1em;
             background: aliceblue;
             border-radius:3px;
+            font-family:Arial;
+color: rgb(67, 80, 85);
+font-size: .9em;
         }
         .options span
         {
-            color:black;
             font-family:Arial;
+            cursor:pointer;
+color : rgb(46, 48, 241)
+            
         }
         #notification
         {
@@ -58,14 +67,28 @@ color: rgb(67, 80, 85);
             font-family:Arial;
             font-size:.8em;
         }
+        #urlSlot
+        {
+            display:none;
+        }
 		</style>
 <script src="notey.js"></script>
 <script>
-
-	notey.get('fileInfo.php?id=<?php echo $_GET['id']; ?>',function(data){
-    var dec = JSON.parse(data.responseText);
+notey.get('fileInfo.php?id=<?php echo $_GET['id']; ?>',function(data){
+ var dec = JSON.parse(data.responseText);
 document.getElementById('realFileName').value=xtractFileName(dec[0].realFileName);
 document.getElementById('icn').src=formatOf(dec[0].iconDefault);
+var visibility =formatOf(dec[0].visibility);
+if(visibility=='p'){
+document.getElementById('visibility').innerHTML="Turn Private";
+        document.getElementById('visibility').title="Only you can access this file, after logging in";
+              document.getElementById('urlSlot').style.display="block"
+}
+else{
+document.getElementById('visibility').innerHTML="Turn Public";
+document.getElementById('visibility').title="The file becomes public and you could share the URL to others for viewing.";
+      document.getElementById('urlSlot').style.display="none"
+}
 document.getElementById('realFileName').setAttribute('data-id',<?php echo $_GET['id']; ?>);
 document.getElementById('realFileName').setAttribute('data-ext','.'+formatOf(dec[0].realFileName));
 document.getElementById('format').innerHTML=formatOf(dec[0].realFileName);
@@ -100,6 +123,26 @@ document.getElementById('open_link').href='redirectToFile.php?id=<?php echo $_GE
             {
                             document.getElementById('notification').innerHTML='Enter a new name...';
             }
+        }
+        function toggleVisibility(id)
+        {  
+            
+            notey.get('toggleFileVisibility.php?id='+id,function(data){
+                console.log(data.responseText);
+if(data.responseText=='p')
+{
+    document.getElementById('visibility').innerHTML="Turn Private";
+        document.getElementById('visibility').title="Only you can access this file after logging in";
+      document.getElementById('urlSlot').style.display="block"
+}
+else
+{
+    document.getElementById('visibility').innerHTML="Turn Public";
+        document.getElementById('visibility').title="The file becomes public and you could share the URL to others for viewing.";
+      document.getElementById('urlSlot').style.display="none"
+}
+            });
+
         }
 		
 		
@@ -149,8 +192,29 @@ document.getElementById('open_link').href='redirectToFile.php?id=<?php echo $_GE
             </script>
         <table>
             <tr><td><div class="info"> Size :  <span  id="size"></span> Format : <span id="format"></span></div></td></tr>
-             <tr><td><div class="options"><span  id="dwnload"><a target="_blank" id="dwnload_link">Download</a></span> | <span  id="dwnload"><a target="_blank" id="open_link">Open File</a></span> </div></td></tr></table></td></tr>
-            </table></td></tr>
+             <tr><td><div class="options"><span  id="dwnload"><a target="_blank" id="dwnload_link">Download</a></span> | <span  id="dwnload"><a target="_blank" id="open_link">Open File</a></span> | <span  id="dwnload"><a target="" href = "confirmDelete.php?id=<?php echo $_GET['id']; ?>">Delete File</a></span> 
+ |              Visibility : <span onclick="toggleVisibility(<?php echo $_GET['id']; ?>)" id="visibility"></span>
+             </div></td></tr>
+             <?php
+                 if($_SERVER['HTTP_HOST']!='localhost')
+{
+$genLink=$_SERVER['SERVER_NAME'].'/redirectToFile.php?id='.$_GET['id'];	
+}   
+else
+{
+ $genLink=$_SERVER['SERVER_NAME'].'/codeBox/note/redirectToFile.php?id='.$_GET['id'];	   
+}
+                 ?>
+             <tr id = "urlSlot"><td><label for publicLink>Public URL (Streaming)  </label><input onclick = "this.select();" id ="publicLink" type="text" value="<?php echo  $genLink; ?>"/></td></tr>
+             </table></td></tr>
+
+          </table></td></tr>
                        
             </table>
         </body>
+        <script>
+            function copyLink()
+            {
+                document.getElementById('publicLink').select();
+            }
+            </script>

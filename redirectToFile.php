@@ -1,6 +1,6 @@
 <?php
+    session_start();
 include 'connect.php';
-include 'session_check.php';
 include 'ease.php';
 include 'elements.php';
 if($_SERVER['HTTP_HOST']!='localhost')
@@ -12,13 +12,17 @@ else
 $target_dir="media/";
 }
 $pid=  get('id');
-$query=mysqli_query($link,"select * from image where id = $pid and userid = $userid")or die(mysqli_error($link));
+//$query=mysqli_query($link,"select * from image where id = $pid and userid = $userid")or die(mysqli_error($link));
+$query=mysqli_query($link,"select * from image where id = $pid ")or die(mysqli_error($link));
 	while($data=mysqli_fetch_array($query))
         {
+            $visibility = $data['visibility'];
             $filename=$data['filename'];
+            $user = $data['userid'];
         }
 $file = $target_dir.$filename;
-
+if($visibility=='p')
+{
 set_time_limit(0);
 $filePath = $file;
 $strContext=stream_context_create(
@@ -41,7 +45,37 @@ while(!feof($fpOrigin)){
   flush();
 }
 fclose($fpOrigin);
-
+}
+else if(isset($_SESSION['userid']))
+{
+    if($user==$_SESSION['userid']){
+set_time_limit(0);
+$filePath = $file;
+$strContext=stream_context_create(
+    array(
+        'http'=>array(
+        'method'=>'GET',
+        'header'=>"Accept-language: en\r\n"
+        )
+    )
+);
+$fpOrigin=fopen($filePath, 'rb', false, $strContext);
+header('Content-Disposition: inline; filename="'.$filename.'"');
+header('Pragma: no-cache');
+//header('Content-type: '+mime_content_type($file));
+header('Content-type: '.mimeType($filename));
+header('Content-Length: '.filesize($filePath));
+while(!feof($fpOrigin)){
+  $buffer=fread($fpOrigin, 4096);
+  echo $buffer;
+  flush();
+}
+}
+}
+else
+{
+    
+}
 
 
 // header('Location: '.$file);

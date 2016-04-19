@@ -384,7 +384,7 @@ function fileInfo(file)
 file.focus();
 notey.get('fileInfo.php?id='+file.dataset.id,function(data){
 var DCde = JSON.parse(data.responseText);
-        notey.notify('helloFile.php?id='+file.dataset.id,{iframe:true,width:500,height:0});
+        notey.notify('helloFile.php?id='+file.dataset.id,{iframe:true,width:600,height:0});
 });
 
 }

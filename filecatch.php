@@ -18,7 +18,7 @@ $ext = end((explode(".", $_FILES["file"]["name"])));
 $target_file = $target_dir . $rand.md5(basename($_FILES["file"]["name"])).".".$ext;
 $justname=$rand.md5(basename($_FILES["file"]["name"])).".".$ext;
 move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);
-$query=mysqli_query($link, "insert into image values (0,$userid,$nid,'$justname',CURRENT_TIMESTAMP(),0,'','$name')")or die(mysqli_error($link));
+$query=mysqli_query($link, "insert into image values (0,$userid,$nid,'$justname',CURRENT_TIMESTAMP(),0,'','$name','me')")or die(mysqli_error($link));
 class response
 {
 var $status=0;

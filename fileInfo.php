@@ -12,6 +12,7 @@ while($row=mysqli_fetch_array($query2))
 $fileid=$row['id'];
 $realFileName = $row['file_name'];
 $root = $row['filename'];
+$visibility = $row['visibility'];
 }
 }
 $parts = explode('.',$realFileName);
@@ -35,7 +36,7 @@ else
 $target_dir="media/";	
 }
 $size=filesize($target_dir.$root);
-$img[0]=array("id"=>"$fileid","realFileName"=>"$realFileName","root"=>"$root","size" => "$size","iconDefault"=>"$iconCode");
+$img[0]=array("id"=>"$fileid","realFileName"=>"$realFileName","root"=>"$root","size" => "$size","iconDefault"=>"$iconCode","visibility"=>"$visibility");
 echo json_encode($img);
 ?>
 
