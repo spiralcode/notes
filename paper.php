@@ -383,8 +383,10 @@ while(fileBuffer[index]!=null)
           gen.id("fileList").innerHTML='';
           showNotification("Note Saved");
           gen.id('saveButton').removeAttribute('disabled');
+          gen.id('typeSpace').value="";
+
 });
-window.clearInterval(dec);
+          window.clearInterval(dec);
          }
        },100);
      
@@ -398,7 +400,6 @@ window.clearInterval(dec);
    function showNotification(content)
    {
       gen.id('notificationSpace').innerHTML='';
-            gen.id('typeSpace').value='';
       var ob = document.createElement('div');
       ob.setAttribute('id','notification');
        ob.setAttribute('class','fadeInRight');
