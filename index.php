@@ -47,6 +47,7 @@ color:#B6B02F;
 font-family:"Segoe UI Light",arial,serif;
 font-size:20px;
 text-align:center;
+cursor:pointer;
 }
 .virtual
 {
@@ -194,7 +195,7 @@ $id('email').value=semail;
 <div class="aboutspace">
 Notes<sup>v3</sup>
 </div>
-<div class="attract">Weird !, What made you here?</div>
+<div class="attract" onclick="notey.notify('declare.php',{title:'Welcome !',iframe:false});"}>Weird !, What made you here?</div>
 <div id="smartslide">
 <table border="0" width=100% height="100%">
 <tr><td align="center" class="virtual">Login</td><td class="virtual" align="center">Sign Up</td></tr>

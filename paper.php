@@ -389,7 +389,6 @@ while(fileBuffer[index]!=null)
           window.clearInterval(dec);
          }
        },100);
-     
      }
      else
      {
