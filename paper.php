@@ -163,11 +163,12 @@ gen.id('searchButton').innerHTML="search links";
    }
    else if(ob.dataset.task=='files')
    {
+  searchFocus="files";
   gen.id('titleBar_options').innerHTML="<input type=\"button\" onclick=\"selectFiles()\" value = \"Select files\"/><input type=\"button\" value = \"Delete Files\"/> ";
-          task=ob.dataset.task;
+  task=ob.dataset.task;
           
 gen.id('searchButton').innerHTML="Search files";
-searchFocus="files";
+
  gen.id('contentPlace').innerHTML="";
  var decoded = JSON.parse(data.responseText);
  fileDisplay(decoded)
@@ -285,18 +286,38 @@ fileSlot.appendChild(div);
     {
      /*each fnctn call adds child elemnts to the div (fileList) in html file addNote.html*/
         var file = document.createElement('div');
+        var fileInfo = document.createElement('div');
+        var opts = document.createElement('div');
+        var progress = document.createElement('progress');
+        progress.setAttribute('class','indProgress');
+        progress.setAttribute('max','100');
+        progress.setAttribute('value','0');
+        progress.setAttribute('id','id'+fileName);
+        opts.setAttribute('class','opts');
+        fileInfo.setAttribute('class','info');
+        if(fileName.length>20)
+        var fileNamePad = fileName.substring(0,5)+'...'+fileName.substring(fileName.length-5,5);
+        else
+        fileNamePad=fileName;
+        opts.innerHTML='<span title="Remove file from list"><img src = "'+png_close+'"/></span>';
+       fileInfo.innerHTML=fileNamePad;
+       //file.appendChild(opts);
+       file.appendChild(fileInfo);
+       file.appendChild(progress);
         file.setAttribute('class','file');
         file.setAttribute('name',fileName);
         gen.id('fileList').appendChild(file);
         var code = gen.formatOf(fileName);
         if(fileCopy==null){
       file.style.background='url('+JSON.parse(icons).defaultfile+')';
-            file.style.backgroundSize='5em 5em';
+            file.style.backgroundSize='8em 8em';
+           file.style.backgroundRepeat='none';
         }
         else
         {
               file.style.background='url('+fileCopy+')';
-            file.style.backgroundSize='5em 5em';
+            file.style.backgroundSize='8em 8em';
+                        file.style.backgroundRepeat='none';
         }
     }
     function startUpload()
@@ -323,7 +344,6 @@ fileSlot.appendChild(div);
       var contents=gen.id('typeSpace').value;
       var geolocation='0,0';
       var setgLocation='0,0';
-           console.log(alterDate);
  notey.post('feed.php',{contents:contents,timeid:noteId,alterDate:alterDate,geolocation:geolocation,setglocation:setgLocation},function(data)
 {
           gen.id('saveButton').value="Save Note";
@@ -438,6 +458,7 @@ return;
 }
 else if(task=='searchNote')
 {
+ searchFocus = "addNote";
 notesByDate(time);
 }
  }
@@ -472,6 +493,8 @@ start++;
               <script>
                 $('#calender').draggable();
                 </script>
+                <script src = "iconCode.js">
+                  </script>
     </body>
     <!--V3.10.01-->
 </html>

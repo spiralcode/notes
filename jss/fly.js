@@ -74,6 +74,22 @@ function uploadfile(file)
 	fd.append( 'filename', file.name );
 	fd.append( 'id', file.id );
 	$.ajax({
+		xhr: function () {
+        var xhr = new window.XMLHttpRequest();
+        //Download progress
+        xhr.addEventListener("progress", function (evt) {
+            if (evt.lengthComputable) {
+                var percentComplete = evt.loaded / evt.total;
+              //  console.log(Math.round(percentComplete * 100) + "%");
+				gen.id('id'+file.name).value=Math.round(percentComplete * 100);
+            }
+			else
+			{
+				console.log('Unable to estimate');
+			}
+        }, false);
+        return xhr;
+    },
 	  url: 'filecatch.php',
 	  data: fd,
 	  processData: false,
@@ -81,7 +97,6 @@ function uploadfile(file)
 	  type: 'POST',
 	  mimeType: 'multipart/form-data',
 	  success: function(data){
-		  console.log(data);
 var dec = JSON.parse(data);
 var index=0;
 while(fileBuffer[index]!=null)

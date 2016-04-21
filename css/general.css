@@ -185,12 +185,54 @@ height: 45%;
 }
 .writeNoteContainer .fileArea .fileList .file
 {
-width:5em;
-height: 5em;
+width:8em;
+height: 8em;
 border: 1px solid yellowgreen;
 float: left;
 margin: .2em;
 background-repeat: no-repeat;
+}
+.writeNoteContainer .fileArea .fileList .file progress
+{
+	width: 100%;
+}
+.writeNoteContainer .fileArea .fileList .file .info
+{
+position: absolute;
+width:100%;
+margin: .5%;
+height: 10%;
+color: midnightblue;
+background: rgba(225, 228, 255, 0.64);
+word-wrap:  break-word;
+
+	 bottom: 0%;
+	 font-size: .8em;
+}
+
+.writeNoteContainer .fileArea .fileList .file .opts
+{
+	position: absolute;
+	min-height: 2em;
+
+	width: 100%;
+}
+.writeNoteContainer .fileArea .fileList .file .opts span
+{
+	float: left;
+background: rgba(255, 218, 185, 0.50);
+}
+.writeNoteContainer .fileArea .fileList .file .opts span:hover
+{
+	background: rgba(255, 218, 185, 0.90);
+	cursor: pointer;
+}
+.writeNoteContainer .fileArea .fileList .file .opts:hover
+{
+
+}
+.writeNoteContainer .fileArea .fileList .file .opts img
+{
 }
 .writeNoteContainer .fileArea .fileList .file img
 {

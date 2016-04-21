@@ -72,7 +72,22 @@ function uploadfile(file)
 	var fd = new FormData();    
 	fd.append( 'file', file );
 	fd.append( 'nid', timer );
+	error: function (xhr, ajaxOptions, thrownError) {
+        alert(xhr.responseText);
+        alert(thrownError);
+    }
 	$.ajax({
+		xhr: function () {
+        var xhr = new window.XMLHttpRequest();
+        //Download progress
+        xhr.addEventListener("progress", function (evt) {
+            console.log(evt.lengthComputable);
+            if (evt.lengthComputable) {
+                var percentComplete = evt.loaded / evt.total;
+             //   progressElem.html(Math.round(percentComplete * 100) + "%");
+            }
+        }, false);
+     
 	  url: 'filecatch.php',
 	  data: fd,
 	  processData: false,
