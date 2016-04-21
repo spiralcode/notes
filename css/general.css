@@ -195,10 +195,13 @@ background-repeat: no-repeat;
 .writeNoteContainer .fileArea .fileList .file progress
 {
 	width: 100%;
+	display: none;
+	position: absolute;
+	bottom: 0%;
 }
 .writeNoteContainer .fileArea .fileList .file .info
 {
-position: absolute;
+position: relative;
 width:100%;
 margin: .5%;
 height: 10%;
@@ -212,9 +215,8 @@ word-wrap:  break-word;
 
 .writeNoteContainer .fileArea .fileList .file .opts
 {
-	position: absolute;
+	position: relative;
 	min-height: 2em;
-
 	width: 100%;
 }
 .writeNoteContainer .fileArea .fileList .file .opts span

@@ -93,7 +93,7 @@ notey.get(ob.dataset.label,function(data){
            gen.id('titleBar_title').innerHTML=ob.dataset.title;
    if(ob.dataset.task=='addNote')
    {
-                      gen.id('titleBar_options').innerHTML="";
+      gen.id('titleBar_options').innerHTML="";
      task=ob.dataset.task;
      gen.id('searchButton').innerHTML="search notes";
         gen.id('contentPlace').innerHTML=data.responseText;
@@ -115,6 +115,7 @@ notey.get(ob.dataset.label,function(data){
    }
    else if(ob.dataset.task=='searchNote')
    {
+     fileBuffer=[];
       gen.id('titleBar_options').innerHTML="<input type=\"text\" value=\""+moment.unix(new Date/1000).format('DD - MM - YYYY')+"\"/>";
           task=ob.dataset.task;
      gen.id('searchButton').innerHTML="Search Notes";
@@ -129,6 +130,7 @@ start++;
    }
    else if(ob.dataset.task=='links')
    {
+          fileBuffer=[];
 gen.id('titleBar_options').innerHTML="";
 task=ob.dataset.task;
 gen.id('searchButton').innerHTML="search links";
@@ -163,6 +165,7 @@ gen.id('searchButton').innerHTML="search links";
    }
    else if(ob.dataset.task=='files')
    {
+          fileBuffer=[];
   searchFocus="files";
   gen.id('titleBar_options').innerHTML="<input type=\"button\" onclick=\"selectFiles()\" value = \"Select files\"/><input type=\"button\" value = \"Delete Files\"/> ";
   task=ob.dataset.task;
@@ -175,6 +178,7 @@ gen.id('searchButton').innerHTML="Search files";
    }
    else
    {
+          fileBuffer=[];
         gen.id('titleBar_options').innerHTML="";
         gen.id('contentPlace').innerHTML='Development On-Course...<a href="book.php" target="_new">Try the old one </a>';
    }
@@ -282,29 +286,29 @@ fileSlot.appendChild(div);
       console.log(gen.id('contentPlace').getElementsByTagName('div')[start].dataset.id);
       start++;
     }}
-    function listFile(fileCopy,fileName)
+    function listFile(fileCopy,fileName,bufferId)
     {
      /*each fnctn call adds child elemnts to the div (fileList) in html file addNote.html*/
         var file = document.createElement('div');
         var fileInfo = document.createElement('div');
         var opts = document.createElement('div');
         var progress = document.createElement('progress');
-        progress.setAttribute('class','indProgress');
         progress.setAttribute('max','100');
         progress.setAttribute('value','0');
-        progress.setAttribute('id','id'+fileName);
+        progress.setAttribute('id','buffer-'+bufferId);
         opts.setAttribute('class','opts');
         fileInfo.setAttribute('class','info');
         if(fileName.length>20)
         var fileNamePad = fileName.substring(0,5)+'...'+fileName.substring(fileName.length-5,5);
         else
         fileNamePad=fileName;
-        opts.innerHTML='<span title="Remove file from list"><img src = "'+png_close+'"/></span>';
+        opts.innerHTML='<span onclick="removeFile('+bufferId+');" title="Remove file from list"><img src = "'+png_close+'"/></span>';
        fileInfo.innerHTML=fileNamePad;
-       //file.appendChild(opts);
+       file.appendChild(opts);
        file.appendChild(fileInfo);
        file.appendChild(progress);
         file.setAttribute('class','file');
+        file.setAttribute('id','uploadFileId-'+bufferId);
         file.setAttribute('name',fileName);
         gen.id('fileList').appendChild(file);
         var code = gen.formatOf(fileName);
@@ -315,10 +319,25 @@ fileSlot.appendChild(div);
         }
         else
         {
-              file.style.background='url('+fileCopy+')';
+            file.style.background='url('+fileCopy+')';
             file.style.backgroundSize='8em 8em';
-                        file.style.backgroundRepeat='none';
+            file.style.backgroundRepeat='none';
         }
+    }
+    function removeFile(id)
+    {
+      console.log('removal - '+id);
+      var index=0;
+while(fileBuffer[index]!=null)
+{
+   if(fileBuffer[index].id==id){
+   fileBuffer.splice(index,1);
+		console.log('after deletion len-'+fileBuffer.length);
+      gen.id('uploadFileId-'+id).remove();
+   }
+    index++;
+
+}
     }
     function startUpload()
     {
@@ -338,8 +357,22 @@ fileSlot.appendChild(div);
        if(fileBuffer.length>0)
        {
        gen.id('saveButton').value="Uploading Files...";
+       var go=0;
+       while(gen.id("fileList").getElementsByTagName('progress')[go]!=null)
+       {
+         gen.id("fileList").getElementsByTagName('progress')[go].style.display='block';
+         go++;
+       }
        startUpload();
        }
+       
+       var dec = window.setInterval(function(){
+       if(fileBuffer.length>1)
+      showNotification(fileBuffer.length+" files to upload");
+      else
+      showNotification(fileBuffer.length+" file to upload");
+         if(fileBuffer.length<=0)
+         {
       gen.id('saveButton').value="Saving Note...";
       var contents=gen.id('typeSpace').value;
       var geolocation='0,0';
@@ -351,6 +384,10 @@ fileSlot.appendChild(div);
           showNotification("Note Saved");
           gen.id('saveButton').removeAttribute('disabled');
 });
+window.clearInterval(dec);
+         }
+       },100);
+     
      }
      else
      {

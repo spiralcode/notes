@@ -81,10 +81,13 @@ function uploadfile(file)
         var xhr = new window.XMLHttpRequest();
         //Download progress
         xhr.addEventListener("progress", function (evt) {
+			console.log(evt.position);
             console.log(evt.lengthComputable);
             if (evt.lengthComputable) {
                 var percentComplete = evt.loaded / evt.total;
              //   progressElem.html(Math.round(percentComplete * 100) + "%");
+			// gen.id('id'+file.name).value=Math.round(percentComplete*100);
+			 console.log(Math.round(percentComplete*100));
             }
         }, false);
      
