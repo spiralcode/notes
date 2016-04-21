@@ -198,11 +198,11 @@ else
              <?php
                  if($_SERVER['HTTP_HOST']!='localhost')
 {
-$genLink=$_SERVER['SERVER_NAME'].'/redirectToFile.php?id='.$_GET['id'];	
+$genLink='https://'.$_SERVER['SERVER_NAME'].'/redirectToFile.php?id='.$_GET['id'];	
 }   
 else
 {
- $genLink=$_SERVER['SERVER_NAME'].'/codeBox/note/redirectToFile.php?id='.$_GET['id'];	   
+ $genLink='http://'.$_SERVER['SERVER_NAME'].'/codeBox/note/redirectToFile.php?id='.$_GET['id'];	   
 }
                  ?>
              <tr id = "urlSlot"><td><label for publicLink>Public URL (Streaming)  </label><input onclick = "this.select();" id ="publicLink" type="text" value="<?php echo  $genLink; ?>"/></td></tr>
