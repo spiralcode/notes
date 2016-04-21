@@ -369,7 +369,7 @@ while(fileBuffer[index]!=null)
        var dec = window.setInterval(function(){
        if(fileBuffer.length>1)
       showNotification(fileBuffer.length+" files to upload");
-      else
+      else if(fileBuffer.length==1)
       showNotification(fileBuffer.length+" file to upload");
          if(fileBuffer.length<=0)
          {
