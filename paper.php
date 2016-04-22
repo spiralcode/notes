@@ -23,7 +23,6 @@ include 'session_check.php';
                                   <script src="jss/moment.js"></script>
                                   <script src="jss/image.js"></script>
                                   <script src="ajax_1_10_2.js"></script>
-  
   <script src="lib/jquery-1.10.2.js"></script>
 <script src="lib/jquery-ui.js"></script>
 <link rel="stylesheet" href="style/jquery-ui.css">
@@ -93,6 +92,7 @@ notey.get(ob.dataset.label,function(data){
            gen.id('titleBar_title').innerHTML=ob.dataset.title;
    if(ob.dataset.task=='addNote')
    {
+     searchFocus="addNote";
       gen.id('titleBar_options').innerHTML="";
      task=ob.dataset.task;
      gen.id('searchButton').innerHTML="search notes";
@@ -115,6 +115,7 @@ notey.get(ob.dataset.label,function(data){
    }
    else if(ob.dataset.task=='searchNote')
    {
+          searchFocus="addNote";
      fileBuffer=[];
       gen.id('titleBar_options').innerHTML="<input type=\"text\" value=\""+moment.unix(new Date/1000).format('DD - MM - YYYY')+"\"/>";
           task=ob.dataset.task;
@@ -130,6 +131,7 @@ start++;
    }
    else if(ob.dataset.task=='links')
    {
+          searchFocus="links";
           fileBuffer=[];
 gen.id('titleBar_options').innerHTML="";
 task=ob.dataset.task;
@@ -165,6 +167,7 @@ gen.id('searchButton').innerHTML="search links";
    }
    else if(ob.dataset.task=='files')
    {
+     
           fileBuffer=[];
   searchFocus="files";
   gen.id('titleBar_options').innerHTML="<input type=\"button\" onclick=\"selectFiles()\" value = \"Select files\"/><input type=\"button\" value = \"Delete Files\"/> ";
@@ -178,6 +181,7 @@ gen.id('searchButton').innerHTML="Search files";
    }
    else
    {
+          searchFocus="addNote";
           fileBuffer=[];
         gen.id('titleBar_options').innerHTML="";
         gen.id('contentPlace').innerHTML='Development On-Course...<a href="book.php" target="_new">Try the old one </a>';
@@ -431,7 +435,6 @@ gen.id('titleBar_options').innerHTML="showing results for <b>"+gen.id('keyWord')
 if(gen.id('keyWord').value=='')
 gen.id('titleBar_options').innerHTML="give me something to search...";
    notey.get('gcow-files.php?q='+gen.id('keyWord').value,function(data){
-       console.log(data.responseText);
    fileDisplay(JSON.parse(data.responseText));
    });
 }

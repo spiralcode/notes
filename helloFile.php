@@ -3,6 +3,24 @@
         {
             text-decoration:none;
         }
+        a:link {
+            text-decoration:none;
+}
+
+/* visited link */
+a:visited {
+            text-decoration:none;
+}
+
+/* mouse over link */
+a:hover {
+            text-decoration:none;
+}
+
+/* selected link */
+a:active {
+            text-decoration:none;
+}
 		input[type="text"]
         {
 
@@ -46,18 +64,25 @@ color: rgb(67, 80, 85);
         }
         .options
         {
-            padding:1em;
+
             background: aliceblue;
             border-radius:3px;
             font-family:Arial;
 color: rgb(67, 80, 85);
 font-size: .9em;
+margin-bottom:1em;
         }
         .options span
         {
             font-family:Arial;
             cursor:pointer;
-color : rgb(46, 48, 241)
+color : rgb(46, 48, 241);
+background: rgba(174, 174, 174, 0.81);
+	color: white;
+	cursor: pointer;
+	border-radius: 2px;
+	margin: .1em;
+	padding: .3em;
             
         }
         #notification
@@ -192,8 +217,7 @@ else
             </script>
         <table>
             <tr><td><div class="info"> Size :  <span  id="size"></span> Format : <span id="format"></span></div></td></tr>
-             <tr><td><div class="options"><span  id="dwnload"><a target="_blank" id="dwnload_link">Download</a></span> | <span  id="dwnload"><a target="_blank" id="open_link">Open File</a></span> | <span  id="dwnload"><a target="" href = "confirmDelete.php?id=<?php echo $_GET['id']; ?>">Delete File</a></span> 
- |              Visibility : <span onclick="toggleVisibility(<?php echo $_GET['id']; ?>)" id="visibility"></span>
+             <tr><td><div class="options"><span  id="dwnload"><a target="_blank" id="dwnload_link">Download</a></span><span  id="dwnload"><a target="_blank" id="open_link">Open File</a></span><span  id="dwnload"><a target="" href = "confirmDelete.php?id=<?php echo $_GET['id']; ?>">Delete File</a></span> Visibility : <span onclick="toggleVisibility(<?php echo $_GET['id']; ?>)" id="visibility"></span>
              </div></td></tr>
              <?php
                  if($_SERVER['HTTP_HOST']!='localhost')

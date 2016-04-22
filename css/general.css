@@ -159,6 +159,10 @@ height: 45%;
 	width: 100%;
 	margin: 0%;
 	height: 2em;
+color: azure;
+font-size: 1.2em;
+line-height: 2em;
+
 }
 .writeNoteContainer .fileArea .option span
 {
@@ -167,6 +171,11 @@ height: 45%;
 	cursor: pointer;
 	border-radius: 2px;
 	margin: .5em;
+	padding: .3em;
+}
+.writeNoteContainer .fileArea .option span:hover
+{
+	background: linear-gradient( rgb(49, 54, 69),rgb(5, 20, 50));	
 }
 .writeNoteContainer .fileArea .fileList
 {
@@ -218,6 +227,7 @@ word-wrap:  break-word;
 	position: relative;
 	min-height: 2em;
 	width: 100%;
+	
 }
 .writeNoteContainer .fileArea .fileList .file .opts span
 {
