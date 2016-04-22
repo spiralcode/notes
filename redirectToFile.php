@@ -23,6 +23,8 @@ $query=mysqli_query($link,"select * from image where id = $pid ")or die(mysqli_e
 $file = $target_dir.$filename;
 if($visibility=='p')
 {
+    if(!isset($_SESSION['userid']))
+    $viewCount =  mysqli_query($conn,"update image set p_view = p_view+1 where id = $pid") or die(mysqli_error($conn));
 set_time_limit(0);
 $filePath = $file;
 $strContext=stream_context_create(
@@ -48,7 +50,9 @@ fclose($fpOrigin);
 }
 else if(isset($_SESSION['userid']))
 {
+
     if($user==$_SESSION['userid']){
+    $viewCount =  mysqli_query($conn,"update image set me_view = me_view+1 where id = $pid") or die(mysqli_error($conn));
 set_time_limit(0);
 $filePath = $file;
 $strContext=stream_context_create(

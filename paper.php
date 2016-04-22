@@ -35,7 +35,7 @@ include 'session_check.php';
     </head>
     <body>
 <script>
-
+window.onbeforeunload = unloadPage;
 </script>
         <div class="topribbon">Notes<div onclick="userAccOptions()" class="userInfo"><?php echo  $_SESSION['uname']; ?></div></div>
         <div id="titleBar_full" class="titleBar"><span id="titleBar_title"></span><span id="titleBar_options"></span></div>
@@ -168,7 +168,7 @@ gen.id('searchButton').innerHTML="search links";
    else if(ob.dataset.task=='files')
    {
      
-          fileBuffer=[];
+  fileBuffer=[];
   searchFocus="files";
   gen.id('titleBar_options').innerHTML="<input type=\"button\" onclick=\"selectFiles()\" value = \"Select files\"/><input type=\"button\" value = \"Delete Files\"/> ";
   task=ob.dataset.task;
@@ -189,6 +189,8 @@ gen.id('searchButton').innerHTML="Search files";
 });
 gen.id('titleBar_title').innerHTML="Loading...";
     }
+    
+    
     function resultDisplay(ob)
     {
       if(ob.status!=0){
@@ -502,6 +504,18 @@ else if(task=='searchNote')
 notesByDate(time);
 }
  }
+  function isSaved()
+{
+  console.log(fileBuffer.length);
+    console.log(gen.id('typeSpace').value.length);
+    if(fileBuffer.length==0||gen.id('typeSpace').value.length==0){
+    return true;
+    }
+    else
+    {
+    return false;
+    }
+}
  function notesByDate(time)
  {
 gen.id('titleBar_options').innerHTML="<input onclick=\"this.datepicker();\"  type=\"text\" value=\""+moment.unix(time).format('DD - MM - YYYY')+"\"/>";
@@ -517,6 +531,7 @@ start++;
 }
  });
  }
+
     </script>
     <script>
   gen.id('mainOptions').getElementsByTagName('li')[0].click();

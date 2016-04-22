@@ -46,3 +46,13 @@ function travelTo(link,target)
 {
     	window.location.href=link;
 }
+
+function unloadPage()
+{
+    var check = isSaved();
+    
+    if(!check){
+        console.log(check);
+        return "You have unsaved changes on this page. Do you want to leave this page and discard your changes or stay on this page?";
+    }
+}

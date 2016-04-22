@@ -15,13 +15,14 @@ $query=mysqli_query($link,"select * from image where id = $pid and userid = $use
 	while($data=mysqli_fetch_array($query))
         {
             $filename=$data['filename'];
+                        $realeFileName=$data['file_name'];
         }
 $file = $target_dir.$filename;
 
 if (file_exists($file)) {
     header('Content-Description: File Transfer');
     header('Content-Type: application/octet-stream');
-    header('Content-Disposition: attachment; filename="'.basename($file).'"');
+    header('Content-Disposition: attachment; filename="'.$realeFileName.'"');
     header('Expires: 0');
     header('Cache-Control: must-revalidate');
     header('Pragma: public');
