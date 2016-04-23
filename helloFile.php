@@ -1,3 +1,5 @@
+<head>
+  <link rel="stylesheet" href = "css/loader.css"/>
 <style>
         a
         {
@@ -98,7 +100,53 @@ background: rgba(174, 174, 174, 0.81);
         }
 		</style>
 <script src="notey.js"></script>
-<script>
+
+	</head>
+	<body id = "full">
+        <div class="spinner" id = "spinner"></div>
+        <div id = "dataContent">
+        <table  cellspacing="5" cellpadding="5" class="skelt"><tr><td rowspan="1" class="iconSide">
+		<img id = "icn">
+        <td style="padding:1em">
+            <div id = "notification"></div>
+		<label for ="realFileName">File name</label> <input  type="text" id= "realFileName"> <input id="realFileName_btton" onclick = "changeName()" type="button" value="Change"><br>
+        <script>
+            document.getElementById('realFileName').addEventListener('keyup',function(e){
+                if(e.keyCode==13)
+                changeName();
+            });
+            </script>
+        <table>
+            <tr><td><div class="info"> Size :  <span  id="size"></span> Format : <span id="format"></span></div></td></tr>
+             <tr><td><div class="options"><span  id="dwnload"><a target="_blank" id="dwnload_link">Download</a></span><span  id="dwnload"><a target="_blank" id="open_link">Open File</a></span><span  id="dwnload"><a target="" href = "confirmDelete.php?id=<?php echo $_GET['id']; ?>">Delete File</a></span> Visibility : <span onclick="toggleVisibility(<?php echo $_GET['id']; ?>)" id="visibility"></span>
+             </div></td></tr>
+             <?php
+                 if($_SERVER['HTTP_HOST']!='localhost')
+{
+$genLink='https://'.$_SERVER['SERVER_NAME'].'/redirectToFile.php?id='.$_GET['id'];	
+}   
+else
+{
+ $genLink='http://'.$_SERVER['SERVER_NAME'].'/codeBox/note/redirectToFile.php?id='.$_GET['id'];	   
+}
+                 ?>
+             <tr id = "urlSlot"><td><label for publicLink>Public URL (Streaming)  </label><input onclick = "this.select();" id ="publicLink" type="text" value="<?php echo  $genLink; ?>"/></td></tr>
+             </table></td></tr>
+
+          </table></td></tr>
+                       
+            </table>
+            </div>
+        </body>
+        <script>
+            function copyLink()
+            {
+                document.getElementById('publicLink').select();
+            }
+            </script>
+            <script>
+                document.getElementById('spinner').style.display="block";
+                document.getElementById('dataContent').style.display="none";
 notey.get('fileInfo.php?id=<?php echo $_GET['id']; ?>',function(data){
  var dec = JSON.parse(data.responseText);
 document.getElementById('realFileName').value=xtractFileName(dec[0].realFileName);
@@ -126,7 +174,8 @@ document.getElementById('size').innerHTML=dec[0].size+' B';
 document.getElementById('dwnload_link').href='downloadImage.php?id=<?php echo $_GET['id'] ?>';
 document.getElementById('open_link').href='stream.php?id=<?php echo $_GET['id'] ?>';
 
-
+                document.getElementById('spinner').style.display="none";
+                document.getElementById('dataContent').style.display="block";
 
 		});
 		
@@ -170,7 +219,6 @@ else
 
         }
 		
-		
 		function formatOf(fileName)
 	{
   var collect=  fileName.split(".");
@@ -202,43 +250,3 @@ else
           return collect[0];
     }
 	</script>
-	
-	<body id = "full">
-        <table  cellspacing="5" cellpadding="5" class="skelt"><tr><td rowspan="1" class="iconSide">
-		<img id = "icn">
-        <td style="padding:1em">
-            <div id = "notification"></div>
-		<label for ="realFileName">File name</label> <input  type="text" id= "realFileName"> <input id="realFileName_btton" onclick = "changeName()" type="button" value="Change"><br>
-        <script>
-            document.getElementById('realFileName').addEventListener('keyup',function(e){
-                if(e.keyCode==13)
-                changeName();
-            });
-            </script>
-        <table>
-            <tr><td><div class="info"> Size :  <span  id="size"></span> Format : <span id="format"></span></div></td></tr>
-             <tr><td><div class="options"><span  id="dwnload"><a target="_blank" id="dwnload_link">Download</a></span><span  id="dwnload"><a target="_blank" id="open_link">Open File</a></span><span  id="dwnload"><a target="" href = "confirmDelete.php?id=<?php echo $_GET['id']; ?>">Delete File</a></span> Visibility : <span onclick="toggleVisibility(<?php echo $_GET['id']; ?>)" id="visibility"></span>
-             </div></td></tr>
-             <?php
-                 if($_SERVER['HTTP_HOST']!='localhost')
-{
-$genLink='https://'.$_SERVER['SERVER_NAME'].'/redirectToFile.php?id='.$_GET['id'];	
-}   
-else
-{
- $genLink='http://'.$_SERVER['SERVER_NAME'].'/codeBox/note/redirectToFile.php?id='.$_GET['id'];	   
-}
-                 ?>
-             <tr id = "urlSlot"><td><label for publicLink>Public URL (Streaming)  </label><input onclick = "this.select();" id ="publicLink" type="text" value="<?php echo  $genLink; ?>"/></td></tr>
-             </table></td></tr>
-
-          </table></td></tr>
-                       
-            </table>
-        </body>
-        <script>
-            function copyLink()
-            {
-                document.getElementById('publicLink').select();
-            }
-            </script>

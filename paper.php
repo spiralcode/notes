@@ -374,9 +374,9 @@ while(fileBuffer[index]!=null)
        
        var dec = window.setInterval(function(){
        if(fileBuffer.length>1)
-      showNotification(fileBuffer.length+" files to upload");
+      showNotification(fileBuffer.length+" files being uploaded...");
       else if(fileBuffer.length==1)
-      showNotification(fileBuffer.length+" file to upload");
+      showNotification(fileBuffer.length+" file being upload...");
          if(fileBuffer.length<=0)
          {
       gen.id('saveButton').value="Saving Note...";
