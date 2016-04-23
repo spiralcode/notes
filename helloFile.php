@@ -1,4 +1,10 @@
+<!doctype html>
 <head>
+    <meta id = "ogURL" property="og:url"           content="" />
+	<meta id = "ogType" property="og:type"          content="File" />
+	<meta id = "ogTitle" property="og:title"         content="Notes Stream" />
+	<meta id = "ogDescription" property="og:description"   content="" />
+	<meta id = "ogImage" property="og:image"         content="favicon.png" />
   <link rel="stylesheet" href = "css/loader.css"/>
 <style>
         a
@@ -103,6 +109,33 @@ background: rgba(174, 174, 174, 0.81);
 
 	</head>
 	<body id = "full">
+        <script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '593526644156691',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+   
+</script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.6&appId=705668476222884";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
         <div class="spinner" id = "spinner"></div>
         <div id = "dataContent">
         <table  cellspacing="5" cellpadding="5" class="skelt"><tr><td rowspan="1" class="iconSide">
@@ -130,7 +163,9 @@ else
  $genLink='http://'.$_SERVER['SERVER_NAME'].'/codeBox/note/redirectToFile.php?id='.$_GET['id'];	   
 }
                  ?>
-             <tr id = "urlSlot"><td><label for publicLink>Public URL (Streaming)  </label><input onclick = "this.select();" id ="publicLink" type="text" value="<?php echo  $genLink; ?>"/></td></tr>
+             <tr id = "urlSlot"><td><label for publicLink>Public URL (Streaming)  </label><input onclick = "this.select();" id ="publicLink" type="text" value="<?php echo  $genLink; ?>"/>
+             <div class="fb-share-button" data-href="<?php echo  $genLink; ?>" data-layout="button_count" data-mobile-iframe="true"></div>
+             </td></tr>
              </table></td></tr>
 
           </table></td></tr>
@@ -138,6 +173,13 @@ else
             </table>
             </div>
         </body>
+        	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
         <script>
             function copyLink()
             {
@@ -150,12 +192,14 @@ else
 notey.get('fileInfo.php?id=<?php echo $_GET['id']; ?>',function(data){
  var dec = JSON.parse(data.responseText);
 document.getElementById('realFileName').value=xtractFileName(dec[0].realFileName);
+document.getElementById('ogDescription').content=xtractFileName(dec[0].realFileName);
+document.getElementById('ogTitle').content='Notes Stream : '+xtractFileName(dec[0].realFileName);
 document.getElementById('icn').src=formatOf(dec[0].iconDefault);
 var visibility =formatOf(dec[0].visibility);
 if(visibility=='p'){
 document.getElementById('visibility').innerHTML="Turn Private";
-        document.getElementById('visibility').title="Only you can access this file, after logging in";
-              document.getElementById('urlSlot').style.display="block"
+document.getElementById('visibility').title="Only you can access this file, after logging in";
+document.getElementById('urlSlot').style.display="block"
 }
 else{
 document.getElementById('visibility').innerHTML="Turn Public";
@@ -173,41 +217,39 @@ else
 document.getElementById('size').innerHTML=dec[0].size+' B';
 document.getElementById('dwnload_link').href='downloadImage.php?id=<?php echo $_GET['id'] ?>';
 document.getElementById('open_link').href='stream.php?id=<?php echo $_GET['id'] ?>';
-
-                document.getElementById('spinner').style.display="none";
-                document.getElementById('dataContent').style.display="block";
+document.getElementById('spinner').style.display="none";
+document.getElementById('dataContent').style.display="block";
 
 		});
 		
 		function changeName()
         {  
-            
             if(document.getElementById('realFileName').value!=='')
             {
-                
            document.getElementById('realFileName_btton').value='Changing...';
             notey.post('fileOps.php?id='+document.getElementById('realFileName').dataset.id+'&rename',{
                newName:document.getElementById('realFileName').value+document.getElementById('realFileName').dataset.ext
             },function(data){
              document.getElementById('notification').innerHTML='Altered';
              document.getElementById('realFileName_btton').value='Change';
+             document.getElementById('ogDescription').content=document.getElementById('realFileName').value+document.getElementById('realFileName').dataset.ext;
             });
             }
             else
             {
-                            document.getElementById('notification').innerHTML='Enter a new name...';
+            document.getElementById('notification').innerHTML='Enter a new name...';
             }
         }
         function toggleVisibility(id)
         {  
             
             notey.get('toggleFileVisibility.php?id='+id,function(data){
-                console.log(data.responseText);
+
 if(data.responseText=='p')
 {
     document.getElementById('visibility').innerHTML="Turn Private";
-        document.getElementById('visibility').title="Only you can access this file after logging in";
-      document.getElementById('urlSlot').style.display="block"
+    document.getElementById('visibility').title="Only you can access this file after logging in";
+    document.getElementById('urlSlot').style.display="block"
 }
 else
 {
@@ -218,7 +260,6 @@ else
             });
 
         }
-		
 		function formatOf(fileName)
 	{
   var collect=  fileName.split(".");
