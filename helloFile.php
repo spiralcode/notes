@@ -124,7 +124,7 @@ document.getElementById('size').innerHTML=Math.ceil(dec[0].size/1000)+' KB';
 else
 document.getElementById('size').innerHTML=dec[0].size+' B';
 document.getElementById('dwnload_link').href='downloadImage.php?id=<?php echo $_GET['id'] ?>';
-document.getElementById('open_link').href='redirectToFile.php?id=<?php echo $_GET['id'] ?>';
+document.getElementById('open_link').href='stream.php?id=<?php echo $_GET['id'] ?>';
 
 
 
