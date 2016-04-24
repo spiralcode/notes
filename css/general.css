@@ -601,4 +601,14 @@ background: rgba(255, 218, 185, 0.50);
 	cursor: pointer;
 }
 
+.contentPlace .placeP
+{
+	position: relative;
+	float: left;
+	width:10em;
+	height: 10em;
+	background:  wheat;
+	margin: .5em;
+	
+}
 /**/

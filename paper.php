@@ -67,6 +67,7 @@ window.onbeforeunload = unloadPage;
                      <li onclick="navigate(this);" data-task="files" data-label="files.php" data-title="Files">Files</li>
                      <li onclick="navigate(this);" date-task="peoples"  data-label="ppl.html" data-title="Peoples">People</li>
                      <li onclick="navigate(this);" data-task="links"  data-label="links.php?limit=20,0" data-title="Links">Links</li>
+                     <li onclick="navigate(this);" data-task="places"  data-label="fetchPlaces.php" data-title="Places">Places</li>
            </div>
             <div class="louis" id="louis">
            <div id="louis_load" class="spinner" style="" >
@@ -176,7 +177,6 @@ gen.id('searchButton').innerHTML="search links";
    }
    else if(ob.dataset.task=='files')
    {
-     
      fileBuffer=[];
      locBuffer=[];
   searchFocus="files";
@@ -187,8 +187,21 @@ gen.id('searchButton').innerHTML="Search files";
 
  gen.id('contentPlace').innerHTML="";
  var decoded = JSON.parse(data.responseText);
- fileDisplay(decoded)
+ fileDisplay(decoded);
    }
+      else if(ob.dataset.task=='places')
+      {
+     fileBuffer=[];
+     locBuffer=[];
+      gen.id('contentPlace').innerHTML="";
+      var decoded = JSON.parse(data.responseText);
+     var start = 0;
+      while(decoded[start]!=null)
+      {
+       showPlaces(decoded[start]);
+        start++;
+      }
+      }
    else
    {
           searchFocus="addNote";
@@ -201,7 +214,14 @@ gen.id('searchButton').innerHTML="Search files";
 gen.id('titleBar_title').innerHTML="Loading...";
     }
     
-    
+    function showPlaces(coords)
+    {
+      var div = document.createElement('div');
+      div.setAttribute('class','placeP');
+     var staticImage='https://maps.googleapis.com/maps/api/staticmap?center='+coords+'&zoom=15&size=300x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284';
+     div.style.background='url('+staticImage+')';
+      gen.id('contentPlace').appendChild(div);
+    }
     function resultDisplay(ob)
     {
       if(ob.status!=0){
