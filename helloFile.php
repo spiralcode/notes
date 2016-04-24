@@ -1,7 +1,7 @@
 <!doctype html>
 <head>
     <meta id = "ogURL" property="og:url"           content="" />
-	<meta id = "ogType" property="og:type"          content="File" />
+	<meta id = "ogType" property="og:type"          content="website" />
 	<meta id = "ogTitle" property="og:title"         content="Notes Stream" />
 	<meta id = "ogDescription" property="og:description"   content="" />
 	<meta id = "ogImage" property="og:image"         content="favicon.png" />

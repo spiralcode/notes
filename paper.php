@@ -25,6 +25,12 @@ include 'session_check.php';
                                   <script src="ajax_1_10_2.js"></script>
   <script src="lib/jquery-1.10.2.js"></script>
 <script src="lib/jquery-ui.js"></script>
+<!--Location Codes-->
+<link type="text/css" rel="stylesheet" href="style/locationpicker.css" />
+
+                 <script src="lib/jquery.locationpicker.js"></script>
+                 <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
 <link rel="stylesheet" href="style/jquery-ui.css">
 <link rel="stylesheet" href="raid.css"/>
 
@@ -111,12 +117,14 @@ notey.get(ob.dataset.label,function(data){
        });
     $( "#cal" ).datepicker({onSelect:function(data){
       timeTasks(moment(data,"MM/DD/YYYY").unix());
-      }});
+      }});    
+      $('#fetchTheCoords').locationPicker();
    }
    else if(ob.dataset.task=='searchNote')
    {
           searchFocus="addNote";
      fileBuffer=[];
+     locBuffer=[];
       gen.id('titleBar_options').innerHTML="<input type=\"text\" value=\""+moment.unix(new Date/1000).format('DD - MM - YYYY')+"\"/>";
           task=ob.dataset.task;
      gen.id('searchButton').innerHTML="Search Notes";
@@ -132,7 +140,8 @@ start++;
    else if(ob.dataset.task=='links')
    {
           searchFocus="links";
-          fileBuffer=[];
+     fileBuffer=[];
+     locBuffer=[];
 gen.id('titleBar_options').innerHTML="";
 task=ob.dataset.task;
 gen.id('searchButton').innerHTML="search links";
@@ -168,7 +177,8 @@ gen.id('searchButton').innerHTML="search links";
    else if(ob.dataset.task=='files')
    {
      
-  fileBuffer=[];
+     fileBuffer=[];
+     locBuffer=[];
   searchFocus="files";
   gen.id('titleBar_options').innerHTML="<input type=\"button\" onclick=\"selectFiles()\" value = \"Select files\"/><input type=\"button\" value = \"Delete Files\"/> ";
   task=ob.dataset.task;
@@ -182,7 +192,8 @@ gen.id('searchButton').innerHTML="Search files";
    else
    {
           searchFocus="addNote";
-          fileBuffer=[];
+     fileBuffer=[];
+     locBuffer=[];
         gen.id('titleBar_options').innerHTML="";
         gen.id('contentPlace').innerHTML='Development On-Course...<a href="book.php" target="_new">Try the old one </a>';
    }
@@ -383,7 +394,9 @@ while(fileBuffer[index]!=null)
       var contents=gen.id('typeSpace').value;
       var geolocation='0,0';
       var setgLocation='0,0';
- notey.post('feed.php',{contents:contents,timeid:noteId,alterDate:alterDate,geolocation:geolocation,setglocation:setgLocation},function(data)
+      if(setgLocation=='0,0'&&geolocation!='0,0')
+      setgLocation=geolocation;
+ notey.post('feed.php',{contents:contents,timeid:noteId,alterDate:alterDate,geolocation:geolocation,setglocation:locBuffer[0]},function(data)
 {
           gen.id('saveButton').value="Save Note";
           gen.id("fileList").innerHTML='';
@@ -429,6 +442,7 @@ while(decoded[start]!=null)
 resultDisplay(decoded[start]);
 start++;
 }
+		$('#geo').locationPicker();
   });
 }
 else if(searchFocus=="files")
@@ -446,7 +460,7 @@ function fileInfo(file)
 file.focus();
 notey.get('fileInfo.php?id='+file.dataset.id,function(data){
 var DCde = JSON.parse(data.responseText);
-        notey.notify('helloFile.php?id='+file.dataset.id,{iframe:true,width:600,height:0});
+notey.notify('helloFile.php?id='+file.dataset.id,{iframe:true,width:600,height:0});
 });
 
 }
@@ -531,7 +545,55 @@ start++;
 }
  });
  }
+ var locBuffer = new Array();
+ var c_index=0;
+ function collectLocation(loc)
+ {
+   locBuffer[c_index]=loc;
+   listLocation(loc,c_index);
+ }
+ var bufferIndex=0;
+ function listLocation(loc,bufferId)
+ {
+   gen.id('mapRoll').innerHTML="";
+    var file = document.createElement('div');
+        var fileInfo = document.createElement('div');
+        var opts = document.createElement('div');
+        opts.setAttribute('class','opts');
+        fileInfo.setAttribute('class','info');
+        fileNamePad="location";
+        opts.innerHTML='<span onclick="removeLoc('+bufferId+');" title="Remove location from list"><img src = "'+png_close+'"/></span>';
+       fileInfo.innerHTML=fileNamePad;
+     //  file.appendChild(opts);
+     //  file.appendChild(fileInfo);
+        file.setAttribute('class','place');
+        file.setAttribute('id','locationId-'+bufferId);
+        
+        //gen.id('mapRoll').appendChild(file);
+    //  gen.id('mapRoll').insertBefore(file, gen.id('mapRoll').children[bufferIndex]);
+     gen.id('mapRoll').appendChild(file)
+        var staticImage='https://maps.googleapis.com/maps/api/staticmap?center='+loc+'&zoom=15&size=300x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284';
+        file.style.background="url("+staticImage+")";
+ }
+function trackMe()
+{
+  if (navigator.geolocation) 
+{
+    navigator.geolocation.getCurrentPosition(showPosition);
+}
+ else
+{
+notey.notify("",{content:"Unable to find your location.  <ul><li></li></ul>",iframe:false,width:500});
+}
+function showPosition(position)
+{
+   var detected_lat=position.coords.latitude;
+   var detected_lng=position.coords.longitude;
+   geolocation=detected_lat+','+detected_lng;
+   collectLocation(detected_lat+','+detected_lng);
+}
 
+}
     </script>
     <script>
   gen.id('mainOptions').getElementsByTagName('li')[0].click();
@@ -548,6 +610,16 @@ start++;
               <script>
                 $('#calender').draggable();
                 </script>
+                <script>
+                  function showLocationSlot()
+                  {
+                                        if(document.getElementById('locationList').style.display=="block")
+                    document.getElementById('locationList').style.display="none";
+                    else
+                                        document.getElementById('locationList').style.display="block";
+                  }
+                  </script>
+                                   
                 <script src = "iconCode.js">
                   </script>
     </body>
