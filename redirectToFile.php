@@ -18,6 +18,7 @@ $query=mysqli_query($link,"select * from image where id = $pid ")or die(mysqli_e
         {
             $visibility = $data['visibility'];
             $filename=$data['filename'];
+            $file_name=$data['file_name'];
             $user = $data['userid'];
         }
 $file = $target_dir.$filename;
@@ -36,7 +37,7 @@ $strContext=stream_context_create(
     )
 );
 $fpOrigin=fopen($filePath, 'rb', false, $strContext);
-header('Content-Disposition: inline; filename="'.$filename.'"');
+header('Content-Disposition: inline; filename="'.$file_name.'"');
 header('Pragma: no-cache');
 //header('Content-type: '+mime_content_type($file));
 header('Content-type: '.mimeType($filename));

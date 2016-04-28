@@ -27,10 +27,8 @@ include 'session_check.php';
 <script src="lib/jquery-ui.js"></script>
 <!--Location Codes-->
 <link type="text/css" rel="stylesheet" href="style/locationpicker.css" />
-
-                 <script src="lib/jquery.locationpicker.js"></script>
-                 <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-
+  <script src="lib/jquery.locationpicker.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 <link rel="stylesheet" href="style/jquery-ui.css">
 <link rel="stylesheet" href="raid.css"/>
 
@@ -201,6 +199,13 @@ gen.id('searchButton').innerHTML="Search files";
        showPlaces(decoded[start]);
         start++;
       }
+      if(decoded.length==0)
+      {
+         var noLink = document.createElement('div');
+      noLink.setAttribute('class','noFiles');
+      noLink.innerHTML="No places are found embedded with any note of yours. ";
+      gen.id('contentPlace').appendChild(noLink);
+      }
       }
    else
    {
@@ -230,7 +235,16 @@ gen.id('titleBar_title').innerHTML="Loading...";
     var contentSlot = document.createElement('div');
     var fileSlot = document.createElement('div');
     var dateDiff = document.createElement('div');
-  note.setAttribute('class','note');
+    var options = document.createElement('div');
+    var option = document.createElement('span');
+option.setAttribute('class','option');
+option.setAttribute('data-noteId',ob.noteid);
+option.setAttribute('data-list','["delete","deleteNote(this);"]');
+option.addEventListener('click',function(e){builtMenu(this)});
+option.innerHTML="Options";
+options.appendChild(option);
+    options.setAttribute('class','options');
+    note.setAttribute('class','note');
     noteInfo.setAttribute('class','noteInfo');
     contentSlot.setAttribute('class','contentSlot');
     fileSlot.setAttribute('class','fileSlot');
@@ -260,6 +274,7 @@ fileSlot.appendChild(div);
 
       beg++;
     }
+    noteInfo.appendChild(options);
     noteInfo.appendChild(dateDiff);
       note.appendChild(noteInfo);
       note.appendChild(contentSlot);
@@ -613,6 +628,33 @@ function showPosition(position)
    collectLocation(detected_lat+','+detected_lng);
 }
 
+}
+function builtMenu(ob)
+{
+  var clientDim = ob.getBoundingClientRect();
+  var div = document.createElement('div');
+  var ul = document.createElement('ul');
+  div.setAttribute('class','menu');
+  div.setAttribute('id',ob.noteid+'DropMenu');
+  div.setAttribute('tabindex',0);
+  ul.setAttribute('shape','none');
+var arra = JSON.parse(ob.dataset.list);
+var start = 0;
+while(arra[start]!=null)
+{
+  var ele = document.createElement('li');
+ ele.innerHTML=arra[start++];
+ ele.setAttribute('onclick',arra[start++]);
+ul.appendChild(ele);
+}
+  div.appendChild(ul);
+  div.style.position = 'absolute';
+  div.style.zIndex = 54;
+  div.style.top = (clientDim.bottom+5)+'px';
+  div.style.left = clientDim.left-div.style.width+'px';
+  div.addEventListener('blur',function(e){div.remove();});
+  document.getElementsByTagName('body')[0].appendChild(div);
+  gen.id(ob.noteid+'DropMenu').focus();
 }
     </script>
     <script>

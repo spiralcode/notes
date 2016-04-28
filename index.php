@@ -189,7 +189,6 @@ $id('email').value=semail;
 </head>
 <body>
 <script>
-
             </script>
 <div id="spinner" class="spinner"></div>
 <div class="aboutspace">
@@ -210,6 +209,18 @@ Notes<sup>v3</sup>
 </td><td align="center"><div class="loginarea"><table>
 <tr><td><input type="text" id="sname" placeholder="Name"/></td></tr>
 <tr><td><input type="text" id="semail" placeholder="E-mail"/></td></tr>
+<script>
+  $id('semail').addEventListener('blur',function(e){
+    notey.post('emailExistence.php',{email : $id('semail').value},function(data){
+      console.log(data.responseText);
+      if(data.responseText==1)
+      {
+        $id('errorshow').innerHTML="Email seems already existing";
+         $id('semail').border="1px dotted red";
+      }
+    });
+  });
+  </script>
 <tr><td><input type="password" id="spassword" placeholder="Password"/></td></tr>
 <tr><td><input type="password" id="cpassword" placeholder="Confirm password"/></td></tr>
 

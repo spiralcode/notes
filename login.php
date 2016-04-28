@@ -15,7 +15,7 @@ else
 {
     //Normal Login via post method
 $email=$_POST['email'];
-$pass=$_POST['pass'];
+$pass=mysqli_real_escape_string($conn,$_POST['pass']);
 $cookie=$_POST['cook'];
 if($cookie==1)
 {
