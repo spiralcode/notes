@@ -5,6 +5,7 @@
 	font-size: 3vh;
 background: rgba(19, 20, 23, 0.4);
 }
+
 .topribbon .userInfo
 {
 position: absolute;
@@ -57,6 +58,10 @@ margin-top: 1em;
 margin-bottom: 1em;
 width: 100%;
 text-align: center;
+}
+.button-primary
+{
+	padding: 0 0;
 }
 .sideRack .louis
 {
@@ -145,6 +150,17 @@ height: 45%;
 .writeNoteContainer .typeArea .noteProperties .dateSwitchArrow:hover
 {
 	color: black;
+}
+.writeNoteContainer .typeArea .buttonPocket
+{
+width: auto;
+}
+.writeNoteContainer .typeArea .buttonPocket input[type="button"]
+{
+	position: relative;
+	float: left;
+	margin-right: 1em;
+	padding: 0px 0px;
 }
 #noteDate
 {
@@ -612,7 +628,6 @@ background: rgba(255, 218, 185, 0.50);
 	background: rgba(255, 218, 185, 0.90);
 	cursor: pointer;
 }
-
 .contentPlace .placeP
 {
 	position: relative;
@@ -623,14 +638,21 @@ background: rgba(255, 218, 185, 0.50);
 	margin: .5em;
 	
 }
+.writeNoteContainer .peopleSlot
+{
+	float: left;
+	background: white;
+}
+
+
 .menu
 {
-	background:  whitesmoke;
-	float: left;
-	min-width: 10em;
-border: cornflowerblue 1px solid;
+float: left;
+min-width: 10em;
+border: none;
 box-shadow: 0px 0px 1px black;
-	border-radius: 2px;
+border-radius: 2px;
+background: none;
 }
 .menu ul
 {
@@ -641,9 +663,16 @@ cursor: pointer;
 font-style:  normal;
 text-transform:  capitalize;
 background: white;
+height: 2em;
+line-height: 2em;
+padding: .5em;
+color: rgba(0, 0, 0, 0.54);
+margin: 0;
 }
 .menu ul li:hover{
 cursor: pointer;
 background: blanchedalmond;
+color: rgba(0, 0, 0, 0.98);
 }
+
 /**/

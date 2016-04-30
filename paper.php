@@ -10,12 +10,11 @@ include 'session_check.php';
         <title>Notes Go</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/skeleton.css">
-                                <link rel="stylesheet" href="css/general.css">
-                                        <link rel="stylesheet" href="css/loader.css">
-                                        <link rel="stylesheet" href="css/animate.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/loader.css">
+        <link rel="stylesheet" href="css/animate.css">
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
                 <script src="notey.js"></script>
                 <script src="jss/general.js"></script>
@@ -124,7 +123,7 @@ notey.get(ob.dataset.label,function(data){
           searchFocus="addNote";
      fileBuffer=[];
      locBuffer=[];
-      gen.id('titleBar_options').innerHTML="<input type=\"text\" value=\""+moment.unix(new Date/1000).format('DD - MM - YYYY')+"\"/>";
+      gen.id('titleBar_options').innerHTML="<input  onchange=\"notesByDate(moment(this.value,'YYYY-MM-D').unix());\"  type=\"date\" value=\""+moment.unix(new Date/1000).format('YYYY-MM-D')+"\"/>";
           task=ob.dataset.task;
      gen.id('searchButton').innerHTML="Search Notes";
        gen.id('contentPlace').innerHTML="";
@@ -138,7 +137,7 @@ start++;
    }
    else if(ob.dataset.task=='links')
    {
-          searchFocus="links";
+     searchFocus="links";
      fileBuffer=[];
      locBuffer=[];
 gen.id('titleBar_options').innerHTML="";
@@ -178,11 +177,9 @@ gen.id('searchButton').innerHTML="search links";
      fileBuffer=[];
      locBuffer=[];
   searchFocus="files";
-  gen.id('titleBar_options').innerHTML="<input type=\"button\" onclick=\"selectFiles()\" value = \"Select files\"/><input type=\"button\" value = \"Delete Files\"/> ";
+  gen.id('titleBar_options').innerHTML="<input onchange=\"notesByDate(moment('"+this.value+"','YYYY-MM-DD').unix());\"   type=\"button\" onclick=\"selectFiles()\" value = \"Select files\"/><input type=\"button\" value = \"Delete Files\"/> ";
   task=ob.dataset.task;
-          
 gen.id('searchButton').innerHTML="Search files";
-
  gen.id('contentPlace').innerHTML="";
  var decoded = JSON.parse(data.responseText);
  fileDisplay(decoded);
@@ -201,7 +198,7 @@ gen.id('searchButton').innerHTML="Search files";
       }
       if(decoded.length==0)
       {
-         var noLink = document.createElement('div');
+      var noLink = document.createElement('div');
       noLink.setAttribute('class','noFiles');
       noLink.innerHTML="No places are found embedded with any note of yours. ";
       gen.id('contentPlace').appendChild(noLink);
@@ -239,12 +236,13 @@ gen.id('titleBar_title').innerHTML="Loading...";
     var option = document.createElement('span');
 option.setAttribute('class','option');
 option.setAttribute('data-noteId',ob.noteid);
-option.setAttribute('data-list','["delete","deleteNote(this);"]');
+option.setAttribute('data-list','["delete","deleteNote('+ob.noteid+');","fine people","findPeople('+ob.noteid+')"]');
 option.addEventListener('click',function(e){builtMenu(this)});
 option.innerHTML="Options";
 options.appendChild(option);
     options.setAttribute('class','options');
     note.setAttribute('class','note');
+         note.setAttribute('id','note-'+ob.noteid);
     noteInfo.setAttribute('class','noteInfo');
     contentSlot.setAttribute('class','contentSlot');
     fileSlot.setAttribute('class','fileSlot');
@@ -565,9 +563,9 @@ notesByDate(time);
     return false;
     }
 }
- function notesByDate(time)
+ function notesByDate(time,ob)
  {
-gen.id('titleBar_options').innerHTML="<input onclick=\"this.datepicker();\"  type=\"text\" value=\""+moment.unix(time).format('DD - MM - YYYY')+"\"/>";
+//gen.id('titleBar_options').innerHTML="<input   onchange=\"notesByDate(moment('"+this.value+"','YYYY-MM-DD').unix());\"    type=\"date\" value=\""+moment.unix(time).format('YYYY-MM-DD')+"\"/>";
 notey.get('search.php?date='+moment.unix(time).format("DD-MM-YYYY"),function(data){
 gen.id('searchButton').innerHTML="Search Notes";
 gen.id('contentPlace').innerHTML="";
@@ -656,6 +654,26 @@ ul.appendChild(ele);
   document.getElementsByTagName('body')[0].appendChild(div);
   gen.id(ob.noteid+'DropMenu').focus();
 }
+function findPeople(noteId)
+{
+    notey.notify('search_people.php?noteid='+noteId,{iframe:true,title:"Fetch people"});
+}
+function deleteNote(noteId)
+{
+var text = "<div align=\"center\">Are you sure, about this deletion ?</div>";
+notey.notify('',{iframe:false,text:text,width:300,height:0,confirm:true},function(status)
+ { notey.post('deletenote.php',{id: noteId},function(data){if(data.responseText==='1'){
+ $('#note-'+noteId).delay(500).fadeOut(1000);
+        }
+        else
+        {
+          var txt = "Some error occured, while deletion. Try again.";
+          notey.notify('',{iframe:false,text:txt,width:200,confirm:false},function(){});
+        }
+});
+
+            });
+}
     </script>
     <script>
   gen.id('mainOptions').getElementsByTagName('li')[0].click();
@@ -663,8 +681,11 @@ ul.appendChild(ele);
   <!--
     Script for unique page treatment
     -->
-         <div draggable="true" id="calender"><div id="close_calender" align="right" class="options">Close</div>
+         <div draggable="true" id="calender" tabindex = "1"><div id="close_calender" align="right" class="options">Close</div>
          <script>
+           gen.id('calender').addEventListener('blur',function(e){
+              gen.id('calender').style.display="none";
+           });
            gen.id('close_calender').addEventListener('click',function(e){gen.id('calender').style.display="none";});
            </script>
           <div id="cal"></div>
@@ -679,6 +700,12 @@ ul.appendChild(ele);
                     document.getElementById('locationList').style.display="none";
                     else
                                         document.getElementById('locationList').style.display="block";
+                  }
+                  function callOut()
+                  {
+                    notey.post('callOut.php',{
+                      note : gen.id('typeSpace').value},function(data){
+                        console.log(data.response);});
                   }
                   </script>
                                    

@@ -4,18 +4,22 @@
 <div align="center" class="noteProperties" id="noteProperties"><span class="dateSwitchArrow">❬</span>
 <span id="noteDate"></span><span class="dateSwitchArrow">❭</span></div>
 <textarea id="typeSpace" placeholder="Type your note here..."></textarea>
+<div class="buttonPocket">
 <input id="saveButton" onclick="transferNote();" class="button-primary" type="button" style="cursor:pointer;" value="Save Note"/>
 <input id="changeDate" onclick="showCalender()" class="button-primary" type="button" style="cursor:pointer;" value="Change Date"/>
 <input id="setLocation" onclick="showLocationSlot()" class="button-primary" type="button" style="cursor:pointer;" value="Attach a place"/>
+<input id="setLocation" onclick="callOut();" class="button-primary" type="button" style="cursor:pointer;" value="Fetch people"/>
+</div>
 <input id="dateCave" type="hidden"/></div>
 <div class="fileArea">
 <div class="option">
 Attach files with this Note<span style="cursor:pointer;" onclick="gen.id('fileSelect').click();">Choose Files </span> <!--<span style="cursor:pointer;" onclick="startUpload()">Start Upload</span>--></div>
 <div class="fileList" id="fileList"></div></div>
-
 <div class="places" id = "locationList">
 <div class="option">
 Attach a place <button  class="turnit" style="cursor:pointer;" id = "fetchTheCoords">Get location </button><button  class="turnit" style="cursor:pointer;" id = "trackMe" onclick="trackMe()">Find my location </button> <!--<span style="cursor:pointer;" onclick="startUpload()">Start Upload</span>--></div>
 <div class="mapRoll" id="mapRoll"></div></div>
-<!--<div class="toolsSpace"></div>-->
+
+<!--<div class="peopleSlot" id="peopleSlot"></div></div>
+	<div class="toolsSpace"></div>-->
 <input id="fileSelect" name="fileSelect[]" multiple type="file" style="display:none;"></div>
