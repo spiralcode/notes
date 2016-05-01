@@ -159,14 +159,20 @@ gen.id('searchButton').innerHTML="search links";
    var linkOpt = document.createElement('div');
    var titlePlace  = document.createElement('div');
    link.setAttribute('class','linkBox');
+   link.setAttribute('id','link-'+decoded[start].id);
    linkOpt.setAttribute('class','linkOpt');
    titlePlace.setAttribute('class','titlePlace');
    titlePlace.innerHTML=decoded[start].title;
-   linkOpt.innerHTML="Delete";
+ var opt = document.createElement('span');
+  opt.setAttribute('onclick','builtMenu(this)');
+ opt.setAttribute('data-list','["delete","deleteLink('+decoded[start].id+');"]');
+ opt.innerHTML="Option";
+   linkOpt.appendChild(opt);
+ 
    link.appendChild(linkOpt);
    link.appendChild(titlePlace);
    var cast = 'window.open(\''+decoded[start].url+'\',\'_blank\')';
-      link.setAttribute('onclick',cast);
+       titlePlace.setAttribute('onclick',cast);
       link.setAttribute('title',decoded[start].title);
    gen.id('contentPlace').appendChild(link);
    start++;
@@ -629,6 +635,7 @@ function showPosition(position)
 }
 function builtMenu(ob)
 {
+  console.log(ob);
   var clientDim = ob.getBoundingClientRect();
   var div = document.createElement('div');
   var ul = document.createElement('ul');
@@ -662,8 +669,28 @@ function deleteNote(noteId)
 {
 var text = "<div align=\"center\">Are you sure, about this deletion ?</div>";
 notey.notify('',{iframe:false,text:text,width:300,height:0,confirm:true},function(status)
- { notey.post('deletenote.php',{id: noteId},function(data){if(data.responseText==='1'){
+ {
+   if(status==true)
+    notey.post('deletenote.php',{id: noteId},function(data){if(data.responseText==='1'){
  $('#note-'+noteId).delay(500).fadeOut(1000);
+        }
+        else
+        {
+          var txt = "Some error occured, while deletion. Try again.";
+          notey.notify('',{iframe:false,text:txt,width:200,confirm:false},function(){});
+        }
+});
+
+            });
+}
+function deleteLink(linkId)
+{
+var text = "<div align=\"center\">Are you sure, about this deletion ?</div>";
+notey.notify('',{iframe:false,text:text,width:300,height:0,confirm:true},function(status)
+ {
+   if(status==true)
+    notey.post('deletelink.php',{id: linkId},function(data){if(data.responseText==='1'){
+ $('#link-'+linkId).delay(500).fadeOut(1000);
         }
         else
         {
