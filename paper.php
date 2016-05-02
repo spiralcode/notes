@@ -123,7 +123,7 @@ notey.get(ob.dataset.label,function(data){
           searchFocus="addNote";
      fileBuffer=[];
      locBuffer=[];
-      gen.id('titleBar_options').innerHTML="<input  onchange=\"notesByDate(moment(this.value,'YYYY-MM-D').unix());\"  type=\"date\" value=\""+moment.unix(new Date/1000).format('YYYY-MM-D')+"\"/>";
+      gen.id('titleBar_options').innerHTML="<input  onchange=\"notesByDate(moment(this.value,'YYYY-MM-D').unix());\"  type=\"date\" value=\""+moment.unix(new Date/1000).format('YYYY-MM-DD')+"\"/>";
           task=ob.dataset.task;
      gen.id('searchButton').innerHTML="Search Notes";
        gen.id('contentPlace').innerHTML="";
@@ -242,7 +242,7 @@ gen.id('titleBar_title').innerHTML="Loading...";
     var option = document.createElement('span');
 option.setAttribute('class','option');
 option.setAttribute('data-noteId',ob.noteid);
-option.setAttribute('data-list','["delete","deleteNote('+ob.noteid+');","fine people","findPeople('+ob.noteid+')"]');
+option.setAttribute('data-list','["delete","deleteNote('+ob.noteid+');","find people","findPeople('+ob.noteid+')"]');
 option.addEventListener('click',function(e){builtMenu(this)});
 option.innerHTML="Options";
 options.appendChild(option);
@@ -611,7 +611,7 @@ start++;
         //gen.id('mapRoll').appendChild(file);
     //  gen.id('mapRoll').insertBefore(file, gen.id('mapRoll').children[bufferIndex]);
      gen.id('mapRoll').appendChild(file)
-        var staticImage='https://maps.googleapis.com/maps/api/staticmap?center='+loc+'&zoom=15&size=300x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284';
+  var staticImage='https://maps.googleapis.com/maps/api/staticmap?center='+loc+'&zoom=15&size=300x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284';
         file.style.background="url("+staticImage+")";
  }
 function trackMe()

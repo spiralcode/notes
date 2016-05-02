@@ -37,7 +37,7 @@
 		</style>
 	<body>
 		<div class="title">Are you sure ?</div>
-		<div class="subTitle">You will not be able to recover this file after deletion</div>
+		<div class="subTitle">You will not be able to recover this file after deletion. </div>
 		<div class="options"><span onclick="dl8File()">I understand</span> <span onclick="goBack()">Cancel</span></div> 
 		</body>
 		<script>
