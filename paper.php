@@ -123,7 +123,7 @@ notey.get(ob.dataset.label,function(data){
           searchFocus="addNote";
      fileBuffer=[];
      locBuffer=[];
-      gen.id('titleBar_options').innerHTML="<input  onchange=\"notesByDate(moment(this.value,'YYYY-MM-D').unix());\"  type=\"date\" value=\""+moment.unix(new Date/1000).format('YYYY-MM-DD')+"\"/>";
+      gen.id('titleBar_options').innerHTML="<input  onchange=\"notesByDate(moment(this.value,'YYYY-MM-D').unix());\"  type=\"date\" value=\""+moment.unix(new Date/1000).format('YYYY--DD')+"\"/>";
           task=ob.dataset.task;
      gen.id('searchButton').innerHTML="Search Notes";
        gen.id('contentPlace').innerHTML="";
