@@ -240,15 +240,26 @@ gen.id('titleBar_title').innerHTML="Loading...";
     var dateDiff = document.createElement('div');
     var options = document.createElement('div');
     var option = document.createElement('span');
+    var locationSlot = document.createElement('div');
 option.setAttribute('class','option');
+locationSlot.setAttribute('class','locationSlot');
+var staticImage='https://maps.googleapis.com/maps/api/staticmap?center='+ob.geo+'&zoom=15&size=300x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284';
+var locationInfo = document.createElement('div');
+var locationStamp = document.createElement('div');
+locationInfo.setAttribute('class','loctionInfo');
+locationInfo.innerHTML=ob.geo;
+locationStamp.innerHTML='<img src = '+staticImage+'/>';
+locationSlot.appendChild(locationInfo);
+locationSlot.appendChild(locationStamp);
 option.setAttribute('data-noteId',ob.noteid);
 option.setAttribute('data-list','["delete","deleteNote('+ob.noteid+');","find people","findPeople('+ob.noteid+')"]');
 option.addEventListener('click',function(e){builtMenu(this)});
 option.innerHTML="Options";
+
 options.appendChild(option);
-    options.setAttribute('class','options');
+options.setAttribute('class','options');
     note.setAttribute('class','note');
-         note.setAttribute('id','note-'+ob.noteid);
+    note.setAttribute('id','note-'+ob.noteid);
     noteInfo.setAttribute('class','noteInfo');
     contentSlot.setAttribute('class','contentSlot');
     fileSlot.setAttribute('class','fileSlot');
@@ -282,10 +293,11 @@ fileSlot.appendChild(div);
     noteInfo.appendChild(dateDiff);
       note.appendChild(noteInfo);
       note.appendChild(contentSlot);
-     if(beg!=0){
-       
+     if(beg!=0){ 
       note.appendChild(fileSlot);
      }
+       if(ob.geo!='0,0')
+        note.appendChild(locationSlot);
   gen.id('contentPlace').appendChild(note);
       }
       else
@@ -431,8 +443,11 @@ while(fileBuffer[index]!=null)
          {
       gen.id('saveButton').value="Saving Note...";
       var contents=gen.id('typeSpace').value;
+       var locBuffer = new Array();
+
       var geolocation='0,0';
       var setgLocation='0,0';
+             locBuffer[0]=setgLocation;
       if(setgLocation=='0,0'&&geolocation!='0,0')
       setgLocation=geolocation;
  notey.post('feed.php',{contents:contents,timeid:noteId,alterDate:alterDate,geolocation:geolocation,setglocation:locBuffer[0]},function(data)
@@ -442,7 +457,6 @@ while(fileBuffer[index]!=null)
           showNotification("Note Saved");
           gen.id('saveButton').removeAttribute('disabled');
           gen.id('typeSpace').value="";
-
 });
           window.clearInterval(dec);
          }
@@ -584,7 +598,7 @@ start++;
 }
  });
  }
- var locBuffer = new Array();
+
  var c_index=0;
  function collectLocation(loc)
  {
@@ -635,7 +649,6 @@ function showPosition(position)
 }
 function builtMenu(ob)
 {
-  console.log(ob);
   var clientDim = ob.getBoundingClientRect();
   var div = document.createElement('div');
   var ul = document.createElement('ul');

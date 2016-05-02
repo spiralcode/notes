@@ -346,6 +346,24 @@ line-height: 10vh;
 	text-indent: 1em;
 	line-height: 4vh;
 }
+.note .locationSlot 
+{
+	position: relative;
+	height: 4vh;
+	padding: 1em;
+background: linear-gradient(aliceblue,rgb(211, 232, 250));
+}
+.note .locationSlot div
+{
+	float: left;
+	margin-left: 1em;
+}
+.note .locationSlot .locationInfo
+{
+color: rgba(0, 0, 0, 0.6);
+font-size: 1em;
+font-family: arial;
+}
 .note .noteInfo .options
 {
 	float: right;
