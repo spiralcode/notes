@@ -13,6 +13,8 @@ $fileid=$row['id'];
 $realFileName = $row['file_name'];
 $root = $row['filename'];
 $visibility = $row['visibility'];
+$view = $row['me_view'];
+$pview = $row['p_view'];
 }
 }
 $parts = explode('.',$realFileName);
@@ -36,7 +38,7 @@ else
 $target_dir="media/";	
 }
 $size=filesize($target_dir.$root);
-$img[0]=array("id"=>"$fileid","realFileName"=>"$realFileName","root"=>"$root","size" => "$size","iconDefault"=>"$iconCode","visibility"=>"$visibility");
+$img[0]=array("id"=>"$fileid","realFileName"=>"$realFileName","root"=>"$root","size" => "$size","iconDefault"=>"$iconCode","visibility"=>"$visibility","view"=>"$view","pview"=>"$pview");
 echo json_encode($img);
 ?>
 

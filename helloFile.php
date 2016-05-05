@@ -104,6 +104,14 @@ background: rgba(174, 174, 174, 0.81);
         {
             display:none;
         }
+        .information
+        {
+background:aliceblue;
+        }
+                .information td
+        {
+margin:1em;
+        }
 		</style>
 <script src="notey.js"></script>
 
@@ -149,8 +157,8 @@ background: rgba(174, 174, 174, 0.81);
                 changeName();
             });
             </script>
-        <table>
-            <tr><td><div class="info"> Size :  <span  id="size"></span> Format : <span id="format"></span></div></td></tr>
+        <table style="margin-top:1em;">
+
              <tr><td><div class="options"><span  id="dwnload"><a target="_blank" id="dwnload_link">Download</a></span><span  id="dwnload"><a target="_blank" id="open_link">Open File</a></span><span  id="dwnload"><a target="" href = "confirmDelete.php?id=<?php echo $_GET['id']; ?>">Delete File</a></span> Visibility : <span onclick="toggleVisibility(<?php echo $_GET['id']; ?>)" id="visibility"></span>
              </div></td></tr>
              <?php
@@ -165,7 +173,10 @@ else
                  ?>
              <tr id = "urlSlot"><td><label for publicLink>Public URL (Streaming)  </label><input onclick = "this.select();" id ="publicLink" type="text" value="<?php echo  $genLink; ?>"/>
              <div class="fb-share-button" data-href="<?php echo  $genLink; ?>" data-layout="button_count" data-mobile-iframe="true"></div>
-             </td></tr>
+             </td>
+
+             </tr>
+             <tr><td><table class="information"><tr><td><div class="info"> Size :  <span  id="size"></span></div></td><td><div class="info"> Format : <span id="format"></div></span></td><tr><td><div class="info">Views : <span id="view"></span></div></td><td><div class="info"> Public views : <span id = "pview"></span></div></div></td></tr></table></td></tr>
              </table></td></tr>
 
           </table></td></tr>
@@ -209,6 +220,8 @@ document.getElementById('visibility').title="The file becomes public and you cou
 document.getElementById('realFileName').setAttribute('data-id',<?php echo $_GET['id']; ?>);
 document.getElementById('realFileName').setAttribute('data-ext','.'+formatOf(dec[0].realFileName));
 document.getElementById('format').innerHTML=formatOf(dec[0].realFileName);
+document.getElementById('view').innerHTML=formatOf(dec[0].view);
+document.getElementById('pview').innerHTML=formatOf(dec[0].pview);
 if(dec[0].size/1000000>1)
 document.getElementById('size').innerHTML=Math.ceil(dec[0].size/1000000)+' MB';
 else if(dec[0].size/1000>1)
