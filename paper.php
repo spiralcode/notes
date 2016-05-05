@@ -303,7 +303,7 @@ fileSlot.appendChild(div);
       note.appendChild(fileSlot);
      }
        if(ob.geo!='0,0')
-        note.appendChild(locationSlot);
+       // note.appendChild(locationSlot);
   gen.id('contentPlace').appendChild(note);
       }
       else
