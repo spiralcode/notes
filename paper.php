@@ -40,7 +40,10 @@ include 'session_check.php';
 <script>
 window.onbeforeunload = unloadPage;
 </script>
-        <div class="topribbon">Notes<div onclick="userAccOptions()" class="userInfo"><?php echo  $_SESSION['uname']; ?></div></div>
+        <div class="topribbon">Notes<div id="userOps"  onclick="builtMenu(this)" class="userInfo"><?php echo  $_SESSION['uname']; ?></div></div>
+        <script>
+          gen.id('userOps').setAttribute('data-list','["Logout","window.location=\'logout.php\';"]');
+          </script>
         <div id="titleBar_full" class="titleBar"><span id="titleBar_title"></span><span id="titleBar_options"></span></div>
       <div class="sideRack">
           
@@ -255,7 +258,6 @@ option.setAttribute('data-noteId',ob.noteid);
 option.setAttribute('data-list','["delete","deleteNote('+ob.noteid+');","find people","findPeople('+ob.noteid+')"]');
 option.addEventListener('click',function(e){builtMenu(this)});
 option.innerHTML="Options";
-
 options.appendChild(option);
 options.setAttribute('class','options');
     note.setAttribute('class','note');
@@ -266,6 +268,9 @@ options.setAttribute('class','options');
     dateDiff.setAttribute('class','dateDiff');
  // noteInfo.innerHTML=moment.unix(ob.time).format('Do  MMMM YYYY , HH:mm');  
     //dateDiff.innerHTML="Delegation";
+ var un_conv = moment(ob.ftime,"YYYY-MM-DD HH:mm:ss").format('x');
+ var millisec=moment(moment()).diff(moment(un_conv,'x'));
+ dateDiff.innerHTML=howFar(millisec);
     noteInfo.innerHTML=moment(ob.ftime,'YYYY-MM-DD HH:mm:ss').format('Do  MMMM YYYY , HH:mm');  
     contentSlot.innerHTML=ob.content;
     var beg = 0;
@@ -290,8 +295,9 @@ fileSlot.appendChild(div);
       beg++;
     }
     noteInfo.appendChild(options);
-    noteInfo.appendChild(dateDiff);
+
       note.appendChild(noteInfo);
+          note.appendChild(dateDiff);
       note.appendChild(contentSlot);
      if(beg!=0){ 
       note.appendChild(fileSlot);
@@ -570,6 +576,18 @@ else if(task=='searchNote')
  searchFocus = "addNote";
 notesByDate(time);
 }
+ }
+ function howFar(mS)
+ {
+   var hman = Math.round(mS/1000);
+   if(hman<60)
+   return "Just now";
+   else if(hman<3599)
+   return Math.round(hman/60)+' minutes ago';
+   else if(hman<86400)
+   return Math.round((hman/3600))+' hour ago';
+   else if(hman>86400)
+   return Math.round(hman/86400)+' day ago';
  }
   function isSaved()
 {
