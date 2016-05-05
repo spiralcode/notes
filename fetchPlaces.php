@@ -4,11 +4,13 @@ include "session_check.php";
 $list = array();
 $query = "select  setglocation from events where userid = $userid";
 $run = mysqli_query($conn,$query) or die(mysqli_error($conn));
+$ind = 0;
 while($data=mysqli_fetch_array($run))
 {
-	if($data['setglocation']!='0,0');
-	array_push($list, round($data['setglocation'],2));
+	if( $data['setglocation']!='0,0'&& $data['setglocation']!='0')
+	$list[$ind++]=$data['setglocation'];
+	//array_push($list, $data['setglocation']);
 }
-array_unique($list);
+$list=array_unique($list);
 echo json_encode($list);
 ?>
