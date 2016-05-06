@@ -1,3 +1,5 @@
+ErrorDocument 404 ack/404.html
+ErrorDocument 500 ack/404.html
 RewriteEngine On
 RewriteCond %{REMOTE_ADDR} !^127\.0\.0\.1$
 RewriteCond %{HTTP:X-Forwarded-Proto} !https

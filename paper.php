@@ -95,6 +95,7 @@ var task = "";
       louis('Loading...',true);
     highlightSelection(ob);
 notey.get(ob.dataset.label,function(data){
+  console.log(data.response);
       louis(' ',false);
            gen.id('titleBar_title').innerHTML=ob.dataset.title;
    if(ob.dataset.task=='addNote')
@@ -302,7 +303,7 @@ fileSlot.appendChild(div);
      if(beg!=0){ 
       note.appendChild(fileSlot);
      }
-       if(ob.geo!='0,0')
+//       if(ob.geo!='0,0')
        // note.appendChild(locationSlot);
   gen.id('contentPlace').appendChild(note);
       }
@@ -342,8 +343,8 @@ fileSlot.appendChild(div);
    titlePlace.innerHTML=decoded[start].file_name;
    else
   titlePlace.innerHTML=decoded[start].file_name.substring(0,10)+'...'+(decoded[start].file_name.substring(decoded[start].file_name.length-5));
-  titlePlace.setAttribute('data-id',decoded[start].id);
-    titlePlace.addEventListener('click',function(e){fileInfo(this)});
+  link.setAttribute('data-id',decoded[start].id);
+    link.addEventListener('click',function(e){fileInfo(this)});
    linkOpt.innerHTML="";
    link.appendChild(linkOpt);
    link.appendChild(titlePlace);
