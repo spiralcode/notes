@@ -50,11 +50,11 @@ http.send(null);
                     }
                 var windowHeight=window.innerHeight , windowWidth = window.innerWidth;
                 var divHeight=windowHeight-200, divWidth=windowWidth-300;
-             
       var ele=document.createElement("div");
                 document.getElementsByTagName('body')[0].appendChild(ele);
-                                 ele.setAttribute('class',"raid");
-
+                   ele.setAttribute('class',"raid");
+                 ele.setAttribute('tabindex',"1");
+                ele.focus();
                    if(typeof(config.width)!=='undefined' && typeof(config.height)!=='undefined')
                 {
                 divHeight=config.height, divWidth=config.width;

@@ -12,6 +12,9 @@ header('location: login.php?cook');}
 <html >
 <head>
 <title>Notes </title>
+<meta id = "ogType" property="og:type"          content="Web Application" />
+	<meta id = "ogTitle" property="og:title"         content="Notes" />
+	<meta id = "ogDescription" property="og:description"   content="Create Notes, attach files and access it anywhere." />
 <link id="favicon" rel="shortcut icon" href="favicon.png" type="image/png" />
 
   <link rel="stylesheet" href="style.css">

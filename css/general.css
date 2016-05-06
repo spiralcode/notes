@@ -524,6 +524,12 @@ background: rgba(241, 238, 245, 0.29);
 	position: absolute;
 	background: white;
 	z-index: 999;
+	margin:0;
+}
+.dropDown li
+{
+border-bottom: black dotted 1px;
+	margin-bottom : 0;
 }
 #calender
 {
@@ -659,7 +665,17 @@ background: rgba(255, 218, 185, 0.50);
 	height: 10em;
 	background:  wheat;
 	margin: .5em;
-	
+	box-shadow: 0px 0px 1px black;
+}
+.contentPlace .placeP .options
+{
+	width: 100%;
+}
+.contentPlace .placeP .options span
+{
+	float: right;
+	cursor: pointer;
+	color: rgba(0, 0, 0, 0.57);
 }
 .writeNoteContainer .peopleSlot
 {

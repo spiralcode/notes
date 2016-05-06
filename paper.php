@@ -12,16 +12,15 @@ include 'session_check.php';
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/skeleton.css">
-        <link rel="stylesheet" href="css/general.css">
         <link rel="stylesheet" href="css/loader.css">
         <link rel="stylesheet" href="css/animate.css">
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-                <script src="notey.js"></script>
-                <script src="jss/general.js"></script>
-                 <script src="jss/fly.js"></script>
-                                  <script src="jss/moment.js"></script>
-                                  <script src="jss/image.js"></script>
-                                  <script src="ajax_1_10_2.js"></script>
+        <script src="notey.js"></script>
+        <script src="jss/general.js"></script>
+        <script src="jss/fly.js"></script>
+        <script src="jss/moment.js"></script>
+        <script src="jss/image.js"></script>
+        <script src="ajax_1_10_2.js"></script>
   <script src="lib/jquery-1.10.2.js"></script>
 <script src="lib/jquery-ui.js"></script>
 <!--Location Codes-->
@@ -35,6 +34,7 @@ include 'session_check.php';
         <script>/*window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')*/</script>
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
+                <link rel="stylesheet" href="css/general.css">
     </head>
     <body>
 <script>
@@ -204,7 +204,7 @@ gen.id('searchButton').innerHTML="Search files";
       while(decoded[start]!=null)
       {
        showPlaces(decoded[start]);
-        start++;
+       start++;
       }
       if(decoded.length==0)
       {
@@ -229,6 +229,14 @@ gen.id('titleBar_title').innerHTML="Loading...";
     function showPlaces(coords)
     {
       var div = document.createElement('div');
+      var options =document.createElement('div');
+      options.setAttribute('class','options');
+      var option = document.createElement('span');
+      option.setAttribute('data-list','["list notes from here","searchByLoc(this)"]');
+      option.setAttribute('onclick','builtMenu(this)');
+      option.innerHTML="Options";
+      options.appendChild(option);
+      div.appendChild(options);
       div.setAttribute('class','placeP');
      var staticImage='https://maps.googleapis.com/maps/api/staticmap?center='+coords+'&zoom=15&size=300x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284';
      div.style.background='url('+staticImage+')';
@@ -267,8 +275,6 @@ options.setAttribute('class','options');
     contentSlot.setAttribute('class','contentSlot');
     fileSlot.setAttribute('class','fileSlot');
     dateDiff.setAttribute('class','dateDiff');
- // noteInfo.innerHTML=moment.unix(ob.time).format('Do  MMMM YYYY , HH:mm');  
-    //dateDiff.innerHTML="Delegation";
  var un_conv = moment(ob.ftime,"YYYY-MM-DD HH:mm:ss").format('x');
  var millisec=moment(moment()).diff(moment(un_conv,'x'));
  dateDiff.innerHTML=howFar(millisec);
@@ -363,7 +369,7 @@ fileSlot.appendChild(div);
     }}
     function listFile(fileCopy,fileName,bufferId)
     {
-     /*each fnctn call adds child elemnts to the div (fileList) in html file addNote.html*/
+     /*Each fnctn call adds child elemnts to the div (fileList) in html file addNote.html*/
         var file = document.createElement('div');
         var fileInfo = document.createElement('div');
         var opts = document.createElement('div');
@@ -587,8 +593,23 @@ notesByDate(time);
    return Math.round(hman/60)+' minutes ago';
    else if(hman<86400)
    return Math.round((hman/3600))+' hour ago';
-   else if(hman>86400)
+   else if(hman>86400){
+     if(hman/86400<1000)
    return Math.round(hman/86400)+' day ago';
+   else{
+     var years = Math.round((hman/86400)/365);
+     var months = Math.round(((hman/86400)%365)/31);
+     if(months!=0)
+     {
+       var tem = years+' years and '+months;
+     }
+     else
+     {
+              var tem = years+' years';
+     }
+      return tem+' ('+Math.round(hman/86400)+' day ago)';
+   }
+   }
  }
   function isSaved()
 {
@@ -686,6 +707,7 @@ ul.appendChild(ele);
 }
   div.appendChild(ul);
   div.style.position = 'absolute';
+  div.style.marginBottom="0px";
   div.style.zIndex = 54;
   div.style.top = (clientDim.bottom+5)+'px';
   div.style.left = clientDim.left-div.style.width+'px';
@@ -766,8 +788,7 @@ notey.notify('',{iframe:false,text:text,width:300,height:0,confirm:true},functio
                       note : gen.id('typeSpace').value},function(data){
                         console.log(data.response);});
                   }
-                  </script>
-                                   
+                  </script>                                  
                 <script src = "iconCode.js">
                   </script>
     </body>
