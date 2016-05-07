@@ -2,7 +2,7 @@
 include "connect.php";
 include "session_check.php";
 $list = array();
-$query = "select  setglocation from events where userid = $userid";
+$query = "select  setglocation from events where userid = $userid order by time desc";
 $run = mysqli_query($conn,$query) or die(mysqli_error($conn));
 $ind = 0;
 while($data=mysqli_fetch_array($run))
