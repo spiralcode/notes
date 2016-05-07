@@ -657,6 +657,16 @@ background: rgba(255, 218, 185, 0.50);
 	background: rgba(255, 218, 185, 0.90);
 	cursor: pointer;
 }
+.contentPlace .dvSurround
+{
+	position: relative;
+	float: left;
+	width:20em;
+	height: 20em;
+	background:  rgba(245, 222, 179, 0.45);
+	margin: .5em;
+	box-shadow: 0px 0px 1px black;	
+}
 .contentPlace .placeP
 {
 	position: relative;
@@ -667,15 +677,31 @@ background: rgba(255, 218, 185, 0.50);
 	margin: .5em;
 	box-shadow: 0px 0px 1px black;
 }
-.contentPlace .placeP .options
+.contentPlace .dvSurround .options
 {
 	width: 100%;
 }
-.contentPlace .placeP .options span
+.contentPlace .dvSurround .options span
 {
 	float: right;
 	cursor: pointer;
 	color: rgba(0, 0, 0, 0.57);
+}
+.contentPlace .dvSurround .placeInfoName
+{
+position: absolute;
+background: rgba(255, 255, 255, 0.43);
+bottom: 0;
+height: calc(20em - 11em);
+width: 100%;
+color: rgba(0, 0, 0, 0.77);
+text-align: left;
+padding: .1em;
+}
+.contentPlace .dvSurround .placeInfoName .address
+{
+	padding: 1em;
+	color: rgba(0, 0, 0, 0.6);
 }
 .writeNoteContainer .peopleSlot
 {

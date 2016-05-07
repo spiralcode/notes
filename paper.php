@@ -228,19 +228,33 @@ gen.id('titleBar_title').innerHTML="Loading...";
     
     function showPlaces(coords)
     {
+      var div_surround  = document.createElement('div');
       var div = document.createElement('div');
       var options =document.createElement('div');
+      var placeName = document.createElement('div');
+      var placeName_address = document.createElement('div');
+            placeName_address.setAttribute('class','address');
+      div_surround.setAttribute('class','dvSurround');
       options.setAttribute('class','options');
+      placeName.setAttribute('class','placeInfoName');
+ placeName_address.innerHTML="Loading...";
+      notey.get('https://maps.googleapis.com/maps/api/geocode/json?latlng='+coords+'&key=AIzaSyA_HkUvZ2ncHBbYKvONx5jASKJ3T8djuTE',function(data){
+              
+              placeName_address.innerHTML=JSON.parse(data.response).results[0].formatted_address;
+      });
+            placeName.appendChild(placeName_address);
       var option = document.createElement('span');
       option.setAttribute('data-list','["list notes from here","searchByLoc(this)"]');
       option.setAttribute('onclick','builtMenu(this)');
       option.innerHTML="Options";
       options.appendChild(option);
-      div.appendChild(options);
+      div_surround.appendChild(options);
       div.setAttribute('class','placeP');
      var staticImage='https://maps.googleapis.com/maps/api/staticmap?center='+coords+'&zoom=15&size=300x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284';
      div.style.background='url('+staticImage+')';
-      gen.id('contentPlace').appendChild(div);
+     div_surround.appendChild(div);
+     div_surround.appendChild(placeName);
+      gen.id('contentPlace').appendChild(div_surround);
     }
     function resultDisplay(ob)
     {
