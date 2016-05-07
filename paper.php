@@ -95,7 +95,6 @@ var task = "";
       louis('Loading...',true);
     highlightSelection(ob);
 notey.get(ob.dataset.label,function(data){
-  console.log(data.response);
       louis(' ',false);
            gen.id('titleBar_title').innerHTML=ob.dataset.title;
    if(ob.dataset.task=='addNote')
@@ -172,7 +171,6 @@ gen.id('searchButton').innerHTML="search links";
  opt.setAttribute('data-list','["delete","deleteLink('+decoded[start].id+');"]');
  opt.innerHTML="Option";
    linkOpt.appendChild(opt);
- 
    link.appendChild(linkOpt);
    link.appendChild(titlePlace);
    var cast = 'window.open(\''+decoded[start].url+'\',\'_blank\')';
@@ -444,6 +442,9 @@ while(fileBuffer[index]!=null)
     }
     var noteId = 0;
     var alterDate=0;
+    var locBuffer = new Array();
+    var geolocation='0,0';
+    var setgLocation='0,0';
    function transferNote()
    {
      if(fileBuffer.length>0||gen.id('typeSpace').value.length>0)
@@ -460,8 +461,7 @@ while(fileBuffer[index]!=null)
          go++;
        }
        startUpload();
-       }
-       
+       }    
        var dec = window.setInterval(function(){
        if(fileBuffer.length>1)
       showNotification(fileBuffer.length+" files being uploaded...");
@@ -471,14 +471,10 @@ while(fileBuffer[index]!=null)
          {
       gen.id('saveButton').value="Saving Note...";
       var contents=gen.id('typeSpace').value;
-       var locBuffer = new Array();
-
-      var geolocation='0,0';
-      var setgLocation='0,0';
-             locBuffer[0]=setgLocation;
+     setgLocation=locBuffer[0];
       if(setgLocation=='0,0'&&geolocation!='0,0')
       setgLocation=geolocation;
- notey.post('feed.php',{contents:contents,timeid:noteId,alterDate:alterDate,geolocation:geolocation,setglocation:locBuffer[0]},function(data)
+ notey.post('feed.php',{contents:contents,timeid:noteId,alterDate:alterDate,geolocation:geolocation,setglocation:setgLocation},function(data)
 {
           gen.id('saveButton').value="Save Note";
           gen.id("fileList").innerHTML='';
