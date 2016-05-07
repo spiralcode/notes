@@ -311,7 +311,8 @@ text-align: left;
 .contentPlace .note{
 	position: relative;
 	width: 80%;
-	margin-top: 2vh;
+margin-top: 1vh;
+margin-bottom: 1vh;
 	min-height: 10vh;
 	border-radius: 2px;
 	background: white;
