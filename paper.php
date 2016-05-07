@@ -199,6 +199,7 @@ gen.id('searchButton').innerHTML="Search files";
      fileBuffer=[];
      locBuffer=[];
       gen.id('contentPlace').innerHTML="";
+              gen.id('titleBar_options').innerHTML="";
       var decoded = JSON.parse(data.responseText);
      var start = 0;
       while(decoded[start]!=null)
