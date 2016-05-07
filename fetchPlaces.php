@@ -7,10 +7,11 @@ $run = mysqli_query($conn,$query) or die(mysqli_error($conn));
 $ind = 0;
 while($data=mysqli_fetch_array($run))
 {
-	if( $data['setglocation']!='0,0'&& $data['setglocation']!='0')
+	if( $data['setglocation']!='0,0'&& $data['setglocation']!='0'&&$data['setglocation']!=null&& $data['setglocation']!=null)
 	$list[$ind++]=$data['setglocation'];
 	//array_push($list, $data['setglocation']);
 }
 $list=array_unique($list);
-echo json_encode($list);
+
+echo json_encode(array_values($list));
 ?>

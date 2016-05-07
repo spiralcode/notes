@@ -202,6 +202,7 @@ gen.id('searchButton').innerHTML="Search files";
      var start = 0;
       while(decoded[start]!=null)
       {
+        console.log(decoded[start]);
        showPlaces(decoded[start]);
        start++;
       }
@@ -227,6 +228,7 @@ gen.id('titleBar_title').innerHTML="Loading...";
     
     function showPlaces(coords)
     {
+
       var div_surround  = document.createElement('div');
       var div = document.createElement('div');
       var options =document.createElement('div');
@@ -249,7 +251,7 @@ gen.id('titleBar_title').innerHTML="Loading...";
       options.appendChild(option);
       div_surround.appendChild(options);
       div.setAttribute('class','placeP');
-     var staticImage='https://maps.googleapis.com/maps/api/staticmap?center='+coords+'&zoom=15&size=300x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284';
+     var staticImage='https://maps.googleapis.com/maps/api/staticmap?center='+coords+'&zoom=18&size=300x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284';
      div.style.background='url('+staticImage+')';
      div_surround.appendChild(div);
      div_surround.appendChild(placeName);
@@ -420,17 +422,14 @@ fileSlot.appendChild(div);
     }
     function removeFile(id)
     {
-      console.log('removal - '+id);
       var index=0;
 while(fileBuffer[index]!=null)
 {
    if(fileBuffer[index].id==id){
    fileBuffer.splice(index,1);
-		console.log('after deletion len-'+fileBuffer.length);
       gen.id('uploadFileId-'+id).remove();
    }
     index++;
-
 }
     }
     function startUpload()
