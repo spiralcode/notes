@@ -255,7 +255,7 @@ window.open('https://www.google.com/maps/place/'+dec.results[0].formatted_addres
       options.appendChild(option);
       div_surround.appendChild(options);
       div.setAttribute('class','placeP');
-     var staticImage='https://maps.googleapis.com/maps/api/staticmap?center='+coords+'&zoom=16&size=450x210&maptype=hybrid&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284';
+     var staticImage='https://maps.googleapis.com/maps/api/staticmap?center='+coords+'&zoom=16&size=400x160&maptype=roadmap&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284';
      div.style.background='url('+staticImage+')';
      div.style.backgroundRepeat="no-repeat";
      div.style.backgroundSize="contain";
