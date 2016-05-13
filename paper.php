@@ -29,7 +29,6 @@ include 'session_check.php';
   <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 <link rel="stylesheet" href="style/jquery-ui.css">
 <link rel="stylesheet" href="raid.css"/>
-
       <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
         <script>/*window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')*/</script>
         <script src="js/plugins.js"></script>
@@ -40,6 +39,9 @@ include 'session_check.php';
 <script>
 window.onbeforeunload = unloadPage;
 </script>
+
+       <!-- <div class="notificationContainer"></div>-->
+
         <div class="topribbon">Notes<div id="userOps"  onclick="builtMenu(this)" class="userInfo"><?php echo  $_SESSION['uname']; ?></div></div>
         <script>
           gen.id('userOps').setAttribute('data-list','["Logout","window.location=\'logout.php\';"]');
@@ -82,7 +84,6 @@ window.onbeforeunload = unloadPage;
 <div id="iQ"><table><tr id="iQlist"></tr></table>
 </div>
 </div>
-
 <script>
 /*
 Globals

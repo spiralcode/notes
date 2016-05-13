@@ -20,8 +20,6 @@ header('location: login.php?cook');}
   <link rel="stylesheet" href="style.css">
       <script src="notey.js"></script>
         <link rel="stylesheet" href="raid.css">
-
-
 <link rel="stylesheet" href="raid.css"/>
 
 <style>
@@ -112,6 +110,7 @@ font-size:20px;
 button
 {
 border:none;
+
 }
 button:hover
 {
@@ -168,7 +167,7 @@ function datagateway(type)
 
 				}});
 		}
-	if(type.dataset.kind=='signup'&&semail!='')
+	if(type.dataset.kind=='Create an Account'&&semail!='')
 	{
 		type.disabled="disabled";
 		notey.post('create_acc.php',{
@@ -215,7 +214,6 @@ Notes<sup>v3</sup>
 <script>
   $id('semail').addEventListener('blur',function(e){
     notey.post('emailExistence.php',{email : $id('semail').value},function(data){
-      console.log(data.responseText);
       if(data.responseText==1)
       {
         $id('errorshow').innerHTML="Email seems already existing";
@@ -226,15 +224,13 @@ Notes<sup>v3</sup>
   </script>
 <tr><td><input type="password" id="spassword" placeholder="Password"/></td></tr>
 <tr><td><input type="password" id="cpassword" placeholder="Confirm password"/></td></tr>
-
-<tr><td align="center"><button data-kind="signup" onclick="datagateway(this)">Sign Up</button></td></tr></table></div></td></tr></table>
+<tr><td align="center"><button data-kind="Create an Account" onclick="datagateway(this)">Create an Account</button></td></tr></table></div></td></tr></table>
 </div>
 </div>
 
 <script>
 var loading=document.getElementById('spinner').getBoundingClientRect();
 var smartslide=document.getElementById('smartslide').getBoundingClientRect();
-
 document.getElementById('spinner').style.left=(window.innerWidth/2)-(loading.width/2)+'px';
 document.getElementById('smartslide').style.left=(window.innerWidth/2)-(smartslide.width/2)+'px';
 </script>

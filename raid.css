@@ -59,7 +59,7 @@ root {
 .raid .close
 {
     position: absolute;
-    width:100%;
+    width:30px;
     height:30px;
     top:0px;
     right: 0px;
@@ -69,7 +69,8 @@ root {
     cursor: pointer;
     z-index:1000;
     background-repeat: no-repeat;
-    
+    background-position: 100%;
+    background-size: 30px 30px;
 }
 .raid .close:hover
 {
@@ -94,9 +95,10 @@ root {
     color:#1B3450;
     height: 30px;
     position: absolute;
-    font-size: 25px;
+    font-size:1em;
 font-family:"Segoe UI Light",arial,serif;
 background: #fff;
+left: 2px;
 }
 .raid .iframe
 {

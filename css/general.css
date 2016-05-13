@@ -746,5 +746,14 @@ cursor: pointer;
 background: blanchedalmond;
 color: rgba(0, 0, 0, 0.98);
 }
-
+.notificationContainer
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-height: 50vh;
+    background:  #892424;
+    width: 20vw;
+    z-index: 999;
+}
 /**/
