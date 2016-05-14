@@ -86,10 +86,7 @@ window.onbeforeunload = unloadPage;
 </div>
 <script>
   //AutoLoad Function
-     $('#contentPlace').scroll(function() { 
-   if($('#contentPlace').scrollTop() + $(document).height() == $('#contentPlace').height()) {
-   //    fetch();   }
-   });
+
 /*
 Globals
 */
@@ -331,6 +328,7 @@ fileSlot.appendChild(div);
       beg++;
     }
     noteInfo.appendChild(options);
+
       note.appendChild(noteInfo);
           note.appendChild(dateDiff);
       note.appendChild(contentSlot);
