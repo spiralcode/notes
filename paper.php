@@ -85,14 +85,21 @@ window.onbeforeunload = unloadPage;
 </div>
 </div>
 <script>
+  //AutoLoad Function
+     $('#contentPlace').scroll(function() { 
+   if($('#contentPlace').scrollTop() + $(document).height() == $('#contentPlace').height()) {
+   //    fetch();   }
+   });
 /*
 Globals
 */
 var searchFocus="";
+var state = null;
 var timer=(new Date).getTime();
 var task = "";
     function navigate(ob)
     {
+      state = ob;
       louis('Loading...',true);
     highlightSelection(ob);
 notey.get(ob.dataset.label,function(data){
@@ -324,7 +331,6 @@ fileSlot.appendChild(div);
       beg++;
     }
     noteInfo.appendChild(options);
-
       note.appendChild(noteInfo);
           note.appendChild(dateDiff);
       note.appendChild(contentSlot);
@@ -655,7 +661,6 @@ start++;
 }
  });
  }
-
  var c_index=0;
  function collectLocation(loc)
  {
