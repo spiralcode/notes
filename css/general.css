@@ -756,4 +756,18 @@ color: rgba(0, 0, 0, 0.98);
     width: 20vw;
     z-index: 999;
 }
+.companyPanel
+{
+position: absolute;
+bottom: 0;
+color: rgba(223, 208, 208, 0.29);
+font-size: .7em;
+text-align: center;
+width: 100%;
+}
+.companyPanel:hover
+{
+	color: rgba(223, 208, 208, 0.80);
+
+}
 /**/

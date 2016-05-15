@@ -76,7 +76,9 @@ window.onbeforeunload = unloadPage;
              </div>
               <span id="louis_talk"></span>
               </div>
-
+<div class="companyPanel">
+  &copy; of  Nobody<br>Dial +919497336650 to speak.
+</div>
       </div>
       
         <div id="contentPlace" class="contentPlace" align="center" >
@@ -230,7 +232,6 @@ gen.id('searchButton').innerHTML="Search files";
 });
 gen.id('titleBar_title').innerHTML="Loading...";
     }
-    
     function showPlaces(coords)
     {
 
