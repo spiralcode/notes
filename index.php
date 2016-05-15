@@ -12,6 +12,8 @@ header('location: login.php?cook');}
 <html >
 <head>
 <title>Notes </title>
+<meta name = "description" content="Write notes, attach any files, locations and keep it for free and forever."/>
+<meta name = "description" content="Write notes, attach any files, locations and keep it for free and forever."/>
 <meta id = "ogType" property="og:type"          content="Web Application" />
 	<meta id = "ogTitle" property="og:title"         content="Notes" />
 	<meta id = "ogDescription" property="og:description"   content="Create Notes, attach files and access it anywhere." />
