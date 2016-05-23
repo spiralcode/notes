@@ -54,8 +54,8 @@ window.onbeforeunload = unloadPage;
           <button id="searchButton" onclick="keyWordSearch();">Search Notes</button>
           <script>
             gen.id('keyWord').addEventListener('keyup',function(e){
-            if(gen.id('keyWord').value.length>2)
-             keyWordSearch();
+           // if(gen.id('keyWord').value.length>2)
+            // keyWordSearch();
              if(e.keyCode==13)
              keyWordSearch();
             });

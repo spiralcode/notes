@@ -103,7 +103,6 @@ function showPosition(position)
         <script src="js/main.js"></script>
         <div class="footer"><p><a href="../paper.php">Deskop</a> | <a href="book.php">Read Note</a> | <a href="logout.php">Logout</a></p></div>
        
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
           <script src="fly_m.js"></script>
 
     </body>
