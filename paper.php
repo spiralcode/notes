@@ -477,7 +477,7 @@ while(fileBuffer[index]!=null)
        if(fileBuffer.length>1)
       showNotification(fileBuffer.length+" files being uploaded...");
       else if(fileBuffer.length==1)
-      showNotification(fileBuffer.length+" file being upload...");
+      showNotification(fileBuffer.length+" file being uploaded...");
          if(fileBuffer.length<=0)
          {
       gen.id('saveButton').value="Saving Note...";
