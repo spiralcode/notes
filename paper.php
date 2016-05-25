@@ -624,7 +624,7 @@ notesByDate(time);
      var months = Math.round(((hman/86400)%365)/31);
      if(months!=0)
      {
-       var tem = years+' years and '+months;
+       var tem = years+' years and '+months+ 'months';
      }
      else
      {
