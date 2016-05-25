@@ -123,7 +123,8 @@ notey.get(ob.dataset.label,function(data){
                transferNote();
            }
        });
-    $( "#cal" ).datepicker({onSelect:function(data){
+    $( "#cal" ).datepicker({ changeMonth: true,
+      changeYear: true,onSelect:function(data){
       timeTasks(moment(data,"MM/DD/YYYY").unix());
       }});    
       $('#fetchTheCoords').locationPicker();
