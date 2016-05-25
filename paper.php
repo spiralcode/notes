@@ -613,15 +613,15 @@ notesByDate(time);
    if(hman<60)
    return "Just now";
    else if(hman<3599)
-   return Math.round(hman/60)+' minutes ago';
+   return Math.floor(hman/60)+' minutes ago';
    else if(hman<86400)
-   return Math.ceil((hman/3600))+' hour ago';
+   return Math.floor((hman/3600))+' hour ago';
    else if(hman>86400){
      if(hman/86400<1000)
-   return Math.round(hman/86400)+' day ago';
+   return Math.floor(hman/86400)+' day ago';
    else{
-     var years = Math.ceil((hman/86400)/365);
-     var months = Math.round(((hman/86400)%365)/31);
+     var years = Math.floor((hman/86400)/365);
+     var months = Math.floor(((hman/86400)%365)/31);
      if(months!=0)
      {
        var tem = years+' years and '+months+ 'months';
@@ -630,7 +630,7 @@ notesByDate(time);
      {
               var tem = years+' years';
      }
-      return tem+' ('+Math.round(hman/86400)+' day ago)';
+      return tem+' ('+Math.floor(hman/86400)+' day ago)';
    }
    }
  }
