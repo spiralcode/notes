@@ -615,12 +615,12 @@ notesByDate(time);
    else if(hman<3599)
    return Math.round(hman/60)+' minutes ago';
    else if(hman<86400)
-   return Math.round((hman/3600))+' hour ago';
+   return Math.ceil((hman/3600))+' hour ago';
    else if(hman>86400){
      if(hman/86400<1000)
    return Math.round(hman/86400)+' day ago';
    else{
-     var years = Math.round((hman/86400)/365);
+     var years = Math.ceil((hman/86400)/365);
      var months = Math.round(((hman/86400)%365)/31);
      if(months!=0)
      {
