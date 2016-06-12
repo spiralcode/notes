@@ -210,7 +210,6 @@ gen.id('searchButton').innerHTML="Search files";
      var start = 0;
       while(decoded[start]!=null)
       {
-        console.log(decoded[start]);
        showPlaces(decoded[start]);
        start++;
       }
