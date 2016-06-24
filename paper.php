@@ -63,10 +63,10 @@ window.onbeforeunload = unloadPage;
           </div>
           <div class="options">
             <ul id="mainOptions">
-                    <li onclick="navigate(this);" data-task="addNote" data-label="htmls/addNote.html" data-title="Write Note">Add Note</li>
+                    <li onclick="navigate(this);" data-task="addNote" data-label="htmls/addNote.php" data-title="Write Note">Add Note</li>
                   <li onclick="navigate(this);" data-task="searchNote" data-label="search.php?date=<?php date_default_timezone_set('Asia/Calcutta');
  echo date("d-m-Y"); ?>" data-title="Read Notes">Read Notes</li>
-                     <li onclick="navigate(this);" data-task="files" data-label="files.php" data-title="Files">Files</li>
+                     <li onclick="navigate(this);" data-task="files" data-label="fetch_albums.php" data-title="Files">Files</li>
                      <li onclick="navigate(this);" date-task="peoples"  data-label="ppl.html" data-title="Peoples">People</li>
                      <li onclick="navigate(this);" data-task="links"  data-label="links.php?limit=20,0" data-title="Links">Links</li>
                      <li onclick="navigate(this);" data-task="places"  data-label="fetchPlaces.php" data-title="Places">Places</li>
@@ -167,6 +167,7 @@ gen.id('searchButton').innerHTML="search links";
  while(decoded[start]!=null)
  {
    var link = document.createElement('div');
+   
    var linkOpt = document.createElement('div');
    var titlePlace  = document.createElement('div');
    link.setAttribute('class','linkBox');
@@ -193,12 +194,12 @@ gen.id('searchButton').innerHTML="search links";
      fileBuffer=[];
      locBuffer=[];
   searchFocus="files";
-  gen.id('titleBar_options').innerHTML="<input onchange=\"notesByDate(moment('"+this.value+"','YYYY-MM-DD').unix());\"   type=\"button\" onclick=\"selectFiles()\" value = \"Select files\"/><input type=\"button\" value = \"Delete Files\"/> ";
+  gen.id('titleBar_options').innerHTML="<span style=\"cursor:pointer;\" onclick=\"notey.notify('createImageFolder.php',{iframe:false,title:'Create Folder',width:400,height:0});\"> + create new folder</span>";
   task=ob.dataset.task;
 gen.id('searchButton').innerHTML="Search files";
  gen.id('contentPlace').innerHTML="";
  var decoded = JSON.parse(data.responseText);
- fileDisplay(decoded);
+ folderDisplay(decoded);
    }
       else if(ob.dataset.task=='places')
       {
@@ -234,7 +235,6 @@ gen.id('titleBar_title').innerHTML="Loading...";
     }
     function showPlaces(coords)
     {
-
       var div_surround  = document.createElement('div');
       var div = document.createElement('div');
       var options =document.createElement('div');
@@ -348,9 +348,56 @@ fileSlot.appendChild(div);
                 gen.id('contentPlace').appendChild(report);
       }
     }
+    function folderDisplay(decoded)
+    {
+        gen.id('titleBar_options').innerHTML="<span style=\"cursor:pointer;\" onclick=\"notey.notify('createImageFolder.php',{iframe:false,title:'Create Folder',width:400,height:0});\"> + create new folder</span>";
+
+       gen.id('contentPlace').innerHTML="";
+ var start=0;
+ if(decoded[start]==null)
+ {
+      var noLink = document.createElement('div');
+      noLink.setAttribute('class','noFiles');
+      noLink.innerHTML="No folders found !";
+      gen.id('contentPlace').appendChild(noLink);
+ }
+ while(decoded[start]!=null)
+ {
+   var link = document.createElement('div');
+   var linkOpt = document.createElement('div');
+   var titlePlace  = document.createElement('div');
+   var fileIcon = document.createElement('div');
+   var fileCount = document.createElement('div');
+  // fileIcon.style.background='url('+decoded[start].iconDefault+')';
+   fileIcon.style.backgroundSize='2em  2em';
+   fileIcon.style.backgroundRepeat='no-repeat';
+   link.setAttribute('class','folder');
+   linkOpt.setAttribute('class','fileOpt');
+   fileIcon.setAttribute('class','fileIcon');
+   titlePlace.setAttribute('class','filePlace');
+      fileCount.setAttribute('class','fileCount');
+
+   fileCount.innerHTML=decoded[start].count+' files';
+   if(decoded[start].name.length<20)
+   titlePlace.innerHTML=decoded[start].name;
+   else
+  titlePlace.innerHTML=decoded[start].name.substring(0,10)+'...'+(decoded[start].name.substring(decoded[start].name.length-5));
+  link.setAttribute('data-id',decoded[start].id);
+    link.addEventListener('click',function(e){fetchFile(this)});
+   linkOpt.innerHTML="";
+   link.appendChild(linkOpt);
+   link.appendChild(titlePlace);
+   link.appendChild(fileIcon);
+   link.appendChild(fileCount);
+   link.setAttribute('tabindex','-1');
+   gen.id('contentPlace').appendChild(link);
+   start++;
+   }
+    }
     function fileDisplay(decoded)
     { 
   gen.id('contentPlace').innerHTML="";
+  gen.id('titleBar_options').innerHTML="<span style=\"cursor:pointer;\" onclick=\"fileSelect();\"> [ ] select files</span>";
  var start=0;
  if(decoded[start]==null)
  {
@@ -391,7 +438,7 @@ fileSlot.appendChild(div);
     {
       var start = 0;
       while(gen.id('contentPlace').getElementsByTagName('div')[start]!=null){
-      console.log(gen.id('contentPlace').getElementsByTagName('div')[start].dataset.id);
+//      console.log(gen.id('contentPlace').getElementsByTagName('div')[start].dataset.id);
       start++;
     }}
     function listFile(fileCopy,fileName,bufferId)
@@ -552,6 +599,14 @@ notey.notify('helloFile.php?id='+file.dataset.id,{iframe:true,width:600,height:0
 });
 
 }
+function fetchFile(ob)
+{
+  console.log(ob.dataset.id);
+  notey.get('files.php?folder='+ob.dataset.id,function(data){
+    var dv = JSON.parse(data.response);    
+    fileDisplay(dv);
+  });
+}
 var prev;
 function highlightSelection(ob)
 {
@@ -635,8 +690,6 @@ notesByDate(time);
  }
   function isSaved()
 {
-  console.log(fileBuffer.length);
-    console.log(gen.id('typeSpace').value.length);
     if(fileBuffer.length==0||gen.id('typeSpace').value.length==0){
     return true;
     }
@@ -706,7 +759,6 @@ function showPosition(position)
    geolocation=detected_lat+','+detected_lng;
    collectLocation(detected_lat+','+detected_lng);
 }
-
 }
 function builtMenu(ob)
 {
@@ -755,7 +807,6 @@ notey.notify('',{iframe:false,text:text,width:300,height:0,confirm:true},functio
           notey.notify('',{iframe:false,text:txt,width:200,confirm:false},function(){});
         }
 });
-
             });
 }
 function deleteLink(linkId)
@@ -773,7 +824,6 @@ notey.notify('',{iframe:false,text:text,width:300,height:0,confirm:true},functio
           notey.notify('',{iframe:false,text:txt,width:200,confirm:false},function(){});
         }
 });
-
             });
 }
     </script>
@@ -809,6 +859,90 @@ notey.notify('',{iframe:false,text:text,width:300,height:0,confirm:true},functio
                       note : gen.id('typeSpace').value},function(data){
                         console.log(data.response);});
                   }
+                  function chooseFolders()
+                  {
+                    notey.get('fetch_albums.php',function(data){
+                      var dc = JSON.parse(data.response);
+                    });
+                  }
+                  function creatAlbum()
+            {
+            var stuff = document.getElementById('albname').value;
+            //Advanced validation has to added here
+            if(stuff.length>2)
+            {
+            notey.post('albumManager.php?create',{albname:stuff},function(data){
+                console.log(data.responseText);
+                if(data.responseText==1)
+                {
+                    document.getElementById('reportArea').innerHTML="Album <b>"+stuff+"</b> is created.";
+                   // window.location.href=window.location.href;
+                     var link = document.createElement('div');
+   var linkOpt = document.createElement('div');
+   var titlePlace  = document.createElement('div');
+   var fileIcon = document.createElement('div');
+   var fileCount = document.createElement('div');
+  // fileIcon.style.background='url('+decoded[start].iconDefault+')';
+   fileIcon.style.backgroundSize='2em  2em';
+   fileIcon.style.backgroundRepeat='no-repeat';
+   link.setAttribute('class','folder');
+   linkOpt.setAttribute('class','fileOpt');
+   fileIcon.setAttribute('class','fileIcon');
+   titlePlace.setAttribute('class','filePlace');
+      fileCount.setAttribute('class','fileCount');
+
+   fileCount.innerHTML=0+' files';
+   if(stuff.length<20)
+   titlePlace.innerHTML=stuff;
+   else
+  titlePlace.innerHTML=stuff.substring(0,10)+'...'+(stuff.substring(stuff.length-5));
+  link.setAttribute('data-id',999999);
+    link.addEventListener('click',function(e){fetchFile(this)});
+   linkOpt.innerHTML="";
+   link.appendChild(linkOpt);
+   link.appendChild(titlePlace);
+   link.appendChild(fileIcon);
+   link.appendChild(fileCount);
+   link.setAttribute('tabindex','-1');
+   gen.id('contentPlace').appendChild(link);
+               gen.eleRemove('uq');
+            }
+            else {
+                document.getElementById('reportArea').innerHTML="Folder name <b>"+stuff+"</b> already exists or seems invalid.";
+            }});
+            }else{
+                document.getElementById('reportArea').innerHTML="Give us a valid album name of your choice";
+            }}
+            var fileSelectToggle = 0;
+            function fileSelect()
+            {
+              fileSelectToggle++;
+              if(fileSelectToggle%2!=0)
+              {
+              var start = 0;
+              while(gen.id('contentPlace').getElementsByClassName('fileBox')[start]!=null){
+              var checkBox = document.createElement('input');
+              checkBox.setAttribute('type','checkbox');
+              checkBox.setAttribute('id','select-'+gen.id('contentPlace').getElementsByClassName('fileBox')[start].dataset.id);
+                var overLay = document.createElement('div');
+                  overLay.setAttribute('data-id',gen.id('contentPlace').getElementsByClassName('fileBox')[start].dataset.id);
+                overLay.appendChild(checkBox);
+                 gen.id('contentPlace').getElementsByClassName('fileBox')[start].removeEventListener('click',fileInfo);
+                overLay.addEventListener('click',function(){
+                  gen.id('select-'+this.dataset.id).click();
+                });
+                overLay.setAttribute('class','fileSelectMode');
+              gen.id('contentPlace').getElementsByClassName('fileBox')[start++].appendChild(overLay);
+              //console.log(gen.id('contentPlace').getElementsByClassName('fileBox')[start++]);
+              }
+            }
+            else {
+while(gen.id('contentPlace').getElementsByClassName('fileBox')[start]!=null){
+  
+  start++;
+                }
+          }
+            }
                   </script>                                  
                 <script src = "iconCode.js">
                   </script>

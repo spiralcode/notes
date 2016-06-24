@@ -191,6 +191,12 @@ font-family: "Segoe UI Light",Arial;
 	margin: .5em;
 	padding: .3em;
 }
+.writeNoteContainer .fileArea .option #folderSpec
+{
+color: black;
+background: rgba(255, 255, 255, 0.36);
+	width: 6em;
+}
 .writeNoteContainer .fileArea .option span:hover
 {
 	background: linear-gradient( rgb(49, 54, 69),rgb(5, 20, 50));	
@@ -304,9 +310,9 @@ text-align: left;
 	margin-right: 1em;
 
 }
-#titleBar_options
+#titleBar_options span:hover
 {
-
+color: cornflowerblue;
 }
 .contentPlace .note{
 	position: relative;
@@ -519,6 +525,76 @@ background: rgba(241, 238, 245, 0.29);
 	background-repeat: no-repeat;
 	margin: .2em;
 	opacity: .6;
+}
+.contentPlace .fileBox .fileSelectMode
+{
+	position: absolute;
+	width: 12vw;
+	min-height: 12vh;
+	height: 12vh;
+	z-index: 999;
+	top:0;
+}
+/*Style for Folder*/
+
+.contentPlace .folder
+{
+	position: relative;
+	float: left;
+	width: 12vw;
+	min-height: 12vh;
+	height: 12vh;
+background: linear-gradient(rgb(225, 234, 250),white);
+	margin: .5em;
+	box-shadow: 0px 0px 1px slategray;
+	cursor: pointer;
+	word-wrap: break-word;
+	color: rgb(92, 95, 98);
+}
+.contentPlace .folder:hover
+{
+box-shadow: 0px 0px 1px rgb(3, 34, 65);
+}
+.contentPlace .folder:focus
+{
+box-shadow: 1px 1px 1px rgb(80, 34, 65);
+}
+.contentPlace .folder .fileOpt
+{
+background: rgba(241, 238, 245, 0.29);
+
+	font-size: 1em;
+	text-align: right;
+	color: darkolivegreen;
+}
+.contentPlace .folder .fileOpt:hover
+{
+	color: white;
+}
+.contentPlace .folder .filePlace
+{
+	padding: 1em;
+	text-align: justify;
+	font-size: 1em;
+}
+.contentPlace .folder .fileIcon
+{
+	position: absolute;
+	bottom: 0px;
+	height: 2em;
+	width:2em;
+	background-repeat: no-repeat;
+	margin: .2em;
+	opacity: .6;
+}
+.contentPlace .folder .fileCount
+{
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	padding: 1;
+	margin-right: 1;
+	color: rgba(0, 0, 0, 0.35);
 }
 
 .dropDown

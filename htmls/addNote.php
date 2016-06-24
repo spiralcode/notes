@@ -1,3 +1,7 @@
+<?php 
+	include "connect.php";
+include 'session_check.php';
+?>
 <div id="notificationSpace" class="notificationSpace"></div>
 <div class="writeNoteContainer">
 <div class="typeArea">
@@ -13,7 +17,18 @@
 <input id="dateCave" type="hidden"/></div>
 <div class="fileArea">
 <div class="option">
-Attach files with this Note<span style="cursor:pointer;" onclick="gen.id('fileSelect').click();">Choose Files </span> <!--<span style="cursor:pointer;" onclick="startUpload()">Start Upload</span>--></div>
+Attach files with this Note<span style="cursor:pointer;" onclick="gen.id('fileSelect').click();">Choose Files </span> to <!--<span id="folderSpec" data-id="0" style="cursor:pointer;" onclick="chooseFolders();">Attachments </span> <!--<span style="cursor:pointer;" onclick="startUpload()">Start Upload</span>--><select id="folderSpec">
+	<option value="0">Attachments</option>
+	<?php
+
+$query = mysqli_query($link, "select id,name from image_folders where userid = $userid")or die(mysqli_error($link));
+while($data=mysqli_fetch_array($query))
+{	
+	echo '<option value='.$data['id'].'>'.$data['name'].'</option>';
+}
+	?>
+</select>
+	</div>
 <div class="fileList" id="fileList"></div></div>
 <div class="places" id = "locationList">
 <div class="option">

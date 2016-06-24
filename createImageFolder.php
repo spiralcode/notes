@@ -44,16 +44,16 @@
                 console.log(data.responseText);
                 if(data.responseText==1)
                 {
-                    document.getElementById('reportArea').innerHTML="Album <b>"+stuff+"</b> is created.";
+                    document.getElementById('reportArea').innerHTML="Folder <b>"+stuff+"</b> is created.";
             }
             else {
                 document.getElementById('reportArea').innerHTML="Folder named <b>"+stuff+"</b> already exists or seems invalid.";
             }});
             }else{
-                document.getElementById('reportArea').innerHTML="Give us a valid album name of your choice";
+                document.getElementById('reportArea').innerHTML="Give us a valid folder name of your choice";
             }}
         </script>
-        <div class="formArea"><input placeholder="type-in a album name" type="text" id="albname"/><button onclick="creatAlbum();">Create album</button></div>
+        <div class="formArea"><input placeholder="type-in a folder name" type="text" id="albname"/><button onclick="creatAlbum();">Create Folder</button></div>
         <div id="reportArea"></div>
     </body>
         </html>

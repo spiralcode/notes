@@ -16,7 +16,12 @@ class oblink
 };
 $ob=array();
 $counter=0;
+if(!isset($_GET['folder']))
 $query=  mysqli_query($link, "select * from image where userid = $userid ORDER BY  time DESC ")or die(mysqli_error($link));
+else {
+    $fold = $_GET['folder'];
+$query=  mysqli_query($link, "select * from image where userid = $userid and group_id = $fold ORDER BY  time DESC ")or die(mysqli_error($link));
+}
 while($data=  mysqli_fetch_array($query))
 {
     $id=$data['id'];
