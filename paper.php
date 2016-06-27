@@ -424,7 +424,7 @@ fileSlot.appendChild(div);
    else
   titlePlace.innerHTML=decoded[start].file_name.substring(0,10)+'...'+(decoded[start].file_name.substring(decoded[start].file_name.length-5));
   link.setAttribute('data-id',decoded[start].id);
-    link.addEventListener('click',function(e){fileInfo(this)});
+  link.addEventListener('click',function(e){fileInfo(this)});
    linkOpt.innerHTML="";
    link.appendChild(linkOpt);
    link.appendChild(titlePlace);
