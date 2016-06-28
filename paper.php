@@ -76,8 +76,8 @@ window.onbeforeunload = unloadPage;
              </div>
               <span id="louis_talk"></span>
               </div>
-<div class="companyPanel">
-  &copy; of  Nobody<br>Dial +919497336650 to speak.
+<div class="companyPanel">About | Help | Contact<br> 
+  &copy; of  Nobody 2015-2016
 </div>
       </div>
       
