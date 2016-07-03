@@ -1,4 +1,3 @@
-/*version*/
 var index=0;
 /*
 File Buffer */
@@ -31,16 +30,16 @@ var files = e.target.files || e.dataTransfer.files;
 var o =0;
 for(var i=0,f;f=files[i];i++)
 	{
-//	fileBuffer.push(new fileS(o,f));
-//	console.log('insertion-'+o);
-//		console.log('after insertion len-'+fileBuffer.length);
+	fileBuffer.push(new fileS(o,f));
+	console.log('insertion-'+o);
+		console.log('after insertion len-'+fileBuffer.length);
 	if(gen.formatOf(f.name)=='jpeg'||gen.formatOf(f.name)=='jpg'||gen.formatOf(f.name)=='png')
 	{
 			ParseFile(f,o);
 	}
 	else
 	{
-	listFile(null,f.name,o);
+					listFile(null,f.name,o);
 	}
 	f=null;
 	o++;
@@ -57,15 +56,15 @@ function ParseFile(file,id)
 }
 function init()
 {
-	var fileSelect = $id("fileSelect");
-	var filesFiles = $id('filesFiles');
+	var fileSelect = $id("fileSelect"),fileList=$id('fileList');
 	fileSelect.addEventListener("change",fileSelectHandler,false);
 	var xhr = new XMLHttpRequest();
 	if(xhr.upload) 
 		{
-		fileSelect.addEventListener("dragover",FileDragHover,false);
-		fileSelect.addEventListener("dragleave",FileDragOut,false);
-		fileSelect.addEventListener("drop",fileSelectHandler,false);
+		fileList.addEventListener("dragover",FileDragHover,false);
+		fileList.addEventListener("dragleave",FileDragOut,false);
+		fileList.addEventListener("drop",fileSelectHandler,false);
+
 		}
 	}
 
@@ -76,7 +75,6 @@ function uploadfile(file)
 	fd.append( 'nid', noteId );
 	fd.append( 'filename', file.name );
 	fd.append( 'id', file.id );
-	fd.append('folder',gen.id('folderSpec').value);
 	$.ajax({
 	  url: 'filecatch.php',
 	  data: fd,
