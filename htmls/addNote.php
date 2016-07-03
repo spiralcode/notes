@@ -1,5 +1,5 @@
 <?php 
-	include "connect.php";
+	include "../connect.php";
 include 'session_check.php';
 ?>
 <div id="notificationSpace" class="notificationSpace"></div>
