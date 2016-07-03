@@ -56,7 +56,7 @@ function ParseFile(file,id)
 }
 function init()
 {
-	var fileSelect = $id("fileSelect"),fileList=$id('fileList');
+	var fileSelect = $id("fileSelect");
 	var filesFiles = $id('filesFiles');
 	fileSelect.addEventListener("change",fileSelectHandler,false);
 	var xhr = new XMLHttpRequest();
