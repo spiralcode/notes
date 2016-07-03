@@ -1,3 +1,4 @@
+/*version*/
 var index=0;
 /*
 File Buffer */
