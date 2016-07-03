@@ -1,6 +1,7 @@
 <?php 
 	include "connect.php";
 include 'session_check.php';
+echo $userid;
 ?>
 <div id="notificationSpace" class="notificationSpace"></div>
 <div class="writeNoteContainer">
