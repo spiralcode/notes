@@ -75,6 +75,7 @@ function uploadfile(file)
 	fd.append( 'nid', noteId );
 	fd.append( 'filename', file.name );
 	fd.append( 'id', file.id );
+	fd.append('folder',gen.id('folderSpec').value);
 	$.ajax({
 	  url: 'filecatch.php',
 	  data: fd,
