@@ -12,9 +12,10 @@ include 'session_check.php';
 <input id="saveButton" onclick="transferNote();" class="button-primary" type="button" style="cursor:pointer;" value="Save Note"/>
 <input id="changeDate" onclick="showCalender()" class="button-primary" type="button" style="cursor:pointer;" value="Change Date"/>
 <input id="setLocation" onclick="showLocationSlot()" class="button-primary" type="button" style="cursor:pointer;" value="Attach a place"/>
-<input id="setLocation" onclick="callOut();" class="button-primary" type="button" style="cursor:pointer;" value="Fetch people"/></div>
+<input id="setLocation" onclick="callOut();" class="button-primary" type="button" style="cursor:pointer;" value="Fetch people"/>
+</div>
 <input id="dateCave" type="hidden"/></div>
-<div class="fileArea" id="filesFiles" dropable>
+<div class="fileArea">
 <div class="option">
 Attach files with this Note<span style="cursor:pointer;" onclick="gen.id('fileSelect').click();">Choose Files </span> to <!--<span id="folderSpec" data-id="0" style="cursor:pointer;" onclick="chooseFolders();">Attachments </span> <!--<span style="cursor:pointer;" onclick="startUpload()">Start Upload</span>--><select id="folderSpec">
 	<option value="0">Attachments</option>
