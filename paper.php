@@ -550,15 +550,19 @@ while(fileBuffer[index]!=null)
      }
    }
    var toggleFlag=0;
+   var staticVar = 0;
    function showNotification(content)
    {
       gen.id('notificationSpace').innerHTML='';
       var ob = document.createElement('div');
-      ob.setAttribute('id','notification');
+      ob.setAttribute('id','notification-'+staticVar);
        ob.setAttribute('class','fadeInRight');
       var space=gen.id('notificationSpace');
       ob.innerHTML=content;
       space.appendChild(ob);
+$('#notification-'+staticVar).delay(500).fadeOut(2000);
+           staticVar++;
+
    }
 function keyWordSearch()
 {
@@ -938,7 +942,6 @@ notey.notify('',{iframe:false,text:text,width:300,height:0,confirm:true},functio
             }
             else {
 while(gen.id('contentPlace').getElementsByClassName('fileBox')[start]!=null){
-  
   start++;
                 }
           }

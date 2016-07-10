@@ -39,7 +39,7 @@ for(var i=0,f;f=files[i];i++)
 	}
 	else
 	{
-					listFile(null,f.name,o);
+			listFile(null,f.name,o);
 	}
 	f=null;
 	o++;

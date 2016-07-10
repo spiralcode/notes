@@ -1,0 +1,71 @@
+<head>
+    <style>
+        .tasks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.task {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: solid 1px #dfdfdf;
+}
+
+.task:last-child {
+  border-bottom: none;
+  
+}
+.context-menu
+{
+    position:absolute;
+    z-index:10;
+    display:none;
+}
+.context-menu--active
+{
+    display: block;
+}
+        </style>
+    </head>
+<body>
+  <ul class="tasks">
+    <li class="task" data-id="3">
+      <div class="task__content">
+        Go To Grocery
+      </div>
+      <div class="task__actions">
+        <i class="fa fa-eye"></i>
+        <i class="fa fa-edit"></i>
+        <i class="fa fa-times"></i>
+      </div>
+    </li>
+    <!-- more task items here... -->
+  </ul>
+  <nav id="context-menu" class="context-menu">
+  <ul class="context-menu__items">
+    <li class="context-menu__item">
+      <a href="#" class="context-menu__link">
+        <i class="fa fa-eye"></i> View Task
+      </a>
+    </li>
+    <li class="context-menu__item">
+      <a href="#" class="context-menu__link">
+        <i class="fa fa-edit"></i> Edit Task
+      </a>
+    </li>
+    <li class="context-menu__item">
+      <a href="#" class="context-menu__link">
+        <i class="fa fa-times"></i> Delete Task
+      </a>
+    </li>
+  </ul>
+</nav>
+  <script src="main.js"></script>
+  <script>
+          "use strict";
+          document.addEventListener("contextmenu",function(e){console.log(e);});
+
+      </script>
+</body>
