@@ -27,13 +27,25 @@
 {
     display: block;
 }
+.task__content
+{
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: seagreen;
+  line-height: 100px;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  
+}
         </style>
     </head>
 <body>
   <ul class="tasks">
     <li class="task" data-id="3">
-      <div class="task__content">
-        Go To Grocery
+      <div id="triggerItem" class="task__content">
+        YO!
       </div>
       <div class="task__actions">
         <i class="fa fa-eye"></i>
@@ -64,8 +76,24 @@
 </nav>
   <script src="main.js"></script>
   <script>
+    var menu = document.getElementById('context-menu');
+    var trigger = document.getElementById('triggerItem');
+    var menuState = 0;
+    var active = "context-menu--active";
           "use strict";
-          document.addEventListener("contextmenu",function(e){console.log(e);});
+          trigger.addEventListener("contextmenu",function(e){
+            e.preventDefault();
+            showMenu();
+        console.log(e);
+      
+    });
+    function showMenu()
+    {
+      if ( menuState !== 1 ) {
+    menuState = 1;
+    menu.classList.add(active);
+  }
+    }
 
       </script>
 </body>
