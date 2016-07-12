@@ -34,6 +34,8 @@ include 'session_check.php';
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
                 <link rel="stylesheet" href="css/general.css">
+                        <link rel="stylesheet" href="css/equip.css">
+
     </head>
     <body>
 <script>
@@ -42,9 +44,9 @@ window.onbeforeunload = unloadPage;
 
        <!-- <div class="notificationContainer"></div>-->
 
-        <div class="topribbon">Notes<div id="userOps"  onclick="builtMenu(this)" class="userInfo"><?php echo  $_SESSION['uname']; ?></div></div>
+        <div class="topribbon">Notes<div title="Logout & Account Informations" id="userOps"  onclick="builtMenu(this)" class="userInfo"><?php echo  $_SESSION['uname']; ?></div></div>
         <script>
-          gen.id('userOps').setAttribute('data-list','["Logout","window.location=\'logout.php\';"]');
+          gen.id('userOps').setAttribute( 'data-list','["Informations","showInfo();", "Logout","window.location=\'logout.php\';"]');
           </script>
         <div id="titleBar_full" class="titleBar"><span id="titleBar_title"></span><span id="titleBar_options"></span></div>
       <div class="sideRack">
@@ -505,13 +507,15 @@ while(fileBuffer[index]!=null)
     var setgLocation='0,0';
    function transferNote()
    {
-     if(fileBuffer.length>0||gen.id('typeSpace').value.length>0)
+     if(fileBuffer.length>0||gen.id('typeSpace').innerHTML.length>0)
      {
         gen.id('saveButton').setAttribute('disabled','disabled');
+                gen.id('saveButton').setAttribute('onclick','function(){}');
+
        noteId=(new Date).getTime();
        if(fileBuffer.length>0)
        {
-       gen.id('saveButton').value="Uploading Files...";
+       gen.id('saveButton').innerHTML="Uploading Files...";
        var go=0;
        while(gen.id("fileList").getElementsByTagName('progress')[go]!=null)
        {
@@ -527,18 +531,20 @@ while(fileBuffer[index]!=null)
       showNotification(fileBuffer.length+" file being uploaded...");
          if(fileBuffer.length<=0)
          {
-      gen.id('saveButton').value="Saving Note...";
-      var contents=gen.id('typeSpace').value;
+      gen.id('saveButton').innerHTML="Saving Note...";
+      var contents=gen.id('typeSpace').innerHTML;
      setgLocation=locBuffer[0];
       if(setgLocation=='0,0'&&geolocation!='0,0')
       setgLocation=geolocation;
  notey.post('feed.php',{contents:contents,timeid:noteId,alterDate:alterDate,geolocation:geolocation,setglocation:setgLocation},function(data)
 {
-          gen.id('saveButton').value="Save Note";
+          gen.id('saveButton').innerHTML="Save Note";
           gen.id("fileList").innerHTML='';
           showNotification("Note Saved");
           gen.id('saveButton').removeAttribute('disabled');
-          gen.id('typeSpace').value="";
+                          gen.id('saveButton').setAttribute('onclick','transferNote()');
+
+          gen.id('typeSpace').innerHTML="";
 });
           window.clearInterval(dec);
          }
@@ -624,12 +630,6 @@ function highlightSelection(ob)
     prev.style.background="rgb(49, 54, 69)";
     prev=ob;
   }
-}
-function userAccOptions()
-{
-  var content='<div align="center"><a  href="logout.php">Log-Out</a></div>';
-    notey.notify('',{text:content,iframe:false,width:200,height:0});
- //   gen.dropDown("");
 }
  function louis(tell,toggle)
  {
@@ -787,7 +787,7 @@ ul.appendChild(ele);
   div.style.marginBottom="0px";
   div.style.zIndex = 54;
   div.style.top = (clientDim.bottom+5)+'px';
-  div.style.left = clientDim.left-div.style.width+'px';
+  div.style.left = (clientDim.left)+'px';
   div.addEventListener('blur',function(e){div.remove();});
   document.getElementsByTagName('body')[0].appendChild(div);
   gen.id(ob.noteid+'DropMenu').focus();
@@ -795,6 +795,10 @@ ul.appendChild(ele);
 function findPeople(noteId)
 {
     notey.notify('search_people.php?noteid='+noteId,{iframe:true,title:"Fetch people"});
+}
+function showInfo()
+{
+      notey.notify('info.php',{iframe:true,title:"Informations"});
 }
 function deleteNote(noteId)
 {
@@ -894,7 +898,6 @@ notey.notify('',{iframe:false,text:text,width:300,height:0,confirm:true},functio
    fileIcon.setAttribute('class','fileIcon');
    titlePlace.setAttribute('class','filePlace');
       fileCount.setAttribute('class','fileCount');
-
    fileCount.innerHTML=0+' files';
    if(stuff.length<20)
    titlePlace.innerHTML=stuff;

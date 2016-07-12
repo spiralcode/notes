@@ -22,41 +22,80 @@ $image_counts=mysqli_num_rows($data1);
 
 $data2=mysqli_query($link, "select * from peoples where userid = $userid")or die(mysqli_error($link));
 $totalpeoples = mysqli_num_rows($data2);
+//User Informations
+$data3 = mysqli_query($link,"select * from userbase where id = $userid") or die(mysqli_error($link));
+while($row=mysqli_fetch_array($data3))
+{
+	$email = $row['email'];
+	$accountOpen = $row['time'];
+	$name=$row['name'];
+}
 ?>
+<!doctype html>
+<head>
 <style>
-.justinfo
+	.title
+{
+font-size: 1.5em;
+text-align: left;
+font-family: Arial,Serif;
+background: darkseagreen;
+color: white;
+margin:1em;
+
+}
+.demographics
 {
 color:#617A43;
-width:100%;
-height:100%;
+font-family:Arial,Serif;
+text-align:center;
 }
-.justinfo p
+
+.demographics p
 {
 color:#6F9F38;
 text-align:center;
 }
-.justinfo .goodtable
+.demographics .goodtable
 {
-text-align:center;
-
+text-align: center;
+background: white;
+width: 100%;
+}
+.demographics .goodtable td
+{
+width:5em;
+font-size:1em;
+padding:.8em;
 
 }
-.justinfo td
+.demographics .goodtable td:nth-child(even)
 {
-width:100px;
-border-right:1px solid #67389F;
+color: dimgrey;
+text-align: right;
+}
+.demographics .goodtable tr:nth-child(even)
+{
+background: rgba(0, 0, 255, 0.09);
 }
 </style>
-<div class="justinfo">
-<p>That's all we have, here from you.</p>
+</head><body>
+<div class="title">Demographics</div>
+<div class="demographics">
 <div class="goodtable"><center><table cellspadding="10" >
 <tr><th>Item</th><th>Count</th></tr>
-<tr><td>Notes</td><td><?php echo $note_counts; ?></td></tr>
-<tr><td>Images</td><td><?php echo $image_counts;?></td></tr>
-<tr><td>Contacts</td><td><?php echo $totalpeoples?></td></tr>
-<tr><td>Words</td><td><?php echo $wordcount;?></td></tr>
-<tr><td>Characters</td><td><?php echo $chars;?></td></tr>
-
-
+<tr><td>Notes</td><td><?php echo sprintf('%04d',$note_counts); ?></td></tr>
+<tr><td>Images</td><td><?php echo sprintf('%04d',$image_counts);?></td></tr>
+<tr><td>Contacts</td><td><?php echo sprintf('%04d',$totalpeoples);?></td></tr>
+<tr><td>Words</td><td><?php echo sprintf('%04d',$wordcount);?></td></tr>
+<tr><td>Characters</td><td><?php echo sprintf('%04d',$chars);?></td></tr>
 </table></center>
 </div>
+<div class="title">Account Informations</div>
+<div class="goodtable"><center><table>
+	<tr><td>Name </td><td><?php echo $name; ?></td></tr>
+	<tr><td>E-mail</td><td><?php echo $email; ?></td></tr>
+		<tr><td>Created on </td><td><?php echo $time; ?></td></tr>
+
+</body>
+</html>

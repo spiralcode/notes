@@ -4,18 +4,20 @@ include 'session_check.php';
 ?>
 <div id="notificationSpace" class="notificationSpace"></div>
 <div class="writeNoteContainer">
-<div class="typeArea">
+<div label="inherit" class="typeArea">
 <div align="center" class="noteProperties" id="noteProperties"><span class="dateSwitchArrow">❬</span>
 <span id="noteDate"></span><span class="dateSwitchArrow">❭</span></div>
-<textarea id="typeSpace" placeholder="Type your note here..."></textarea>
+<!--<textarea id="typeSpace" placeholder="Type your note here..."></textarea>-->
+<div contenteditable id="typeSpace"></div>
 <div class="buttonPocket">
-<input id="saveButton" onclick="transferNote();" class="button-primary" type="button" style="cursor:pointer;" value="Save Note"/>
-<input id="changeDate" onclick="showCalender()" class="button-primary" type="button" style="cursor:pointer;" value="Change Date"/>
-<input id="setLocation" onclick="showLocationSlot()" class="button-primary" type="button" style="cursor:pointer;" value="Attach a place"/>
-<input id="setLocation" onclick="callOut();" class="button-primary" type="button" style="cursor:pointer;" value="Fetch people"/>
+<!--<input id="saveButton" onclick="transferNote();" class="button-juice" type="button" style="cursor:pointer;" value="Save Note"/>-->
+<div id="saveButton" onclick="transferNote();" class="button-juice" type="button" style="cursor:pointer;" value="Save Note">Save</div>
+<div id="changeDate" onclick="showCalender()" class="button-juice" type="button" style="cursor:pointer;" value="Change Date">Change Date</div>
+<div id="setLocation" onclick="showLocationSlot()" class="button-juice" type="button" style="cursor:pointer;" value="Attach a place">Attach a place</div>
+<div disabled="disabled" id="setLocation" onclick="callOut();" class="button-juice" type="button" style="cursor:pointer;" value="Fetch people">Fetch People</div>
 </div>
 <input id="dateCave" type="hidden"/></div>
-<div class="fileArea">
+<div label="inherit" class="fileArea">
 <div class="option">
 Attach files with this Note<span style="cursor:pointer;" onclick="gen.id('fileSelect').click();">Choose Files </span> to <!--<span id="folderSpec" data-id="0" style="cursor:pointer;" onclick="chooseFolders();">Attachments </span> <!--<span style="cursor:pointer;" onclick="startUpload()">Start Upload</span>--><select id="folderSpec">
 	<option value="0">Attachments</option>
@@ -30,7 +32,7 @@ while($data=mysqli_fetch_array($query))
 </select>
 	</div>
 <div class="fileList" id="fileList"></div></div>
-<div class="places" id = "locationList">
+<div label="inherit" class="places" id = "locationList" style="position:relative; float:right;">
 <div class="option">
 Attach a place <button  class="turnit" style="cursor:pointer;" id = "fetchTheCoords">Get location </button><button  class="turnit" style="cursor:pointer;" id = "trackMe" onclick="trackMe()">Find my location </button> <!--<span style="cursor:pointer;" onclick="startUpload()">Start Upload</span>--></div>
 <div class="mapRoll" id="mapRoll"></div></div>

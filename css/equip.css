@@ -1,0 +1,29 @@
+.button-juice
+{  
+    float: left;
+    padding-right: .5em;
+        padding-left: .5em;
+    background: cornflowerblue;
+    margin: .2em;
+    border-radius: 2px;
+        border: 1px solid white;
+        color:white;
+
+}
+.button-juice:active
+{
+    border: 1px solid black;
+}
+.button-juice:hover
+{
+    background: rgb(81, 136, 234);
+}
+.button-juice[disabled="disabled"]
+{
+background:rgba(82, 102, 139, 0.63);
+}
+.button-juice[disabled="disabled"]:active
+{
+            border: 1px solid white;
+
+}

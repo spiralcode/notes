@@ -24,6 +24,7 @@ font-size: .8em;
 color:white;
 cursor: pointer;
 line-height: 5vh;
+min-width: 8em;
 }
 .sideRack
 {
@@ -107,7 +108,7 @@ Rules for addNote.html
 	left: 5%;
 
 }
-.writeNoteContainer div
+.writeNoteContainer div[label="inherit"]
 {
 position: relative;
 float: left;
@@ -128,6 +129,23 @@ height: 45%;
 	border: none;
 	border-bottom-left-radius: 0;
 		border-bottom-right-radius: 0;
+}
+.writeNoteContainer .typeArea #typeSpace
+{
+width: 100%;
+height: 100%;
+text-align: left;
+background: white;
+overflow: scroll;
+}
+.writeNoteContainer .typeArea #typeSpace div
+{
+width: auto;
+height: 1em;
+float: none;
+margin: 0;
+padding: 0;
+font-size: 1em;
 }
 .writeNoteContainer .typeArea .noteProperties
 {
@@ -154,6 +172,7 @@ height: 45%;
 .writeNoteContainer .typeArea .buttonPocket
 {
 width: auto;
+text-align: center;
 }
 .writeNoteContainer .typeArea .buttonPocket input[type="button"]
 {
