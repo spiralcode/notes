@@ -9,7 +9,17 @@
 root { 
     display: block;
 }
+.bckSrnd
+{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    z-index: 50001554;
+    top:0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.68);
 
+}
 .raid
 {
     z-index: 50001555;
@@ -20,8 +30,7 @@ root {
     -moz-animation: fadein .5s; /* Firefox */
     -webkit-animation: fadein .5s; /* Safari and Chrome */
     -o-animation: fadein .5s;
-    box-shadow: 5px 5px  20px #212121;
-    font-family:sans-serif,arial;
+box-shadow: 0px 1px 5px #212121;    font-family:sans-serif,arial;
     
 }
 @keyframes fadein {
