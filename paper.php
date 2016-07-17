@@ -456,6 +456,8 @@ fileSlot.appendChild(div);
         progress.setAttribute('value','0');
         progress.setAttribute('id','buffer-'+bufferId);
          progress.style.width="8em";
+                  progress.style.display="none";
+
         opts.setAttribute('class','opts');
         progress_wrap.setAttribute('class','progressWrap');
         fileInfo.setAttribute('class','info');
@@ -796,6 +798,7 @@ ul.appendChild(ele);
   div.style.zIndex = 54;
   div.style.top = (clientDim.bottom+5)+'px';
   div.style.left = (clientDim.left)+'px';
+   console.log(parseInt(div.style.width));
   div.addEventListener('blur',function(e){div.remove();});
   document.getElementsByTagName('body')[0].appendChild(div);
   gen.id(ob.noteid+'DropMenu').focus();
