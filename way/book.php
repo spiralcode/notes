@@ -55,7 +55,7 @@ $id('spinner').style.display='block';
 		var json=JSON.parse(data.responseText);
 		if(json[0].status==0)
 		{	
-            var ele="Nothing found !";
+            var ele="No Notes this day!";
             $id('error').innerHTML=ele;
 		}
 		else

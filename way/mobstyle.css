@@ -49,19 +49,20 @@ background: rgba(143, 188, 143, 0.38);    text-align: center;
 }
 #frameplace .note
 {
-    margin: 1%;
-    text-align: left;
-    background: gainsboro;
-    box-shadow: 0px 1px 3px #4d5a91;
-    position: relative;
-    float: bottom;
-    overflow: auto;
+  margin: 1.5em;
+text-align: left;
+background: gainsboro;
+box-shadow: 0px 0px 4px #4d5a91;
+position: relative;
+float: bottom;
+overflow: auto;
     
 }
 #frameplace .timeslot
 {
-    text-align: right;
-    background: #cadde4;
+   background: rgba(2, 121, 62, 0.29);
+color: rgb(56, 56, 56);
+text-align: right;
 }
 #frameplace .daysago
 {
@@ -123,12 +124,11 @@ float: left;
 }
 .nonote
 {
- height: 5em;
-width: 20em;
 background: gainsboro;
 line-height: 5em;
 color: currentcolor;
 box-shadow: 1px 1px 1px slategrey;
+margin: 1.5em;
     
 }
 .uploaded
@@ -146,13 +146,15 @@ background-size: 5em 5em;
 background-repeat: no-repeat;
 }
 .note .daysago {
-position: absolute;
+position: relative;
 right: 0px;
 bottom: 0px;
 opacity: .4;
 color: #3D4873;
-font-size: 20px;
+font-size: 1em;
 min-width: 50px;
+margin-top: 1em;
+}
 }
     
 #uploadProgress img
@@ -253,9 +255,10 @@ height: 2em;
 }
 .notificationSpace
 {
-    height:2.0em;
-	font-size: 1.5em;
+    height:1.0em;
+	font-size: 1em;
 	text-align: center;
 	font-family: "segoe UI light",Arial;
 	color: green;
+    margin: .5em;
 }
