@@ -175,6 +175,8 @@ var currentDate = thing.format('DD-M-YYYY');
  var x = 0,xx=0;
             var y =0,yy=0;
             var t = 0,tt=0;
+               var Dscroll=100;
+                                                var Uscroll=100;
         document.getElementById('frameplace').addEventListener('touchstart',function(e)
     {
 e.preventDefault();
@@ -227,14 +229,23 @@ e.preventDefault();
             else
                 {
                     //y movement is greater
+                                             
+
                     if(yy>y)
                         {
-                            //console.log("Down Swipe");
+                           // console.log("Down Swipe");
+                                                window.scrollBy(0, -100);
+
                             return 2;
                         }
                         else
                             {
-                                //console.log("Up Swipe");
+
+                              //  console.log("Up Swipe");
+                    window.scrollBy(0, 100);
+
+
+
                                 return 3;
                             }
                 }
