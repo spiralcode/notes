@@ -167,3 +167,95 @@ min-width: 50px;
 @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
 @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } 
 }
+
+.fileList
+{
+	width: 100%;
+	margin: 0%;
+	height: calc(100% - 2em);
+	background:rgba(74, 195, 195, 0.23);
+	overflow-y: hidden;
+}
+
+ .fileList .uploadOptions
+{
+	position: absolute;
+	bottom: 0em;
+	right: 0em;
+	background: none;
+}
+ .fileList .file
+{
+width:8em;
+height: 8em;
+border: 1px solid yellowgreen;
+float: left;
+margin: .2em;
+background-repeat: no-repeat;
+}
+ .fileList .file .progressWrap
+{
+	width: 8em;
+	display: block;
+	position: relative;
+	bottom: 0%;
+}
+ .fileList .file .progressWrap .prgrss
+{
+/*Progres Bar styling here*/
+width: 100%;
+	display: none;
+
+}
+.fileList .file .info
+{
+position: relative;
+width:100%;
+margin: .5%;
+height: 5em;
+color: midnightblue;
+background: rgba(225, 228, 255, 0.64);
+word-wrap:  break-word;
+
+	 bottom: 0%;
+	 font-size: .8em;
+}
+
+..fileList .file .opts
+{
+	position: relative;
+	min-height: 2em;
+	width: 100%;
+	
+}
+ .fileList .file .opts span
+{
+	float: left;
+background: rgba(255, 218, 185, 0.50);
+}
+.fileList .file .opts span:hover
+{
+	background: rgba(255, 218, 185, 0.90);
+	cursor: pointer;
+}
+.fileList .file .opts:hover
+{
+
+}
+ .fileList .file .opts img
+{
+}
+ .fileList .file img
+{
+width:2em;
+height: 2em;
+
+}
+.notificationSpace
+{
+    height:2.0em;
+	font-size: 1.5em;
+	text-align: center;
+	font-family: "segoe UI light",Arial;
+	color: green;
+}

@@ -16,24 +16,18 @@ include 'session_check.php';
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/skeleton.css">
                 <link rel="stylesheet" href="mobstyle.css">
-
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
         
                 <script src="notey.js"></script>
-
-
+                <script src="jss/general.js"></script>
+                <script src = "../iconCode.js"></script>
     </head>
     <body>
         
         <script>
-            
 //Notes Mobile
 var time = new Date;
 var timer=time.getTime();
-            function $id(id)
-            {
-                return document.getElementById(id);
-            }
             function savenote()
             {
                  timer++;
@@ -69,6 +63,7 @@ function trackMe()
 alert('Seems your browser needs an update to support this feature.');
 }
 }
+var staticVar = 0;
 function showPosition(position)
 {
    var detected_lat=position.coords.latitude;
@@ -85,16 +80,19 @@ function showPosition(position)
 
         <!-- Add your site or application content here -->
         <div class="topribbon"><h2>Notes <sup>v3</sup></h2></div>
+        <div class="notificationSpace" id="notificationSpace"></div>
         <div class="login" align="center" ><h5 style="opacity: .5; text-align: right;">Write Note</h5>
-    <form><textarea placeholder="Type in Notes here..." class="u-full-width" id="note" row="50" cols="100"></textarea>
-         <input multiple="multiple" id="fileselect" name="fileselect[]" style="display: none;" type="file"  accept="image/*;capture=camera" />   
-        <input onclick="$id('fileselect').click();" class="button-primary"  id="cameraButton" type="button" value="Camera">
-        <input id="savebutton" class="button-primary" onclick="savenote();"  type="button" value="Save Note">
+    <form><textarea placeholder="Type in Notes here..." class="u-full-width" id="typeSpace" row="50" cols="100"></textarea>
+         <input multiple="multiple" id="fileSelect" name="fileSelect[]" style="display: none;" type="file"  accept="image/*;capture=camera" />   
+        <select style="display:none;" id="folderSpec"><option value="0">Attachment</option></select>
+        <input onclick="gen.id('fileSelect').click();" class="button-primary"  id="cameraButton" type="button" value="Files">
+        <input id="saveButton" class="button-primary" onclick="transferNote();"  type="button" value="Save Note">
         <input id="fetchingLocation" class="button-primary" onclick="trackMe();"  type="button" value="Attach location">
 
     </form>
 <div id="iQ"><table><tr id="iQlist"></tr></table>
 </div>
+<div class="fileList" id="fileList"></div>
 <img id = "locImage"/>
 </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -102,8 +100,161 @@ function showPosition(position)
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
         <div class="footer"><p><a href="../paper.php">Deskop</a> | <a href="book.php">Read Note</a> | <a href="logout.php">Logout</a></p></div>
-       
-          <script src="fly_m.js"></script>
+       <script>
+           function listFile(fileCopy,fileName,bufferId)
+    {
+     /*Each fnctn call adds child elemnts to the div (fileList) in html file addNote.html*/
+        var file = document.createElement('div');
+        var fileInfo = document.createElement('div');
+        var opts = document.createElement('div');
+        var progress_wrap = document.createElement('div');
+        var progress = document.createElement('progress');
+        progress.setAttribute('max','100');
+        progress.setAttribute('value','0');
+        progress.setAttribute('id','buffer-'+bufferId);
+         progress.style.width="8em";
+                  progress.style.display="none";
 
+        opts.setAttribute('class','opts');
+        progress_wrap.setAttribute('class','progressWrap');
+        fileInfo.setAttribute('class','info');
+        if(fileName.length>25)
+        var fileNamePad = fileName.substring(0,10)+'...'+fileName.substring(fileName.length-10,fileName.length);
+        else
+        fileNamePad=fileName;
+        console.log(fileNamePad);
+        opts.innerHTML='<span onclick="removeFile('+bufferId+');" title="Remove file from list"><img src = "'+png_close+'"/></span>';
+       fileInfo.innerHTML=fileNamePad;
+       //file.appendChild(progress);
+       progress_wrap.appendChild(progress);
+       file.appendChild(opts);
+       file.appendChild(fileInfo);
+              file.appendChild(progress_wrap);
+
+        file.setAttribute('class','file');
+        file.setAttribute('id','uploadFileId-'+bufferId);
+        file.setAttribute('name',fileName);
+        gen.id('fileList').appendChild(file);
+        var code = gen.formatOf(fileName);
+        if(fileCopy==null){
+      file.style.background='url('+JSON.parse(icons).defaultfile+')';
+            file.style.backgroundSize='8em 8em';
+           file.style.backgroundRepeat='none';
+        }
+        else
+        {
+            file.style.background='url('+fileCopy+')';
+            file.style.backgroundSize='8em 8em';
+            file.style.backgroundRepeat='none';
+        }
+    }
+    function removeFile(id)
+    {
+      var index=0;
+while(fileBuffer[index]!=null)
+{
+   if(fileBuffer[index].id==id){
+   fileBuffer.splice(index,1);
+      gen.id('uploadFileId-'+id).remove();
+   }
+    index++;
+}
+    }
+    function startUpload()
+    {
+        for(var i = 0;i<fileBuffer.length;i++)
+        {
+            uploadfile(fileBuffer[i]);
+        }
+    }
+    var noteId = 0;
+    var alterDate=0;
+    var locBuffer = new Array();
+    var geolocation='0,0';
+    var setgLocation='0,0';
+
+
+ 
+           </script>
+          <script src="fly_m.js"></script>
+<script>
+    init();
+ var noteId = 0;
+    var alterDate=0;
+    var locBuffer = new Array();
+    var geolocation='0,0';
+    var setgLocation='0,0';
+   function transferNote()
+   {
+     if(fileBuffer.length>0||gen.id('typeSpace').value.length>0)
+     {
+        gen.id('saveButton').setAttribute('disabled','disabled');
+                gen.id('saveButton').setAttribute('onclick','function(){}');
+
+       noteId=(new Date).getTime();
+       if(fileBuffer.length>0)
+       {
+       gen.id('saveButton').value="Uploading Files...";
+       var go=0;
+       while(gen.id("fileList").getElementsByTagName('progress')[go]!=null)
+       {
+         gen.id("fileList").getElementsByTagName('progress')[go].style.display='block';
+         go++;
+       }
+       startUpload();
+       }    
+       var dec = window.setInterval(function(){
+       if(fileBuffer.length>1)
+      showNotification(fileBuffer.length+" files being uploaded...");
+      else if(fileBuffer.length==1)
+      showNotification(fileBuffer.length+" file being uploaded...");
+         if(fileBuffer.length<=0)
+         {
+      gen.id('saveButton').value="Saving Note...";
+      var contents=gen.id('typeSpace').value;
+     setgLocation=locBuffer[0];
+      if(setgLocation=='0,0'&&geolocation!='0,0')
+      setgLocation=geolocation;
+ notey.post('feed.php',{contents:contents,timeid:noteId,alterDate:alterDate,geolocation:geolocation,setglocation:setgLocation},function(data)
+{
+          gen.id('saveButton').value="Save Note";
+          gen.id("fileList").innerHTML='';
+          showNotification("Note Saved");
+          gen.id('saveButton').removeAttribute('disabled');
+                          gen.id('saveButton').setAttribute('onclick','transferNote()');
+
+          gen.id('typeSpace').value="";
+});
+          window.clearInterval(dec);
+         }
+       },100);
+     }
+     else
+     {
+          showNotification("Note seems to be empty, type in something...");
+     }
+   }
+      function startUpload()
+    {
+        for(var i = 0;i<fileBuffer.length;i++)
+        {
+            uploadfile(fileBuffer[i]);
+        }
+    }
+   
+   function showNotification(content)
+   {
+      gen.id('notificationSpace').innerHTML='';
+      var ob = document.createElement('div');
+      ob.setAttribute('id','notification-'+staticVar);
+       ob.setAttribute('class','fadeInRight');
+      var space=gen.id('notificationSpace');
+      ob.innerHTML=content;
+      space.appendChild(ob);
+$('#notification-'+staticVar).delay(500).fadeOut(2000);
+           staticVar++;
+
+   }
+    </script>
     </body>
 </html>
