@@ -547,7 +547,7 @@ while(fileBuffer[index]!=null)
       if(setgLocation=='0,0'&&geolocation!='0,0')
       setgLocation=geolocation;
  notey.post('feed.php',{contents:contents,timeid:noteId,alterDate:alterDate,geolocation:geolocation,setglocation:setgLocation},function(data)
-{
+{console.log(data.response);
           gen.id('saveButton').innerHTML="Save Note";
           gen.id("fileList").innerHTML='';
           showNotification("Note Saved");
