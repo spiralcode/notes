@@ -19,7 +19,7 @@ include 'session_check.php';
 <input id="dateCave" type="hidden"/></div>
 <div label="inherit" class="fileArea">
 <div class="option">
-Attach files with this Note<span style="cursor:pointer;" onclick="gen.id('fileSelect').click();">Choose Files </span> to <!--<span id="folderSpec" data-id="0" style="cursor:pointer;" onclick="chooseFolders();">Attachments </span> <!--<span style="cursor:pointer;" onclick="startUpload()">Start Upload</span>--><select id="folderSpec">
+<span title="Attach a file with this Note." style="cursor:pointer;  padding:.1em" onclick="gen.id('fileSelect').click();">+ Attach files </span> to <!--<span id="folderSpec" data-id="0" style="cursor:pointer;" onclick="chooseFolders();">Attachments </span> <!--<span style="cursor:pointer;" onclick="startUpload()">Start Upload</span>--><select title="Choose a folder, you can create a folder from the 'Files' option." id="folderSpec">
 	<option value="0">Attachments</option>
 	<?php
 

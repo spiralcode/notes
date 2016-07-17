@@ -155,16 +155,16 @@ function datagateway(type)
 			pass: pass ,
                         cook: cookie
 			},function(data){
-                            console.log(data.responseText);
-				if(data.responseText==1)
+         var dC = JSON.parse(data.responseText);
+				if(dC.status==1)
 				{
+          $id('attract').innerHTML="Hi, <b>"+dC.name+"</b> we're loading your account...";
 					window.location.href='paper.php';
 				}
-				if(data.responseText==0)
+				else
 				{
 				$id('errorshow').innerHTML='E-mail or Password doesn\'t seems to be correct, try again or make an account.';	
                                             $id('loginbutton').innerHTML="Login";
-
                                             $id('spinner').style.display="none";
 
 				}});
@@ -198,7 +198,7 @@ $id('email').value=semail;
 <div class="aboutspace">
 Notes<sup>v3</sup>
 </div>
-<div class="attract" onclick="notey.notify('declare.php',{title:'Welcome !',iframe:false});"}>Weird !, What made you here?</div>
+<div id="attract" class="attract" onclick="notey.notify('declare.php',{title:'Welcome !',iframe:false});"}>Weird !, What made you here?</div>
 <div id="smartslide">
 <table border="0" width=100% height="100%">
 <tr><td align="center" class="virtual">Login</td><td class="virtual" align="center">Sign Up</td></tr>

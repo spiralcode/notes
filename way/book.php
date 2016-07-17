@@ -159,7 +159,7 @@ init++;}}
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
-        <div class="footer"><p><a href="../book.php">Desktop</a> | <a href="home.php">Write Note</a> | <a href="logout.php">Logout</a></p></div>
+        <div class="footer"><p><a href="../paper.php">Desktop</a> | <a href="home.php">Write Note</a> | <a href="logout.php">Logout</a></p></div>
  <script>
           /*  $(function() {
     $( "#datepicker" ).datepicker(

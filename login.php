@@ -54,7 +54,8 @@ if($exist==1)
     setcookie("e",  base64_encode($pass),time() + (86400 * 30), "/");
 }
 $_SESSION['cook_log']=0;
-            echo "1";
+$uname=$_SESSION['uname'];
+echo "{\"status\":1,\"name\":\"".$uname."\"}";
 }
 }
 ?>

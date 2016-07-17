@@ -44,7 +44,8 @@ window.onbeforeunload = unloadPage;
 
        <!-- <div class="notificationContainer"></div>-->
 
-        <div class="topribbon">Notes<div title="Logout & Account Informations" id="userOps"  onclick="builtMenu(this)" class="userInfo"><?php echo  $_SESSION['uname']; ?></div></div>
+        <div class="topribbon">Notes<div title="Logout & Account Informations" id="userOps"  onclick="builtMenu(this)" class="userInfo"><?php echo  $_SESSION['uname']; ?> <span style="color:rgb(180, 208, 208);
+">&#9207;</span></div></div>
         <script>
           gen.id('userOps').setAttribute( 'data-list','["Informations","showInfo();", "Logout","window.location=\'logout.php\';"]');
           </script>
@@ -449,21 +450,28 @@ fileSlot.appendChild(div);
         var file = document.createElement('div');
         var fileInfo = document.createElement('div');
         var opts = document.createElement('div');
+        var progress_wrap = document.createElement('div');
         var progress = document.createElement('progress');
         progress.setAttribute('max','100');
         progress.setAttribute('value','0');
         progress.setAttribute('id','buffer-'+bufferId);
+         progress.style.width="8em";
         opts.setAttribute('class','opts');
+        progress_wrap.setAttribute('class','progressWrap');
         fileInfo.setAttribute('class','info');
-        if(fileName.length>20)
-        var fileNamePad = fileName.substring(0,5)+'...'+fileName.substring(fileName.length-5,5);
+        if(fileName.length>25)
+        var fileNamePad = fileName.substring(0,10)+'...'+fileName.substring(fileName.length-10,fileName.length);
         else
         fileNamePad=fileName;
+        console.log(fileNamePad);
         opts.innerHTML='<span onclick="removeFile('+bufferId+');" title="Remove file from list"><img src = "'+png_close+'"/></span>';
        fileInfo.innerHTML=fileNamePad;
+       //file.appendChild(progress);
+       progress_wrap.appendChild(progress);
        file.appendChild(opts);
        file.appendChild(fileInfo);
-       file.appendChild(progress);
+              file.appendChild(progress_wrap);
+
         file.setAttribute('class','file');
         file.setAttribute('id','uploadFileId-'+bufferId);
         file.setAttribute('name',fileName);

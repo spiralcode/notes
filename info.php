@@ -85,7 +85,7 @@ background: rgba(0, 0, 255, 0.09);
 <div class="goodtable"><center><table cellspadding="10" >
 <tr><th>Item</th><th>Count</th></tr>
 <tr><td>Notes</td><td><?php echo sprintf('%04d',$note_counts); ?></td></tr>
-<tr><td>Images</td><td><?php echo sprintf('%04d',$image_counts);?></td></tr>
+<tr><td>Files</td><td><?php echo sprintf('%04d',$image_counts);?></td></tr>
 <tr><td>Contacts</td><td><?php echo sprintf('%04d',$totalpeoples);?></td></tr>
 <tr><td>Words</td><td><?php echo sprintf('%04d',$wordcount);?></td></tr>
 <tr><td>Characters</td><td><?php echo sprintf('%04d',$chars);?></td></tr>
