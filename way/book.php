@@ -194,15 +194,14 @@ var currentDate = thing.format('DD-M-YYYY');
     });
      document.getElementById('frameplace').addEventListener('touchend',function(e)
     {
+
         tt = new Date().getTime();
         var ob = e.changedTouches[0];
         xx = ob.pageX;
         yy = ob.pageY;
-                 var abs_x = Math.abs(xx-x);
+                      var abs_x = Math.abs(xx-x);
                  var abs_y = Math.abs(yy-y);
-                 console.log(xx,yy,abs_x,abs_y);
-                 
-        if((Math.abs(tt-t)<500)&&(abs_x>abs_y&&abs_y<50))
+        if(Math.abs(tt-t)<200&&abs_x>abs_y)
             {
                 //x movement is greater
                 if(xx>x)
@@ -228,7 +227,7 @@ var currentDate = thing.format('DD-M-YYYY');
                         }
             }
       
-            
+            }
     });
             </script>
     </body>
