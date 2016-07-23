@@ -200,7 +200,9 @@ var currentDate = thing.format('DD-M-YYYY');
         yy = ob.pageY;
                  var abs_x = Math.abs(xx-x);
                  var abs_y = Math.abs(yy-y);
-        if((Math.abs(tt-t)<500)&&abs_x>abs_y+50)
+                 console.log(xx,yy,abs_x,abs_y);
+                 
+        if((Math.abs(tt-t)<500)&&(abs_x>abs_y&&abs_y<50))
             {
                 //x movement is greater
                 if(xx>x)
