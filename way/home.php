@@ -21,6 +21,8 @@ include 'session_check.php';
                 <script src="notey.js"></script>
                 <script src="jss/general.js"></script>
                 <script src = "../iconCode.js"></script>
+                        <script src="../jss/image.js"></script>
+
     </head>
     <body>
         

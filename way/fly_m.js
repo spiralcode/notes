@@ -77,7 +77,7 @@ function uploadfile(file)
 	fd.append( 'id', file.id );
 	fd.append('folder',gen.id('folderSpec').value);
 	$.ajax({
-	  url: 'filecatch.php',
+	  url: '../filecatch.php',
 	  data: fd,
 	  processData: false,
 	  contentType: false,
@@ -114,7 +114,7 @@ document.getElementsByName(file.file.name)[0].innerHTML='<img src="'+JSON.parse(
                 return myXhr;
         },
 	  success: function(data){
-		//  console.log(data);
+		  console.log(data.response);
 		   }
                         });
 	

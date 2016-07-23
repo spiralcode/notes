@@ -110,17 +110,14 @@ z-index:101;
 .imgspace
 {
 float: left;
-left: 1%;
+padding: .5em;
 }
 
 .note .imgspace img {
 width: 4em;
 height: 4em;
-border-radius: 1em 1em 1em;
-border: 2px groove darkseagreen;
-opacity: .5;
-float: left;
-
+border-radius: .2em .2em .2em;
+box-shadow: 0px 0px 4px black;
 }
 .nonote
 {
