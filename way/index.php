@@ -7,7 +7,7 @@ header('location: login.php?cook');}
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Notes Go</title>
+        <title>notes Go</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -53,8 +53,8 @@ header('location: login.php?cook');}
         <![endif]-->
 
         <!-- Add your site or application content here -->
-        <div class="topribbon"><h2>Notes <sup>v3</sup></h2></div>
-        <div class="login" align="center" ><h5 style="opacity: .5; text-align: right;">Login</h5>
+        <div class="topribbon"><h2>notes <sup></sup></h2></div>
+        <div class="login" align="center" ><h5 style="opacity: .5; text-align: right;">login</h5>
         <form>
             <ul style="list-style: none;">
            <li><span id="report">&nbsp;</span></li>

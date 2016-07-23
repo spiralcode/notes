@@ -6,7 +6,7 @@ include 'session_check.php';
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Notes Go : Read Notes</title>
+        <title>notes Go : Read Notes</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -148,7 +148,7 @@ init++;}}
 	showResult('../search.php?date='+ob.value);}	
 }
             </script>
-        <div class="topribbon"><h5 style="margin:.2em">Notes <sup>v3</sup></h5></div>
+        <div class="topribbon"><h5 style="margin:.2em">notes <sup></sup></h5></div>
         <div class="toolsBar" ><input type="text" id="keyinput" placeholder="Search for...">
       <input style="height:auto; margin: 0%;" value="Search" type="button" class="button-primary"  onclick="showResult('../gcow.php?q='+$id('keyinput').value);"/>
 <!--<input onchange="datesearch(this);" id="datepicker" type="text" placeholder="01/01/2015">-->

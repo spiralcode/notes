@@ -81,9 +81,9 @@ function showPosition(position)
         <![endif]-->
 
         <!-- Add your site or application content here -->
-        <div class="topribbon"><h2>Notes <sup>v3</sup></h2></div>
+        <div class="topribbon"><h2>notes <sup></sup></h2></div>
         <div class="notificationSpace" id="notificationSpace"></div>
-        <div class="login" align="center" ><h5 style="opacity: .5; text-align: right;">Write Note</h5>
+        <div class="login" align="center" ><h5 style="opacity: .5; text-align: right;">write Note</h5>
     <form><textarea placeholder="Type in Notes here..." class="u-full-width" id="typeSpace" row="50" cols="100"></textarea>
          <input multiple="multiple" id="fileSelect" name="fileSelect[]" style="display: none;" type="file"  accept="image/*;capture=camera" />   
         <select style="display:none;" id="folderSpec"><option value="0">Attachment</option></select>
