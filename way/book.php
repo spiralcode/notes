@@ -194,34 +194,25 @@ var currentDate = thing.format('DD-M-YYYY');
     });
      document.getElementById('frameplace').addEventListener('touchend',function(e)
     {
-
         tt = new Date().getTime();
         var ob = e.changedTouches[0];
         xx = ob.pageX;
         yy = ob.pageY;
-        if(Math.abs(tt-t)<200)
-            {
-                var abs_x = Math.abs(xx-x);
+                 var abs_x = Math.abs(xx-x);
                  var abs_y = Math.abs(yy-y);
-
-        if(abs_x>abs_y)
+        if((Math.abs(tt-t)<500)&&abs_x>abs_y+50)
             {
                 //x movement is greater
                 if(xx>x)
                     {
        e.preventDefault();
-
                  var new_date = moment(currentDate, "DD-MM-YYYY").add(-1,'days').format('DD-M-YYYY');
                  currentDate= new_date;
                     datesearch(currentDate,true);
                     $id('keyinput').value=currentDate;
                     
-
                  //right Swipe
-                 
-
-                    return 0;
-                    }
+                                 }
                     else
                         {
                             e.preventDefault();
@@ -234,30 +225,8 @@ var currentDate = thing.format('DD-M-YYYY');
                             return 1;
                         }
             }
-            else
-                {
-                    //y movement is greater
-                                             
-
-                    if(yy>y)
-                        {
-                           // console.log("Down Swipe");
-                                             //   window.scrollBy(0, -abs_y);
-
-                            return 2;
-                        }
-                        else
-                            {
-
-                              //  console.log("Up Swipe");
-                //    window.scrollBy(0, abs_y);
-
-
-
-                                return 3;
-                            }
-                }
-            }
+      
+            
     });
             </script>
     </body>
