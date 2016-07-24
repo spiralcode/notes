@@ -15,6 +15,21 @@ if(isset($_GET['date']))
 	
 	$query=mysqli_query($link,"select * from events where DATE(ftime) = '$indianDate' and userid = $userid" )or die(mysqli_error($link));
 }
+elseif(isset($_GET['jmp'],$_GET['crrnt'],$_GET['inc']))
+{
+	$crrnt = $_GET['crrnt'];
+	if($_GET['inc']=='0')
+		$query=mysqli_query($link,"SELECT date(ftime) FROM `events` where  date(ftime) < DATE('$crrnt') and userid = $userid ORDER by ftime DESC limit 0,1 " )or die(mysqli_error($link));
+else {
+		$query=mysqli_query($link,"SELECT date(ftime) FROM `events` where  date(ftime) > DATE('$crrnt') and userid = $userid ORDER by ftime ASC limit 0,1 " )or die(mysqli_error($link));
+}
+while($data=mysqli_fetch_array($query))
+{
+	$focusDate = $data[0];
+}
+$query=mysqli_query($link,"select * from events where DATE(ftime) = '$focusDate' and userid = $userid" )or die(mysqli_error($link));
+
+}
 else
 {
 $query=mysqli_query($link,"select * from events where DATE(ftime) = CURRENT_DATE() and userid = $userid" )or die(mysqli_error($link));

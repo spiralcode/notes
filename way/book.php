@@ -9,7 +9,6 @@ include 'session_check.php';
         <title>notes Go : Read Notes</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/skeleton.css">
          <link rel="stylesheet" href="mobstyle.css">
@@ -17,14 +16,14 @@ include 'session_check.php';
  <link rel="stylesheet" href="../style/jquery-ui.css">
      <link rel="stylesheet" href="../raid.css"/>
 <link rel="stylesheet" href="../style/jquery-ui.css">
-
 <script src="js/vendor/modernizr-2.8.3.min.js"></script>
 <script src="../lib/jquery-1.10.2.js"></script>
 <script src="../lib/jquery-ui.js"></script>
 <script src="../notey.js"></script>
 <script src="../raid.js"></script>
-<script src="../lib/moment.js"></script>
+<script src="../jss/general.js"></script>
 
+<script src="../lib/moment.js"></script>
 <style>
     input[type="text"]
     {
@@ -36,12 +35,14 @@ include 'session_check.php';
     <body>
         <script>
 //Notes Mobile
+//GLOBAL ACTIVE DATE VARIABLE
+var DATE = "0000-00-00 00:00:00";
 var ir=0;
     function $id(id)
             {
                 return document.getElementById(id);
             }
-            function showResult(url)
+function showResult(url)
 {
 $id('frameplace').innerHTML=' ';	
 $id('spinner').style.display='block';
@@ -54,16 +55,16 @@ $id('spinner').style.display='block';
 		$id('frameplace').appendChild(newob).setAttribute("class","nonote");
 		var json=JSON.parse(data.responseText);
 		if(json[0].status==0)
-		{	
+		{
             var ele="No Notes this day!";
             $id('error').innerHTML=ele;
 		}
 		else
-		{     
-               $id('frameplace').innerHTML='';
-                while(typeof(json[init])!=='undefined')
 		{
-		/*Moment code starts*/
+               $id('frameplace').innerHTML='';
+                while(typeof(json[init])!='undefined')
+		{
+               DATE = json[init].ftime;
                 var momentObject = moment(json[init].ftime);
 				var hr = momentObject.format('hh');
 				var min = momentObject.format('mm');
@@ -72,15 +73,17 @@ $id('spinner').style.display='block';
 				var mnth= momentObject.format('MMMM');
 				var year= momentObject.format('YYYY');
 				var frmtime=hr+':'+min+' '+ap+' | '+date+' '+mnth+' '+year;
-                                var searchFormat = date+'-'+mnth+'-'+year;
+               var frmtime=moment(json[init].ftime).format('dddd, Do  MMMM YYYY ,HH:mm');
+                 var searchFormat = date+'-'+mnth+'-'+year;
 				var then = momentObject.format('D/M/YYYY HH:mm:ss');				
 				var now=moment().format('D/M/YYYY HH:mm:ss');
 				var millisec=moment(now,"D/M/YYYY HH:mm:ss").diff(moment(then,"D/M/YYYY HH:mm:ss"));
 				var di = moment.duration(millisec);
-                                var minutes=di.asMinutes();
+               var minutes=di.asMinutes();
 				var hoursago=(Math.floor(di.asHours()));
 				var days=Math.round(hoursago/24);
-                                timeago="";
+                
+                           var     timeago="";
                                 if(minutes<15)
                                     {
                                         timeago="Now";
@@ -105,40 +108,76 @@ $id('spinner').style.display='block';
                                                 {
                                                     timeago=Math.floor(((minutes/60)/24))+" days before";
                                                 }
-				
+				var timeAgo = document.createElement('div');
+                timeAgo.innerHTML=timeago;
+                timeAgo.setAttribute('class','daysago')
 		var ele = json[init].content;
 		var noteid=json[init].noteid;
 		var newob=document.createElement('div');
-		$id('frameplace').appendChild(newob).setAttribute("id",ir);
-		$id('frameplace').appendChild(newob).setAttribute("class","note");
-		var imlist=' ';
-		var imlistindex=0;
-		var imgexist=false;
-		while(typeof(json[init].ilist[0][imlistindex])!=='undefined')
-		{
-	imlist+='<div class="imgspace"><a href="image.php?id='+json[init].ilist[0][imlistindex]+'" target="_blank"><img src="image.php?id='+json[init].ilist[0][imlistindex]+'&thumb&size=50x50"/></a></div>';
-	imlistindex++;
-		}
-
-$id(ir).innerHTML='<div title="Note Options" class="noteoptions" onclick="showOptions('+ir+')"></div><div class="timeslot"><span onclick="datesearch(\''+searchFormat+'\',\'init\');" style="cursor:pointer;" title="View notes of this date">'+frmtime+'</span></div><div class="contentslot">'+ele+'</div>'+imlist+'';
-if(newob.getBoundingClientRect().height>200)
+	
+        
+        //note options
+        var ntO = document.createElement('div');
+        ntO.setAttribute('class','noteoptions');
+        //time slot
+        var tSl = document.createElement('div');
+         tSl.setAttribute('class','timeslot');
+        var tSs = document.createElement('span');
+        tSs.setAttribute('onclick','datesearch("'+searchFormat+'","init")');
+        tSs.innerHTML=frmtime;
+        tSl.appendChild(tSs);
+        //codeSlot
+        var cS = document.createElement('div');
+        cS.setAttribute('class','contentslot');
+        cS.innerHTML=ele;
+//FileSpace
+var fS=document.createElement('div');
+fS.setAttribute('class','imgspace');
+var beg = 0;
+while(json[init].ilist[0][beg]!=null)
 {
-//Code for managing big over-sized notes
+    /**/
+    console.log(json[init].ilist[0][beg]);
+    /*notey.get('../fileInfo.php?id='+json[init].ilist[0][beg],function(data){
+var decoded = JSON.parse(data.responseText);
+var div = document.createElement('div');
+div.setAttribute('class','file');
+div.innerHTML=decoded[0].realFileName;
+div.setAttribute('title',decoded[0].realFileName);
+//div.style.background='url('+JSON.parse(icons).defaultfile+')';
+div.style.backgroundSize='5em 5em';
+div.style.backgroundRepeat='no-repeat';
+div.setAttribute('data-id',decoded[0].id);
+div.addEventListener('click',function(e){
+  fileInfo(this);
+});*/
+var file = document.createElement('div');
+var img = document.createElement('img');
+img.src = "image.php?thumb&size=50x50&id="+json[init].ilist[0][beg];
+var cast = "window.open('image.php?id="+json[init].ilist[0][beg]+"','_blank)";
+img.setAttribute('onclick',cast);
+file.appendChild(img);
+fS.appendChild(file);
+        newob.appendChild(fS);
+      beg++;
+    /**/
+}
+            newob.appendChild(ntO);
+            newob.appendChild(tSl);
+           newob.appendChild(cS);
+        newob.appendChild(timeAgo);      
+if(beg!=0)
+{ 
+        newob.appendChild(fS);
+}     
+	newob.setAttribute('class','note');
+    $id('frameplace').appendChild(newob);
+     init++;
+        }
     }
-    var timeAgo = document.createElement('div');
-    timeAgo.setAttribute('class','daysago');
-    timeAgo.innerHTML=timeago;
-    newob.appendChild(timeAgo);
     
-var optEle=document.createElement('div');
-$id('frameplace').appendChild(optEle);
-var text = '<span onclick="deletenote(this);" data-noteid="'+noteid+'" data-divid="'+ir+'">Delete Note</span><span onclick="findPeople('+noteid+');">Extract people names</span>';
-text='';
-optEle.setAttribute('class','noteOptionSlider');
-optEle.setAttribute('id',ir+'_opt');
-optEle.innerHTML=text;ir++;
-init++;}}
-});}
+    });
+}
             function datesearch(ob,init)
 {
     
@@ -155,9 +194,18 @@ init++;}}
         </div>
 <script>
         $id('keyinput').addEventListener('keyup',function(e){if(e.keyCode==13){showResult('../gcow.php?q='+$id('keyinput').value);}});
-
     </script>
+       <div class="navigateDotsLeft">
+            <div onclick="jmpPrevDateNavigate()";  class="navigateDotsJumpLeft">&lt;</div>
+            <div title="Write Note"  onclick="window.location='home.php'" class="navigateDotsNextLeft" id="navigateDotsJumpLeft"></div>   
+</div>
+<div class="navigateDotsRight">
+             <div onclick="jmpNextDateNavigate()" class="navigateDotsJumpRight">&gt;</div>
+                <!--<div onclick="nextDateNavigate()" class="navigateDotsNextRight" id="navigateDotsNextRight">&gt;</div>-->    
+                </div>
     <div class="spinner" id="spinner"></div>
+ 
+
         <div id="frameplace" class="login" align="center" ><h5 style="opacity: .5; text-align: right;"></h5>
 </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -202,6 +250,7 @@ var currentDate = thing.format('DD-M-YYYY');
                 $id('frameplace').style.opacity=1000/(Math.abs(ob.pageX)-Math.abs(x));
         }
 });
+/*
      document.getElementById('frameplace').addEventListener('touchend',function(e)
     {
         tt = new Date().getTime();
@@ -237,7 +286,6 @@ var currentDate = thing.format('DD-M-YYYY');
                  currentDate= new_date;
                  datesearch(currentDate,true);
                                      $id('keyinput').value=currentDate;
-
                     //left swipe
                             return 1;
                         }
@@ -245,28 +293,45 @@ var currentDate = thing.format('DD-M-YYYY');
             else
                 {
                     //y movement is greater
-                                             
-
                     if(yy>y)
                         {
                            // console.log("Down Swipe");
                                              //   window.scrollBy(0, -abs_y);
-
                             return 2;
                         }
                         else
                             {
-
                               //  console.log("Up Swipe");
                 //    window.scrollBy(0, abs_y);
-
-
-
                                 return 3;
                             }
                 }
             }
-    });
+    });*/
+    function nextDateNavigate()
+    {
+              var new_date = moment(currentDate, "DD-MM-YYYY").add(1,'days').format('DD-M-YYYY');
+                 currentDate= new_date;
+                    datesearch(currentDate,true);
+                    $id('keyinput').value=currentDate;
+    }
+    function prevDateNavigate()
+    {
+           var new_date = moment(currentDate, "DD-MM-YYYY").add(-1, 'days').format('DD-M-YYYY');
+                 currentDate= new_date;
+                 datesearch(currentDate,true);
+                                     $id('keyinput').value=currentDate;
+    }
+        function jmpNextDateNavigate()
+    {
+   	showResult('../search.php?jmp&crrnt='+DATE+'&inc=1');
+
+    }
+    function jmpPrevDateNavigate()
+    {
+         	showResult('../search.php?jmp&crrnt='+DATE+'&inc=0');
+
+    }
             </script>
     </body>
 </html>

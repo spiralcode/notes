@@ -334,7 +334,7 @@ fileSlot.appendChild(div);
     noteInfo.appendChild(options);
 
       note.appendChild(noteInfo);
-          note.appendChild(dateDiff);
+      note.appendChild(dateDiff);
       note.appendChild(contentSlot);
      if(beg!=0){ 
       note.appendChild(fileSlot);
@@ -354,7 +354,6 @@ fileSlot.appendChild(div);
     function folderDisplay(decoded)
     {
         gen.id('titleBar_options').innerHTML="<span style=\"cursor:pointer;\" onclick=\"notey.notify('createImageFolder.php',{iframe:false,title:'Create Folder',width:400,height:0});\"> + create new folder</span>";
-
        gen.id('contentPlace').innerHTML="";
  var start=0;
  if(decoded[start]==null)
@@ -379,7 +378,6 @@ fileSlot.appendChild(div);
    fileIcon.setAttribute('class','fileIcon');
    titlePlace.setAttribute('class','filePlace');
       fileCount.setAttribute('class','fileCount');
-
    fileCount.innerHTML=decoded[start].count+' files';
    if(decoded[start].name.length<20)
    titlePlace.innerHTML=decoded[start].name;
