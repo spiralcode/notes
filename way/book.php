@@ -192,16 +192,26 @@ var currentDate = thing.format('DD-M-YYYY');
         y = ob.pageY;
         t = new Date().getTime();
     });
+    var slideCount = 0;
+            document.getElementById('frameplace').addEventListener('touchmove',function(e)
+{
+            var ob = e.changedTouches[0];
+            if(Math.abs(ob.pageX)>Math.abs(x)){
+                slideCount++
+                if(slideCount%100==0)
+                $id('frameplace').style.opacity=1000/(Math.abs(ob.pageX)-Math.abs(x));
+        }
+});
      document.getElementById('frameplace').addEventListener('touchend',function(e)
     {
         tt = new Date().getTime();
         var ob = e.changedTouches[0];
         xx = ob.pageX;
         yy = ob.pageY;
-        if(Math.abs(tt-t)<300)
-            {
-             var abs_x = Math.abs(xx-x);
+               var abs_x = Math.abs(xx-x);
               var abs_y = Math.abs(yy-y);
+        if(Math.abs(tt-t)<300&&(abs_x>abs_y))
+            {
 
         if(abs_x>abs_y&&abs_y<20)
             {
