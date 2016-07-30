@@ -198,8 +198,8 @@ else
             }
             </script>
             <script>
-                document.getElementById('spinner').style.display="block";
-                document.getElementById('dataContent').style.display="none";
+document.getElementById('spinner').style.display="block";
+ document.getElementById('dataContent').style.display="none";
 notey.get('fileInfo.php?id=<?php echo $_GET['id']; ?>',function(data){
  var dec = JSON.parse(data.responseText);
 document.getElementById('realFileName').value=xtractFileName(dec[0].realFileName);
@@ -215,7 +215,7 @@ document.getElementById('urlSlot').style.display="block"
 else{
 document.getElementById('visibility').innerHTML="Turn Public";
 document.getElementById('visibility').title="The file becomes public and you could share the URL to others for viewing.";
-      document.getElementById('urlSlot').style.display="none"
+document.getElementById('urlSlot').style.display="none"
 }
 document.getElementById('realFileName').setAttribute('data-id',<?php echo $_GET['id']; ?>);
 document.getElementById('realFileName').setAttribute('data-ext','.'+formatOf(dec[0].realFileName));
@@ -229,12 +229,15 @@ document.getElementById('size').innerHTML=Math.ceil(dec[0].size/1000)+' KB';
 else
 document.getElementById('size').innerHTML=dec[0].size+' B';
 document.getElementById('dwnload_link').href='downloadImage.php?id=<?php echo $_GET['id'] ?>';
-document.getElementById('open_link').href='stream.php?id=<?php echo $_GET['id'] ?>';
+if(formatOf(dec[0].realFileName)=="jpeg"||formatOf(dec[0].realFileName)=="png"||formatOf(dec[0].realFileName)=="gif"||formatOf(dec[0].realFileName)=="jpg"){
+document.getElementById('open_link').href='redirectToFile.php?id=<?php echo $_GET['id'] ?>';
+}
+else{
+    document.getElementById('open_link').href='stream.php?id=<?php echo $_GET['id'] ?>';
+}
 document.getElementById('spinner').style.display="none";
 document.getElementById('dataContent').style.display="block";
-
 		});
-		
 		function changeName()
         {  
             if(document.getElementById('realFileName').value!=='')
@@ -246,8 +249,7 @@ document.getElementById('dataContent').style.display="block";
              document.getElementById('notification').innerHTML='Altered';
              document.getElementById('realFileName_btton').value='Change';
              document.getElementById('ogDescription').content=document.getElementById('realFileName').value+document.getElementById('realFileName').dataset.ext;
-            });
-            }
+            });}
             else
             {
             document.getElementById('notification').innerHTML='Enter a new name...';
@@ -255,7 +257,6 @@ document.getElementById('dataContent').style.display="block";
         }
         function toggleVisibility(id)
         {  
-            
             notey.get('toggleFileVisibility.php?id='+id,function(data){
 
 if(data.responseText=='p')
@@ -266,14 +267,13 @@ if(data.responseText=='p')
 }
 else
 {
-    document.getElementById('visibility').innerHTML="Turn Public";
-        document.getElementById('visibility').title="The file becomes public and you could share the URL to others for viewing.";
-      document.getElementById('urlSlot').style.display="none"
+ document.getElementById('visibility').innerHTML="Turn Public";
+document.getElementById('visibility').title="The file becomes public and you could share the URL to others for viewing.";
+document.getElementById('urlSlot').style.display="none"
 }
             });
-
         }
-		function formatOf(fileName)
+function formatOf(fileName)
 	{
   var collect=  fileName.split(".");
   var at = collect.length-1;

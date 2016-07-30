@@ -545,14 +545,21 @@ while(fileBuffer[index]!=null)
       if(setgLocation=='0,0'&&geolocation!='0,0')
       setgLocation=geolocation;
  notey.post('feed.php',{contents:contents,timeid:noteId,alterDate:alterDate,geolocation:geolocation,setglocation:setgLocation},function(data)
-{console.log(data.response);
+{
+  var dec = JSON.parse(data.response);
+  if(dec.status==1&&dec.parity==gen.id('typeSpace').innerHTML.substr(0,5))
+{
           gen.id('saveButton').innerHTML="Save Note";
           gen.id("fileList").innerHTML='';
           showNotification("Note Saved");
           gen.id('saveButton').removeAttribute('disabled');
-                          gen.id('saveButton').setAttribute('onclick','transferNote()');
-
+          gen.id('saveButton').setAttribute('onclick','transferNote()');
           gen.id('typeSpace').innerHTML="";
+}
+else {
+              showNotification("<span style=\"color:red;\">Error happened, try re-saving.</span>",15000);
+          gen.id('saveButton').removeAttribute('disabled');
+}
 });
           window.clearInterval(dec);
          }
@@ -565,7 +572,7 @@ while(fileBuffer[index]!=null)
    }
    var toggleFlag=0;
    var staticVar = 0;
-   function showNotification(content)
+   function showNotification(content,counter)
    {
       gen.id('notificationSpace').innerHTML='';
       var ob = document.createElement('div');
@@ -574,7 +581,9 @@ while(fileBuffer[index]!=null)
       var space=gen.id('notificationSpace');
       ob.innerHTML=content;
       space.appendChild(ob);
-$('#notification-'+staticVar).delay(500).fadeOut(2000);
+
+$('#notification-'+staticVar).delay(counter).fadeOut(2000);
+
            staticVar++;
 
    }

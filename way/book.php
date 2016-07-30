@@ -64,6 +64,7 @@ $id('spinner').style.display='block';
                $id('frameplace').innerHTML='';
                 while(typeof(json[init])!='undefined')
 		{
+            if(json[init].ftime!='undefined')
                DATE = json[init].ftime;
                 var momentObject = moment(json[init].ftime);
 				var hr = momentObject.format('hh');
@@ -114,8 +115,6 @@ $id('spinner').style.display='block';
 		var ele = json[init].content;
 		var noteid=json[init].noteid;
 		var newob=document.createElement('div');
-	
-        
         //note options
         var ntO = document.createElement('div');
         ntO.setAttribute('class','noteoptions');
@@ -153,8 +152,9 @@ div.addEventListener('click',function(e){
 });*/
 var file = document.createElement('div');
 var img = document.createElement('img');
-img.src = "image.php?thumb&size=50x50&id="+json[init].ilist[0][beg];
-var cast = "window.open('image.php?id="+json[init].ilist[0][beg]+"','_blank)";
+img.src = "../image.php?thumb&size=50x50&id="+json[init].ilist[0][beg];
+img.alt="file";
+var cast = "window.open('../redirectToFile.php?id="+json[init].ilist[0][beg]+"','_blank')";
 img.setAttribute('onclick',cast);
 file.appendChild(img);
 fS.appendChild(file);
@@ -179,12 +179,16 @@ if(beg!=0)
     });
 }
             function datesearch(ob,init)
-{
-    
+{   
 	if(init){
-	showResult('../search.php?date='+ob);}
+        //console.log(ob);
+       DATE=moment(ob,'dd-m-yyyy').format('YYYY-MM-DD');
+	showResult('../search.php?date='+ob);
+}
 	else{
-	showResult('../search.php?date='+ob.value);}	
+       DATE=moment(ob.value,'dd-m-yyyy').format('YYYY-MM-DD');
+	showResult('../search.php?date='+ob.value);
+}	
 }
             </script>
         <div class="topribbon"><h5 style="margin:.2em">notes <sup></sup></h5></div>
@@ -229,10 +233,8 @@ var currentDate = thing.format('DD-M-YYYY');
 
 //Code for swipe
  var x = 0,xx=0;
-            var y =0,yy=0;
-            var t = 0,tt=0;
-               var Dscroll=100;
-                                                var Uscroll=100;
+ var y =0,yy=0;
+  var t = 0,tt=0;
         document.getElementById('frameplace').addEventListener('touchstart',function(e)
     {
         var ob = e.changedTouches[0];

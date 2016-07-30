@@ -220,13 +220,21 @@ while(fileBuffer[index]!=null)
  notey.post('../feed.php',{contents:contents,timeid:noteId,alterDate:alterDate,geolocation:geolocation,setglocation:setgLocation},function(data)
 {
     console.log(data.response);
+    var dec = JSON.parse(data.response);
+    console.log(dec.parity,gen.id('typeSpace').value.substr(0,5),dec.parity==gen.id('typeSpace').value.substr(0,5))
+if(dec.status==1&&dec.parity==gen.id('typeSpace').value.substr(0,5))
+{
           gen.id('saveButton').value="Save Note";
           gen.id("fileList").innerHTML='';
           showNotification("Note Saved");
           gen.id('saveButton').removeAttribute('disabled');
-                          gen.id('saveButton').setAttribute('onclick','transferNote()');
-
+           gen.id('saveButton').setAttribute('onclick','transferNote()');
           gen.id('typeSpace').value="";
+}
+else {
+              showNotification("<span style=\"color:red;\">Error happened, try re-saving.</span>",15000);
+          gen.id('saveButton').removeAttribute('disabled');
+}
 });
           window.clearInterval(dec);
          }
@@ -245,7 +253,7 @@ while(fileBuffer[index]!=null)
         }
     }
    
-   function showNotification(content)
+   function showNotification(content,counter)
    {
       gen.id('notificationSpace').innerHTML='';
       var ob = document.createElement('div');
@@ -254,7 +262,7 @@ while(fileBuffer[index]!=null)
       var space=gen.id('notificationSpace');
       ob.innerHTML=content;
       space.appendChild(ob);
-$('#notification-'+staticVar).delay(500).fadeOut(2000);
+$('#notification-'+staticVar).delay(counter).fadeOut(2000);
            staticVar++;
 
    }

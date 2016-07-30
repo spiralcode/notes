@@ -71,7 +71,7 @@ header('Pragma: no-cache');
 header('Content-type: '.mimeType($filename));
 header('Content-Length: '.filesize($filePath));
 while(!feof($fpOrigin)){
-  $buffer=fread($fpOrigin, 4096);
+  $buffer=fread($fpOrigin, 40096);
   echo $buffer;
   flush();
 }

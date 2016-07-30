@@ -27,6 +27,7 @@ while($data=mysqli_fetch_array($query))
 {
 	$focusDate = $data[0];
 }
+if(isset($focusDate))
 $query=mysqli_query($link,"select * from events where DATE(ftime) = '$focusDate' and userid = $userid" )or die(mysqli_error($link));
 
 }
