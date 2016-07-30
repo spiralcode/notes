@@ -35,7 +35,11 @@ include 'session_check.php';
         <script src="js/main.js"></script>
                 <link rel="stylesheet" href="css/general.css">
                         <link rel="stylesheet" href="css/equip.css">
-
+<style>
+      [contentEditable=true]:empty:not(:focus):before {
+content: attr(data-text);
+}
+  </style>
     </head>
     <body>
 <script>

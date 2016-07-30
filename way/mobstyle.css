@@ -4,7 +4,9 @@
     border-radius: 2px;
     width: 90%;
     margin-left: 5%;
-    box-shadow: 1px 1px 2px #4d5a91;
+    box-shadow: 0px 0px 5px #4d5a91;
+    background: url(http://cdn.shopify.com/s/files/1/0190/0954/files/pattern4_small_1_large.png?438);
+background-size: contain;
 }
 h2
 {
@@ -25,19 +27,33 @@ input
 {
 background: rgba(172, 190, 218, 0.59);
 box-shadow: 1px 1px 1px slategray;
+background: url(http://cdn.shopify.com/s/files/1/0190/0954/files/pattern4_small_1_large.png?438);
+background-size: contain;
 }
+.typeSpace
+{
+width: 98%;
+height: 10em;
+overflow-y: scroll;
+text-align: left;
+background: rgba(255, 255, 255, 0.61);
+}
+
 .footer
 {
 bottom: 0px;
 text-align: center;
 width: 90%;
+margin-top: 1%;
 margin-left: 5%;
 background: azure;
+
 }
 .toolsBar
 {
 background: rgba(143, 188, 143, 0.38);    text-align: center;
     height: auto;
+    background: url(http://www.easyfreepatterns.com/patterns/0/you-can-download-pattern-computer-wallpapers-1938-items-page-20-of-900.gif);
 }
 #frameplace
 {

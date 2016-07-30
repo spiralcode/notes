@@ -8,7 +8,7 @@ include 'session_check.php';
 <div align="center" class="noteProperties" id="noteProperties"><span class="dateSwitchArrow">❬</span>
 <span id="noteDate"></span><span class="dateSwitchArrow">❭</span></div>
 <!--<textarea id="typeSpace" placeholder="Type your note here..."></textarea>-->
-<div contenteditable id="typeSpace"></div>
+<div data-text="Type note here..." contenteditable="true" id="typeSpace"></div>
 <div class="buttonPocket">
 <!--<input id="saveButton" onclick="transferNote();" class="button-juice" type="button" style="cursor:pointer;" value="Save Note"/>-->
 <div id="saveButton" onclick="transferNote();" class="button-juice" type="button" style="cursor:pointer;" value="Save Note">Save</div>

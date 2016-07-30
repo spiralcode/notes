@@ -22,7 +22,11 @@ include 'session_check.php';
                 <script src="jss/general.js"></script>
                 <script src = "../iconCode.js"></script>
                         <script src="../jss/image.js"></script>
-
+<style>
+    [contentEditable=true]:empty:not(:focus):before {
+content: attr(data-text);
+}
+</style>
     </head>
     <body>
         
@@ -83,8 +87,8 @@ function showPosition(position)
         <!-- Add your site or application content here -->
         <div class="topribbon"><h2>notes <sup></sup></h2></div>
         <div class="notificationSpace" id="notificationSpace"></div>
-        <div class="login" align="center" ><h5 style="opacity: .5; text-align: right;">write Note</h5>
-    <form><textarea placeholder="Type in Notes here..." class="u-full-width" id="typeSpace" row="50" cols="100"></textarea>
+        <div class="login" align="center" ><h5 style="opacity: .5; text-align: right;">write note</h5>
+    <form><div contenteditable="true" data-text="Type in Notes here..."  class="typeSpace" id="typeSpace" row="50" cols="100"></div>
          <input multiple="multiple" id="fileSelect" name="fileSelect[]" style="display: none;" type="file"  accept="image/*;capture=camera" />   
         <select style="display:none;" id="folderSpec"><option value="0">Attachment</option></select>
         <input onclick="gen.id('fileSelect').click();" class="button-primary"  id="cameraButton" type="button" value="Files">
@@ -188,7 +192,7 @@ while(fileBuffer[index]!=null)
     var setgLocation='0,0';
    function transferNote()
    {
-     if(fileBuffer.length>0||gen.id('typeSpace').value.length>0)
+     if(fileBuffer.length>0||gen.id('typeSpace').innerHTML.length>0)
      {
         gen.id('saveButton').setAttribute('disabled','disabled');
                 gen.id('saveButton').setAttribute('onclick','function(){}');
@@ -213,27 +217,29 @@ while(fileBuffer[index]!=null)
          if(fileBuffer.length<=0)
          {
       gen.id('saveButton').value="Saving Note...";
-      var contents=gen.id('typeSpace').value;
+      var contents=gen.id('typeSpace').innerHTML;
      setgLocation=locBuffer[0];
       if(setgLocation=='0,0'&&geolocation!='0,0')
       setgLocation=geolocation;
  notey.post('../feed.php',{contents:contents,timeid:noteId,alterDate:alterDate,geolocation:geolocation,setglocation:setgLocation},function(data)
 {
-    console.log(data.response);
     var dec = JSON.parse(data.response);
-    console.log(dec.parity,gen.id('typeSpace').value.substr(0,5),dec.parity==gen.id('typeSpace').value.substr(0,5))
-if(dec.status==1&&dec.parity==gen.id('typeSpace').value.substr(0,5))
+    console.log(dec.parity,gen.id('typeSpace').innerHTML.substr(0,5),dec.parity==gen.id('typeSpace').innerHTML.substr(0,5))
+if(dec.status==1&&dec.parity==gen.id('typeSpace').innerHTML.substr(0,5))
 {
           gen.id('saveButton').value="Save Note";
           gen.id("fileList").innerHTML='';
           showNotification("Note Saved");
           gen.id('saveButton').removeAttribute('disabled');
            gen.id('saveButton').setAttribute('onclick','transferNote()');
-          gen.id('typeSpace').value="";
+          gen.id('typeSpace').innerHTML="";
 }
 else {
               showNotification("<span style=\"color:red;\">Error happened, try re-saving.</span>",15000);
+              
           gen.id('saveButton').removeAttribute('disabled');
+                    gen.id('saveButton').value="Save Note";
+
 }
 });
           window.clearInterval(dec);
