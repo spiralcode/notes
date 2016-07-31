@@ -51,7 +51,7 @@ window.onbeforeunload = unloadPage;
         <div class="topribbon">Notes<div title="Logout & Account Informations" id="userOps"  onclick="builtMenu(this)" class="userInfo"><?php echo  $_SESSION['uname']; ?> <span style="color:rgb(180, 208, 208);
 ">&#9207;</span></div></div>
         <script>
-          gen.id('userOps').setAttribute( 'data-list','["Informations","showInfo();", "Logout","window.location=\'logout.php\';"]');
+          gen.id('userOps').setAttribute( 'data-list','["Settings (BETA)","showSettings();","Informations","showInfo();", "Logout","window.location=\'logout.php\';"]');
           </script>
         <div id="titleBar_full" class="titleBar"><span id="titleBar_title"></span><span id="titleBar_options"></span></div>
       <div class="sideRack">
@@ -821,6 +821,10 @@ function findPeople(noteId)
 function showInfo()
 {
       notey.notify('info.php',{iframe:true,title:"Informations"});
+}
+function showSettings()
+{
+      notey.notify('settings.php',{iframe:true,title:"Settings"});
 }
 function deleteNote(noteId)
 {

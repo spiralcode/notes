@@ -1,40 +1,46 @@
-
-<style>
+<!doctype html>
+<head>
+<style type="text/css">
     body{
         font-family: "Segoe UI",Arial;
         text-align: center;
     }
-.spinner {
-z-index:101;
-  width: 40px;
-  height: 40px;
-  margin: 100px auto;
-  background-color: #0f0;
-  display: none;
-
-  border-radius: 100%;  
-  -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
-  animation: sk-scaleout 1.0s infinite ease-in-out;
+    .optionSlot
+    {
+      width:90%;
+      padding:5%;
+      
+    }
+.optionSlot .option
+{
+  float:left;
+  width:10em;
+  height:10em;
+  background: skyblue;
+  line-height:10em;
+  box-shadow:0 0 6px black;
+  cursor:pointer;
+  margin:1em;
 }
-
-@-webkit-keyframes sk-scaleout {
-  0% { -webkit-transform: scale(0) }
-  100% {
-    -webkit-transform: scale(3.0);
-    opacity: 0;
-  }
-}
-
-@keyframes sk-scaleout {
-  0% { 
-    -webkit-transform: scale(0);
-    transform: scale(0);
-  } 100% {
-    -webkit-transform: scale(3.0);
-    transform: scale(1.0);
-    opacity: 0;
-  }
+.optionSlot .option:hover
+{
+    box-shadow:0 0 6px blue;
+color:blue;
 }
 </style>
+<script>
+  function navigate(url)
+  {
+    window.location=url;
+  }
+  </script>
+</head><body>
 <div align="center" class="spinner"></div>
-<div><a href="accountReset.php">Account Reset</div>
+<div class="optionSlot">
+<div class="option" onclick="navigate('accountReset.php')">Account Reset</div>
+<div class="option" onclick="navigate('accountReset.php')">Change Password</div>
+
+
+</div>
+</body>
+</html>
