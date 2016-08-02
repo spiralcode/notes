@@ -205,7 +205,7 @@ if(beg!=0)
 </div>
 <div class="navigateDotsRight">
              <div onclick="jmpNextDateNavigate()" class="navigateDotsJumpRight">&gt;</div>
-                <!--<div onclick="nextDateNavigate()" class="navigateDotsNextRight" id="navigateDotsNextRight">&gt;</div>-->    
+                <div title="Photos"  onclick="window.location='../imgSlide.php'" class="navigateDotsNextRightPhotos" id="navigateDotsNextRight"></div>    
                 </div>
     <div class="spinner" id="spinner"></div>
  
@@ -225,8 +225,6 @@ if(beg!=0)
 });
   });*/
   var frmOb = $id('frameplace').getBoundingClientRect();
-  console.log(frmOb.bottom);
-  console.log(window.innerHeight);
     var thing = moment();
 datesearch(thing.format('DD-M-YYYY'),true);
 var currentDate = thing.format('DD-M-YYYY');

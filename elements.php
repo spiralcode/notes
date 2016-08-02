@@ -26,4 +26,12 @@ function mimeType($filename)
     else
     return "text/plain";
 }
+function typeImage($filename)
+{
+    if(mimeType($filename)=="image/jpg"||mimeType($filename)=="image/jpeg"||mimeType($filename)=="image/png"||mimeType($filename)=="image/gif")
+    return true;
+    else {
+        return false;
+    }
+}
 ?>
