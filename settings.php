@@ -27,6 +27,10 @@
     box-shadow:0 0 6px blue;
 color:blue;
 }
+.optionSlot .option[type="reset"]
+{
+  background:()
+}
 </style>
 <script>
   function navigate(url)
