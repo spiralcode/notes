@@ -1,0 +1,13 @@
+.logo-sweet
+{
+    width: 100vw;
+    height: 10vh;
+    background: rgb(63,81,181);
+}
+.footer-info
+{
+    position: absolute;
+    width: 100vw;
+    bottom: 0vh;
+    text-align: center;
+}
