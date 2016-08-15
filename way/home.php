@@ -103,14 +103,15 @@ window.onbeforeunload = function (e) {
         <div class="topribbon"><h2>notes <sup></sup></h2></div>
         <div class="notificationSpace" id="notificationSpace"></div>
         <div class="login" align="center" ><h5 style="opacity: .5; text-align: right;">write note</h5>
-    <form><div contenteditable="true" data-text="Type in Notes here..."  class="typeSpace" id="typeSpace" row="50" cols="100"></div>
-         <input multiple="multiple" id="fileSelect" name="fileSelect[]" style="display: none;" type="file"  accept="image/*;capture=camera" />   
-        <select style="display:none;" id="folderSpec"><option value="0">Attachment</option></select>
-        <input onclick="gen.id('fileSelect').click();" class="button-primary"  id="cameraButton" type="button" value="Files">
-        <input id="saveButton" class="button-primary" onclick="transferNote();"  type="button" value="Save Note">
-        <input id="fetchingLocation" class="button-primary" onclick="trackMe();"  type="button" value="Attach location">
-
+    <form><div contenteditable="true" data-text="Type in Notes here..."  class="typeSpace" id="typeSpace" row="50" cols="100"></div>        
     </form>
+    <div class="buttonGroup">
+             <input multiple="multiple" id="fileSelect" name="fileSelect[]" style="display: none;" type="file"  accept="image/*;capture=camera" />   
+        <select style="display:none;" id="folderSpec"><option value="0">Attachment</option></select>
+       <div id="saveButton" class="saveNote" onclick="transferNote();" ></div>
+        <div onclick="gen.id('fileSelect').click();" class="selectFiles"  id="cameraButton" type="button" value="Files"></div>
+        <div id="fetchingLocation" class="locationPick" onclick="trackMe();" ></div>
+</div>
 <div id="iQ"><table><tr id="iQlist"></tr></table>
 </div>
 <div class="fileList" id="fileList"></div>
