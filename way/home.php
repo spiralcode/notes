@@ -103,14 +103,15 @@ window.onbeforeunload = function (e) {
         <div class="topribbon"><h2>notes <sup></sup></h2></div>
         <div class="notificationSpace" id="notificationSpace"></div>
         <div class="login" align="center" ><h5 style="opacity: .5; text-align: right;">write note</h5>
-    <form><div contenteditable="true" data-text="Type in Notes here..."  class="typeSpace" id="typeSpace" row="50" cols="100"></div>        
-    </form>
+ <div contenteditable="true" data-text="Type here all what you can..."  class="typeSpace" id="typeSpace" row="50" cols="100"></div>        
+
     <div class="buttonGroup">
              <input multiple="multiple" id="fileSelect" name="fileSelect[]" style="display: none;" type="file"  accept="image/*;capture=camera" />   
         <select style="display:none;" id="folderSpec"><option value="0">Attachment</option></select>
-       <div id="saveButton" class="saveNote" onclick="transferNote();" ></div>
-        <div onclick="gen.id('fileSelect').click();" class="selectFiles"  id="cameraButton" type="button" value="Files"></div>
+                <div onclick="gen.id('fileSelect').click();" class="selectFiles"  id="cameraButton" type="button" value="Files"></div>
         <div id="fetchingLocation" class="locationPick" onclick="trackMe();" ></div>
+               <div id="saveButton" class="saveNote" onclick="transferNote();" ></div>
+
 </div>
 <div id="iQ"><table><tr id="iQlist"></tr></table>
 </div>
@@ -210,6 +211,7 @@ while(fileBuffer[index]!=null)
    {
      if(fileBuffer.length>0||gen.id('typeSpace').innerHTML.length>0)
      {
+        showNotification("Saving...",15000);
         gen.id('saveButton').setAttribute('disabled','disabled');
                 gen.id('saveButton').setAttribute('onclick','function(){}');
 
@@ -264,7 +266,7 @@ else {
      }
      else
      {
-          showNotification("Note seems to be empty, type in something...");
+          showNotification("Nothing is actually there to save !",10000);
      }
    }
       function startUpload()

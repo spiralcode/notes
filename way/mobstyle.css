@@ -359,7 +359,7 @@ background-size: contain;
 
 .buttonGroup div
 {
-    float: left;
+    float: right;
     width: 3em;
     height: 3em;
     font-size: .8em;
