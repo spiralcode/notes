@@ -78,6 +78,21 @@ function showPosition(position)
    var staticImage='https://maps.googleapis.com/maps/api/staticmap?center='+detected_loc+'&zoom=16&size=200x200&maptype=roadmap&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284';
    document.getElementById('locImage').src=staticImage;
 }
+window.onbeforeunload = function (e) {
+    if(gen.id('typeSpace').innerHTML!='')
+    {
+  var message = "There's an un-saved note here !",
+  e = e || window.event;
+  // For IE and Firefox
+  if (e) {
+    e.returnValue = message;
+  }
+
+  // For Safari
+  return message;
+    }
+};
+
  
             </script>
         <!--[if lt IE 8]>
