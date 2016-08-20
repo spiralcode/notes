@@ -4,13 +4,13 @@ content: attr(data-text);
 
 .allSlot
 {
-    height: 10vh;
     background: seagreen;
 }
 .allSlot .optionSlot
 {
-height: 80%;
 padding: 1%;
+    height: 3em;
+
 }
 .allSlot .optionSlot .option
 {
