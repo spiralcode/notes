@@ -4,6 +4,13 @@
 <link rel="stylesheet" href="glide.css"/>
   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
 <script src = "engine.js"></script>
+<script src = "../ajax_1_10_2.js"></script>
+  <script src="../jss/moment.js"></script>
+<script>
+<?php
+echo "var global_userid = 1;";
+?>
+</script>
 </head>
 <body  ng-app="BlankApp" ng-cloak>
 <div class="allSlot">
@@ -12,7 +19,10 @@
 </div>
 </div>
 </div>
-<div class="day"><md-datepicker ng-model="myDate" md-placeholder="Enter date"></md-datepicker></div>
+<div class="day"><md-datepicker id="myDate" ng-model="myDate" md-placeholder="Enter date"></md-datepicker>
+
+<span><md-icon md-svg-icon="alarm"style="color: #0F0;"aria-label="Alarm Icon"></md-icon><input onchange="console.log(this.value);" class="timePick" type="time"/></span>
+</div>
 <div class="ring" id="ring">
 
 <div class="item">
@@ -50,7 +60,6 @@ There are some things in the universe that are constant like love.
      * You must include the dependency on 'ngMaterial' 
      */
     angular.module('BlankApp', ['ngMaterial']);
-    HTMLJSCSS
 angular.module('datepickerBasicUsage',
     ['ngMaterial', 'ngMessages']).controller('AppCtrl', function($scope) {
   $scope.myDate = new Date();
@@ -67,6 +76,13 @@ angular.module('datepickerBasicUsage',
     return day === 0 || day === 6;
   };
 });
+angular.module('appSvgIconSets', ['ngMaterial'])
+  .controller('DemoCtrl', function($scope) {})
+  .config(['$mdIconProvider', function($mdIconProvider) {
+    $mdIconProvider
+      .iconSet('clock', '../images/time.svg', 24)
+      .defaultIconSet('img/icons/sets/core-icons.svg', 24);
+  }]);
   </script>
 </body>
 </html>

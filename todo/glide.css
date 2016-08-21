@@ -76,8 +76,7 @@ margin-left: 2%;
 .ring .item .contentBox
 {
     position: relative;
-    background: rgba(183, 186, 202, 0.60);;
-    font-size: .9em;
+background: rgb(234, 234, 234);    font-size: 1em;
     top: 1%;
     font-family: Arial, Helvetica, sans-serif;
     text-align: justify;
@@ -92,4 +91,10 @@ margin-left: 2%;
     background: rgba(46, 139, 87, 0.47);
     text-align: center;
     color: white;
+}
+.day .timePick
+{
+background: none;
+    color: #465a50;
+    border: 1px solid;
 }
