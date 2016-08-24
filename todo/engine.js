@@ -100,6 +100,7 @@ document.getElementById('ring').insertBefore(item,document.getElementById('ring'
         console.log('button-'+data);
 document.getElementById('button-'+data).setAttribute('data-kind','edit');
 document.getElementById('button-'+data).innerHTML="Edit";
+document.getElementById(data).setAttribute('contentEditable','false');
 document.getElementById('checkbox-'+data).removeAttribute('disabled');
 
 
