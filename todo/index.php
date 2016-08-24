@@ -55,7 +55,8 @@ There are some things in the universe that are constant like love.
   <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
   
   <!-- Your application bootstrap  -->
-  <script type="text/javascript">    
+  <script type="text/javascript">   
+  core.filler(); 
     /**
      * You must include the dependency on 'ngMaterial' 
      */

@@ -1,8 +1,7 @@
 <?php
 include '../connect.php';
 $id = $_POST['itemId'];
-$content = $_POST['content'];
-echo $content;
+$content = mysqli_escape_string($conn,$_POST['content']);
 $query = mysqli_query($conn,"select * from todo where id = $id")or die(mysqli_error($conn));
 if(mysqli_num_rows($query)==0)
 {
@@ -13,4 +12,5 @@ else
 {
 $query = mysqli_query($conn,"update todo set content = '$content' where id = $id")or die(mysqli_error($conn));
 }
+echo $id;
 ?>
