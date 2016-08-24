@@ -1,3 +1,6 @@
+<?php
+include '../session_check.php';
+?>
 <!doctype html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,7 +11,7 @@
   <script src="../jss/moment.js"></script>
 <script>
 <?php
-echo "var global_userid = 1;";
+echo "var global_userid = $userid;";
 ?>
 </script>
 </head>
@@ -24,7 +27,7 @@ echo "var global_userid = 1;";
 <span><md-icon md-svg-icon="alarm"style="color: #0F0;"aria-label="Alarm Icon"></md-icon><input onchange="console.log(this.value);" class="timePick" type="time"/></span>
 </div>
 <div class="ring" id="ring">
-
+<!--
 <div class="item">
 <div class="tick"><input type="checkbox"/>
 <span class="saveEdit">
@@ -40,7 +43,7 @@ There are some things in the universe that are constant like love.
 There are some things in the universe that are constant like love.
 
 </div>
-</div>
+</div>-->
 </div>
 
 
