@@ -18,6 +18,7 @@ contentBox.setAttribute('class','contentBox');
 day.setAttribute('class','day');
 checkBox.setAttribute('type','checkbox');
 contentBox.setAttribute('contentEditable','true');
+contentBox.setAttribute('tabindex','-1');
 contentBox.innerHTML="";
 contentBox.setAttribute('data-text','Type it here...');
 contentBox.setAttribute('id',timeToken+''+userId);
@@ -96,8 +97,8 @@ item.appendChild(tick);
 item.appendChild(contentBox);
 document.getElementById('ring').insertBefore(item,document.getElementById('ring').childNodes[0]);
 },remoteTransferItem(ob){
+    document.getElementById('button-'+ob.id).innerHTML="Saving...";
     $.post('reciever.php',{itemId:ob.id,content:ob.innerHTML},function(data){
-        console.log('button-'+data);
 document.getElementById('button-'+data).setAttribute('data-kind','edit');
 document.getElementById('button-'+data).innerHTML="Edit";
 document.getElementById(data).setAttribute('contentEditable','false');

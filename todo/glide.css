@@ -25,6 +25,24 @@ display: table-cell;
 font-size: 1em;
 float: left;
 margin-left: 2%;
+    box-shadow: 0px 0px 5px black;
+}
+.allSlot .optionSlot .option:hover
+{
+
+    -webkit-animation: mymove 1s infinite;  /* Chrome, Safari, Opera */
+    -webkit-animation-timing-function: linear;  /* Chrome, Safari, Opera */
+    animation: mymove 1s ;
+    animation-timing-function: cubic-bezier();
+}
+@-webkit-keyframes mymove {
+    from {    box-shadow: 0px 0px 5px black;}
+    to {    box-shadow: 0px 0px 0px black;}
+}
+
+@keyframes mymove {
+    from {    box-shadow: 0px 0px 5px black;}
+    to {    box-shadow: 0px 0px 0px black;}
 }
 .allSlot .optionSlot .option[type="addItem"]
 {
@@ -46,10 +64,27 @@ margin-left: 2%;
 }
 .ring .item
 {
-    min-height: 5em;
     background:wheat;
-    margin-top: 1em;
     background: rgba(183, 186, 202, 0.18);
+    -webkit-animation: fadin .5s infinite;  /* Chrome, Safari, Opera */
+    -webkit-animation-timing-function: linear;  /* Chrome, Safari, Opera */
+    animation: fadein .5s ;
+    animation-timing-function: linear;
+    width: 90vw;
+    margin: 1em;
+        box-shadow: 1.5px 1.5px 3px black;
+
+}
+@-webkit-keyframes fadein {
+    from {    opacity: 0;
+
+    }
+    to {  opacity: 1;}
+}
+@keyframes fadin
+{
+    from {    opacity: 0;}
+    to {  opacity: 1;}
 }
 
 
@@ -59,13 +94,19 @@ margin-left: 2%;
 }
 .ring .item .tick .saveEdit
 {
-    position: absolute;
     right: 1%;
     float: right;
+
  }
  .ring .item .tick button
  {
-     height: 2em;
+    height: 2em;
+    background: none;
+    border: 1px solid rgba(183, 186, 202, 0.18);
+    background: #eaeaea;
+    border-radius: 5px;
+    box-shadow: 0px 0px 2px darkslategrey;
+    color: grey;
  }
 
 .ring .item .tick input
@@ -81,7 +122,7 @@ background: rgb(234, 234, 234);    font-size: 1em;
     font-family: Arial, Helvetica, sans-serif;
     text-align: justify;
     padding: 1em;
-    min-height: 06em;    
+    min-height: 01em;    
 }
 .day
 {
