@@ -360,8 +360,9 @@ var scrollIndex=0;
 function scrollMonitor()
 {
 scrollIndex+=10;
+var till = scrollIndex+10;
 ACTIVITY="DMND";
-showResult('../gcow.php?from='+scrollIndex+'&till=10&q='+$id('keyinput').value,true);
+showResult('../gcow.php?from='+scrollIndex+'&till='+till+'&q='+$id('keyinput').value,true);
 }
             </script>
     </body>
