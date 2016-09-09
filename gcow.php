@@ -132,7 +132,6 @@ while($data=mysqli_fetch_array($query))
 	$geo=$data['setglocation'];
 	$ftime=$data['ftime'];
 	$ilist=$loadimage;
-
 	$noteitem[$index++]=array("status"=>"$status","noteid"=>"$nid","content"=>"$content","time"=>"$time","geo"=>"$geo","ilist"=>array($imgs),"ftime"=>"$ftime","pos"=>$clue);
 	$imindex=0;
 	$imgs='';
@@ -143,7 +142,26 @@ $json=json_encode($noteitem);
 else 
 {
 	$noteitem[0]=array("status"=>"0","query"=>$q);
-}	
+}
+if(isset($_GET['from'],$_GET['till']))
+{
+	static $tempList = array();
+	$start = $_GET['from'];
+	for(;($start<$_GET['till']&&$start<$index);$start++){
+	array_push($tempList,$noteitem[$start]);
+	}
+	if(($tempList)==NULL)
+	{
+//	$tempList=array("status"=>"0","query"=>$q);
+	echo '[{"status":"0","query":"'.$q.'"}]';
+	}
+	else
+	echo json_encode($tempList);
+}
+else
+{
 $json=json_encode($noteitem);
 echo($json);
+}
+
 ?>
