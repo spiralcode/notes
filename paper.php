@@ -21,8 +21,8 @@ include 'session_check.php';
         <script src="jss/moment.js"></script>
         <script src="jss/image.js"></script>
         <script src="ajax_1_10_2.js"></script>
-  <script src="lib/jquery-1.10.2.js"></script>
-<script src="lib/jquery-ui.js"></script>
+        <script src="lib/jquery-1.10.2.js"></script>
+        <script src="lib/jquery-ui.js"></script>
 <!--Location Codes-->
 <link type="text/css" rel="stylesheet" href="style/locationpicker.css" />
   <script src="lib/jquery.locationpicker.js"></script>

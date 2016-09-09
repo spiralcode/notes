@@ -13,6 +13,7 @@ include 'session_check.php';
         <link rel="stylesheet" href="css/skeleton.css">
          <link rel="stylesheet" href="mobstyle.css">
         <link rel="stylesheet" href="../raid.css"/>
+        <link rel="stylesheet" href="deviceGen.css"/>
  <link rel="stylesheet" href="../style/jquery-ui.css">
      <link rel="stylesheet" href="../raid.css"/>
 <link rel="stylesheet" href="../style/jquery-ui.css">
@@ -37,18 +38,27 @@ include 'session_check.php';
 //Notes Mobile
 //GLOBAL ACTIVE DATE VARIABLE
 var DATE = "0000-00-00 00:00:00";
+//CURRENT NOTE VIEW MODES (KEYWORD SEARCH / DATE SEARCH  )
+var ACTIVITY=""; 
 var ir=0;
     function $id(id)
             {
                 return document.getElementById(id);
             }
-function showResult(url)
+function showResult(url,app)
 {
-$id('frameplace').innerHTML=' ';	
+ACTIVITY = "KS"; //keyword Search
+if(!app){
+$id('frameplace').innerHTML=' ';
 $id('spinner').style.display='block';
+
+}
+else
+$id('loaderLinear').style.display="block";
 	var init=0;
 	notey.get(url,function(data)
 	{
+       $id('loaderLinear').style.display="none";
         $id('spinner').style.display='none';
         var newob=document.createElement('div');
 		$id('frameplace').appendChild(newob).setAttribute("id","error");
@@ -56,7 +66,8 @@ $id('spinner').style.display='block';
 		var json=JSON.parse(data.responseText);
 		if(json[0].status==0)
 		{
-            var ele="No Notes this day!";
+            var ele="No Notes";
+            if(ACTIVITY!="DMND")
             $id('error').innerHTML=ele;
 		}
 		else
@@ -179,25 +190,26 @@ if(beg!=0)
     });
 }
             function datesearch(ob,init)
-{   
+{
+        ACTIVITY = "DS" //date Search
 	if(init){
         //console.log(ob);
        DATE=moment(ob,'dd-m-yyyy').format('YYYY-MM-DD');
-	showResult('../search.php?date='+ob);
+	showResult('../search.php?date='+ob,false);
 }
 	else{
        DATE=moment(ob.value,'dd-m-yyyy').format('YYYY-MM-DD');
-	showResult('../search.php?date='+ob.value);
+	showResult('../search.php?date='+ob.value,false);
 }	
 }
             </script>
         <div class="topribbon"><h5 style="margin:.2em">notes <sup></sup></h5></div>
         <div class="toolsBar" ><input type="text" id="keyinput" placeholder="Search for...">
-      <input style="height:auto; margin: 0%;" value="Search" type="button" class="button-primary"  onclick="showResult('../gcow.php?q='+$id('keyinput').value);"/>
+      <input style="height:auto; margin: 0%;" value="Search" type="button" class="button-primary"  onclick="showResult('../gcow.php?from=0&till=9&q='+$id('keyinput').value,false);"/>
 <!--<input onchange="datesearch(this);" id="datepicker" type="text" placeholder="01/01/2015">-->
         </div>
 <script>
-        $id('keyinput').addEventListener('keyup',function(e){if(e.keyCode==13){showResult('../gcow.php?q='+$id('keyinput').value);}});
+        $id('keyinput').addEventListener('keyup',function(e){if(e.keyCode==13){showResult('../gcow.php?from=0&till=9&q='+$id('keyinput').value,false);}});
     </script>
        <div class="navigateDotsLeft">
             <div onclick="jmpPrevDateNavigate()";  class="navigateDotsJumpLeft">&lt;</div>
@@ -212,10 +224,14 @@ if(beg!=0)
 
         <div id="frameplace" class="login" align="center" ><h5 style="opacity: .5; text-align: right;"></h5>
 </div>
+<script>
+
+</script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
+        <div id="loaderLinear" class="loaderLinear"></div>
         <div class="footer"><p><a href="../paper.php">Desktop</a> | <a href="home.php">Write Note</a> | <a href="logout.php">Logout</a></p></div>
  <script>
           /*  $(function() {
@@ -295,7 +311,7 @@ var currentDate = thing.format('DD-M-YYYY');
                     //y movement is greater
                     if(yy>y)
                         {
-                           // console.log("Down Swipe");
+                           // console.logshowResult("Down Swipe");
                                              //   window.scrollBy(0, -abs_y);
                             return 2;
                         }
@@ -329,9 +345,24 @@ var currentDate = thing.format('DD-M-YYYY');
     }
     function jmpPrevDateNavigate()
     {
-         	showResult('../search.php?jmp&crrnt='+DATE+'&inc=0');
+         	showResult('../search.php?jmp&crrnt='+DATE+'&inc=0',false);
 
     }
+document.getElementById('frameplace').addEventListener('scroll',function(e){
+if( document.getElementById('frameplace').scrollTop === (document.getElementById('frameplace').scrollHeight - document.getElementById('frameplace').offsetHeight))
+{
+if(ACTIVITY=="KS")
+ scrollMonitor();
+}
+},true);
+
+var scrollIndex=0;
+function scrollMonitor()
+{
+scrollIndex+=10;
+ACTIVITY="DMND";
+showResult('../gcow.php?from='+scrollIndex+'&till=10&q='+$id('keyinput').value,true);
+}
             </script>
     </body>
 </html>

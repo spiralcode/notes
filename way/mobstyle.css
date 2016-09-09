@@ -62,6 +62,8 @@ background: rgba(143, 188, 143, 0.38);    text-align: center;
     margin-left: 2.5%;
     box-shadow: 0px 0px 0px slategray;
     background: none;
+    height: 80vh;
+    overflow: scroll;
 
 }
 #frameplace .note

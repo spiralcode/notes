@@ -500,6 +500,7 @@ $id('searchoptions').style.left=(window.innerWidth/2)-(searchoptions_dim.width/2
 var loading = $id('loading').getBoundingClientRect();
 $id('loading').style.left=(window.innerWidth/2)-(loading.width/2)+'px';
 $id('loading').style.bottom=(window.innerHeight/2)-(loading.height/2)+'px';
+
 </script>
 </body>
 </html>
