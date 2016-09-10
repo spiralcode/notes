@@ -47,14 +47,15 @@ var ir=0;
             }
 function showResult(url,app)
 {
-ACTIVITY = "KS"; //keyword Search
-if(!app){
+    if(!app)
+    {
+    ACTIVITY="DS";}
+    else{
+    ACTIVITY="KS";
+    }
+    console.log(ACTIVITY);
 $id('frameplace').innerHTML=' ';
 $id('spinner').style.display='block';
-
-}
-else
-$id('loaderLinear').style.display="block";
 	var init=0;
 	notey.get(url,function(data)
 	{
@@ -67,7 +68,6 @@ $id('loaderLinear').style.display="block";
 		if(json[0].status==0)
 		{
             var ele="No Notes";
-            if(ACTIVITY!="DMND")
             $id('error').innerHTML=ele;
 		}
 		else
@@ -191,9 +191,7 @@ if(beg!=0)
 }
             function datesearch(ob,init)
 {
-        ACTIVITY = "DS" //date Search
 	if(init){
-        //console.log(ob);
        DATE=moment(ob,'dd-m-yyyy').format('YYYY-MM-DD');
 	showResult('../search.php?date='+ob,false);
 }
@@ -205,11 +203,11 @@ if(beg!=0)
             </script>
         <div class="topribbon"><h5 style="margin:.2em">notes <sup></sup></h5></div>
         <div class="toolsBar" ><input type="text" id="keyinput" placeholder="Search for...">
-      <input style="height:auto; margin: 0%;" value="Search" type="button" class="button-primary"  onclick="showResult('../gcow.php?from=0&till=9&q='+$id('keyinput').value,false);"/>
+      <input style="height:auto; margin: 0%;" value="Search" type="button" class="button-primary"  onclick="showResult('../gcow.php?from=0&till=9&q='+$id('keyinput').value,true);"/>
 <!--<input onchange="datesearch(this);" id="datepicker" type="text" placeholder="01/01/2015">-->
         </div>
 <script>
-        $id('keyinput').addEventListener('keyup',function(e){if(e.keyCode==13){showResult('../gcow.php?from=0&till=9&q='+$id('keyinput').value,false);}});
+        $id('keyinput').addEventListener('keyup',function(e){if(e.keyCode==13){showResult('../gcow.php?from=0&till=9&q='+$id('keyinput').value,true);}});
     </script>
        <div class="navigateDotsLeft">
             <div onclick="jmpPrevDateNavigate()";  class="navigateDotsJumpLeft">&lt;</div>
@@ -469,14 +467,23 @@ if(beg!=0)
     
     });
     }
-document.getElementById('frameplace').addEventListener('scroll',function(e){
+    window.setInterval(function()
+{
+if(ACTIVITY=="KS")
+if( document.getElementById('frameplace').scrollTop === (document.getElementById('frameplace').scrollHeight - document.getElementById('frameplace').offsetHeight))
+{
+ scrollMonitor();
+}
+    },100);
+
+/*document.getElementById('frameplace').addEventListener('scroll',function(e){
 if( document.getElementById('frameplace').scrollTop === (document.getElementById('frameplace').scrollHeight - document.getElementById('frameplace').offsetHeight))
 {
 if(ACTIVITY=="KS")
  scrollMonitor();
 }
 },true);
-
+*/
 var scrollIndex=0;
 function scrollMonitor()
 {
