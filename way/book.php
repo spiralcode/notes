@@ -472,7 +472,6 @@ if(beg!=0)
 document.getElementById('frameplace').addEventListener('scroll',function(e){
 if( document.getElementById('frameplace').scrollTop === (document.getElementById('frameplace').scrollHeight - document.getElementById('frameplace').offsetHeight))
 {
-    console.log(ACTIVITY);
 if(ACTIVITY=="KS")
  scrollMonitor();
 }

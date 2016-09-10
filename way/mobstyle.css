@@ -41,12 +41,12 @@ background: rgba(255, 255, 255, 0.82);
 
 .footer
 {
-bottom: 0px;
+bottom: 100vh;
 text-align: center;
 width: 90%;
-margin-top: 1%;
 margin-left: 5%;
 background: azure;
+height: 1vh;
 
 }
 .toolsBar
