@@ -348,9 +348,131 @@ var currentDate = thing.format('DD-M-YYYY');
          	showResult('../search.php?jmp&crrnt='+DATE+'&inc=0',false);
 
     }
+    function appendNote(url)
+{
+$id('loaderLinear').style.display="block";
+	var init=0;
+	notey.get(url,function(data)
+	{
+       $id('loaderLinear').style.display="none";
+        var newob=document.createElement('div');
+		$id('frameplace').appendChild(newob).setAttribute("id","error");
+		$id('frameplace').appendChild(newob).setAttribute("class","nonote");
+		var json=JSON.parse(data.responseText);
+		if(json[0].status==0)
+		{
+            var ele="No Notes";
+            if(ACTIVITY!="DMND")
+            $id('error').innerHTML=ele;
+		}
+		else
+		{
+             //  $id('frameplace').innerHTML='';
+                while(typeof(json[init])!='undefined')
+		{
+            if(json[init].ftime!='undefined')
+               DATE = json[init].ftime;
+                var momentObject = moment(json[init].ftime);
+				var hr = momentObject.format('hh');
+				var min = momentObject.format('mm');
+				var ap = momentObject.format('A');
+				var date= momentObject.format('DD');
+				var mnth= momentObject.format('MMMM');
+				var year= momentObject.format('YYYY');
+				var frmtime=hr+':'+min+' '+ap+' | '+date+' '+mnth+' '+year;
+               var frmtime=moment(json[init].ftime).format('dddd, Do  MMMM YYYY ,HH:mm');
+                 var searchFormat = date+'-'+mnth+'-'+year;
+				var then = momentObject.format('D/M/YYYY HH:mm:ss');				
+				var now=moment().format('D/M/YYYY HH:mm:ss');
+				var millisec=moment(now,"D/M/YYYY HH:mm:ss").diff(moment(then,"D/M/YYYY HH:mm:ss"));
+				var di = moment.duration(millisec);
+               var minutes=di.asMinutes();
+				var hoursago=(Math.floor(di.asHours()));
+				var days=Math.round(hoursago/24);
+                
+                           var     timeago="";
+                                if(minutes<15)
+                                    {
+                                        timeago="Now";
+                                    }
+                                    else if(minutes<60)
+                                        {
+                                            timeago="Some time before";
+                                        }
+                                        else if(minutes<120)
+                                            {
+                                                timeago= "1 hour before";
+                                            }
+                                            else if(minutes<(24*60))
+                                            {
+                                                timeago=Math.floor(minutes/60)+" hours before";
+                                            }
+                                            else if(minutes<(24*120))
+                                            {
+                                                timeago="A day before";
+                                            }
+                                            else if(minutes>(24*120))
+                                                {
+                                                    timeago=Math.floor(((minutes/60)/24))+" days before";
+                                                }
+				var timeAgo = document.createElement('div');
+                timeAgo.innerHTML=timeago;
+                timeAgo.setAttribute('class','daysago')
+		var ele = json[init].content;
+		var noteid=json[init].noteid;
+		var newob=document.createElement('div');
+        //note options
+        var ntO = document.createElement('div');
+        ntO.setAttribute('class','noteoptions');
+        //time slot
+        var tSl = document.createElement('div');
+         tSl.setAttribute('class','timeslot');
+        var tSs = document.createElement('span');
+        tSs.setAttribute('onclick','datesearch("'+searchFormat+'","init")');
+        tSs.innerHTML=frmtime;
+        tSl.appendChild(tSs);
+        //codeSlot
+        var cS = document.createElement('div');
+        cS.setAttribute('class','contentslot');
+        cS.innerHTML=ele;
+//FileSpace
+var fS=document.createElement('div');
+fS.setAttribute('class','imgspace');
+var beg = 0;
+while(json[init].ilist[0][beg]!=null)
+{
+var file = document.createElement('div');
+var img = document.createElement('img');
+img.src = "../image.php?thumb&size=50x50&id="+json[init].ilist[0][beg];
+img.alt="file";
+var cast = "window.open('../redirectToFile.php?id="+json[init].ilist[0][beg]+"','_blank')";
+img.setAttribute('onclick',cast);
+file.appendChild(img);
+fS.appendChild(file);
+        newob.appendChild(fS);
+      beg++;
+    /**/
+}
+            newob.appendChild(ntO);
+            newob.appendChild(tSl);
+           newob.appendChild(cS);
+        newob.appendChild(timeAgo);      
+if(beg!=0)
+{ 
+        newob.appendChild(fS);
+}     
+	newob.setAttribute('class','note');
+    $id('frameplace').appendChild(newob);
+     init++;
+        }
+    }
+    
+    });
+    }
 document.getElementById('frameplace').addEventListener('scroll',function(e){
 if( document.getElementById('frameplace').scrollTop === (document.getElementById('frameplace').scrollHeight - document.getElementById('frameplace').offsetHeight))
 {
+    console.log(ACTIVITY);
 if(ACTIVITY=="KS")
  scrollMonitor();
 }
@@ -361,8 +483,7 @@ function scrollMonitor()
 {
 scrollIndex+=10;
 var till = scrollIndex+10;
-ACTIVITY="DMND";
-showResult('../gcow.php?from='+scrollIndex+'&till='+till+'&q='+$id('keyinput').value,true);
+appendNote('../gcow.php?from='+scrollIndex+'&till='+till+'&q='+$id('keyinput').value,true);
 }
             </script>
     </body>
