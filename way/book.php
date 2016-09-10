@@ -9,6 +9,7 @@ include 'session_check.php';
         <title>notes Go : Read Notes</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/skeleton.css">
          <link rel="stylesheet" href="mobstyle.css">
@@ -201,11 +202,14 @@ if(beg!=0)
 }	
 }
             </script>
-        <div class="topribbon"><h5 style="margin:.2em">notes <sup></sup></h5></div>
-        <div class="toolsBar" ><input type="text" id="keyinput" placeholder="Search for...">
-      <input style="height:auto; margin: 0%;" value="Search" type="button" class="button-primary"  onclick="showResult('../gcow.php?from=0&till=9&q='+$id('keyinput').value,true);"/>
+        <div class="topribbon"><span>notes</span> <span onclick="toggleMenu(this);" data-status="false" class="menuIcon"></span></div>
+        <div class="toolsBar" ><div><span><input type="text" id="keyinput" placeholder="Search for..."></span>      <span class="searchButton"  onclick="showResult('../gcow.php?from=0&till=9&q='+$id('keyinput').value,true);"></span></div></div>
+
+      <!--<input style="height:auto; margin: 0%;" value="Search" type="button" class="button-primary"  onclick="showResult('../gcow.php?from=0&till=9&q='+$id('keyinput').value,true);"/>
 <!--<input onchange="datesearch(this);" id="datepicker" type="text" placeholder="01/01/2015">-->
         </div>
+         <div id="menuSpace" class="menuSpace"><div data-task="navigate" data-link="../paper.php" onclick="doThings(this)">Desktop</div><div data-link="logout.php" data-task="navigate" onclick="doThings(this)">Logout</div></div>
+
 <script>
         $id('keyinput').addEventListener('keyup',function(e){if(e.keyCode==13){showResult('../gcow.php?from=0&till=9&q='+$id('keyinput').value,true);}});
     </script>
@@ -217,8 +221,9 @@ if(beg!=0)
              <div onclick="jmpNextDateNavigate()" class="navigateDotsJumpRight">&gt;</div>
                 <div title="Photos"  onclick="window.location='../imgSlide.php'" class="navigateDotsNextRightPhotos" id="navigateDotsNextRight"></div>    
                 </div>
+
     <div class="spinner" id="spinner"></div>
- 
+
 
         <div id="frameplace" class="login" align="center" ><h5 style="opacity: .5; text-align: right;"></h5>
 </div>
@@ -230,7 +235,7 @@ if(beg!=0)
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
         <div id="loaderLinear" class="loaderLinear"></div>
-        <div class="footer"><p><a href="../paper.php">Desktop</a> | <a href="home.php">Write Note</a> | <a href="logout.php">Logout</a></p></div>
+        <!--<div class="footer"><p><a href="../paper.php">Desktop</a> | <a href="home.php">Write Note</a> | <a href="logout.php">Logout</a></p></div>-->
  <script>
           /*  $(function() {
     $( "#datepicker" ).datepicker(
@@ -490,6 +495,26 @@ function scrollMonitor()
 scrollIndex+=10;
 var till = scrollIndex+10;
 appendNote('../gcow.php?from='+scrollIndex+'&till='+till+'&q='+$id('keyinput').value,true);
+}
+function toggleMenu(ob)
+{
+if(ob.dataset.status=='false')
+{
+ob.dataset.status="true";
+document.getElementById('menuSpace').style.display="block";
+}
+else
+{
+document.getElementById('menuSpace').style.display="none";
+ob.dataset.status="false";
+}
+}
+function doThings(ob)
+{
+    if(ob.dataset.task=="navigate")
+    {
+        window.location=ob.dataset.link;
+    }
 }
             </script>
     </body>
