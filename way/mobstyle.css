@@ -72,6 +72,7 @@ display: block;
     background: none;
     height: 90vh;
     overflow: scroll;
+    position: fixed;
 
 }
 #frameplace .note

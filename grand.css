@@ -1,0 +1,85 @@
+body
+{
+        font-family: Arial, Helvetica, sans-serif;
+
+}
+.title{
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 3em;
+    opacity: .5;
+    text-align: center;
+
+}
+.midContainer
+{
+    position: absolute;
+    text-align: center;
+    margin: 0;
+    width: 30em;
+    max-width: 100em;
+}
+.login
+{
+vertical-align: middle;
+background: rgba(221, 223, 226, 0.41);
+/* top: 45vh;*/
+/* left: 50vw;*/
+     font-family:"lucida grande", tahoma, verdana, arial, sans-serif;
+
+}
+.login input
+{
+    margin: .5em;
+font-size: 1.5em;
+border-radius: 1px;
+border: none;
+background: lightcyan;
+color: slateblue;
+
+}
+.login .head
+{
+    font-size: 1em;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.login #loginButton
+{
+padding: 1em;
+background: linear-gradient(cadetblue,cornflowerblue);
+margin: .5em;
+text-align: center;
+line-height: max-content;
+cursor: pointer;
+}
+.login #loginButton:active
+{
+box-shadow: 0px 0px 10px crimson;
+}
+.login .cAc
+{
+    text-align: center;
+    padding: 1em;
+}
+.login .cAc:hover
+{
+box-shadow: 0px 0px 5px slateblue;
+cursor: pointer;
+}
+.login .createAc
+{
+    display: none;
+}
+.login .inputError
+{
+    text-align: center;
+    font-size: .8em;
+    color: crimson;
+}
+#notificationPlace
+{
+color: cornflowerblue;
+font-size: .8em;
+text-align: justify;
+
+}
