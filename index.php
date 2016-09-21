@@ -1,5 +1,8 @@
 <?php
+include 'connect.php';
 require_once 'Mobile_Detect.php';
+$rem_ip = $_SERVER['REMOTE_ADDR'];
+$q = mysqli_query($link,"insert into root_log values (NOW(),'$rem_ip')");
 $detect = new Mobile_Detect;
 if ( $detect->isMobile() &&isset($_GET['web'])!=true) {
  header('location: way');
@@ -9,247 +12,184 @@ if(isset($_COOKIE['e'])){
 header('location: login.php?cook');}
     ?>
 <!doctype html>
-<html >
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Notes </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="grand.css"/>
+        <script src="ajax_1_10_2.js"></script>
+        <script src="lib/jquery-ui.js"></script>
+          <script src="notey.js"></script>
+<link rel="stylesheet" href="style/jquery-ui.css">
+<title>Notes</title>
 <meta name = "description" content="Write notes, attach any files, locations and keep it for free and forever."/>
 <meta name = "description" content="Write notes, attach any files, locations and keep it for free and forever."/>
 <meta id = "ogType" property="og:type"          content="Web Application" />
 	<meta id = "ogTitle" property="og:title"         content="Notes" />
 	<meta id = "ogDescription" property="og:description"   content="Create Notes, attach files and access it anywhere." />
 <link id="favicon" rel="shortcut icon" href="favicon.png" type="image/png" />
-
-  <link rel="stylesheet" href="style.css">
-      <script src="notey.js"></script>
-        <link rel="stylesheet" href="raid.css">
-<link rel="stylesheet" href="raid.css"/>
-
-<style>
-body
-{
-background:#fff;
-}
-.aboutspace
-{
-position:absolute;
-width:90%;
-margin-left:5%;
-top:20%;
-color:#508844;
-font-family:"Segoe UI Light",arial,serif;
-font-size:60px;
-text-align:center;
-}
-.attract
-{
-position:absolute;
-width:90%;
-margin-left:5%;
-top:50%;
-color:#B6B02F;
-font-family:"Segoe UI Light",arial,serif;
-font-size:20px;
-text-align:center;
-cursor:pointer;
-}
-.virtual
-{
-color:#2FB660;
-font-family:"Segoe UI Light",arial,serif;
-text-align:center;
-}
-.spinner {
-position:absolute;
-z-index:101;
-  width: 40px;
-  height: 40px;
-  margin: 100px auto;
-margin-left:5%;
-top:20%;
-  background-color: #2F51B6;
-
-  border-radius: 100%;  
-  -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
-  animation: sk-scaleout 1.0s infinite ease-in-out;
-}
-
-@-webkit-keyframes sk-scaleout {
-  0% { -webkit-transform: scale(0) }
-  100% {
-    -webkit-transform: scale(1.0);
-    opacity: 0;
-  }
-}
-
-@keyframes sk-scaleout {
-  0% { 
-    -webkit-transform: scale(0);
-    transform: scale(0);
-  } 100% {
-    -webkit-transform: scale(1.0);
-    transform: scale(1.0);
-    opacity: 0;
-  }
-}
-#smartslide
-{
-position:absolute;
-width:700px;
-height:250px;
-border: 1px solid #A0A59C;
-bottom:10px;
-}
-#smartslide .loginarea
-{
-width:100%;
-}
-input
-{
-border:none;
-border-bottom:1px solid #000;
-font-size:20px;
-}
-button
-{
-border:none;
-
-}
-button:hover
-{
-cursor:pointer;
-}
-#errorshow
-{
-font-family:arial,serif;
-color:red;
-font-size:12px;
-}
-.about
-{
-    color: #4B4865;
-    font-size: 13px;
-    cursor: pointer;
-}
-</style>
-<script src="ajax_1_10_2.js"></script>
-<script>
-function $id(ob)
-{
-	return document.getElementById(ob);
-}
-function datagateway(type)
-{
-	var email=$id('email').value;
-	var pass=$id('password').value;
-	var semail=$id('semail').value;
-	var spass=$id('spassword').value;
-	var sname=$id('sname').value;
-                  var logged = $id('loggedin').checked;
-	if(type.dataset.kind=='login')
-	{
-            if(logged===true){var cookie='1';}else{var cookie = '0'};
-            $id('spinner').style.display="block";
-            $id('loginbutton').innerHTML="Logging in...";
-		notey.post('login.php',{
-			email: email ,
-			pass: pass ,
-                        cook: cookie
-			},function(data){
-         var dC = JSON.parse(data.responseText);
-				if(dC.status==1)
-				{
-          $id('attract').innerHTML="Hi, <b>"+dC.name+"</b> we're loading your account...";
-					window.location.href='paper.php';
-				}
-				else
-				{
-				$id('errorshow').innerHTML='E-mail or Password doesn\'t seems to be correct, try again or make an account.';	
-                                            $id('loginbutton').innerHTML="Login";
-                                            $id('spinner').style.display="none";
-
-				}});
-		}
-	if(type.dataset.kind=='Create an Account'&&semail!='')
-	{
-		type.disabled="disabled";
-		notey.post('create_acc.php',{
-			email: semail ,
-			password: spass ,
-			name: sname
-			},function(data){
-				if(data.responseText==1)
-				{
-notey.notify('welcome.php',{title:'Welcome !',iframe:false});				
-$id('email').value=semail;
-				$id("password").value=spass;	
-				}
-				else
-				{
-				type.removeAttribute("disabled");
-				}
-				
-				});}}
-</script>
 </head>
-<body>
+<body onresize="align();">
 <script>
-            </script>
-<div id="spinner" class="spinner"></div>
-<div class="aboutspace">
-Notes<sup>v3</sup>
-</div>
-<div id="attract" class="attract" onclick="notey.notify('declare.php',{title:'Welcome !',iframe:false});"}>Weird !, What made you here?</div>
-<div id="smartslide">
-<table border="0" width=100% height="100%">
-<tr><td align="center" class="virtual">Login</td><td class="virtual" align="center">Sign Up</td></tr>
-<tr><td align="center" colspan="2"><span id="errorshow">&nbsp;<?php if(isset($_GET['logreq'])){echo "The service you requested requires you to login.";} ?></span></td></tr>
-<tr><td align="center">
-<div id="loginarea"class="loginarea"><table><tr><td>
-<input type="text" id="email" placeholder="E-mail"/></td></tr>
-<tr><td><input type="password" id="password" placeholder="Password"/></td></tr><form name="dummy">
-<tr><td align="center"><input type="checkbox" value="yes" id="loggedin" style="color:#494949; font-size: 13px"/><label onclick="$id('loggedin').click();" for =" loggedin"  style="color:#494949; font-size:14px;" >Remember me</label></td></form></tr><tr><td></td></tr>
-<tr><td align="center">
-<button data-kind="login" onclick="datagateway(this);" id="loginbutton">Login</button></td></tr></table></div>
-</td><td align="center"><div class="loginarea"><table>
-<tr><td><input type="text" id="sname" placeholder="Name"/></td></tr>
-<tr><td><input type="text" id="semail" placeholder="E-mail"/></td></tr>
-<script>
-  $id('semail').addEventListener('blur',function(e){
-    notey.post('emailExistence.php',{email : $id('semail').value},function(data){
-      if(data.responseText==1)
-      {
-        $id('errorshow').innerHTML="Email seems already existing";
-         $id('semail').border="1px dotted red";
-      }
-    });
-  });
-  </script>
-<tr><td><input type="password" id="spassword" placeholder="Password"/></td></tr>
-<tr><td><input type="password" id="cpassword" placeholder="Confirm password"/></td></tr>
-<tr><td align="center"><button data-kind="Create an Account" onclick="datagateway(this)">Create an Account</button></td></tr></table></div></td></tr></table>
-</div>
+function revealCAC()
+{
+  //document.getElementById('createAc').style.display='block';
+   $('#createAcc').delay(0).fadeIn(550);
+    $('html, body').animate({scrollTop:$(document).height()}, 'medium');
+
+}
+var tryC=0;
+function loginActivity(ob)
+{
+ob.innerHTML="Logging in...";
+ob.disabled="disabled";
+if($id('cooked').checked==true)
+var cook = 1;
+else
+cook = 0;
+notey.post('login.php',{email:document.getElementById('loginEmail').value,pass:document.getElementById('loginPassword').value,cook:cook},function(data){
+  if(data.response!=0)
+  {
+    $id('login').setAttribute('disabled','disabled');
+   window.location="paper.php";
+  }
+  else
+  {
+    tryC++;
+    if(tryC<3){
+document.getElementById('notificationPlace').innerHTML="Password / Email is wrong, try again or <u onclick=\"revealCAC()\">create an account</u> if you lack one.";
+    }
+else{
+document.getElementById('notificationPlace').innerHTML="Still can't get it right ?, why couldn't you make a new account then ?";
+}
+ob.innerHTML="Log In";
+ob.removeAttribute('disabled');
+  }
+});
+}
+function createActivity(ob)
+{
+ob.innerHTML="validating...";
+//ob.disabled="disabled";
+//ob.setAttribute('onclick','');
+    var noc = 0;
+
+var x = $id('newEmail').value;
+ var atpos = x.indexOf("@");
+var dotpos = x.lastIndexOf(".");
+ if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
+ $id('newEmail_error').innerHTML="E-mail format is wrong";
+           $id('createAccountButton').innerHTML="Create";
+
+    }
+    else
+    {
+       $id('newEmail_error').innerHTML="";
+    noc++;
+  notey.post('emailExistence.php',{email:$id('newEmail').value},function(data){
+        if(data.response==1){
+          $id('newEmail_error').innerHTML="Email is already taken, provide another one.";
+          $id('createAccountButton').setAttribute('disabled','disabled');
+        }
+        else
+        {
+          noc++;
+        }
+if($id('newName').value.length<4||$id('newName').value.length>20){
+  $id('newName_error').innerHTML="Name must between 4 and 20 letters";
+}
+  else
+ {   $id('newName_error').innerHTML="";
+ noc++;
+ }
+ 
+    if($id('newPassword').value.length<6||$id('newPassword').value.length>40)
+  {    $id('newPassword_error').innerHTML="Password must be between 6 and 40 letters";
+  }
+else
+{ $id('newPassword_error').innerHTML=""; 
+noc++;
+}
+    if($id('newPassword').value!=$id('newConfirmPassword').value)
+  {  
+      $id('newConfirmPassword_error').innerHTML="Password doesn't matchup";
+  }
+else
+{
+   $id('newConfirmPassword_error').innerHTML=""; 
+         noc++;
+
+
+   }
+   console.log(noc);
+var email = $id('newEmail').value,name=$id('newName').value,pass=$id('newPassword').value;
+   if(noc==5)
+   {
+$id('createAccountButton').innerHTML="Creating...";
+notey.post('create_acc.php',{email:email,name:name,password:pass},function(data){
+if(data.response=='1')
+{
+  $id('createAccountButton').innerHTML="Creation succeeded";
+$id('loginEmail').value=$id('newEmail').value;
+$id('loginPassword').value=$id('newPassword').value;
+$id('createAcc').innerHTML='<div class="headSuccess" align = "center">Done !</div><div class="headDes">Thank you, login and make many million notes.</div>';
+}
+
+});
+   }
+   else
+   {
+ $id('createAccountButton').innerHTML="Create";
+ $id('createAccountButton').removeAttribute("disabled","disabled");
+   }
+        
+      });
+    }
+}
+function $id(id)
+{
+  return document.getElementById(id);
+}
+</script>
+
+<div class="title"><span>Notes</span></div>
+<div class="about"><span>&copy; of Nobody, Kundiland, India</span></div>
+<div class="midContainer" id = "midContainer">
+<div class="login" id="login">
+<div class="loginTitle">
+<span class="head">Login</span></div>
+<div id="notificationPlace">
+<?php
+if(isset($_GET['logreq']))
+echo "The request you made, requires you to login.";
+?>
 </div>
 
+<div><input placeholder="Email" title="Email" id="loginEmail" type="text"></div>
+<div class="inputError" id="loginEmail_error"></div>
+<div><input title="Password" placeholder="Password" id="loginPassword" type="password"></div>
+<div  class="inputError" id="loginPassword_error"></div>
+<div><input type="checkbox" id="cooked"/><label onclick="document.getElementById('cooked').click();">remember me</label></div>
+<div  onclick="loginActivity(this);" id="loginButton" tabindex=1>Login</div>
+<div class="cAc" style="text-align:center;" onclick="revealCAC()"><span class="span" title="Click to create an account">Create an account</span></div>
+<div class="createAc" id="createAcc" type="bttn" >
+<div><input placeholder="Your name" title="Your name" id="newName" type="text"></div>
+<div class="inputError" id="newName_error"></div>
+<div><input placeholder="Email" title="Email" id="newEmail" type="text"></div>
+<div class="inputError" id="newEmail_error"></div>
+<div><input title="Password" placeholder="Password" id="newPassword" type="password"></div>
+<div class="inputError" id="newPassword_error"></div>
+<div><input title="Confirm password" placeholder="Confirm password" id="newConfirmPassword" type="password"></div>
+<div class="inputError" id="newConfirmPassword_error"></div>
+<div id="createAccountButton" tabindex="1" onclick="createActivity(this);">Create</div>
+</div>
+</div>
 <script>
-var loading=document.getElementById('spinner').getBoundingClientRect();
-var smartslide=document.getElementById('smartslide').getBoundingClientRect();
-document.getElementById('spinner').style.left=(window.innerWidth/2)-(loading.width/2)+'px';
-document.getElementById('smartslide').style.left=(window.innerWidth/2)-(smartslide.width/2)+'px';
-</script>
-<p class="about" align="right"><span id="about" onclick="notey.notify('about.php',{title:'',iframe:true});">About</span></p>
-</body>
-<script>
-    document.getElementById('loginarea').addEventListener('keyup',function(e){
-        if (e.keyCode===13){
-            datagateway(document.getElementById('loginbutton'));
-        }
-    });
-    </script>
-<?php
-if(isset($_GET['deepdive']))
-{
-    echo "<script>document.getElementById('about').click();</script>";
+align();
+function align(){
+var logDim = document.getElementById('midContainer').getBoundingClientRect();
+document.getElementById('midContainer').style.left=(window.innerWidth/2)-logDim.width/2+'px';
+document.getElementById('midContainer').style.top=(window.innerHeight/2)-logDim.height/2+'px';
 }
-?>
-<!--V3.10-->
-</html>
+</script>
+</body>
