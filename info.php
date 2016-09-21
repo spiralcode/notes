@@ -29,6 +29,9 @@ while($row=mysqli_fetch_array($data3))
 	$email = $row['email'];
 	$accountOpen = $row['time'];
 	$name=$row['name'];
+	$llogin = $row['last_login'];
+	$countlogin = $row['login_count'];
+
 }
 ?>
 <!doctype html>
@@ -93,6 +96,9 @@ background: rgba(0, 0, 255, 0.09);
 </div>
 <div class="title">Account Informations</div>
 <div class="goodtable"><center><table>
+	<tr><td>Last login </td><td><?php echo $llogin; ?></td></tr>
+		<tr><td>Login Count </td><td><?php echo $countlogin; ?></td></tr>
+
 	<tr><td>Name </td><td><?php echo $name; ?></td></tr>
 	<tr><td>E-mail</td><td><?php echo $email; ?></td></tr>
 		<tr><td>Created on </td><td><?php echo $time; ?></td></tr>

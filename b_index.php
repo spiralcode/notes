@@ -43,7 +43,11 @@ function loginActivity(ob)
 {
 ob.innerHTML="Logging in...";
 ob.disabled="disabled";
-notey.post('login.php',{email:document.getElementById('loginEmail').value,pass:document.getElementById('loginPassword').value,cook:document.getElementById('cooked').value},function(data){
+if($id('cooked').checked==true)
+var cook = 1;
+else
+cook = 0;
+notey.post('login.php',{email:document.getElementById('loginEmail').value,pass:document.getElementById('loginPassword').value,cook:cook},function(data){
   if(data.response!=0)
   {
     $id('login').setAttribute('disabled','disabled');
