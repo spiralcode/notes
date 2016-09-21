@@ -8,7 +8,7 @@ body
     font-family: Arial, Helvetica, sans-serif;
     font-size: 3em;
     opacity: .5;
-    text-align: center;
+    text-align: left;
 
 }
 .midContainer
@@ -18,6 +18,10 @@ body
     margin: 0;
     width: 30em;
     max-width: 100em;
+    box-shadow: 0px 0px 4px black;
+    border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+
 }
 .login
 {
@@ -25,8 +29,12 @@ vertical-align: middle;
 background: rgba(221, 223, 226, 0.41);
 /* top: 45vh;*/
 /* left: 50vw;*/
-     font-family:"lucida grande", tahoma, verdana, arial, sans-serif;
+    font-family:"lucida grande", tahoma, verdana, arial, sans-serif;
 
+}
+.login:disabled
+{
+    opacity: .5;
 }
 .login input
 {
@@ -46,7 +54,7 @@ color: slateblue;
 .login #loginButton
 {
 padding: 1em;
-background: linear-gradient(cadetblue,cornflowerblue);
+background:radial-gradient(rgba(99, 150, 221, 0.74),cornflowerblue);
 margin: .5em;
 text-align: center;
 line-height: max-content;
@@ -56,15 +64,38 @@ cursor: pointer;
 {
 box-shadow: 0px 0px 10px crimson;
 }
+.login #createAccountButton
+{
+    padding: 1em;
+background:radial-gradient(rgba(99, 150, 221, 0.74),cornflowerblue);
+margin: .5em;
+text-align: center;
+line-height: max-content;
+cursor: pointer;
+}
+.login #createAccountButton:active
+{
+box-shadow: 0px 0px 10px crimson;
+}
 .login .cAc
 {
     text-align: center;
     padding: 1em;
 }
+.login .cAc .span
+{
+        color: green;
+        font-size: 1.1em;
+}
 .login .cAc:hover
 {
 box-shadow: 0px 0px 5px slateblue;
 cursor: pointer;
+}
+.login .loginTitle
+{
+        text-align: center;
+    padding: 1em;
 }
 .login .createAc
 {
@@ -80,6 +111,20 @@ cursor: pointer;
 {
 color: cornflowerblue;
 font-size: .8em;
-text-align: justify;
+text-align: center;
+text-indent: .5em;
+
+}
+.headSuccess
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2em;
+    color: rgb(106, 90, 205);
+    text-shadow: #709dea 0px 0px 5px;
+}
+.headDes
+{
+    font-size: 1em;
+    color: green 0px 0px 5px;
 
 }
