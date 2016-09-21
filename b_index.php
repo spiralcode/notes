@@ -1,5 +1,8 @@
 <?php
+include 'connect.php';
 require_once 'Mobile_Detect.php';
+$rem_ip = $_SERVER['REMOTE_ADDR'];
+$q = mysqli_query($link,"insert into root_log values (NOW(),'$rem_ip')");
 $detect = new Mobile_Detect;
 if ( $detect->isMobile() &&isset($_GET['web'])!=true) {
  header('location: way');
@@ -18,7 +21,13 @@ header('location: login.php?cook');}
         <script src="lib/jquery-ui.js"></script>
           <script src="notey.js"></script>
 <link rel="stylesheet" href="style/jquery-ui.css">
-
+<title>Notes</title>
+<meta name = "description" content="Write notes, attach any files, locations and keep it for free and forever."/>
+<meta name = "description" content="Write notes, attach any files, locations and keep it for free and forever."/>
+<meta id = "ogType" property="og:type"          content="Web Application" />
+	<meta id = "ogTitle" property="og:title"         content="Notes" />
+	<meta id = "ogDescription" property="og:description"   content="Create Notes, attach files and access it anywhere." />
+<link id="favicon" rel="shortcut icon" href="favicon.png" type="image/png" />
 </head>
 <body onresize="align();">
 <script>
@@ -140,12 +149,17 @@ function $id(id)
 </script>
 
 <div class="title"><span>Notes</span></div>
-
+<div class="about"><span>&copy; of Nobody, Kundiland, India</span></div>
 <div class="midContainer" id = "midContainer">
 <div class="login" id="login">
 <div class="loginTitle">
 <span class="head">Login</span></div>
-<div id="notificationPlace"></div>
+<div id="notificationPlace">
+<?php
+if(isset($_GET['logreq']))
+echo "The request you made, requires you to login.";
+?>
+</div>
 
 <div><input placeholder="Email" title="Email" id="loginEmail" type="text"></div>
 <div class="inputError" id="loginEmail_error"></div>

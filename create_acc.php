@@ -7,7 +7,7 @@ $name=post('name');
 $pass=post('password');
 if(isset($email,$name,$pass))
 {
-	mysqli_query($link, "insert into userbase values(0,'$name','$email','$pass',current_date())")or die(mysqli_error($link));
+	mysqli_query($link, "insert into userbase values(0,'$name','$email','$pass',NOW(),0,0)")or die(mysqli_error($link));
 	echo 1;
 }
 else

@@ -49,7 +49,7 @@ window.onbeforeunload = unloadPage;
        <!-- <div class="notificationContainer"></div>-->
 
         <div class="topribbon">Notes<div title="Logout & Account Informations" id="userOps"  onclick="builtMenu(this)" class="userInfo"><?php echo  $_SESSION['uname']; ?> <span style="color:rgb(180, 208, 208);
-">&#9207;</span></div></div>
+">&#x2193;</span></div></div>
         <script>
           gen.id('userOps').setAttribute( 'data-list','["Settings (BETA)","showSettings();","Informations","showInfo();", "Logout","window.location=\'logout.php\';"]');
           </script>

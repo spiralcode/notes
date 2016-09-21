@@ -17,6 +17,7 @@ else
 $email=$_POST['email'];
 $pass=mysqli_real_escape_string($conn,$_POST['pass']);
 $cookie=$_POST['cook'];
+echo $cookie;
 if($cookie==1)
 {
     $bis=1;
@@ -42,9 +43,12 @@ while($row=mysqli_fetch_array($query))
 }}
 if($exist==1)
 {
+            $userid=  $_SESSION['userid'];
+            $query3=mysqli_query($link,"update userbase set login_count=login_count+1,last_login = NOW() where id =$userid") or die(mysqli_error($link));
+
             if(isset($_COOKIE['p']))
             {   $_SESSION['cook_log']=1;
-                header('location: paper.php');
+             header('location: paper.php');
             }
             else
             {
