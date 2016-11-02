@@ -6,7 +6,6 @@ $q = mysqli_query($link,"insert into root_log values (NOW(),'$rem_ip')");
 $detect = new Mobile_Detect;
 if ( $detect->isMobile() &&isset($_GET['web'])!=true) {
  header('location: way');
- break;
 }
 if(isset($_COOKIE['e'])){
 header('location: login.php?cook');}
