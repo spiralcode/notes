@@ -13,7 +13,7 @@ else
 $host = "localhost";
 $user = "root";
 $pass = 'dbase001';
-$db = 'notes';	
+$db = 'note';	
 }
 $conn = new mysqli($host,$user,$pass);
 $link=$conn;
