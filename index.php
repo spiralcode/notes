@@ -120,7 +120,6 @@ else
 
 
    }
-   console.log(noc);
 var email = $id('newEmail').value,name=$id('newName').value,pass=$id('newPassword').value;
    if(noc==5)
    {
@@ -168,6 +167,10 @@ echo "The request you made, requires you to login.";
 <div class="inputError" id="loginEmail_error"></div>
 <div><input title="Password" placeholder="Password" id="loginPassword" type="password"></div>
 <div  class="inputError" id="loginPassword_error"></div>
+<script>
+$id('loginPassword').addEventListener('keydown',function(e){
+  if(e.keyCode==13){loginActivity(document.getElementById('loginButton'));}});
+</script>
 <div><input type="checkbox" id="cooked"/><label onclick="document.getElementById('cooked').click();">remember me</label></div>
 <div  onclick="loginActivity(this);" id="loginButton" tabindex=1>Login</div>
 <div class="cAc" style="text-align:center;" onclick="revealCAC()"><span class="span" title="Click to create an account">Create an account</span></div>
