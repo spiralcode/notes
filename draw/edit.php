@@ -45,6 +45,8 @@ $q = mysqli_query($link,"select * from draw where id= $id ")or die(mysqli_error(
   function saveDoc()
   {
     var title = document.getElementById('titleDoc').value, content = document.getElementById('edit').value;
+    if(title!=''&&content!='')
+    {
     notey.post('save.php?edit',{id:id,title:title,content:content},function(data){if(data.response=='1')
     {
       alert('Saved');
@@ -56,10 +58,16 @@ $q = mysqli_query($link,"select * from draw where id= $id ")or die(mysqli_error(
     }
     });
   }
+  else
+  {
+    alert('Can\'t save !\n\nContent or Subject is empty');
+  }
+  }
+
   </script>
 </head>
 
-<body><div style="text-align:center" id= "docOptions">
+<body><div style="text-align:left" id= "docOptions">
 <input placeholder="Title" type="text" id = "titleDoc" value="<?php echo $title; ?>"><button id="saveDoc" onclick="saveDoc()">Update</div>
   <form>
     <textarea id="edit" name="content"><?php echo $content;?></textarea>

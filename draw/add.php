@@ -35,6 +35,8 @@ include '../session_check.php';
   function saveDoc()
   {
     var title = document.getElementById('titleDoc').value, content = document.getElementById('edit').value;
+       if(title!=''&&content!='')
+    {
     notey.post('save.php',{title:title,content:content},function(data){if(data.response=='1')
     {
       alert('Saved');
@@ -46,10 +48,15 @@ include '../session_check.php';
     }
     });
   }
+  else
+  {
+        alert('Can\'t save ! \n\nContent or Subject is empty.');
+  }
+  }
   </script>
 </head>
 
-<body><div style="text-align:center" id= "docOptions">
+<body><div style="text-align:left" id= "docOptions">
 <input placeholder="Title" type="text" id = "titleDoc"><button id="saveDoc" onclick="saveDoc()">Save</div>
   <form>
     <textarea id="edit" name="content"></textarea>

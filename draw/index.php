@@ -21,8 +21,7 @@ include '../connect.php';
   </script>
   </head>
   <body>
-  <a href="somelinh">APLE</a>
-  <div id="pageOptions"><a href="add.php">Add Doc </a></div>
+  <div id="pageOptions"><a href="add.php">Add Document </a></div>
   <div id=resultSlot>
   <?php
   $q = mysqli_query($link,"select * from draw where userid= $userid ")or die(mysqli_error($link));
