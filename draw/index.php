@@ -1,5 +1,9 @@
 <?php
-include '../session_check.php';
+session_start();
+if(isset($_SESSION['userid']))
+$userid = $_SESSION['userid'];
+else
+header('location: ../index.php?logreq');
 include '../connect.php';
 
 ?>
@@ -12,11 +16,12 @@ include '../connect.php';
   <script>
   function openDoc(ob)
   {
-      window.open('page.php?id='+ob.dataset.id,'_blank');
+      window.open('page.php?id='+ob.dataset.id,'_self');
   }
   </script>
   </head>
   <body>
+  <a href="somelinh">APLE</a>
   <div id="pageOptions"><a href="add.php">Add Doc </a></div>
   <div id=resultSlot>
   <?php
@@ -29,5 +34,7 @@ include '../connect.php';
   }
 ?>
 </div>
+<style>
+</style>
   </body>
   </html>

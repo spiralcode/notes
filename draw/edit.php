@@ -111,5 +111,11 @@ $q = mysqli_query($link,"select * from draw where id= $id ")or die(mysqli_error(
           $('#edit').froalaEditor()
       });
   </script>
+  <style>
+  a[href="https://froala.com/wysiwyg-editor"]
+{
+  display:none;
+}
+  </style>
 </body>
 </html>

@@ -101,5 +101,11 @@ include '../session_check.php';
           $('#edit').froalaEditor()
       });
   </script>
+    <style>
+  a[href="https://froala.com/wysiwyg-editor"]
+{
+  display:none;
+}
+  </style>
 </body>
 </html>
