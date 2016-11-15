@@ -104,7 +104,7 @@ include '../session_check.php';
     <style>
   a[href="https://froala.com/wysiwyg-editor"]
 {
-  display:none;
+visibility: hidden;
 }
   </style>
 </body>

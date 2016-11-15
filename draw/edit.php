@@ -114,7 +114,7 @@ $q = mysqli_query($link,"select * from draw where id= $id ")or die(mysqli_error(
   <style>
   a[href="https://froala.com/wysiwyg-editor"]
 {
-  display:none;
+visibility: hidden;
 }
   </style>
 </body>
