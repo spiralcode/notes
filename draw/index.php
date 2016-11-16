@@ -3,7 +3,7 @@ session_start();
 if(isset($_SESSION['userid']))
 $userid = $_SESSION['userid'];
 else
-header('location: ../index.php?logreq');
+header('location: ../index.php?logreq&backto=draw');
 include '../connect.php';
 
 ?>

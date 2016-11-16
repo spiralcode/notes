@@ -50,7 +50,15 @@ notey.post('login.php',{email:document.getElementById('loginEmail').value,pass:d
   if(data.response!=0)
   {
     $id('login').setAttribute('disabled','disabled');
-   window.location="paper.php";
+    <?php 
+    if(isset($_GET['logreq'],$_GET['backto']))
+    {
+      echo 'window.location=\''. $_GET['backto'].'\'';
+    }
+    else
+    {
+   echo 'window.location="paper.php"';
+    }?>
   }
   else
   {
