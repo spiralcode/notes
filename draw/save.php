@@ -1,8 +1,8 @@
 <?php
 include '../connect.php';
 include '../session_check.php';
-$title=$_POST['title'];
-$content=$_POST['content'];
+$title=mysqli_real_escape_string($link,$_POST['title']);
+$content=mysqli_real_escape_string($link,$_POST['content']);
 if(isset($_GET['edit']))
 {
 $id=$_POST['id'];
