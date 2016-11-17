@@ -19,18 +19,17 @@ body
 }
 #resultSlot
 {
-100vw;
 }
 #resultSlot #result
 {
-width: 90%;
 background:lightblue;
-min-height: 1em;
+min-height: .5em;
 font-family: Arial, Helvetica, sans-serif;
-font-size: 1.5em;
+font-size: .8em;
 padding: 1em;
-margin: .5em;
 cursor:pointer;
+margin: 1em;
+
 }
 #pageTitle
 {
@@ -52,4 +51,59 @@ cursor:pointer;
 #content
 {
     margin: 1em;
+}
+#inputSection
+{
+    background: beige;
+    text-align: center;
+}
+#resultSpace
+{
+min-height:60vh;
+background: aliceblue;
+}
+#inputSection input 
+{
+    font-size: 1.5em;
+}
+#inputSection  select
+{
+    font-size: 1.5em;
+}
+#inputSection  button
+{
+    font-size: 1.5em;
+}
+#inputSection  textarea
+{
+    font-size: 1.5em;
+    width:50%;
+    height: 100%;
+}
+#coreTable
+{
+   width: 90%;
+    height: 90%;
+    margin: 5%;
+}
+#coreTable tr
+{
+    font-size: .9em;
+    margin: 1em;
+    width: 1em;
+    background: rgba(125, 191, 9, 0.29)
+ 
+
+}
+#coreTable tr:nth-child(even)
+{
+        background: white;
+
+}
+#coreTable tr td
+{
+text-align: left;
+width: 1vw;
+    padding: 1em;
+
 }
