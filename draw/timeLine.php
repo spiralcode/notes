@@ -36,6 +36,12 @@ var only = 1;
           notey.post('timeLineSave.php',{dateF:dateFormatted,content:content,only:only},function(data){
               if(data.response=='1')
               buildResult('all');
+              alert('\n\nSaved\n\n');
+              document.getElementById('day').value="";
+              document.getElementById('month').value="";
+              document.getElementById('year').value="";
+              document.getElementById('content').value="";
+
           });
           }
           else
@@ -71,6 +77,9 @@ var tr = document.createElement('tr');
 var  dte= document.createElement('td');
 var  cntnt= document.createElement('td');
 var  opt= document.createElement('td');
+opt.setAttribute('class','optionsCell');
+cntnt.setAttribute('class','contentCell');
+
 if(only==1)
 dte.innerHTML=moment(dt,'YYYY-MM-DD').format('YYYY');
 else
