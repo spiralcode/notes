@@ -8,7 +8,16 @@ if ( $detect->isMobile() &&isset($_GET['web'])!=true) {
  header('location: way');
 }
 if(isset($_COOKIE['e'])){
-header('location: login.php?cook');}
+  if(isset($_GET['backto']))
+  {
+header('location: login.php?cook&backto='.$_GET['backto']);
+}
+else
+{
+  header('location: login.php?cook');
+
+}
+}
     ?>
 <!doctype html>
 <html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">

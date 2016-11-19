@@ -48,7 +48,15 @@ if($exist==1)
 
             if(isset($_COOKIE['p']))
             {   $_SESSION['cook_log']=1;
-             header('location: paper.php');
+            if(isset($_GET['backto']))
+           { 
+               $go = $_GET['backto'];
+                header('location: '.$go);
+           }
+             else
+           {
+           header('location: paper.php');
+           }
             }
             else
             {
