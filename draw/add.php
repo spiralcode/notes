@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
 include '../session_check.php';
+include '../connect.php';
 ?>
 <html>
 <head>
@@ -34,10 +35,10 @@ include '../session_check.php';
   <script>
   function saveDoc()
   {
-    var title = document.getElementById('titleDoc').value, content = document.getElementById('edit').value;
+    var title = document.getElementById('titleDoc').value, content = document.getElementById('edit').value, cat = document.getElementById('cat').value;
        if(title!=''&&content!='')
     {
-    notey.post('save.php',{title:title,content:content},function(data){if(data.response=='1')
+    notey.post('save.php',{title:title,content:content,cat:cat},function(data){if(data.response=='1')
     {
       alert('Saved');
       window.location="index.php";
@@ -57,7 +58,16 @@ include '../session_check.php';
 </head>
 
 <body><div style="text-align:left" id= "docOptions">
-<input placeholder="Title" type="text" id = "titleDoc"><button id="saveDoc" onclick="saveDoc()">Save</div>
+<input placeholder="Title" type="text" id = "titleDoc"><select id = "cat">
+<?php 
+$q = mysqli_query($link,"select * from draw_category");
+while($re = mysqli_fetch_array($q))
+{
+  echo '<option id = "'.$re['id'].'">'.$re['category'].'</option>';
+}
+?>
+</select>
+<button id="saveDoc" onclick="saveDoc()">Save</div>
   <form>
     <textarea id="edit" name="content"></textarea>
   </form>

@@ -9,6 +9,7 @@ $q = mysqli_query($link,"select * from draw where id= $id ")or die(mysqli_error(
  $title=$data['title'];
   $id=$data['id'];
    $content=$data['content'];
+   $cat = $data['category'];
   }
 ?>
 <html>
@@ -44,10 +45,10 @@ $q = mysqli_query($link,"select * from draw where id= $id ")or die(mysqli_error(
   var id = <?php echo $id; ?>;
   function saveDoc()
   {
-    var title = document.getElementById('titleDoc').value, content = document.getElementById('edit').value;
+    var title = document.getElementById('titleDoc').value, content = document.getElementById('edit').value,cat = document.getElementById('cat').value;
     if(title!=''&&content!='')
     {
-    notey.post('save.php?edit',{id:id,title:title,content:content},function(data){if(data.response=='1')
+    notey.post('save.php?edit',{id:id,title:title,content:content,cat:cat},function(data){if(data.response=='1')
     {
       alert('Saved');
       window.location='page.php?id='+id;
@@ -68,7 +69,20 @@ $q = mysqli_query($link,"select * from draw where id= $id ")or die(mysqli_error(
 </head>
 
 <body><div style="text-align:left" id= "docOptions">
-<input placeholder="Title" type="text" id = "titleDoc" value="<?php echo $title; ?>"><button id="saveDoc" onclick="saveDoc()">Update</div>
+<input placeholder="Title" type="text" id = "titleDoc" value="<?php echo $title; ?>">
+<select id = "cat">
+<?php 
+$q = mysqli_query($link,"select * from draw_category");
+while($re = mysqli_fetch_array($q))
+{
+  if($re['category']==$cat)
+  echo '<option selected id = "'.$re['id'].'">'.$re['category'].'</option>';
+  else
+  echo '<option id = "'.$re['id'].'">'.$re['category'].'</option>';
+}
+?>
+</select>
+<button id="saveDoc" onclick="saveDoc()">Update</div>
   <form>
     <textarea id="edit" name="content"><?php echo $content;?></textarea>
   </form>

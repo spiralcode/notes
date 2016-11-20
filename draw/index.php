@@ -18,22 +18,51 @@ include '../connect.php';
   {
       window.open('page.php?id='+ob.dataset.id,'_self');
   }
+  function loadList(filter)
+  {
+    document.getElementById('resultSlot').innerHTML="";
+    notey.get('documentFetch.php?filter='+filter,function(data){
+      var dec = JSON.parse(data.response);
+      var i=0;
+      while(dec[i]!=null)
+      {
+        buildResult(dec[i]);
+        i++;
+      }
+    });
+  }
+  function buildResult(ob)
+  {
+var result = document.createElement('div');
+result.setAttribute('id','result');
+result.setAttribute('data-id',ob.id);
+result.setAttribute('onclick','openDoc(this)');
+result.innerHTML=ob.title;
+document.getElementById('resultSlot').appendChild(result);
+  }
+  function loadCategory(ob)
+  {
+    loadList(ob.value);
+  }
   </script>
   </head>
   <body>
-  <div id="pageOptions"><a href="add.php">Add Document </a> | <a href="timeLine.php">Add Year and Event </a></div>
-  <div id=resultSlot>
-  <?php
-  $q = mysqli_query($link,"select * from draw where userid= $userid ")or die(mysqli_error($link));
-  while($data=mysqli_fetch_array($q))
-  {
-      $title=$data['title'];
-      $id=$data['id'];
-      echo "<div onclick=\"openDoc(this)\" data-id=\"$id\" id=\"result\">$title</div>";
-  }
+  <div id="pageOptions"> Category : <select id = "cat" onchange="loadList(this.value);">
+  <option id = "0">All</option>
+<?php 
+$q = mysqli_query($link,"select * from draw_category");
+while($re = mysqli_fetch_array($q))
+{
+  echo '<option id = "'.$re['id'].'">'.$re['category'].'</option>';
+}
 ?>
+</select> | <a href="add.php">Add Document </a> | <a href="timeLine.php">Add Year and Event </a></div>
+  <div id=resultSlot>
 </div>
 <style>
 </style>
+<script>
+loadList('all');
+</script>
   </body>
   </html>
