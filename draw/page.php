@@ -45,7 +45,7 @@ else
       $id=$data['id'];
             $content=$data['content'];
 
-      echo "<div id=\"pageTitle\">$title</div>";
+      echo "<div id=\"pageTitle\">".ucfirst(strtolower($title))."</div>";
       echo "<div id = \"pageOptions\"><a href=\"edit.php?id=$id\">Edit</a> | <a onclick = \"deleteConfirm()\">Delete</a> | <a href = \"index.php\">Show all documents</a> | <a href=\"add.php\">Add document</a></div>";
     echo "<div id=\"content\">$content<div>";
 

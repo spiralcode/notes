@@ -12,6 +12,8 @@ include '../connect.php';
   <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
           <link rel="stylesheet" href="notesGen.css">
+<link rel="shortcut icon" href="favicon.png">
+
   <script src="../notey.js"></script>
   <script>
   function openDoc(ob)
