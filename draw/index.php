@@ -58,7 +58,7 @@ while($re = mysqli_fetch_array($q))
   echo '<option id = "'.$re['id'].'">'.$re['category'].'</option>';
 }
 ?>
-</select> | <a href="add.php">Add Document </a> | <a href="timeLine.php">Add Year and Event </a></div>
+</select> <br><br> <a href="add.php">Add Document </a> | <a href="timeLine.php">Add Year and Event </a> |  <a href = "bc.php"> Add BC event</a></div>
   <div id=resultSlot>
 </div>
 <style>
