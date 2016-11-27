@@ -24,6 +24,9 @@ include '../session_check.php';
               if(data.response==1)
               {
                   alert('Saved');
+                  document.getElementById('tillYear').value = "";
+                  document.getElementById('fromYear').value="";
+                document.getElementById('content').value="";
               }
               else
               {
