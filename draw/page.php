@@ -9,10 +9,6 @@ include '../connect.php';
         <meta name="viewport" content="width=device-width, initial-scale=1">
           <link rel="stylesheet" href="notesGen.css">
   <script src="../notey.js"></script>
-  <script>
-  </script>
-  </head>
-  <body>
   <?php
   $docId=$_GET['id'];
   $q = mysqli_query($link,"select * from draw where id= $docId ")or die(mysqli_error($link));
@@ -59,7 +55,8 @@ else
 }
 
 </script>
-
+  </head>
+  <body>
   <?php
       echo "<div id=\"pageTitle\">".ucfirst(strtolower($title))."</div>";
       echo "<div id = \"pageOptions\"><a href=\"edit.php?id=$id\">Edit</a> | <a onclick = \"deleteConfirm()\">Delete</a> | <a href = \"index.php\">Show all documents</a> | <a href=\"add.php\">Add document</a></div>";
