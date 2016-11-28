@@ -3,6 +3,7 @@
 include '../session_check.php';
 ?>
 <head>
+<title>Notes Dray Y and E
   <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
           <link rel="stylesheet" href="notesGen.css">
@@ -25,7 +26,6 @@ include '../session_check.php';
               {
 var only = 1;
           var dateFormatted = year+'-'+01+'-'+01+' 00:00:00';
-
               }
               else
               {
