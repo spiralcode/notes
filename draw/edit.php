@@ -11,6 +11,18 @@ $q = mysqli_query($link,"select * from draw where id= $id ")or die(mysqli_error(
    $content=$data['content'];
    $cat = $data['category'];
   }
+  $presence=0;
+  $restoreData='';
+    $qq = mysqli_query($link,"select * from draw_draft where docId= $id ")or die(mysqli_error($link));
+  while($data=mysqli_fetch_array($qq))
+  {
+    $presence = 1;
+    $restoreData = $data['content'];
+  }
+  if(isset($_GET['draft']))
+  {
+    $content=$restoreData;
+  }
 ?>
 <html>
 <head>
@@ -42,11 +54,19 @@ $q = mysqli_query($link,"select * from draw where id= $id ")or die(mysqli_error(
   <link rel="stylesheet" href="css/plugins/table.css">
   <link rel="stylesheet" href="css/plugins/video.css">
   <link rel="stylesheet" href="notesGen.css">
+  
   <script src="../notey.js"></script>
+  <script src="../jss/moment.js"></script>
   <script>
-  var id = <?php echo $id; ?>;
+  function restoreDraft(ob)
+{
+  console.log(document.getElementById('restoreIt').innerHTML);
+  //document.getElementById('edit').value=document.getElementById('restoreIt').innerHTML;
+
+}
   function saveDoc()
   {
+    var id = <?php echo $id; ?>;
     var title = document.getElementById('titleDoc').value, content = document.getElementById('edit').value,cat = document.getElementById('cat').value;
     if(title!=''&&content!='')
     {
@@ -66,6 +86,29 @@ $q = mysqli_query($link,"select * from draw where id= $id ")or die(mysqli_error(
     alert('Can\'t save !\n\nContent or Subject is empty');
   }
   }
+  </script>
+  <div id = "cac" style="display:none;"><?php echo $content; ?></div>
+<script>
+var cont = document.getElementById('cac').innerHTML;
+function autoSave()
+{
+  if(cont!=document.getElementById('edit').value)
+  {
+    var docId = <?php echo $id ?>;
+    var current = document.getElementById('edit').value;
+    document.getElementById('saveStatus').innerHTML="Saving Draft...";
+    notey.post('autoSave.php',{docId:docId,content:current},function(data){
+      if(data.response==1)
+      {
+            document.getElementById('saveStatus').innerHTML="Draft saved at "+moment().format('hh:mm:ss');
+                cont=document.getElementById('edit').value;
+
+
+      }
+
+    });
+  }
+}
 
   </script>
 </head>
@@ -84,9 +127,21 @@ while($re = mysqli_fetch_array($q))
 }
 ?>
 </select>
-<button id="saveDoc" onclick="saveDoc()">Update</div>
+<button id="saveDoc" onclick="saveDoc()">Publish</div>
+<?php
+if($presence==1&&isset($_GET['draft'])==false)
+echo '<div style="cursor:pointer; color : blue; padding:1em; text-decoration:underline;" align = "center" ><a href = "?draft&id='.$id.' ">Draft Exists, Click to restore contents</a></div>';
+if(isset($_GET['draft']))
+{
+  echo '<div style="cursor:pointer; color : blue; padding:1em; " align = "center" >Draft Edit</div>';
+
+}
+?>
+<div align="center" id = "saveStatus">&nbsp;</div>
   <form>
+
     <textarea id="edit" name="content"><?php echo $content;?></textarea>
+
   </form>
 
   <!-- Include jQuery. -->
@@ -134,6 +189,10 @@ while($re = mysqli_fetch_array($q))
       $(function() {
           $('#edit').froalaEditor()
       });
+
+      //autoSave 
+      window.setInterval(function(){autoSave();},3000);
+      
   </script>
   <style>
   a[href="https://froala.com/wysiwyg-editor"]
@@ -141,5 +200,6 @@ while($re = mysqli_fetch_array($q))
 visibility: hidden;
 }
   </style>
+
 </body>
 </html>

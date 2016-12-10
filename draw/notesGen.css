@@ -174,3 +174,9 @@ width: 1vw;
      background: none;
      cursor: pointer;
 }
+
+#saveStatus
+{
+    padding: 1em;
+    color: green;
+}
