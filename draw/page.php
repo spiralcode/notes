@@ -69,24 +69,23 @@ else
 }(document, 'script', 'facebook-jssdk'));</script>
   <?php
       echo "<div id=\"pageTitle\">".ucfirst(strtolower($title))."</div>";
+      echo '<div id = "pageOptions">';
 if(isset($_SESSION['userid']))
 {
       if($writerId==$_SESSION['userid'])
       {
-      echo "<div id = \"pageOptions\"><a href=\"edit.php?id=$id\">Edit</a> | <a onclick = \"deleteConfirm()\">Delete</a> | <a href = \"index.php\">Show all documents</a> | <a href=\"add.php\">Add document</a></div>";
+      echo "<a href=\"edit.php?id=$id\">Edit</a> | <a onclick = \"deleteConfirm()\">Delete</a> | <a href = \"index.php\">Show all documents</a> | <a href=\"add.php\">Add document</a></div>";
       }
       else
       {
-                echo '<div id = "pageOptions">
-<div class="fb-like" data-href="https://note-runfree.rhcloud.com/draw/page.php?id='.$id.'" data-layout="button" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>                </div>';
-
+echo '<div class="fb-like" data-href="https://note-runfree.rhcloud.com/draw/page.php?id='.$id.'" data-layout="button" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>';
       }
 }
       else
       {
-        echo '<div id = "pageOptions"><div class="fb-like" data-href="https://note-runfree.rhcloud.com/draw/page.php?id='.$id.'" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div></div>';
+        echo '<div class="fb-like" data-href="https://note-runfree.rhcloud.com/draw/page.php?id='.$id.'" data-layout="standard" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>';
       }
-
+echo "</div>'";
     echo "<div id=\"content\">$content<div>";
 ?>
 </div>
