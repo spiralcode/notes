@@ -1,6 +1,7 @@
 <?php
 //include '../session_check.php';
 include '../connect.php';
+session_start();
 
 ?>
 <html>
@@ -17,6 +18,7 @@ include '../connect.php';
       $title=$data['title'];
       $id=$data['id'];
     $content=$data['content'];
+    $writerId=$data['userid'];
 echo "<title>".ucfirst(strtolower($title))."</title>";
 echo '<meta property="og:url"                content="https://note-runfree.rhcloud.com/draw/page.php?id='.$id.'" />
 <meta property="og:type"               content="article" />
@@ -57,11 +59,35 @@ else
 </script>
   </head>
   <body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.8&appId=593526644156691";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
   <?php
       echo "<div id=\"pageTitle\">".ucfirst(strtolower($title))."</div>";
+if(isset($_SESSION['userid']))
+{
+      if($writerId==$_SESSION['userid'])
+      {
       echo "<div id = \"pageOptions\"><a href=\"edit.php?id=$id\">Edit</a> | <a onclick = \"deleteConfirm()\">Delete</a> | <a href = \"index.php\">Show all documents</a> | <a href=\"add.php\">Add document</a></div>";
-    echo "<div id=\"content\">$content<div>";
+      }
+      else
+      {
+                echo '<div id = "pageOptions">
+<div class="fb-like" data-href="https://note-runfree.rhcloud.com/draw/page.php?id='.$id.'" data-layout="button" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>                </div>';
 
+      }
+}
+      else
+      {
+        echo '<div id = "pageOptions"><div class="fb-like" data-href="https://note-runfree.rhcloud.com/draw/page.php?id='.$id.'" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div></div>';
+      }
+
+    echo "<div id=\"content\">$content<div>";
 ?>
 </div>
 

@@ -57,7 +57,17 @@ float: left;
 }
 #content
 {
+   max-width: 99%;
     margin: 1em;
+    display: inline-block;
+word-break: break-word;
+text-align: left;
+}
+#content pre
+{
+        display: inline-block;
+
+    word-wrap: break-word;
 }
 #inputSection
 {

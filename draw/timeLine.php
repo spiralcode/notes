@@ -3,7 +3,7 @@
 include '../session_check.php';
 ?>
 <head>
-<title>Notes Dray Y and E
+<title>Notes Dray Y and E</title>
   <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
           <link rel="stylesheet" href="notesGen.css">
@@ -41,7 +41,6 @@ var only = 1;
               document.getElementById('month').value="";
               document.getElementById('year').value="";
               document.getElementById('content').value="";
-
           });
           }
           else
