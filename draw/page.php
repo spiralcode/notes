@@ -74,6 +74,7 @@ if(isset($_SESSION['userid']))
 {
       if($writerId==$_SESSION['userid'])
       {
+       echo '<div class="fb-like" data-href="https://note-runfree.rhcloud.com/draw/page.php?id='.$id.'" data-layout="standard" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>'; 
       echo "<a href=\"edit.php?id=$id\">Edit</a> | <a onclick = \"deleteConfirm()\">Delete</a> | <a href = \"index.php\">Show all documents</a> | <a href=\"add.php\">Add document</a></div>";
       }
       else
