@@ -9,7 +9,6 @@ session_start();
   <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
           <link rel="stylesheet" href="notesGen.css">
-  <script src="../notey.js"></script>
   <?php
   $docId=$_GET['id'];
   $q = mysqli_query($link,"select * from draw where id= $docId ")or die(mysqli_error($link));
@@ -59,6 +58,8 @@ else
 </script>
   </head>
   <body>
+    <script src="../notey.js"></script>
+
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
