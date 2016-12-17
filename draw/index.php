@@ -50,6 +50,13 @@ document.getElementById('resultSlot').appendChild(result);
   </script>
   </head>
   <body>
+  <style>
+  body
+  {
+            background: darkslateblue;
+
+  }
+  </style>
   <div id="pageOptions"> Category : <select id = "cat" onchange="loadList(this.value);">
   <option id = "0">All</option>
 <?php 

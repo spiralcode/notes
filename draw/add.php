@@ -40,6 +40,8 @@ include '../connect.php';
     var title = document.getElementById('titleDoc').value, content = document.getElementById('edit').value, cat = document.getElementById('cat').value;
        if(title!=''&&content!='')
     {
+    document.getElementById('saveDoc').innerHTML="Saving...";
+    document.getElementById('saveDoc').setAttribute('disabled','disabled');
     notey.post('save.php',{title:title,content:content,cat:cat},function(data){if(data.response=='1')
     {
       alert('Saved');

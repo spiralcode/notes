@@ -70,6 +70,8 @@ $q = mysqli_query($link,"select * from draw where id= $id ")or die(mysqli_error(
     var title = document.getElementById('titleDoc').value, content = document.getElementById('edit').value,cat = document.getElementById('cat').value;
     if(title!=''&&content!='')
     {
+         document.getElementById('saveDoc').innerHTML="Saving...";
+    document.getElementById('saveDoc').setAttribute('disabled','disabled');
     notey.post('save.php?edit',{id:id,title:title,content:content,cat:cat},function(data){if(data.response=='1')
     {
       alert('Saved');
@@ -97,6 +99,7 @@ function autoSave()
     var docId = <?php echo $id ?>;
     var current = document.getElementById('edit').value;
     document.getElementById('saveStatus').innerHTML="Saving Draft...";
+    
     notey.post('autoSave.php',{docId:docId,content:current},function(data){
       if(data.response==1)
       {
