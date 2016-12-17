@@ -58,7 +58,7 @@ else
 </script>
   </head>
   <body>
-    <script src="../notey.js"></script>
+    <script async src="../notey.js"></script>
 
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
