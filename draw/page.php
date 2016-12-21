@@ -12,6 +12,11 @@ session_start();
   <?php
   $docId=$_GET['id'];
   $q = mysqli_query($link,"select * from draw where id= $docId ")or die(mysqli_error($link));
+  if(mysqli_num_rows($link,$q)==0)
+  {
+    header('location: pageNotFound.php');
+  }
+
   while($data=mysqli_fetch_array($q))
   {
       $title=$data['title'];
