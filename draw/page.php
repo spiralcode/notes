@@ -96,6 +96,22 @@ echo "</div>'";
     echo "<div id=\"content\">$content<div>";
 ?>
 </div>
-
+<script>
+var tim = window.setInterval(function(){
+  notey.get('countView.php?id=<?php echo $id; ?>',function(data){});
+window.clearInterval(tim);
+},<?php
+$alg = round(str_word_count(strip_tags($content))/300);
+if($alg<=0)
+{
+$alg=10000;
+}
+else
+{
+  $alg*=10000;
+}
+echo $alg;
+?>);
+</script>
   </body>
   </html>
