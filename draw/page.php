@@ -19,8 +19,21 @@ session_start();
 
   while($data=mysqli_fetch_array($q))
   {
-      $title=$data['title'];
-      $id=$data['id'];
+    $title=$data['title'];
+    $id=$data['id'];
+   $aux = mysqli_query($link,"select * from draw_view_count where id = $id ");
+   while($dd = mysqli_fetch_array($aux))
+   {
+     $vC = $dd['count'];
+   }
+   if(mysqli_num_rows($aux)<=0)
+   {
+     $vC = 0;
+   }
+   if($vC<9)
+   {
+     $vC = "0".$vC;
+   }
     $content=$data['content'];
     $writerId=$data['userid'];
 echo "<title>".ucfirst(strtolower($title))."</title>";
@@ -80,16 +93,21 @@ if(isset($_SESSION['userid']))
 {
       if($writerId==$_SESSION['userid'])
       {
+                        echo "<span id =\"vC\">$vC views</span>";
+
        echo '<div class="fb-like" data-href="https://note-runfree.rhcloud.com/draw/page.php?id='.$id.'" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>'; 
       echo " | <a href=\"edit.php?id=$id\">Edit</a> | <a onclick = \"deleteConfirm()\">Delete</a> | <a href = \"index.php\">Show all documents</a> | <a href=\"add.php\">Add document</a></div>";
       }
       else
       {
+                echo "<span id =\"vC\">$vC views</span>";
+
 echo '<div class="fb-like" data-href="https://note-runfree.rhcloud.com/draw/page.php?id='.$id.'" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>';
       }
 }
       else
       {
+                        echo "<span id =\"vC\">$vC views</span>";
         echo '<div class="fb-like" data-href="https://note-runfree.rhcloud.com/draw/page.php?id='.$id.'" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>';
       }
 echo "</div>'";
