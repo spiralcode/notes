@@ -4,18 +4,25 @@ require_once 'Mobile_Detect.php';
 $rem_ip = $_SERVER['REMOTE_ADDR'];
 $q = mysqli_query($link,"insert into root_log values (NOW(),'$rem_ip')");
 $detect = new Mobile_Detect;
+if(isset($_GET['draw']))
+{
+  header('location: draw/page.php?id='.$_GET['draw']);
+}
+else
+{
 if ( $detect->isMobile() &&isset($_GET['web'])!=true) {
  header('location: way');
 }
 if(isset($_COOKIE['e'])){
   if(isset($_GET['backto']))
-  {
+{
 header('location: login.php?cook&backto='.$_GET['backto']);
 }
 else
 {
   header('location: login.php?cook');
 
+}
 }
 }
     ?>
