@@ -17,7 +17,7 @@ else
 $email=$_POST['email'];
 $pass=mysqli_real_escape_string($conn,$_POST['pass']);
 $cookie=$_POST['cook'];
-echo $cookie;
+//echo $cookie;
 if($cookie==1)
 {
     $bis=1;

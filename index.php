@@ -7,20 +7,26 @@ $detect = new Mobile_Detect;
 if(isset($_GET['draw']))
 {
   header('location: draw/page.php?id='.$_GET['draw']);
+  return;
+
 }
 else
 {
 if ( $detect->isMobile() &&isset($_GET['web'])!=true) {
- header('location: way');
+ //header('location: way');
+//return;
 }
 if(isset($_COOKIE['e'])){
   if(isset($_GET['backto']))
 {
 header('location: login.php?cook&backto='.$_GET['backto']);
+return;
+
 }
 else
 {
   header('location: login.php?cook');
+  return;
 
 }
 }
