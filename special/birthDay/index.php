@@ -31,7 +31,7 @@ alert("Listen ! \n This is for my anxious wife to know ! \n 'Birthday' option is
 </div>
 <div style="text-align:center">
 <p><span id="opC">" </span>
-Count, this is the first one !. And I'm overwhelmed, of this Love, which makes us to spend the rest of all our Birthdays together. After some years, we would have so many birthdays to celeberate, of our Kids, but then also there will be someone, who loves me a lot and whom I love, who's gonna get all my kisses in her birthday.  
+Count, this is the first one !.  And I'm overwhelmed, of this Love, which makes us to spend the rest of all our Birthdays together. After some years, we would have so many birthdays to celeberate, of our Kids, but then also there will be someone, who loves me a lot and whom I love, who's gonna get all my kisses in her birthday.  
 <span id="opc"> "</span></p>
   </div>
 </body>
