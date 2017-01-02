@@ -122,7 +122,7 @@ window.onbeforeunload = function (e) {
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
-        <div class="footer"><p><a href="../paper.php">Deskop</a> | <a href="../todo">To-do</a> | <a href="book.php">Read Note</a> | <a href="logout.php">Logout</a></p></div>
+        <div class="footer"><p><a href = "../draw">FOE</a> | <a href="../paper.php">Deskop</a> | <a href="../todo">To-do</a> | <a href="book.php">Read Note</a> | <a href="logout.php">Logout</a></p></div>
        <script>
            function listFile(fileCopy,fileName,bufferId)
     {
