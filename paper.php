@@ -84,7 +84,15 @@ window.onbeforeunload = unloadPage;
                      <li onclick="navigate(this);" data-task="links"  data-label="links.php?limit=20,0" data-title="Links">Links</li>
                      <li onclick="navigate(this);" data-task="places"  data-label="fetchPlaces.php" data-title="Places">Places</li>
                     <li onclick="window.open('draw','_blank');" data-task="draw" title="Freedom Of Expression"  data-label="draw.php" data-title="Freeedom of Expression">F.O.E</li>
-
+<li> <?php 
+date_default_timezone_set("Asia/Calcutta");
+$data = time();
+if(gmdate('d',$data)=="04")
+{
+  echo "<li onclick=\"window.open('special/birthDay','_blank');\">Birth Day ! </li>";
+}
+?>
+ </li>
            </div>
             <div class="louis" id="louis">
            <div id="louis_load" class="spinner" style="" >
