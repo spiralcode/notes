@@ -12,7 +12,7 @@
   
 </head>
 <script>
-//alert("Listen ! \n This is for my anxious wife to know ! \n 'Birthday' option is only for today and won't be displayed afterwards. Only visible in this account, too. ;)  ");
+alert("Listen ! \n This is for my anxious wife to know ! \n 'Birthday' option is only for today and won't be displayed afterwards. Only visible in this account, too. ;)  ");
 </script>
 <body>
   <div class='title'>Happy birthday ! <br>

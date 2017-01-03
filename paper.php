@@ -87,7 +87,7 @@ window.onbeforeunload = unloadPage;
 <li> <?php 
 date_default_timezone_set("Asia/Calcutta");
 $data = time();
-if(gmdate('d',$data)=="03" && $_SESSION['userid']==42)
+if(gmdate('d',$data)=="04" && $_SESSION['userid']==42)
 {
   echo "<li onclick=\"window.open('special/birthDay','_blank');\">Birth Day ! </li>";
 }
