@@ -7,24 +7,21 @@
   <title>Happy Birthday !</title>
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-
-  
       <link rel="stylesheet" href="css/style.css">
 
   
 </head>
 <script>
-alert("Listen ! \n This is for my anxious wife to know ! \n 'Birthday' option is only for today and won't be displayed afterwards. Only visible in this account, too. ;)  ");
+//alert("Listen ! \n This is for my anxious wife to know ! \n 'Birthday' option is only for today and won't be displayed afterwards. Only visible in this account, too. ;)  ");
 </script>
 <body>
-  <div class='title'>Happy birthday, 
+  <div class='title'>Happy birthday ! <br>
   <span id="r">R</span>
     <span id="e">E</span>
   <span id="s">S</span>
   <span id="h">H</span>
   <span id="m">M</span>
   <span id="a">A</span>
- !
   </div>
 <div class='cake'>
   <div class='candles'></div>
