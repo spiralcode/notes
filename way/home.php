@@ -123,14 +123,7 @@ window.onbeforeunload = function (e) {
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
         <div class="footer"><p>
-        <?php 
-date_default_timezone_set("Asia/Calcutta");
-$data = time();
-if(gmdate('d',$data)=="04" && $_SESSION['userid']==42)
-{
-  echo "<a href = \"../special/birthDay\">Birth Day ! </a> | ";
-}
-?>
+    
         <a href = "../draw">FOE</a> | <a href="../paper.php">Deskop</a> | <a href="../todo">To-do</a> | <a href="book.php">Read Note</a> | <a href="logout.php">Logout</a></p></div>
        <script>
            function listFile(fileCopy,fileName,bufferId)

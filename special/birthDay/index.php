@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+<?php
+if(!isset($_GET['stay']))
+{
+  header('paper.php');
+}
+?>
 <html >
 <head>
   <meta charset="UTF-8">
