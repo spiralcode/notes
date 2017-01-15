@@ -102,8 +102,8 @@ window.onbeforeunload = function (e) {
         <!-- Add your site or application content here -->
         <div class="topribbon"><h2>notes <sup></sup></h2></div>
         <div class="notificationSpace" id="notificationSpace"></div>
-        <div class="login" align="center" ><h5 style="opacity: .5; text-align: right;">write note</h5>
- <div contenteditable="true" data-text="Type here all what you can..."  class="typeSpace" id="typeSpace" row="50" cols="100"></div>        
+        <div class="login" align="center" ><h5 style="opacity: .7; text-align: right;">write note</h5>
+ <div contenteditable="true" data-text="Write stuff here..."  class="typeSpace" id="typeSpace" row="50" cols="100"></div>        
 
     <div class="buttonGroup">
              <input multiple="multiple" id="fileSelect" name="fileSelect[]" style="display: none;" type="file"  accept="image/*;capture=camera" />   

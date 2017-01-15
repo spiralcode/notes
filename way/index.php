@@ -54,7 +54,7 @@ header('location: login.php?cook');}
 
         <!-- Add your site or application content here -->
         <div class="topribbon"><h2>notes <sup></sup></h2></div>
-        <div class="login" align="center" ><h5 style="opacity: .5; text-align: right;">login</h5>
+        <div class="login" style="background: url(../css/image/pattern4_small_1_large.png);" align="center" ><h5 style="opacity: .5; text-align: right;">login</h5>
         <form>
             <ul style="list-style: none;">
            <li><span id="report">&nbsp;</span></li>
