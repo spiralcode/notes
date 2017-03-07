@@ -181,7 +181,8 @@ function $id(id)
 </script>
 
 <div class="title"><span>Notes</span></div>
-<div class="about"><span>&copy; of Nobody, Kundiland, India</span></div>
+
+<div class="about"><span><a title="Freedom of Expression Library" style="text-decoration:none;" href="showRoom.php">FOE Library</a>&nbsp; | <span>&copy; of Nobody, KIC</span></div>
 <div class="midContainer" id = "midContainer">
 <div class="login" id="login">
 <div class="loginTitle">
