@@ -29,7 +29,7 @@ include 'connect.php';
     $title=$data['title'];
     $id = $data['id'];
     echo "<tr><td>".++$count."&nbsp;&nbsp;";
-    echo '<a href = "draw/page.php?id='.$id.'" >'.$title.'</a>';
+    echo '<a href = "https://note-runfree.rhcloud.com/draw/page.php?id='.$id.'" >'.$title.'</a>';
     echo "</td></tr>";
   }
 ?>
