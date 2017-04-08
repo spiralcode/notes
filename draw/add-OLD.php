@@ -2,31 +2,10 @@
 <?php
 include '../session_check.php';
 include '../connect.php';
-$id=$_GET['id'];
-$q = mysqli_query($link,"select * from draw where id= $id ")or die(mysqli_error($link));
-  while($data=mysqli_fetch_array($q))
-  {
- $title=$data['title'];
-  $id=$data['id'];
-   $content=$data['content'];
-   $cat = $data['category'];
-  }
-  $presence=0;
-  $restoreData='';
-    $qq = mysqli_query($link,"select * from draw_draft where docId= $id ")or die(mysqli_error($link));
-  while($data=mysqli_fetch_array($qq))
-  {
-    $presence = 1;
-    $restoreData = $data['content'];
-  }
-  if(isset($_GET['draft']))
-  {
-    $content=$restoreData;
-  }
 ?>
 <html>
 <head>
-<title>Notes Draw</title>
+<title>Notes FOE</title>
 
   <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -54,101 +33,47 @@ $q = mysqli_query($link,"select * from draw where id= $id ")or die(mysqli_error(
   <link rel="stylesheet" href="css/plugins/table.css">
   <link rel="stylesheet" href="css/plugins/video.css">
   <link rel="stylesheet" href="notesGen.css">
-  
   <script src="../notey.js"></script>
-  <script src="../jss/moment.js"></script>
   <script>
-  function restoreDraft(ob)
-{
-  console.log(document.getElementById('restoreIt').innerHTML);
-  //document.getElementById('edit').value=document.getElementById('restoreIt').innerHTML;
-
-}
   function saveDoc()
   {
-    var id = <?php echo $id; ?>;
-    var title = document.getElementById('titleDoc').value, content = document.getElementById('edit').value,cat = document.getElementById('cat').value;
-    if(title!=''&&content!='')
+    var title = document.getElementById('titleDoc').value, content = document.getElementById('edit').value, cat = document.getElementById('cat').value;
+       if(title!=''&&content!='')
     {
-         document.getElementById('saveDoc').innerHTML="Saving...";
+    document.getElementById('saveDoc').innerHTML="Saving...";
     document.getElementById('saveDoc').setAttribute('disabled','disabled');
-    notey.post('save.php?edit',{id:id,title:title,content:content,cat:cat},function(data){if(data.response=='1')
+    notey.post('save.php',{title:title,content:content,cat:cat},function(data){if(data.response=='1')
     {
       alert('Saved');
-      window.location='page.php?id='+id;
+      window.location="index.php";
     }
     else
     {
-      alert('Error Occured on Saving');
+      alert('Error Occured on saving...');
     }
     });
   }
   else
   {
-    alert('Can\'t save !\n\nContent or Subject is empty');
+        alert('Can\'t save ! \n\nContent or Subject is empty.');
   }
   }
-  </script>
-  <div id = "cac" style="display:none;"><?php echo $content; ?></div>
-<script>
-var cont = document.getElementById('cac').innerHTML;
-function autoSave()
-{
-  if(cont!=document.getElementById('edit').value)
-  {
-    var docId = <?php echo $id ?>;
-    var current = document.getElementById('edit').value;
-    document.getElementById('saveStatus').innerHTML="Saving Draft...";
-    
-    notey.post('autoSave.php',{docId:docId,content:current},function(data){
-      if(data.response==1)
-      {
-            document.getElementById('saveStatus').innerHTML="Draft saved at "+moment().format('hh:mm:ss');
-                cont=document.getElementById('edit').value;
-
-
-      }
-
-    });
-  }
-}
-
   </script>
 </head>
 
 <body><div style="text-align:left" id= "docOptions">
-<table>
-<tr>
-<td>
-<input placeholder="Title" type="text" id = "titleDoc" value="<?php echo $title; ?>">
-</td>
-</tr>
-<tr><td>
-<select id = "cat">
+<input placeholder="Title" type="text" id = "titleDoc"><select id = "cat">
 <?php 
 $q = mysqli_query($link,"select * from draw_category");
 while($re = mysqli_fetch_array($q))
 {
-  if($re['category']==$cat)
-  echo '<option selected id = "'.$re['id'].'">'.$re['category'].'</option>';
-  else
   echo '<option id = "'.$re['id'].'">'.$re['category'].'</option>';
 }
 ?>
 </select>
-<button id="saveDoc" onclick="saveDoc()">Publish</button></td></tr></div>
-</table>
-<?php
-if($presence==1&&isset($_GET['draft'])==false)
-echo '<div style="cursor:pointer; color : blue; padding:1em; text-decoration:underline;" align = "center" ><a href = "?draft&id='.$id.' ">Draft Exists, Click to restore contents</a></div>';
-if(isset($_GET['draft']))
-{
-  echo '<div style="cursor:pointer; color : blue; padding:1em; " align = "center" >Draft Edit</div>';
-}
-?>
-<div align="center" id = "saveStatus">&nbsp;</div>
+<button id="saveDoc" onclick="saveDoc()">Save</div>
   <form>
-    <textarea id="edit" name="content"><?php echo $content;?></textarea>
+    <textarea id="edit" name="content"></textarea>
   </form>
 
   <!-- Include jQuery. -->
@@ -196,17 +121,12 @@ if(isset($_GET['draft']))
       $(function() {
           $('#edit').froalaEditor()
       });
-
-      //autoSave 
-      window.setInterval(function(){autoSave();},3000);
-      
   </script>
-  <style>
+    <style>
   a[href="https://froala.com/wysiwyg-editor"]
 {
 visibility: hidden;
 }
   </style>
-
 </body>
 </html>

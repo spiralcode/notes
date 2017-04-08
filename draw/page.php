@@ -21,6 +21,7 @@ session_start();
   {
     $title=$data['title'];
     $id=$data['id'];
+$date = $data['date'];
    $aux = mysqli_query($link,"select * from draw_view_count where id = $id ");
    while($dd = mysqli_fetch_array($aux))
    {
@@ -36,7 +37,7 @@ session_start();
    }
     $content=$data['content'];
     $writerId=$data['userid'];
-echo "<title>".ucfirst(strtolower($title))."</title>";
+echo "<title>".$title."</title>";
 echo '<meta property="og:url"                content="https://note-runfree.rhcloud.com/draw/page.php?id='.$id.'" />
 <meta property="og:type"               content="article" />
 <meta property="og:title"              content="'.ucfirst(strtolower($title)).'" />
@@ -130,5 +131,8 @@ else
 echo $alg;
 ?>);
 </script>
+</div>
+<div class="infospace"><span>Document created on </span><span><?php echo $date?></span>.</div>
+
   </body>
   </html>
