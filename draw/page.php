@@ -88,7 +88,7 @@ else
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
   <?php
-      echo "<div id=\"pageTitle\">".ucfirst(strtolower($title))."</div>";
+      echo "<div id=\"pageTitle\">".$title."</div>";
       echo '<div id = "pageOptions">';
 if(isset($_SESSION['userid']))
 {
@@ -132,7 +132,7 @@ echo $alg;
 ?>);
 </script>
 </div>
-<div class="infospace"><span>Document created on </span><span><?php echo $date?></span>.</div>
+<div class="infospace"><span>Document created on </span><span><?php echo $date?></span> |  <a href="../index.php" title="Make a document">Make a document in FOE</a></div>
 
   </body>
   </html>

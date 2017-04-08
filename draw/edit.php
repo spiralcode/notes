@@ -116,14 +116,11 @@ function autoSave()
   </script>
 </head>
 
-<body><div style="text-align:left" id= "docOptions">
-<table>
-<tr>
-<td>
+<body>
+<div class="topbar">F.O.E</div>
+<div style="text-align:left; background:rgba(172, 213, 174, 0.41);" id= "docOptions">
+
 <input placeholder="Title" type="text" id = "titleDoc" value="<?php echo $title; ?>">
-</td>
-</tr>
-<tr><td>
 <select id = "cat">
 <?php 
 $q = mysqli_query($link,"select * from draw_category");
@@ -136,8 +133,7 @@ while($re = mysqli_fetch_array($q))
 }
 ?>
 </select>
-<button id="saveDoc" onclick="saveDoc()">Publish</button></td></tr></div>
-</table>
+<button id="saveDoc" onclick="saveDoc()">Publish</button></div>
 <?php
 if($presence==1&&isset($_GET['draft'])==false)
 echo '<div style="cursor:pointer; color : blue; padding:1em; text-decoration:underline;" align = "center" ><a href = "?draft&id='.$id.' ">Draft Exists, Click to restore contents</a></div>';

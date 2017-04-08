@@ -20,6 +20,8 @@ input
 <tr><td><a href="index.php" title="home">FOE</a></td><td></td></tr>
 </table>
 </div>
+<div style="text-align:center;"><img style="width:4em; height:4em; margin:.5em;" src="theRedStar.png"/></div>
+
 <div style="margin:1em; text-align:center;">
 <input id="title" type="text" placeholder="Title for document"/>
 <input onclick="cD(this)" type="button" value="Create Document"/>
@@ -30,7 +32,7 @@ function cD(ob)
 ob.value="Creating...";
 notey.post("createDoc.php",{title:document.getElementById('title').value},function(data){
     var data = data.response;
-alert("Document Created !\nNow you can edit the document contents. \n The document is auto-saved at regular intervals and is kept as draft, therefore your un-published contents are'nt lost even if you close or exit the editing page. Next time, you open the edit page, you can restore the draft. ");
+alert("Document Created !\n\nNow you can edit the document contents. \n\n The document is auto-saved at regular intervals and is kept as draft, therefore your un-published contents are'nt lost even if you close or exit the editing page. Next time, you open the edit page, you can restore the draft. ");
 document.location="edit.php?id="+data;
 })
 }
