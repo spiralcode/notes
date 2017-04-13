@@ -9,6 +9,7 @@ session_start();
   <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
           <link rel="stylesheet" href="notesGen.css">
+          <link rel="icon" href="favicon.png">
   <?php
   $docId=$_GET['id'];
   $q = mysqli_query($link,"select * from draw where id= $docId ")or die(mysqli_error($link));
