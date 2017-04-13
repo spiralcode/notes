@@ -97,7 +97,7 @@ if(isset($_SESSION['userid']))
       {
                         echo "<span id =\"vC\">$vC views</span>";
        echo '<div class="fb-like" data-href="https://note-runfree.rhcloud.com/draw/page.php?id='.$id.'" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>'; 
-      echo " | <a href=\"edit.php?id=$id\">Edit</a> | <a onclick = \"deleteConfirm()\">Delete</a> | <a href = \"index.php\">Show all documents</a> | <a href=\"add.php\">Add document</a> | <span><a href= \"https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://note-runfree.rhcloud.com/draw/page.php?id=10\"".$id.">Get QR code</a></span></div>";
+      echo " | <a href=\"edit.php?id=$id\">Edit</a> | <a onclick = \"deleteConfirm()\">Delete</a> | <a href = \"index.php\">Show all documents</a> | <a href=\"add.php\">Add document</a> | <span><a href= \"https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://note-runfree.rhcloud.com/draw/page.php?id=".$id.">Get QR code</a></span></div>";
       }
       else
       {
