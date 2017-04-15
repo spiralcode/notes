@@ -58,7 +58,7 @@ echo '<meta property="og:url"                content="https://note-runfree.rhclo
 var id = '<?php echo $_GET['id']; ?>';
 function deleteConfirm()
 {
-    var t = window.confirm("Are you sure about deleting this document ?");
+    var t = window.confirm("Are you sure about deleting this document ? \n This document will not be recoverable. ");
   if(t)
     {
         notey.post('delete.php',{id:id},function(data){
@@ -97,13 +97,13 @@ if(isset($_SESSION['userid']))
       {
                         echo "<span id =\"vC\">$vC views</span>";
        echo '<div class="fb-like" data-href="https://note-runfree.rhcloud.com/draw/page.php?id='.$id.'" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>'; 
-      echo " | <a href=\"edit.php?id=$id\">Edit</a> | <a onclick = \"deleteConfirm()\">Delete</a> | <a href = \"index.php\">Show all documents</a> | <a href=\"add.php\">Add document</a> | <span><a href= \"https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://note-runfree.rhcloud.com/draw/page.php?id=".$id.">Get QR code</a></span></div>";
+      echo " | <a href=\"edit.php?id=$id\">Edit</a> | <a onclick = \"deleteConfirm()\"><u style=\"cursor:pointer;\">Delete</u></a> | <a href = \"index.php\">Show all documents</a> | <a href=\"add.php\">Add document</a> | <span><a href= \"https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://note-runfree.rhcloud.com/draw/page.php?id=$id\">Get QR code</a></span></div>";
       }
       else
       {
-                echo "<span id =\"vC\">$vC views</span>";
-
-echo '<div class="fb-like" data-href="https://note-runfree.rhcloud.com/draw/page.php?id='.$id.'" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div><span> | <a href="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://note-runfree.rhcloud.com/draw/page.php?id='.$id.'">Get QR code</a></span>';
+                        echo "<span id =\"vC\">$vC views</span>";
+       echo '<div class="fb-like" data-href="https://note-runfree.rhcloud.com/draw/page.php?id='.$id.'" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>'; 
+      echo "  |  <a href = \"index.php\">Show all documents</a> | <a href=\"add.php\">Add document</a> | <span><a href= \"https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://note-runfree.rhcloud.com/draw/page.php?id=$id\">Get QR code</a></span></div>";
       }
 }
       else
