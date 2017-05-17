@@ -21,7 +21,7 @@ include '../connect.php';
 <h4>Full stack</h4>
 <table>
 <?php
- $q = mysqli_query($link,"select title,id from draw")or die(mysqli_error($link));
+ $q = mysqli_query($link,"select title,id from draw order by title asc")or die(mysqli_error($link));
  $count=0;
   while($data=mysqli_fetch_array($q))
   {

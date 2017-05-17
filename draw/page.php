@@ -117,7 +117,7 @@ echo "</div>";
 </div>
 <script>
 var tim = window.setInterval(function(){
-  notey.get('countView.php?id=<?php echo $id; ?>',function(data){});
+  notey.get('countViewNew.php?id=<?php echo $id; ?>',function(data){});
 window.clearInterval(tim);
 },<?php
 $alg = round(str_word_count(strip_tags($content))/300);
