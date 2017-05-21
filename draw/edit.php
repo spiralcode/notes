@@ -190,7 +190,7 @@ if(isset($_GET['draft']))
   <!-- Initialize the editor. -->
   <script>
       $(function() {
-          $('#edit').froalaEditor()
+          $('#edit').froalaEditor({height: 400})
       });
 
       //autoSave 
