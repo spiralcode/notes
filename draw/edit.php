@@ -118,7 +118,7 @@ function autoSave()
 
 <body>
 <div class="topbar">F.O.E</div>
-<div style="text-align:left; background:rgba(172, 213, 174, 0.41);" id= "docOptions">
+<div style="font-size: 1.5em;text-align:left; background:rgba(172, 213, 174, 0.41);" id= "docOptions">
 
 <input placeholder="Title" type="text" id = "titleDoc" value="<?php echo $title; ?>">
 <select id = "cat">
@@ -136,7 +136,7 @@ while($re = mysqli_fetch_array($q))
 <button id="saveDoc" onclick="saveDoc()">Publish</button></div>
 <?php
 if($presence==1&&isset($_GET['draft'])==false)
-echo '<div style="cursor:pointer; color : blue; padding:1em; text-decoration:underline;" align = "center" ><a href = "?draft&id='.$id.' ">Draft Exists, Click to restore contents</a></div>';
+echo '<div style="cursor:pointer; color : blue; padding:1.5em; text-decoration:underline;" align = "center" ><a href = "?draft&id='.$id.' ">Draft Exists, Click to restore contents</a></div>';
 if(isset($_GET['draft']))
 {
   echo '<div style="cursor:pointer; color : blue; padding:1em; " align = "center" >Draft Edit</div>';

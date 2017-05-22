@@ -1,0 +1,71 @@
+<html>
+    <head>
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Angular Material style sheet -->
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+        <style>
+        .menudemoCustomTrigger .md-menu-demo {
+  padding: 24px; }
+
+.menudemoCustomTrigger .menu-demo-container {
+  min-height: 200px; }
+
+
+/*
+Copyright 2016 Google Inc. All Rights Reserved. 
+Use of this source code is governed by an MIT-style license that can be foundin the LICENSE file at http://material.angularjs.org/HEAD/license.
+*/
+        </style>
+    </head>
+    <body ng-app="BlankApp" ng-cloak>
+         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+
+  <!-- Angular Material Library -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+  
+  <!-- Your application bootstrap  -->
+  <script type="text/javascript">    
+    /**
+     * You must include the dependency on 'ngMaterial' 
+     */
+    angular.module('BlankApp', ['ngMaterial']);
+  </script>
+<div class="md-menu-demo menudemoCustomTrigger" ng-cloak="" ng-app="MyApp">
+  <div class="menu-demo-container" layout-align="center center" layout="column">
+    <h2 class="md-title">Custom triggers</h2>
+    <p>
+      You can customize the events that open and close a menu by using the <code>$mdMenu.open</code> and
+      <code>$mdMenu.close</code> methods. This is an example of triggering a menu on hover, instead of click.
+    </p>
+
+    <md-menu>
+      <md-button aria-label="Open menu with custom trigger" class="md-icon-button" ng-mouseenter="$mdMenu.open()">
+        <md-icon md-menu-origin="" md-svg-icon="call:textsms"></md-icon>
+      </md-button>
+      <md-menu-content width="4" ng-mouseleave="$mdMenu.close()">
+        <md-menu-item ng-repeat="item in [1, 2, 3]">
+          <md-button>
+            Option {{item}}
+          </md-button>
+        </md-menu-item>
+    </md-menu-content></md-menu>
+  </div>
+</div>
+    </body>
+    <script>
+    angular
+  .module('MyApp',['ngMaterial', 'ngMessages', 'material.svgAssetsCache'])
+  .config(function($mdIconProvider) {
+    $mdIconProvider
+      .iconSet('call', 'img/icons/sets/communication-icons.svg', 24);
+  });
+
+    </script>
+</html>
+<!--
+Copyright 2016 Google Inc. All Rights Reserved. 
+Use of this source code is governed by an MIT-style license that can be foundin the LICENSE file at http://material.angularjs.org/HEAD/license.
+-->
