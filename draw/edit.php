@@ -27,7 +27,7 @@ $q = mysqli_query($link,"select * from draw where id= $id ")or die(mysqli_error(
 <html>
 <head>
 <title>Notes Draw</title>
-
+<link rel="stylesheet" href="favicon.png"/>
   <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
