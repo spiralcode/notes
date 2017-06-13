@@ -10,6 +10,13 @@ session_start();
         <meta name="viewport" content="width=device-width, initial-scale=1">
           <link rel="stylesheet" href="notesGen.css">
           <link rel="icon" href="favicon.png">
+  <style>
+  #vC
+  {
+    text-decoration:underline;
+    cursor:pointer;
+  }
+  </style>
   <?php
   $docId=$_GET['id'];
   $q = mysqli_query($link,"select * from draw where id= $docId ")or die(mysqli_error($link));
@@ -92,20 +99,20 @@ if(isset($_SESSION['userid']))
 {
       if($writerId==$_SESSION['userid'])
       {
-                        echo "<span id =\"vC\">$vC views</span>";
+                        echo "<span onclick=\"viewStat();\" id =\"vC\">$vC views</span>";
        echo '<div class="fb-like" data-href="https://note-runfree.rhcloud.com/draw/page.php?id='.$id.'" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>'; 
       echo " | <a href=\"edit.php?id=$id\">Edit</a> | <a onclick = \"deleteConfirm()\"><u style=\"cursor:pointer;\">Delete</u></a> | <a href = \"index.php\">Show all documents</a> | <a href=\"add.php\">Add document</a> | <span><a href= \"https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://note-runfree.rhcloud.com/draw/page.php?id=$id\">Get QR code</a></span></div>";
       }
       else
       {
-                        echo "<span id =\"vC\">$vC views</span>";
+                        echo "<span onclick=\"viewStat();\"  id =\"vC\">$vC views</span>";
        echo '<div class="fb-like" data-href="https://note-runfree.rhcloud.com/draw/page.php?id='.$id.'" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>'; 
       echo "  |  <a href = \"index.php\">Show all documents</a> | <a href=\"add.php\">Add document</a> | <span><a href= \"https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://note-runfree.rhcloud.com/draw/page.php?id=$id\">Get QR code</a></span></div>";
       }
 }
       else
       {
-    echo "<span id =\"vC\">$vC views</span>";
+    echo "<span onclick=\"viewStat();\"  id =\"vC\">$vC views</span>";
   echo '<div class="fb-like" data-href="https://note-runfree.rhcloud.com/draw/page.php?id='.$id.'" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div><span> | <a href="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://note-runfree.rhcloud.com/draw/page.php?id='.$id.'">Get QR code</a></span>';
       }
 echo "</div>";
@@ -113,6 +120,10 @@ echo "</div>";
 ?>
 </div>
 <script>
+function viewStat()
+{
+  window.location="viewStatus.php?id=<?php echo $id; ?>&year=2017&title=<?php echo $title; ?>";
+}
 var tim = window.setInterval(function(){
   notey.get('countViewNew.php?id=<?php echo $id; ?>',function(data){});
 window.clearInterval(tim);
