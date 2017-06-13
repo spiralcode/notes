@@ -12,11 +12,11 @@ while($d = mysqli_fetch_array($q))
     $authId=$d['userid'];
 }
 if($authId!=$userid)
-$q = mysqli_query($conn,"insert into view_count values ($did,'$ip','now()'") or die(mysqli_error($link));
+$q = mysqli_query($conn,"insert into view_count values ($did,'$ip',now())") or die(mysqli_error($link));
 }
 else
 {
-    $q = mysqli_query($conn,"insert into view_count values ($did,'$ip','now()'") or die(mysqli_error($link));
+    $q = mysqli_query($conn,"insert into view_count values ($did,'$ip',now())") or die(mysqli_error($link));
 
 }
 

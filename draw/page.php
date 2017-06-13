@@ -23,11 +23,8 @@ session_start();
     $title=$data['title'];
     $id=$data['id'];
 $date = $data['date'];
-   $aux = mysqli_query($link,"select * from draw_view_count where id = $id ");
-   while($dd = mysqli_fetch_array($aux))
-   {
-     $vC = $dd['count'];
-   }
+   $aux = mysqli_query($link,"select id from view_count where id = $id");
+   $vC = mysqli_num_rows($aux);
    if(mysqli_num_rows($aux)<=0)
    {
      $vC = 0;
