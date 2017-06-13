@@ -3,7 +3,7 @@ session_start();
 include '../connect.php';
 $did = $_GET['id'];
 
-$ip = $getRealIpAddr();
+$ip = getRealIpAddr();
 $q = mysqli_query($link,"select * from draw where id = $did") or die(mysqli_error($link));
 if(isset($_SESSION['userid']))
 {
