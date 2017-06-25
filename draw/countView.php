@@ -1,6 +1,5 @@
 <?php
 include '../connect.php';
-
 //session_start();
 $qq = mysqli_query($link,"select * from draw_view_count ") or die(mysqli_error($link));
 $ip = "";
