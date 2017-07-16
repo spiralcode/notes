@@ -19,19 +19,16 @@ class ind{
 	
 	};
 
-
-$sample = new ind();
-$sample->setTitle("Hey");
-var_dump($sample);
-
 $resultArray = array();
 
 $query = "select * from follow_profiles where userid = '$userid' and password = '$pass'";
 
-$the = mysqli_query($link,$query)or die(mysqli_error($link));
+//$the = mysqli_query($link,$query)or die(mysqli_error($link));
 
+
+$query5=mysqli_query($link, $query)or die(mysqli_error($link));
 $count = 0;
-	while($data=mysqli_fetch_array($the))
+	while($data=mysqli_fetch_array($query5))
 	{
 		$count++;
 		$a = new ind();
