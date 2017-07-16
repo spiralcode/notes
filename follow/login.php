@@ -41,9 +41,10 @@ else
 		$a = new user();
 		$a->setTitle($data['title']);
 		$a->setId($data['id']);
+		array_push($resultArray,$a);
+
 	}
 	
-	array_push($resultArray,$a);
 	echo json_encode($resultArray);
 
 }
