@@ -26,19 +26,7 @@ $resultArray = array();
 
 
 
-
-$query = "select * from follow_profiles where userid = '$userid' and password = '$pass'";
-$host = "127.10.171.2:3306";
-$userr = "adminz8hImgI";
-$passw = 'rUP7aW8my2r6';
-$db = 'note';
-$conn = new mysqli($host,$userr,$passw);
-
-$d=mysqli_select_db($conn,$db);
-
-$the = mysqli_query($conn,$query)or die(mysqli_error($conn));
-
-$count = 0;
+/*
 	while($data=mysqli_fetch_array($the))
 	{
 		$count++;
@@ -57,7 +45,7 @@ $count = 0;
 
 
 
-
+*/
 
 
 $host = "127.10.171.2:3306";
