@@ -1,6 +1,5 @@
 <?php
 include 'connect.php';
-
 $userid = $_POST['userid'];
 $pass = $_POST['pass'];
 
@@ -21,11 +20,8 @@ class ind{
 	};
 
 
-
-
-
 $sample = new ind();
-$sample->getTitle("Hey");
+$sample->setTitle("Hey");
 var_dump($sample);
 
 $resultArray = array();
