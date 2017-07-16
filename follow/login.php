@@ -34,7 +34,7 @@ $passw = 'rUP7aW8my2r6';
 $db = 'note';
 $conn = new mysqli($host,$userr,$passw);
 
-$d=mysqli_select_db($db,$conn);
+$d=mysqli_select_db($conn,$db);
 
 $the = mysqli_query($conn,$query)or die(mysqli_error($conn));
 
