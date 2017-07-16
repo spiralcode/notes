@@ -5,8 +5,8 @@ $userid = $_POST['userid'];
 $pass = $_POST['pass'];
 
 class ind{
-	var $title;
-	var $id;
+	var $title="";
+	var $id="";
 	public function setTitle($title)
 	{
 		$this->title=$title;
