@@ -26,6 +26,13 @@ $resultArray = array();
 $query = "select * from follow_profiles where userid = '$userid' and password = '$pass'";
 
 $the = mysqli_query($link,$query);
+
+if(false===$the)
+{
+	echo "utter failure";
+	}
+
+
 $count = 0;
 	while($data=mysqli_fetch_array($the))
 	{
