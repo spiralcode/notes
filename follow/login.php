@@ -1,10 +1,8 @@
 <?php
 include 'connect.php';
-$userid = mysqli_real_escape_string($link,$_POST['userid']);
-$pass = mysqli_real_escape_string($link,$_POST['pass']);
 
 $userid = $_POST['userid'];
-
+$pass = $_POST['pass'];
 
 echo $userid;
 
