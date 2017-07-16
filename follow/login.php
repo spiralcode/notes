@@ -4,9 +4,6 @@ include 'connect.php';
 $userid = $_POST['userid'];
 $pass = $_POST['pass'];
 
-echo $userid;
-
-
 class user{
 	var $title;
 	var $id;
@@ -26,16 +23,17 @@ class user{
 
 $resultArray = array();
 
+$query = "select * from follow_profiles where userid = '$userid' and password = '$pass'";
+echo $query;
 
-$q = mysqli_query($link,"select * from follow_profiles where userid = '$userid' and password = '$pass'" )or die(mysqli_error($link));
-echo "Here";
-if(mysqli_num_rows($q)==0)
+$qq = mysqli_query($link,$query) or die(mysqli_error($link));
+if(mysqli_num_rows($qq)==0)
 {
 echo "0";	
 }
 else
 {
-	while($data=mysqli_fetch_array($q))
+	while($data=mysqli_fetch_array($qq))
 	{
 		$a = new user();
 		$a->setTitle($data['title']);
