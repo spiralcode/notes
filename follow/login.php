@@ -5,14 +5,14 @@ $userid = $_POST['userid'];
 $pass = $_POST['pass'];
 
 class user{
-	var $title;
-	var $id;
-	function setTitle($title)
+	public $title;
+	public $id;
+	public function setTitle($title)
 	{
 		$this->title=$title;
 		
 	}
- function setId($id)
+ public function setId($id)
 	{
 		$this->id=$id;
 		
