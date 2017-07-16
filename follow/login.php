@@ -21,7 +21,7 @@ class ind{
 
 $resultArray = array();
 
-$query = "select * from follow_profiles where userid = '$userid' and password = '$pass'";
+$query = "select * from follow_profiles";
 
 //$the = mysqli_query($link,$query)or die(mysqli_error($link));
 
