@@ -1,7 +1,7 @@
 <?php
 include 'connect.php';
-$userid = mysqli_real_escape_string($_POST['userid'],$link);
-$pass = mysqli_real_escape_string($_POST['pass'],$link);
+$userid = mysqli_real_escape_string($_POST['userid'],$link)||"123";
+$pass = mysqli_real_escape_string($_POST['pass'],$link)||"123";
 
 class user{
 	var $title;
@@ -20,7 +20,7 @@ class user{
 	};
 
 
-$resultArray = new array();
+$resultArray = array();
 
 
 
@@ -33,9 +33,9 @@ else
 {
 	while($data=mysqli_fetch_array($q))
 	{
-		user a = new user();
-		a.setTitle($data['title']);
-		a.setId($data['id']);
+		$a = new user();
+		$a.setTitle($data['title']);
+		$a.setId($data['id']);
 	}
 	
 	array_push($resultArray,$a);
