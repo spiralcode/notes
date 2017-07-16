@@ -4,9 +4,9 @@ include 'connect.php';
 $userid = $_POST['userid'];
 $pass = $_POST['pass'];
 
-class user{
-	public $title;
-	public $id;
+class ind{
+	var $title;
+	var $id;
 	public function setTitle($title)
 	{
 		$this->title=$title;
@@ -20,7 +20,11 @@ class user{
 	
 	};
 
-$sample = new user();
+
+
+
+
+$sample = new ind();
 $sample->getTitle("Hey");
 var_dump($sample);
 
