@@ -54,7 +54,7 @@ $passw = 'rUP7aW8my2r6';
 $db = 'note';
 
 // Create connection
-$conn = new mysqli($host, $usser, $passw, $db);
+$conn = new mysqli($host, $userr, $passw, $db);
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
