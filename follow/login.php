@@ -3,7 +3,10 @@ include 'connect.php';
 $userid = mysqli_real_escape_string($link,$_POST['userid']);
 $pass = mysqli_real_escape_string($link,$_POST['pass']);
 
-echo $userid,$pass;
+$userid = $_POST['userid'];
+
+
+echo $userid;
 
 
 class user{
