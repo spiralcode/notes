@@ -37,9 +37,11 @@ $count = 0;
 
 	}
 	if($count!=0)
+	{
 	echo json_encode($resultArray);
+}
 	else
-	echo "0";
+	{echo "0";}
 
 
 ?>
