@@ -38,7 +38,7 @@ $count = 0;
 	while($data=mysqli_fetch_array($the))
 	{
 		$count++;
-		$a = new user();
+		$a = new ind();
 		$a->setTitle($data['title']);
 		$a->setId($data['id']);
 		array_push($resultArray,$a);
