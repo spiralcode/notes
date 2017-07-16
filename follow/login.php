@@ -10,18 +10,18 @@ echo $userid;
 class user{
 	var $title;
 	var $id;
-	public function setTitle($title)
+	function setTitle($title)
 	{
 		$this->title=$title;
 		
 	}
-		function setId($id)
+ function setId($id)
 	{
 		$this->id=$id;
 		
 	}
 	
-	};
+	}
 
 
 $resultArray = array();
