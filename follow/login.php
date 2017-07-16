@@ -1,7 +1,7 @@
 <?php
 include 'connect.php';
-$userid = mysqli_real_escape_string($link,$_POST['userid'])||"123";
-$pass = mysqli_real_escape_string($link,$_POST['pass'])||"123";
+$userid = mysqli_real_escape_string($link,$_POST['userid']);
+$pass = mysqli_real_escape_string($link,$_POST['pass']);
 echo "Reached : "+$userid;
 class user{
 	var $title;
