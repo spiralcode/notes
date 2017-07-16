@@ -24,9 +24,8 @@ class user{
 $resultArray = array();
 
 $query = "select * from follow_profiles where userid = '$userid' and password = '$pass'";
-echo $query;
 
-$qq = mysqli_query($link,$query) or die(mysqli_error($link));
+$qq = mysqli_query($link,$query)or die(mysqli_error($link));
 if(mysqli_num_rows($qq)==0)
 {
 echo "0";	
