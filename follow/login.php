@@ -29,8 +29,6 @@ if(mysqli_num_rows($link,$q)==0)
 {
 echo "0";	
 }
-else
-{
 	while($data=mysqli_fetch_array($q))
 	{
 		$a = new user();
@@ -40,7 +38,6 @@ else
 	
 	array_push($resultArray,$a);
 	echo json_encode($resultArray);
-}
 
 
 
