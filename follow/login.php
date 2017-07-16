@@ -18,7 +18,7 @@ class user{
 		
 	}
 	
-	};
+	}
 
 
 $resultArray = array();
