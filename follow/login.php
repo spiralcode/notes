@@ -3,8 +3,6 @@ error_reporting(-1);
 
 include 'connect.php';
 
-$userid = $_POST['userid'];
-$pass = $_POST['pass'];
 
 class ind{
 	var $title="";
@@ -60,7 +58,12 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-$sql = "SELECT * from follow_profiles";
+$userid = mysqli_real_escape_string($conn,
+$_POST['userid']);
+$pass = mysqli_real_escape_string($conn,$_POST['pass']);
+
+
+$sql = "SELECT * from follow_profiles where userid = '$userid' and password = '$pass'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
