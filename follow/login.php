@@ -1,5 +1,8 @@
 <?php
+error_reporting(-1);
+
 include 'connect.php';
+
 $userid = $_POST['userid'];
 $pass = $_POST['pass'];
 
@@ -21,27 +24,20 @@ class ind{
 
 $resultArray = array();
 
+
+
+
 $query = "select * from follow_profiles where userid = '$userid' and password = '$pass'";
+$host = "127.10.171.2:3306";
+$userr = "adminz8hImgI";
+$passw = 'rUP7aW8my2r6';
+$db = 'note';
+$conn = new mysqli($host,$userr,$passw);
 
-//$the = mysqli_query($link,$query)or die(mysqli_error($link));
+$the = mysqli_query($conn,$query)or die(mysqli_error($conn));
 
-
-//$query5=mysqli_query($link, $query)or die(mysqli_error($link));
 $count = 0;
-
-$result = $this->mysqli->query($query);
-
-while($row=$result->fetch_array(MYSQLI_NUM))
-{
-$count++;
-		$a = new ind();
-		$a->setTitle($data['title']);
-		$a->setId($data['id']);
-		array_push($resultArray,$a);
-}
-
-
-/*	while($data=mysqli_fetch_array($query5))
+	while($data=mysqli_fetch_array($the))
 	{
 		$count++;
 		$a = new ind();
@@ -49,7 +45,7 @@ $count++;
 		$a->setId($data['id']);
 		array_push($resultArray,$a);
 
-	}*/
+	}
 	if($count!=0)
 	{
 	echo json_encode($resultArray);
