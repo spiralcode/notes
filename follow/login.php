@@ -60,7 +60,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-$sql = "SELECT * from follow_profiles where userid = '$userid' and password = '$pass'";
+$sql = "SELECT * from follow_profiles";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
