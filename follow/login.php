@@ -56,4 +56,47 @@ $count = 0;
 	{echo "0";}
 
 
+
+
+
+
+$host = "127.10.171.2:3306";
+$userr = "adminz8hImgI";
+$passw = 'rUP7aW8my2r6';
+$db = 'note';
+
+// Create connection
+$conn = new mysqli($host, $usser, $passw, $db);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+
+$sql = "SELECT id, firstname, lastname FROM MyGuests";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+        echo "id: " . $row["id"];
+    }
+} else {
+    echo "0 results";
+}
+$conn->close();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ?>
