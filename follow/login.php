@@ -18,7 +18,7 @@ class user{
 		
 	}
 	
-	}
+	};
 
 $sample = new user();
 $sample->getTitle("Hey");
