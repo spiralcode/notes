@@ -25,10 +25,12 @@ $resultArray = array();
 
 
 $q = mysqli_query($link,"select * from follow_profiles where userid = $userid and password = $pass" ) or die(mysqli_error($link));
-if(mysqli_num_rows($link,$q)==0)
+if(mysqli_num_rows($q)==0)
 {
 echo "0";	
 }
+else
+{
 	while($data=mysqli_fetch_array($q))
 	{
 		$a = new user();
@@ -39,6 +41,6 @@ echo "0";
 	array_push($resultArray,$a);
 	echo json_encode($resultArray);
 
-
+}
 
 ?>
