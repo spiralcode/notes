@@ -20,18 +20,15 @@ class user{
 	
 	}
 
+$sample = new user();
+$sample->getTitle("Hey");
+var_dump($sample);
 
 $resultArray = array();
 
 $query = "select * from follow_profiles where userid = '$userid' and password = '$pass'";
 
-$the = mysqli_query($link,$query);
-
-if(false===$the)
-{
-	echo "utter failure";
-	}
-
+$the = mysqli_query($link,$query)or die(mysqli_error($link));
 
 $count = 0;
 	while($data=mysqli_fetch_array($the))
