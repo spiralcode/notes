@@ -27,13 +27,14 @@ $accuracy = mysqli_real_escape_string($conn,$_POST['accuracy']);
 
 
 $sql = "update table follow_coords set coords = '$coords', speed = $speed, accuracy = $accuracy,time=now() where id = $id  ";
+echo $sql;
 $result = $conn->query($sql);
 if($result)
 {
 echo "Success";
 }
 
-echo $id."-".$coords."-".$speed;
+
 $conn->close();
 
 
