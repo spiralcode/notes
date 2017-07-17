@@ -23,7 +23,8 @@ $id = $_POST['id'];
 $coords = mysqli_real_escape_string($conn,$_POST['coords']);
 $speed = mysqli_real_escape_string($conn,$_POST['speed']);
 $accuracy = mysqli_real_escape_string($conn,$_POST['accuracy']);
-
+$speed=round($speed);
+$accuracy=round($accuracy);
 
 
 $sql = "update table follow_coords set coords = '$coords', speed = $speed, accuracy = $accuracy,time=now() where id = $id  ";
