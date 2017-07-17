@@ -3,8 +3,6 @@ error_reporting(-1);
 
 include 'connect.php';
 
-$resultArray = array();
-
 $host = "127.10.171.2:3306";
 $userr = "adminz8hImgI";
 $passw = 'rUP7aW8my2r6';
@@ -30,7 +28,7 @@ $accuracy = mysqli_real_escape_string($conn,$_POST['accuracy']);
 
 $sql = "update table follow_coords set coords = '$coords', speed = '$speed', accuracy = '$accuracy',time=now() where id = $id  ";
 $result = $conn->query($sql);
-echo "1";
+echo $id,$coords,$speed,$accuracy;
 $conn->close();
 
 
