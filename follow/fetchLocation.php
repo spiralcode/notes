@@ -64,6 +64,7 @@ $a->setLat($cp[0]);
 $a->setLng($cp[1]);
 $a->setSpeed($row['speed']);
 $a->setAccuracy($row['accuracy']);
+var_dump($a);
 array_push($resultArray,$a);
 }
 echo json_encode($resultArray);
