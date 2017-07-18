@@ -50,7 +50,7 @@ if ($conn->connect_error) {
 $id = mysqli_real_escape_string($conn,$_GET['id']);
 
 
-$sql = "SELECT * from follow_profiles where id = 1";
+$sql = "SELECT * from follow_coords where id = 1";
 
 $result = $conn->query($sql);
 $count=0;
