@@ -56,7 +56,7 @@ $count=0;
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
-		
+	echo $row['coords']+" R";	
 $count++;
 $a = new ind();
 $cp =explode(",",$row['coords']);
