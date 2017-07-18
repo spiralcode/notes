@@ -48,7 +48,7 @@ if ($conn->connect_error) {
 } 
 
 $id = mysqli_real_escape_string($conn,
-$_POST['id']);
+$_GET['id']);
 
 
 
