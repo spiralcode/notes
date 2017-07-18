@@ -54,6 +54,7 @@ $sql = "SELECT * from follow_profiles where id = 1";
 
 $result = $conn->query($sql);
 $count=0;
+echo $result->num_rows;
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
