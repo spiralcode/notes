@@ -54,7 +54,7 @@ $sql = "SELECT * from follow_coords where id = 1";
 
 $result = $conn->query($sql);
 $count=0;
-echo $result->num_rows;
+
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
@@ -65,7 +65,6 @@ $a->setLat($cp[0]);
 $a->setLng($cp[1]);
 $a->setSpeed($row['speed']);
 $a->setAccuracy($row['accuracy']);
-var_dump($a);
 array_push($resultArray,$a);
 }
 echo json_encode($resultArray);
