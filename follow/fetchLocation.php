@@ -47,9 +47,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-$id = mysqli_real_escape_string($conn,
-$_GET['id']);
-
+$id = mysqli_real_escape_string($conn,$_GET['id']);
 
 
 $sql = "SELECT * from follow_profiles where id = $id";
@@ -63,13 +61,10 @@ if ($result->num_rows > 0) {
 		$a = new ind();
 
 $cp =explode(",",string);
-$a.setLat($cp[0]);
-$a.setLng($cp[1]);
-
-
-
-		$a->setSpeed($row['speed']);
-		$a->setAccuracy($row['accuracy']);
+$a->setLat($cp[0]);
+$a->setLng($cp[1]);
+$a->setSpeed($row['speed']);
+$a->setAccuracy($row['accuracy']);
 		array_push($resultArray,$a);
 		    }
     echo json_encode($resultArray);
