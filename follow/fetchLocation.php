@@ -50,13 +50,13 @@ if ($conn->connect_error) {
 $id = mysqli_real_escape_string($conn,$_GET['id']);
 
 
-$sql = "SELECT * from follow_profiles where id = $id";
+$sql = "SELECT * from follow_profiles where id = 1";
+
 $result = $conn->query($sql);
 $count=0;
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
-	echo $row['coords']+" R";	
 $count++;
 $a = new ind();
 $cp =explode(",",$row['coords']);
