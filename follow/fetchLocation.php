@@ -5,8 +5,8 @@ include 'connect.php';
 
 
 class ind{
-	var $lat="";
-	var $lng="";
+var $lat="";
+var $lng="";
 var $speed=0;
 var $accuracy = 0;
 
@@ -52,14 +52,13 @@ $id = mysqli_real_escape_string($conn,$_GET['id']);
 
 $sql = "SELECT * from follow_profiles where id = $id";
 $result = $conn->query($sql);
-
+$count=0;
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
 		
-		$count++;
-		$a = new ind();
-
+$count++;
+$a = new ind();
 $cp =explode(",",$row['coords']);
 $a->setLat($cp[0]);
 $a->setLng($cp[1]);
