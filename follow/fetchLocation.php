@@ -10,24 +10,24 @@ class ind{
 var $speed=0;
 var $accuracy = 0;
 
-	public function setLat($title)
+	public function setLat($lat)
 	{
-		$this->lat=$title;
+		$this->lat=$lat;
 		
 	}
- public function setLng($id)
+ public function setLng($lng)
 	{
-		$this->lng=$id;
+		$this->lng=$lng;
 		
 	}
-		public function setSpeed($title)
+		public function setSpeed($speed)
 	{
-		$this->speed=$title;
+		$this->speed=$speed;
 		
 	}
- public function setAccuracy($id)
+ public function setAccuracy($acc)
 	{
-		$this->accuracy=$id;
+		$this->accuracy=$acc;
 		
 	}
 	};
@@ -60,14 +60,14 @@ if ($result->num_rows > 0) {
 		$count++;
 		$a = new ind();
 
-$cp =explode(",",string);
+$cp =explode(",",$row['coords']);
 $a->setLat($cp[0]);
 $a->setLng($cp[1]);
 $a->setSpeed($row['speed']);
 $a->setAccuracy($row['accuracy']);
-		array_push($resultArray,$a);
-		    }
-    echo json_encode($resultArray);
+array_push($resultArray,$a);
+}
+echo json_encode($resultArray);
 } else {
     echo "0";
 }
