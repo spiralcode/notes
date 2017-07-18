@@ -15,9 +15,9 @@ var $accuracy = 0;
 		$this->lat=$title;
 		
 	}
- public function setLong($id)
+ public function setLng($id)
 	{
-		$this->long=$id;
+		$this->lng=$id;
 		
 	}
 		public function setSpeed($title)
