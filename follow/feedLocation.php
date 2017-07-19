@@ -11,7 +11,7 @@ $db = 'note';
 //Date Creation
 date_default_timezone_set('Asia/Calcutta');
 $datum = new DateTime();
-$feedDate = $datum->format('Y-m-d H:i:s');
+$feedDate = $datum->format('d-m-Y H:i:s');
 
 
 
