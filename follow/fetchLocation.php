@@ -9,7 +9,7 @@ var $lat="";
 var $lng="";
 var $speed=0;
 var $accuracy = 0;
-
+var $timed ="";
 	public function setLat($lat)
 	{
 		$this->lat=$lat;
@@ -30,7 +30,10 @@ var $accuracy = 0;
 		$this->accuracy=$acc;
 		
 	}
-	};
+public function setTimedAt($end)
+{
+$this->timed=$end;
+}	};
 
 $resultArray = array();
 
@@ -50,7 +53,7 @@ if ($conn->connect_error) {
 $id = mysqli_real_escape_string($conn,$_GET['id']);
 
 
-$sql = "SELECT * from follow_coords where id = 1";
+$sql = "SELECT coords,speed,accuracy,UNIX_TIMESTAMP(time) from follow_coords where id = 1";
 
 $result = $conn->query($sql);
 $count=0;
@@ -65,6 +68,7 @@ $a->setLat($cp[0]);
 $a->setLng($cp[1]);
 $a->setSpeed($row['speed']);
 $a->setAccuracy($row['accuracy']);
+$a->setTimedAt($row['timedat']);
 array_push($resultArray,$a);
 }
 echo json_encode($resultArray);
