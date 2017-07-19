@@ -28,7 +28,9 @@ $accuracy=round($accuracy);
 
 
 $sql = "update follow_coords set coords = '$coords', speed = $speed, accuracy = $accuracy,time=now() where id = $id  ";
-echo $sql;
+
+echo $speed;
+
 $result = $conn->query($sql);
 if($result)
 {
