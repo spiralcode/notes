@@ -53,7 +53,7 @@ if ($conn->connect_error) {
 $id = mysqli_real_escape_string($conn,$_GET['id']);
 
 
-$sql = "SELECT coords,speed,accuracy,UNIX_TIMESTAMP(time) from follow_coords where id = 1";
+$sql = "SELECT coords,speed,accuracy,UNIX_TIMESTAMP(time) as timedat from follow_coords where id = 1";
 
 $result = $conn->query($sql);
 $count=0;
