@@ -8,6 +8,13 @@ $userr = "adminz8hImgI";
 $passw = 'rUP7aW8my2r6';
 $db = 'note';
 
+//Date Creation
+date_default_timezone_set('Asia/Calcutta');
+$datum = new DateTime();
+$feedDate = $datum->format('Y-m-d H:i:s');
+
+
+
 // Create connection
 $conn = new mysqli($host, $userr, $passw, $db);
 // Check connection
@@ -27,7 +34,7 @@ $accuracy = mysqli_real_escape_string($conn,$_POST['accuracy']);
 $accuracy=round($accuracy);
 
 
-$sql = "update follow_coords set coords = '$coords', speed = $speed, accuracy = $accuracy,time=now() where id = $id  ";
+$sql = "update follow_coords set coords = '$coords', speed = $speed, accuracy = $accuracy,time='$feedDate' where id = $id  ";
 
 echo $speed;
 
