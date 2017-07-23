@@ -9,6 +9,7 @@ var $lat="";
 var $lng="";
 var $speed=0;
 var $accuracy = 0;
+var $bearing=0;
 var $timed ="";
 	public function setLat($lat)
 	{
@@ -28,6 +29,11 @@ var $timed ="";
  public function setAccuracy($acc)
 	{
 		$this->accuracy=$acc;
+		
+	}
+	 public function setBearing($abearin)
+	{
+		$this->bearing=$abearin;
 		
 	}
 public function setTimedAt($end)
@@ -53,7 +59,7 @@ if ($conn->connect_error) {
 $id = mysqli_real_escape_string($conn,$_GET['id']);
 
 
-$sql = "SELECT coords,speed,accuracy,time as timedat from follow_coords where id = 1";
+$sql = "SELECT coords,speed,accuracy,bearing,time as timedat from follow_coords where id = 1";
 
 $result = $conn->query($sql);
 $count=0;
@@ -67,6 +73,7 @@ $cp =explode(",",$row['coords']);
 $a->setLat($cp[0]);
 $a->setLng($cp[1]);
 $a->setSpeed($row['speed']);
+$a->setBearing($row['bearing']);
 $a->setAccuracy($row['accuracy']);
 $a->setTimedAt($row['timedat']);
 array_push($resultArray,$a);
